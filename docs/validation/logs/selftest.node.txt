@@ -1,0 +1,12 @@
+PASS synth fails on undeclared net with file:line
+PASS synth fails on undriven net
+PASS stat parsed (cells + kinds)
+PASS synth dontUse is honoured
+PASS lint: missing top is reported
+PASS sim: free-running clock stops with a clear message
+PASS sim: errors show the real file name
+{"cells":13,"area":412.6976,"kinds":[["dffq_1",4],["nor2_1",4],["and2_1",1],["aoi21_1",1],["nand3_1",1],["xnor2_1",1],["xor2_1",1]],"top":"counter","strategy":"AREA 0","library":"gf180mcu_fd_sc_mcu7t5
+   shreg4 worst data path _1_ -> dout 1 cells, 2 RTL cells lit
+PASS names: STA instances are netlist.json cells, shreg4
+   tiny8 worst data path instr[9] -> _411_ 12 cells, 26 RTL cells lit
+PASS names: STA instances are netlist.json cells, tiny8

@@ -1,0 +1,10 @@
+﻿PASS short finder
+PASS retried nets
+PASS twoclk def 374358, 284 cells, failed nets 0 , {"synth":1870,"place":632,"cts":22421,"route":119}, lvs true devices 56,56 nets 32,32
+PASS twoclk2 def 620ab7, 292 cells, failed nets 0 , {"synth":832,"place":727,"cts":24842,"route":125}
+PASS twoclk3 def 72e780, 285 cells, failed nets 0 , {"synth":701,"place":634,"cts":27091,"route":126}
+PASS adder def 413211, 362 cells, failed nets 0 , {"synth":1684,"place":1090,"cts":0,"route":318}, lvs true devices 256,256 nets 146,146
+PASS adder2 def 5a2084, 362 cells, failed nets 0 , {"synth":1374,"place":1088,"cts":0,"route":358}, lvs true devices 256,256 nets 146,146
+PASS pins40 def 3501d4, 283 cells, failed nets 0 , {"synth":656,"place":670,"cts":0,"route":166}, lvs true devices 20,20 nets 20,20
+PASS tiny8 def 7366f5, 934 cells, failed nets 0 , {"synth":5930,"place":2900,"cts":26442,"route":13555}, lvs true devices 3100,3100 nets 1537,1537, post-route setup 12.9621 hold 1.0438
+PASS mult8 def 1672e4, 919 cells, failed nets 0 , {"synth":7473,"place":3284,"cts":0,"route":8124}, lvs true devices 2321,2321 nets 1180,1180

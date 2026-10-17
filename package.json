@@ -1,0 +1,15 @@
+{
+  "name": "nishkam-tool",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Open-source chip-design tools compiled to WebAssembly, with validation against native builds",
+  "license": "MIT",
+  "scripts": {
+    "test": "node web/studio/fit.test.mjs && node web/studio/stages.test.mjs && node web/studio/viewers/parse.test.mjs && node web/studio/viewers/gds.test.mjs && node web/studio/engines/selftest.node.mjs && node web/studio/engines/lvs.selftest.mjs && node web/studio/engines/cts.selftest.mjs && node web/studio/engines/opensta.selftest.mjs"
+  },
+  "dependencies": {
+    "@yowasp/yosys": "0.68.1207",
+    "verilator-wasm": "1.0.0"
+  }
+}

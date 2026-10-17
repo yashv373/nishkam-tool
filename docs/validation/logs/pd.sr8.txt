@@ -1,0 +1,6 @@
+PASS place 16 components, DIEAREA ( -448 -448 ) ( 7616 5040 ) ;, 2070 ms
+PASS cts 3 clock buffers, 8 sinks, latency 0.44 ns, 27564 ms
+PASS route failed nets 0, 271 ms
+PASS gds 36116 bytes
+PASS drc ran 0 error tiles (0 inside library cells, 0 from layout); rules: No errors found.
+PASS extract 2425 ms total for magic

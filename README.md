@@ -1,6 +1,13 @@
-# nishkam-tool
+<p align="center"><img src="docs/img/banner.svg" alt="Nishkam: chip-design tools that run in your browser" width="100%"></p>
 
-[![License: MIT](https://img.shields.io/badge/our%20code-MIT-blue.svg)](LICENSE)
+<p align="center">
+  <a href="LICENSE"><img alt="Our code: MIT" src="https://img.shields.io/badge/our%20code-MIT-1430ff"></a>
+  <img alt="Runs as WebAssembly" src="https://img.shields.io/badge/runs%20as-WebAssembly-4a63ff">
+  <img alt="PDK gf180mcuD" src="https://img.shields.io/badge/PDK-gf180mcuD-000000">
+  <a href="https://nishkam.world"><img alt="Live site" src="https://img.shields.io/badge/live-nishkam.world-1430ff"></a>
+</p>
+
+<p align="center"><b>RTL to layout, in a browser tab.</b> No install, no server, nothing uploaded.</p>
 
 Open-source chip-design tools, compiled to WebAssembly so they run in a web browser with nothing to install.
 This is the tool layer behind [nishkam.world](https://nishkam.world): Yosys, Verilator, Icarus Verilog, OpenSTA,
@@ -8,6 +15,29 @@ OpenROAD's clock tree synthesis, graywolf, qrouter, Magic and Netgen. For each t
 version, our small patches, the build steps, the browser wrapper code, and tests that compare the browser result with the normal native tool.
 
 Test designs here only check that the tools work. They do not show that a design is good.
+
+## What it looks like
+
+These are screenshots of [Nishkam Studio](https://nishkam.world), which runs these tools.
+
+<table>
+<tr>
+<td><img src="docs/img/studio-editor.webp" alt="Editor and lint"><br><sub>Edit, lint, simulate</sub></td>
+<td><img src="docs/img/studio-schematic.webp" alt="Schematic"><br><sub>Schematic from the synthesised netlist</sub></td>
+</tr>
+<tr>
+<td><img src="docs/img/studio-timing.webp" alt="Timing report"><br><sub>Timing and power (OpenSTA)</sub></td>
+<td><img src="docs/img/studio-gds.webp" alt="GDS layout"><br><sub>Layout, DRC and LVS (Magic, Netgen)</sub></td>
+</tr>
+</table>
+
+## The flow
+
+```
+RTL --> Yosys --> graywolf --> TritonCTS --> qrouter --> Magic --> Netgen
+lint    synth     place        clock tree    route       GDS+DRC   LVS
+                                  ___________ OpenSTA: timing and power ___________/
+```
 
 ## The tools
 
@@ -91,6 +121,21 @@ Full report with the test designs, how each side was run, numbers and what was n
 | Placement and routing (adder2) | Same tool outputs as native graywolf and qflow tools; routing differs only in some wire choices | [qflow-native.md](docs/validation/qflow-native.md) |
 | qrouter DRC fix | Magic DRC errors: adder2 18 to 3, mult8 118 to 39, tiny8 197 to 66; LVS still matches. Routing is not yet DRC clean | [drc.txt](docs/validation/logs/drc.txt) |
 | OpenSTA | Full report compared with a native re-run on two small designs (see the report) | [opensta.txt](docs/validation/logs/opensta.txt) |
+
+Clock tree on tiny8, native OpenROAD (left) against the browser build (right). The two are the same, down to every cell position:
+
+<table><tr>
+<td><img src="docs/validation/img/cts-native.png" width="100%" alt="Native OpenROAD clock tree"><br><sub>Native OpenROAD</sub></td>
+<td><img src="docs/validation/img/cts-browser.png" alt="Browser TritonCTS clock tree"><br><sub>Browser TritonCTS</sub></td>
+</tr></table>
+
+Layout from the browser flow, checked against native Magic (GDS XOR is zero on adder2):
+
+<p align="center"><img src="docs/validation/img/layout-tiny8.png" alt="tiny8 layout, native and browser" width="90%"></p>
+
+Real output from the tools, unedited:
+
+<p align="center"><img src="docs/validation/img/term-lvs-native.png" alt="Native Netgen output" width="70%"></p>
 
 Limits are listed at the end of the report. Please read them before relying on a number.
 

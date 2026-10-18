@@ -1,0 +1,255 @@
+
+Magic 8.3 revision 636 - Compiled on Thu Apr 16 09:13:57 PM CEST 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+WARNING: RLIMIT_NOFILE is above 1024 and Tcl_Version<9 this may cause runtime issues [rlim_cur=1048576]
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Loading "run.tcl" from command line.
+Input style import: scaleFactor=10, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    obsactive mvobsactive filldiff fillpoly m1hole obsm1 fillm1 obsv1 m2hole obsm2 fillm2 obsv2 m3hole obsm3 fillm3 m4hole obsm4 fillm4 m5hole obsm5 fillm5 glass fillblock lvstext obscomment 
+10 Magic internal units = 1 Lambda
+Warning: Calma reading is not undoable!  I hope that's OK.
+Library written using GDS-II Release 3.0
+Library name: gf180mcu_fd_sc_mcu7t5v0
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai21_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai21_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai22_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai22_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai31_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai31_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai32_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai32_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai33_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai33_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai211_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai211_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai221_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai221_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai222_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__oai222_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__or2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__or2_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__or3_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__or3_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__or4_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__or4_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__sdffq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__sdffq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__sdffrnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__sdffrnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__tieh".
+Reading "gf180mcu_fd_sc_mcu7t5v0__tiel".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xnor2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xnor2_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xnor3_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xnor3_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xor2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xor2_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xor3_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xor3_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fillcap_32".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fillcap_64".
+Reading "gf180mcu_fd_sc_mcu7t5v0__filltie".
+Reading "gf180mcu_fd_sc_mcu7t5v0__hold".
+Reading "gf180mcu_fd_sc_mcu7t5v0__icgtn_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__icgtn_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__icgtp_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__icgtp_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__inv_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__inv_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__inv_3".
+Reading "gf180mcu_fd_sc_mcu7t5v0__inv_4".
+Reading "gf180mcu_fd_sc_mcu7t5v0__inv_8".
+Reading "gf180mcu_fd_sc_mcu7t5v0__invz_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__invz_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__latq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__latq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__latrnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__latrnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__latrsnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__latrsnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__latsnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__latsnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__mux2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__mux2_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__mux4_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__mux4_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand2_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand3_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand3_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand4_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand4_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nor2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nor2_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nor3_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nor3_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nor4_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nor4_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkbuf_4".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkbuf_8".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkinv_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkinv_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkinv_3".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkinv_4".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkinv_8".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnrnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnsnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffrnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffrnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffrsnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffsnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffsnq_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dlya_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dlya_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dlyb_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dlyb_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dlyc_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dlyc_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dlyd_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dlyd_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__endcap".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fill_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fill_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fill_4".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fill_8".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fill_16".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fill_32".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fill_64".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fillcap_4".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fillcap_8".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fillcap_16".
+Reading "gf180mcu_fd_sc_mcu7t5v0__addf_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__addf_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__addh_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__addh_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__and2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__and2_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__and3_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__and3_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__and4_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__and4_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__antenna".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi21_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi21_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi22_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi22_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi211_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi211_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi221_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi221_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi222_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__aoi222_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__buf_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__buf_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__buf_3".
+Reading "gf180mcu_fd_sc_mcu7t5v0__buf_4".
+Reading "gf180mcu_fd_sc_mcu7t5v0__buf_8".
+Reading "gf180mcu_fd_sc_mcu7t5v0__bufz_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__bufz_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkbuf_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkbuf_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__clkbuf_3".
+Reading LEF data from file gf180mcu_fd_sc_mcu7t5v0__nom.tlef.
+This action cannot be undone.
+LEF read, Line 88 (Message): Unknown keyword "MINWIDTH" in LEF file; ignoring.
+LEF read, Line 95 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 105 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 106 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read, Line 120 (Message): Unknown keyword "ARRAYSPACING" in LEF file; ignoring.
+LEF read, Line 125 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 137 (Message): Unknown keyword "MINWIDTH" in LEF file; ignoring.
+LEF read, Line 144 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 145 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 146 (Message): Unknown keyword "ANTENNAGATEPLUSDIFF" in LEF file; ignoring.
+LEF read, Line 155 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 156 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read, Line 172 (Message): Unknown keyword "ARRAYSPACING" in LEF file; ignoring.
+LEF read, Line 177 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 189 (Message): Unknown keyword "MINWIDTH" in LEF file; ignoring.
+LEF read, Line 196 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 197 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 198 (Message): Unknown keyword "ANTENNAGATEPLUSDIFF" in LEF file; ignoring.
+LEF read, Line 207 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 208 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read, Line 224 (Message): Unknown keyword "ARRAYSPACING" in LEF file; ignoring.
+LEF read, Line 229 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 241 (Message): Unknown keyword "MINWIDTH" in LEF file; ignoring.
+LEF read, Line 248 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 249 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 250 (Message): Unknown keyword "ANTENNAGATEPLUSDIFF" in LEF file; ignoring.
+LEF read, Line 259 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 260 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read, Line 276 (Message): Unknown keyword "ARRAYSPACING" in LEF file; ignoring.
+LEF read, Line 281 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 295 (Message): Unknown keyword "MINWIDTH" in LEF file; ignoring.
+LEF read, Line 307 (Message): Unknown keyword "ANTENNAMODEL" in LEF file; ignoring.
+LEF read, Line 308 (Message): Unknown keyword "ANTENNADIFFSIDEAREARATIO" in LEF file; ignoring.
+LEF read, Line 309 (Message): Unknown keyword "ANTENNAGATEPLUSDIFF" in LEF file; ignoring.
+LEF read, Line 314 (Message): Unknown keyword "DENSITYCHECKWINDOW" in LEF file; ignoring.
+LEF read, Line 315 (Message): Unknown keyword "DENSITYCHECKSTEP" in LEF file; ignoring.
+LEF read: Processed 1319 lines.
+Reading LEF data from file gf180mcu_fd_sc_mcu7t5v0.lef.
+This action cannot be undone.
+LEF read: Processed 16265 lines.
+Reading DEF data from file add.def.
+This action cannot be undone.
+  Processed 362 subcell instances total.
+  Processed 56 vias total.
+  Processed 33 pins total.
+  Processed 59 nets total.
+  Processed 32 special nets total.
+DEF read: Processed 1487 lines.
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__filltie from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__fill_1 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__fillcap_4 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__and2_1 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__nor2_1 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__xnor2_1 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__nand2_1 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__aoi21_1 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__clkinv_1 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__oai21_2 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__xor2_2 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Copying output for cell gf180mcu_fd_sc_mcu7t5v0__buf_1 from gf180mcu_fd_sc_mcu7t5v0.gds
+   Generating output for cell add
+DRC style is now "drc(full)"
+Loading DRC CIF style.
+Total DRC errors found: 3
+end-of-drc
+RULE Metal3 spacing < 0.28um (M3.2a)
+RULE Metal1 spacing < 0.23um (M1.2a)
+Extracting gf180mcu_fd_sc_mcu7t5v0__fill_1 into gf180mcu_fd_sc_mcu7t5v0__fill_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__buf_1 into gf180mcu_fd_sc_mcu7t5v0__buf_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__and2_1 into gf180mcu_fd_sc_mcu7t5v0__and2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__nor2_1 into gf180mcu_fd_sc_mcu7t5v0__nor2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__xnor2_1 into gf180mcu_fd_sc_mcu7t5v0__xnor2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__nand2_1 into gf180mcu_fd_sc_mcu7t5v0__nand2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__clkinv_1 into gf180mcu_fd_sc_mcu7t5v0__clkinv_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__fillcap_4 into gf180mcu_fd_sc_mcu7t5v0__fillcap_4.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__oai21_2 into gf180mcu_fd_sc_mcu7t5v0__oai21_2.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__aoi21_1 into gf180mcu_fd_sc_mcu7t5v0__aoi21_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__xor2_2 into gf180mcu_fd_sc_mcu7t5v0__xor2_2.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__filltie into gf180mcu_fd_sc_mcu7t5v0__filltie.ext:
+Extracting add into add.ext:
+exttospice finished.
+  GDS XOR 0 over 25 layers

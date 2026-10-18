@@ -1,0 +1,1 @@
+browser sr8: DRC 0 tiles, gds 36116 bytes

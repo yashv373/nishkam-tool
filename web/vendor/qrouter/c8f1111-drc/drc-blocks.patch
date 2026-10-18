@@ -1,0 +1,12 @@
+diff --git a/main.c b/main.c
+index 08f3418..9ecce07 100644
+--- a/main.c
++++ b/main.c
+@@ -25,6 +25,7 @@ main(int argc, char *argv[])
+     result = runqrouter(argc, argv);
+     if (result != 0) return result;
+ 
++    { int L; for (L = 0; L <= 2; L++) apply_drc_blocks(L, 0.0, -0.095); }
+     read_def(NULL);
+     maskMode = MASK_AUTO;
+     dofirststage(0, -1);

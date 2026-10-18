@@ -1,0 +1,8 @@
+== qrouter c8f1111-drc
+adder2: failed nets 0, DRC error tiles 3, LVS match true
+mult8: failed nets 0, DRC error tiles 39, LVS match true
+tiny8: failed nets 0, DRC error tiles 66, LVS match true
+== qrouter c8f1111
+adder2: failed nets 0, DRC error tiles 18, LVS match true
+mult8: failed nets 0, DRC error tiles 118, LVS match true
+tiny8: failed nets 0, DRC error tiles 197, LVS match true

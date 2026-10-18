@@ -1,0 +1,30 @@
+# Vendored third-party files
+
+Each folder has its own LICENSE and SOURCE.md. In this repository the folders `kwasm`, `surfer` and `tt-explorer` hold only the licence and SOURCE.md: nishkam.world serves those viewers, but their prebuilt files are not copied here. Paths below that start with `web/studio/` point at the site code; only the engine workers and tests of it are in this repository. Folder names carry the version so a cached old script is never paired with a new wasm.
+
+| Folder | What | Licence | Upstream | Pinned |
+|---|---|---|---|---|
+| `icarus/a275a9a/` | Icarus Verilog ivlpp/ivl/vvp compiled to WebAssembly | GPL-2.0 | https://github.com/senolgulgonul/verisim | commit a275a9ac28c59db1130505973644c9a3754ec1d7 |
+| `netlistsvg/a275a9a/` | netlistsvg bundle + elkjs bundle (as shipped in VeriSim) | MIT (netlistsvg), EPL-2.0 (elkjs) | https://github.com/nturley/netlistsvg, https://github.com/kieler/elkjs | VeriSim commit a275a9a |
+| `surfer/20261009/` | Surfer waveform viewer, prebuilt WASM web build | EUPL-1.2 | https://gitlab.com/surfer-project/surfer | main 1cdbaa9514ea15b06a186d23979dbb38ab774ad1, pages_build of 2026-10-09 |
+| `gf180mcu/7b70722/` | gf180mcu_fd_sc_mcu7t5v0 liberty, tt 025C 5v00, timing tables removed | Apache-2.0 | https://github.com/google/gf180mcu-pdk | open_pdks 7b70722e33c03fcb5dabcf4d479fb0822d9251c9 |
+| `graywolf/33fbcaa/` | graywolf (TimberWolf placer: syntax, Mincut, genrows, TimberWolfMC, TimberWolfSC) as WebAssembly, small source patch (`wasm.patch`) | GPL-2.0-or-later with Yale conditions (see LICENSE) | https://github.com/RTimothyEdwards/graywolf (fork of rubund/graywolf) | commit 33fbcaa |
+| `qrouter/c8f1111/` | qrouter (non-Tcl), vlog2Cel and addspacers (from qflow) as WebAssembly | GPL-2.0 | https://github.com/RTimothyEdwards/qrouter, https://github.com/RTimothyEdwards/qflow | qrouter c8f1111, qflow 52ecda1 |
+| `magic/bed8d4f/` | Magic VLSI headless WebAssembly build (GDS, DRC, extraction) | GPL-2.0 | https://github.com/RTimothyEdwards/magic | commit bed8d4f |
+| `gf180mcu/pd-7b70722/` | gf180mcu_fd_sc_mcu7t5v0 cell LEF, tech LEF, graywolf .par, GDS, SPICE and Magic tech file | Apache-2.0 | https://github.com/google/gf180mcu-pdk | open_pdks 7b70722e |
+| `netgen/3cb047b/` | Netgen LVS (v1.5.324) + Tcl 8.6.14 as one WebAssembly module, gf180mcuD LVS setup file | GPL (Netgen), Tcl license (BSD-style), Apache-2.0 (setup file) | https://github.com/RTimothyEdwards/netgen | commit 3cb047b |
+| `openroad-cts/61932e8/` | OpenROAD clock tree synthesis (TritonCTS, with rsz, dpl, odb, OpenSTA) as one WebAssembly module, 13 build patches in SOURCE.md | BSD-3-Clause (OpenROAD), GPL-3.0 (OpenSTA inside), Apache-2.0 (abseil), MIT (spdlog, fmt), Boost-1.0 (LEMON, Boost headers), BSD-style (CUDD, Tcl) | https://github.com/The-OpenROAD-Project/OpenROAD | licences: `LICENSE.*` in the folder |
+| `kwasm/0.3.1/` | kwasm: KLayout compiled to WebAssembly, 2D and 3D GDS viewer, one JS file (3.9 MB) + `host.html` (our postMessage glue) + `gf180mcu.lyp` | GPL-3.0 (KLayout; Three.js MIT bundled) | https://pypi.org/project/kwasm/ (doplaydo/kwasm) | wheel kwasm-0.3.1 sha256 4cbd66d7...db13a |
+| `tt-explorer/59a43fb/` | Tiny Tapeout Explorer: WebGL2 3D GDS viewer with wire highlights (viewer page, JS, prebuilt explorer.wasm 284 KB). One edit: layer names in `circuit_viewer.js` relabelled for gf180mcuD (see SOURCE.md) | Apache-2.0 (tiny_explorer); inside the wasm: gdstk Boost-1.0, miniz MIT; brotli decoder MIT | https://github.com/znah/tiny_explorer | commit 59a43fb08067d5a36ef1653fff42ad74359b83b4 |
+
+Not vendored, loaded from jsdelivr at pinned versions: `@yowasp/yosys@0.68.1207` (ISC / Apache-2.0), `verilator-wasm@1.0.0` (MIT; Verilator itself LGPL-3.0 or Artistic-2.0).
+
+## How the copyleft pieces are used
+
+- **Icarus (GPL-2.0):** mere aggregation. It runs in its own Web Worker (`web/studio/engines/icarus.worker.js`) and exchanges only text and files through messages. No Nishkam code is linked into it. The licence text and source link ship beside it, and the full source is at the VeriSim repo above.
+- **Surfer (EUPL-1.2):** loaded in its own iframe and driven only through `postMessage`. Unmodified apart from one line in `index.html` that turns the service-worker registration off.
+- **elkjs (EPL-2.0), Verilator (LGPL-3.0):** unmodified, used as separate scripts or wasm modules.
+- **kwasm (GPL-3.0):** unmodified, runs in a same-origin iframe (`host.html`) driven only by `postMessage`; the GDS never leaves the browser. Layer colours from the PDK `gf180mcu.lyp` (Apache-2.0). 3D metal thickness comes from the PDK tech LEF; gaps are display-only (labelled in the view).
+- **OpenSTA (GPL-3.0):** unmodified upstream commit defec0b built with Emscripten (static Tcl 8.6.14, CUDD, no threads), runs in its own Web Worker (`web/studio/engines/opensta.worker.js`); build recipe in `web/vendor/opensta/defec0b/SOURCE.md`. The full gf180mcu liberty (Apache-2.0) ships gzipped next to it.
+- **OpenROAD CTS (BSD-3-Clause, with GPL-3.0 OpenSTA linked in):** upstream commit 61932e8 plus 13 small build patches (listed in `openroad-cts/61932e8/SOURCE.md`, with the patched `main_wasm.cc` and `grt_stub.cc`), runs in its own Web Worker (`web/studio/engines/cts.worker.js`). Because OpenSTA is linked in, treat the module as GPL-3.0.
+- **Tiny Tapeout Explorer (Apache-2.0), (c) Alexander Mordvintsev:** runs in a same-origin iframe opened with a `blob:` URL of the GDS and `pdk=gf180mcuD`; nothing is uploaded. Compiled into `explorer.wasm`: gdstk (Boost Software License 1.0, github.com/heitzmann/gdstk, checked) and miniz (MIT). `vendor/brotli_dec_wasm*` is a Brotli decoder (Brotli itself is MIT). Layer slots: the wasm uses a sky130-style slot order, so gf180mcuD Contact/Metal1..Metal5 land one slot lower than the viewer's original names (Metal5 in the slot named MET4). Order and presence are correct (checked against rect counts per GDS layer on tiny8); we only relabelled the names. Heights are its own generic values, not from the PDK. In its Cells view, Metal1 is hidden along with the cells.

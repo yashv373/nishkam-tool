@@ -1,0 +1,15 @@
+{
+  "name": "nishkam-tool",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Source offer for the WebAssembly chip-design tools behind nishkam.world, with validation against native builds",
+  "license": "MIT",
+  "scripts": {
+    "test": "node web/studio/engines/selftest.node.mjs && node web/studio/engines/lvs.selftest.mjs && node web/studio/engines/cts.selftest.mjs && node web/studio/engines/opensta.selftest.mjs && node web/studio/engines/pd.selftest.mjs 8 && node web/studio/engines/pd.cases.selftest.mjs adder && node docs/validation/ctsdiff.mjs"
+  },
+  "dependencies": {
+    "@yowasp/yosys": "0.68.1207",
+    "verilator-wasm": "1.0.0"
+  }
+}

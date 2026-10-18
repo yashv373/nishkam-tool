@@ -1,0 +1,2 @@
+﻿PASS shreg4 {"setup_ws_ns":6.7093,"setup_tns_ns":0,"hold_ws_ns":0.5372,"hold_tns_ns":0,"wns_ns":0,"fmax_mhz":303.89,"internal_uW":271,"switching_uW":7.38,"leakage_uW":0.00188,"total_uW":279,"ms":4113}
+PASS cnt8 {"setup_ws_ns":6.0215,"setup_tns_ns":0,"hold_ws_ns":1.2837,"hold_tns_ns":0,"wns_ns":0,"fmax_mhz":251.35,"internal_uW":1100,"switching_uW":612,"leakage_uW":0.00606,"total_uW":1710,"ms":4604}

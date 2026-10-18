@@ -1,0 +1,4 @@
+﻿LVS layout vs netlist: match=true devices=224,224 nets=109,109 (323 ms) Circuits match uniquely.
+PASS lvs ran 
+PASS layout matches netlist 
+PASS broken layout caught devices 216,224 vs 224,224

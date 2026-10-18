@@ -1,0 +1,11 @@
+﻿CTS: 9 clock buffers, 48 sinks, latency 0.67 ns, skew 0 ns (21135 ms)
+{
+  clkbufs: 9,
+  sinks: 48,
+  latency_ns: 0.67,
+  skew_ns: 0,
+  setup_skew_ns: 0.25,
+  hold_skew_ns: null,
+  ms: 21135
+}
+cts selftest ok

@@ -55,6 +55,10 @@ Red squares are clock buffers, blue are flops, grey are other cells. The picture
 
 **Not validated:** only tiny8 and the single-clock case. Wires are not compared (routing happens later). Only clkbuf_8/4/2 are allowed.
 
+**Screenshot of the real output** (`img/term-cts.png`, unedited log text; the native numbers come from `ctsdiff.mjs` reading the native DEF):
+
+![cts output](img/term-cts.png)
+
 ## 2 and 3. Netgen LVS matches native Netgen
 
 **Claimed:** the browser Netgen says match or mismatch the same way as native Netgen, and the browser flow gives LVS match on the test designs.
@@ -83,6 +87,12 @@ Other `pd.cases.selftest.mjs` results (all PASS, 0 failed nets, LVS true): twocl
 
 **Not validated:** mismatch cases beyond one broken layout, so native and browser may differ on other mismatch reports. LVS assumes wells are tied to power (no well-tap cells in this flow). Netgen 1.5.324 native was not available.
 
+**Screenshots of the real output** (unedited logs). Browser Netgen, then native Netgen on the same files:
+
+![browser netgen](img/term-lvs-browser.png)
+
+![native netgen](img/term-lvs-native.png)
+
 ## 4. qrouter fix: fewer Magic DRC errors
 
 **Claimed:** blocking wires near vias on Metal1-3 cuts DRC error tiles (adder2 18 to 3, mult8 118 to 39, tiny8 197 to 66) and keeps LVS matching.
@@ -105,6 +115,10 @@ Other `pd.cases.selftest.mjs` results (all PASS, 0 failed nets, LVS true): twocl
 
 **Not validated:** the remaining 3 / 39 / 66 tiles are real errors, so browser routing is not DRC clean. The DRC count is Magic's, not signoff.
 
+**Screenshot of the real output** (`logs/drc.txt`):
+
+![drc output](img/term-drc.png)
+
 ## 5. OpenSTA timing and power: summary numbers (native side not re-run)
 
 **What is checked:** the browser OpenSTA (`opensta.selftest.mjs`) gives worst setup slack, worst hold slack and total power that equal numbers stored in the self-test file. Those stored numbers came from native `sta` earlier. The full report text is compared with a native re-run in the OpenSTA native re-run section below.
@@ -123,6 +137,10 @@ Other `pd.cases.selftest.mjs` results (all PASS, 0 failed nets, LVS true): twocl
 | cnt8 | 6.0215 ns | 1.2837 ns | 1710 uW |
 
 **Not validated:** one liberty corner only. Only these two small designs. Post-route timing was run for tiny8 (setup 12.9621, hold 1.0438 in `pd.cases.selftest.mjs`) but not compared with native.
+
+**Screenshot of the real output** (`logs/opensta.txt`, browser self-test):
+
+![opensta output](img/term-opensta.png)
 
 ## Magic native re-run (DRC, extraction, GDS)
 
@@ -145,6 +163,10 @@ The old "35 tiles on sr8" in `SOURCE.md` was from before the qrouter fix; it is 
 Left half of each picture is native Magic's GDS, right half is the browser's, both drawn by KLayout (`render-gds.py`). They match because the GDS geometry is the same.
 
 **Not validated:** the DRC tile positions were not compared, only count and rule texts (the GDS match covers the layout itself). Same Magic tech file on both sides. Browser Magic is a different version from the container's.
+
+**Screenshot of the real output** (browser lines and the last lines of the native logs):
+
+![magic output](img/term-magic.png)
 
 ## OpenSTA native re-run (full report)
 
@@ -175,3 +197,5 @@ Compared in `qflow-native.md`: graywolf placement files and qrouter inputs ident
 
 Run from a folder with `@yowasp/yosys` in `node_modules` for the flow tests:
 `node web/studio/engines/cts.selftest.mjs`, `lvs.selftest.mjs`, `opensta.selftest.mjs`, `pd.cases.selftest.mjs`, `pd.selftest.mjs 8`, `selftest.node.mjs`, `node docs/validation/ctsdiff.mjs`. Native side-by-side (needs the `gf180` container, Git Bash): `bash docs/validation/sta-compare.sh`, `magic-compare.sh`, `netgen-compare.sh`.
+
+The screenshots in `img/term-*.png` are made from the stored logs by `python docs/validation/make-terminal-images.py`. The text in them is not edited.

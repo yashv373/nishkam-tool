@@ -13,4 +13,4 @@
   -sALLOW_MEMORY_GROWTH=1 -sSTACK_SIZE=5242880 -sEMULATE_FUNCTION_POINTER_CASTS=1 -sEXPORTED_RUNTIME_METHODS=FS,callMain
   -sENVIRONMENT=node,web,worker --embed-file rt/tcl8.6@/tcl8.6 --embed-file rt/netgen.tcl@/netgen.tcl`
 - Size: netgen.wasm 1.93 MB, netgen.js 114 KB. Includes gf180mcuD_setup.tcl (from the gf180mcu PDK, Apache-2.0), read at run time.
-- Check: web/studio/engines/lvs.selftest.mjs (output compared with native netgen 1.5.318 from the gf180 container, not 1.5.324; the WASM build is 1.5.324 plus the fix above. Native 1.5.324 was not compared.
+- Check: web/studio/engines/lvs.selftest.mjs; output compared with native netgen 1.5.318 from the gf180 container on the same inputs (the WASM build is 1.5.324 plus the fix above; native 1.5.324 was not compared). Re-run with `docs/validation/netgen-compare.sh`.

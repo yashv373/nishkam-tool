@@ -19,8 +19,8 @@ All run in the browser (Web Workers). The PDK is gf180mcuD.
 | Verilator (lint) | [verilator-wasm](https://www.npmjs.com/package/verilator-wasm) | npm 1.0.0 | MIT (Verilator: LGPL-3.0 or Artistic-2.0) | no | npm |
 | Icarus Verilog (simulation) | [iverilog](https://github.com/steveicarus/iverilog), built by [verisim](https://github.com/senolgulgonul/verisim) | `a275a9a` | GPL-2.0 | no | 2.9 MB |
 | netlistsvg + elkjs (schematic) | [netlistsvg](https://github.com/nturley/netlistsvg), [elkjs](https://github.com/kieler/elkjs) | `a275a9a` | MIT, EPL-2.0 | no | 2.5 MB |
-| OpenSTA (timing, power) | [parallaxsw/OpenSTA](https://github.com/parallaxsw/OpenSTA) | `defec0b` (3.1.0) | GPL-3.0 | no | 5.7 MB |
-| OpenROAD TritonCTS (clock tree) | [The-OpenROAD-Project/OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD) | `61932e8` | BSD-3-Clause (OpenSTA inside: GPL-3.0) | yes, 13 build changes listed in its SOURCE.md | 36 MB |
+| OpenSTA (timing, power) | [parallaxsw/OpenSTA](https://github.com/parallaxsw/OpenSTA) | `defec0b` (3.1.0) | GPL-3.0 | no (source unmodified, own entry point only) | 5.7 MB |
+| OpenROAD TritonCTS (clock tree) | [The-OpenROAD-Project/OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD) | `61932e8` | BSD-3-Clause (OpenSTA inside: GPL-3.0) | yes, [`openroad-wasm.patch`](web/vendor/openroad-cts/61932e8/openroad-wasm.patch) | 36 MB |
 | graywolf (placement) | [RTimothyEdwards/graywolf](https://github.com/RTimothyEdwards/graywolf) | `33fbcaa` | GPL-2.0-or-later with Yale conditions | yes, [`wasm.patch`](web/vendor/graywolf/33fbcaa/wasm.patch) | 2.2 MB |
 | qrouter, vlog2Cel, addspacers (routing) | [qrouter](https://github.com/RTimothyEdwards/qrouter), [qflow](https://github.com/RTimothyEdwards/qflow) | `c8f1111`, `52ecda1` | GPL-2.0 | `c8f1111`: no. `c8f1111-drc`: yes, [`drc-blocks.patch`](web/vendor/qrouter/c8f1111-drc/drc-blocks.patch) | 0.6 MB each |
 | Magic (GDS, DRC, extraction) | [RTimothyEdwards/magic](https://github.com/RTimothyEdwards/magic) | `bed8d4f` | GPL-2.0 | no (relinked with two flags) | 2.4 MB |
@@ -90,7 +90,7 @@ Full report with the test designs, how each side was run, numbers and what was n
 | Netgen LVS | Same device and net counts and the same verdict as native Netgen 1.5.318 on adder2, mult8, tiny8 (native 1.5.324 not compared) | [lvs.txt](docs/validation/logs/lvs.txt), `netgen-native-*.log` |
 | Placement and routing (adder2) | Same tool outputs as native graywolf and qflow tools; routing differs only in some wire choices | [qflow-native.md](docs/validation/qflow-native.md) |
 | qrouter DRC fix | Magic DRC errors: adder2 18 to 3, mult8 118 to 39, tiny8 197 to 66; LVS still matches. Routing is not yet DRC clean | [drc.txt](docs/validation/logs/drc.txt) |
-| OpenSTA | Slack and power equal stored native numbers on two small designs; native not re-run | [opensta.txt](docs/validation/logs/opensta.txt) |
+| OpenSTA | Full report compared with a native re-run on two small designs (see the report) | [opensta.txt](docs/validation/logs/opensta.txt) |
 
 Limits are listed at the end of the report. Please read them before relying on a number.
 
@@ -109,10 +109,9 @@ docker run --rm -it -v "$PWD/work:/work" emscripten/emsdk:3.1.74 bash
 | Netgen | clone at `3cb047b`, `git apply netcmp-uaf.patch`, build Tcl 8.6.14, compile and link with the exact flags in [SOURCE.md](web/vendor/netgen/3cb047b/SOURCE.md) |
 | Magic | `npm/build.sh --variant=notcl --release`, then relink with the flags in [SOURCE.md](web/vendor/magic/bed8d4f/SOURCE.md) |
 | OpenSTA | cmake steps and link line in [SOURCE.md](web/vendor/opensta/defec0b/SOURCE.md); entry point [`main_wasm.cc`](web/vendor/opensta/defec0b/main_wasm.cc) |
-| OpenROAD CTS | the 13 changes, dependency builds and link line in [SOURCE.md](web/vendor/openroad-cts/61932e8/SOURCE.md); [`main_wasm.cc`](web/vendor/openroad-cts/61932e8/main_wasm.cc) and [`grt_stub.cc`](web/vendor/openroad-cts/61932e8/grt_stub.cc) |
+| OpenROAD CTS | `git apply openroad-wasm.patch` on commit 61932e8, dependency builds and link line in [SOURCE.md](web/vendor/openroad-cts/61932e8/SOURCE.md); [`main_wasm.cc`](web/vendor/openroad-cts/61932e8/main_wasm.cc) and [`grt_stub.cc`](web/vendor/openroad-cts/61932e8/grt_stub.cc) |
 | Icarus, netlistsvg, Surfer, kwasm, Tiny Tapeout Explorer | prebuilt upstream files copied as they are; see each SOURCE.md |
 
-The OpenROAD changes are described in words in its SOURCE.md. There is no single `.patch` file for them yet.
 
 ## The local runner
 

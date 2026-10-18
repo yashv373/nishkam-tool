@@ -7,6 +7,6 @@
   through Asyncify + a JS hook (`Module.nishkamSystem`), see `web/studio/engines/place.worker.js`.
 - Link notes: `-fno-common` + `--allow-multiple-definition` (old tentative definitions), `-sEMULATE_FUNCTION_POINTER_CASTS=1`, link at `-O1`
   (binaryen `-O2` broke syntax/main).
-- Output check: for an 8-flop shift register `.pl1`, `.pl2` and `.pin` are byte-identical to the native build.
+- Output check: for an 8-flop shift register `.pl1`, `.pl2` and `.pin` are byte-identical to the native build; also on adder2 (docs/validation/qflow-native.md).
 - Sizes: Mincut 82 KB, syntax 81 KB, genrows 84 KB, TimberWolfMC 819 KB (Asyncify), TimberWolfSC 366 KB.
 - Known: a design with fewer than 5-6 cells makes TimberWolfSC loop forever, natively too.

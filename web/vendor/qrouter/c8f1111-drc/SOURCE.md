@@ -4,7 +4,7 @@
   for headers the router does not really need without Tk. Source is unmodified in c8f1111/; c8f1111-drc/ adds the one main.c change described at the end of this file.
 - vlog2Cel and addspacers: https://github.com/RTimothyEdwards/qflow commit 52ecda1 (`src/`, GPL-2.0), unmodified.
 - Built by `build.sh` (here) with emscripten/emsdk:3.1.74. Sizes: qrouter 188 KB, vlog2Cel 89 KB, addspacers 102 KB.
-- Output check: routed DEF of the 8-flop shift register matches the native build apart from trailing spaces.
+- Output check: routed DEF of the 8-flop shift register matches the native build apart from trailing spaces. On adder2 it does not match byte for byte: same inputs, different wire choices for some nets, both with no failed routes (docs/validation/qflow-native.md).
 
 ## c8f1111-drc (2026-10-18): wire-to-via blocking on Metal1-3
 Same upstream commit c8f1111, plus one browser-fit change in the non-Tcl `main.c`: call upstream's own `apply_drc_blocks()` (the Tcl build calls it from `read_lef`; the non-Tcl build never does), only for layers 0-2 (Metal1-3), with via_except 0.0 and route_except -0.095, so a wire is kept off the track next to a via where the gf180 via pad would be too close (0.23 um vs 0.28 um needed at 0.56 um pitch). Patch to main.c, before `read_def(NULL);`:

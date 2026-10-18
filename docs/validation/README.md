@@ -65,7 +65,7 @@ Red squares are clock buffers, blue are flops, grey are other cells. The picture
 
 **Traditional flow:** `node docs/validation/lvs-dump.mjs <design> <folder>` writes the exact files the browser Netgen compared (`lay.spice`, `cells.spice`, `pg.v`, `setup.tcl`, `run.tcl`). Then in the container, in that folder (set `MSYS_NO_PATHCONV=1` in Git Bash):
 `docker exec gf180 bash -lc "cd /foss/designs/nishkam_val/<design> && netgen -batch source run.tcl"`.
-Logs: `logs/netgen-native-*.log`.
+Logs: `logs/netgen-native-*.log`. One command re-runs both sides: `bash docs/validation/netgen-compare.sh` (re-run 2026-10-18, same numbers).
 
 **Result (same inputs):**
 
@@ -101,13 +101,13 @@ Other `pd.cases.selftest.mjs` results (all PASS, 0 failed nets, LVS true): twocl
 | mult8 | 118 | 39 | 0 | match |
 | tiny8 | 197 | 66 | 0 | match |
 
-`pd.selftest.mjs 8` (sr8) now gives 0 error tiles.
+`pd.selftest.mjs 8` (sr8) now gives 0 error tiles. The same routed DEFs were also run through native Magic: see "Magic native re-run" below.
 
 **Not validated:** the remaining 3 / 39 / 66 tiles are real errors, so browser routing is not DRC clean. The DRC count is Magic's, not signoff.
 
 ## 5. OpenSTA timing and power: summary numbers (native side not re-run)
 
-**What is checked:** the browser OpenSTA (`opensta.selftest.mjs`) gives worst setup slack, worst hold slack and total power that equal numbers stored in the self-test file. Those stored numbers came from native `sta` earlier. The full report text was not compared in this run, and native `sta` was not re-run. See Limits.
+**What is checked:** the browser OpenSTA (`opensta.selftest.mjs`) gives worst setup slack, worst hold slack and total power that equal numbers stored in the self-test file. Those stored numbers came from native `sta` earlier. The full report text is compared with a native re-run in the OpenSTA native re-run section below.
 
 **Test design:** shreg4 and an 8-bit counter (cnt8), clock 10 ns, input/output delay 2 ns, load 0.05 pF.
 
@@ -124,16 +124,54 @@ Other `pd.cases.selftest.mjs` results (all PASS, 0 failed nets, LVS true): twocl
 
 **Not validated:** one liberty corner only. Only these two small designs. Post-route timing was run for tiny8 (setup 12.9621, hold 1.0438 in `pd.cases.selftest.mjs`) but not compared with native.
 
+## Magic native re-run (DRC, extraction, GDS)
+
+**Claimed:** browser Magic gives the same DRC count, extraction and GDS as native Magic.
+
+**How:** `bash docs/validation/magic-compare.sh` runs the browser flow, then browser Magic, then native Magic 8.3.636 in the container on the same routed DEF and the same PDK files (same command list as `magic.worker.js`). It compares the DRC total, the DRC rule texts, the extracted SPICE (the `$SUB` name aside) and the GDS (KLayout XOR, `gds-xor.py`). Logs: `logs/magic-native-*.txt`, `logs/magic-browser-*.txt`.
+
+| Design | DRC tiles native / browser | Rule texts | SPICE | GDS XOR area |
+|---|---|---|---|---|
+| sr8 | 0 / 0 | same | same | 0 (25 layers) |
+| adder2 | 3 / 3 | same | same | 0 (25 layers) |
+| tiny8 | 66 / 66 | same | same | 0 (25 layers) |
+
+The old "35 tiles on sr8" in `SOURCE.md` was from before the qrouter fix; it is now 0 on both sides.
+
+| adder2 | tiny8 |
+|---|---|
+| ![adder2](img/layout-adder2.png) | ![tiny8](img/layout-tiny8.png) |
+
+Left half of each picture is native Magic's GDS, right half is the browser's, both drawn by KLayout (`render-gds.py`). They match because the GDS geometry is the same.
+
+**Not validated:** the DRC tile positions were not compared, only count and rule texts (the GDS match covers the layout itself). Same Magic tech file on both sides. Browser Magic is a different version from the container's.
+
+## OpenSTA native re-run (full report)
+
+**How:** `bash docs/validation/sta-compare.sh` runs the browser OpenSTA and native `sta` 3.1.0 (container) on the same netlist, liberty and Tcl, and diffs the complete output: every max and min path report, wns/tns, worst slack and the power report. Logs: `logs/sta-native-*.txt`, `logs/sta-browser-*.txt`.
+
+| Design | Lines compared | Result |
+|---|---|---|
+| shreg4 | 434 | identical |
+| cnt8 | 1172 | identical |
+
+![shreg4 report, first lines](img/sta-shreg4.png)
+
+Only the licence banner differs. This replaces the stored native numbers in section 5 with a native run from today. Images are made by `python docs/validation/make-images.py <magic output folder>`.
+
+**Not validated:** one liberty corner, two small designs, no SPEF run in this comparison.
+
+## graywolf and qrouter
+
+Compared in `qflow-native.md`: graywolf placement files and qrouter inputs identical on adder2; the qrouter routed DEF differs in some wire choices (both route fully).
+
 ## Limits
 
-These statements are not backed by a stored native re-run:
-
 - Netgen: the container has 1.5.318 and the browser build is 1.5.324 plus one fix. Native 1.5.324 was not compared.
-- Section 5: "browser OpenSTA matches native `sta`" rests on stored native numbers (slack, power), not a re-run or a full report diff.
-- `SOURCE.md` lines for Magic ("sr8 35 DRC tiles, same as native Magic 8.3", now out of date), graywolf (byte-identical files), qrouter (DEF matches native) and OpenSTA (report text identical) have no script that re-runs the native side.
 - The local runner round trip (shreg4, signoff clean 14/14) has no stored log.
+- Test designs are small. Passing them shows the tools work, not that a design is good.
 
 ## How to repeat
 
 Run from a folder with `@yowasp/yosys` in `node_modules` for the flow tests:
-`node web/studio/engines/cts.selftest.mjs`, `lvs.selftest.mjs`, `opensta.selftest.mjs`, `pd.cases.selftest.mjs`, `pd.selftest.mjs 8`, `selftest.node.mjs`, `node docs/validation/ctsdiff.mjs`.
+`node web/studio/engines/cts.selftest.mjs`, `lvs.selftest.mjs`, `opensta.selftest.mjs`, `pd.cases.selftest.mjs`, `pd.selftest.mjs 8`, `selftest.node.mjs`, `node docs/validation/ctsdiff.mjs`. Native side-by-side (needs the `gf180` container, Git Bash): `bash docs/validation/sta-compare.sh`, `magic-compare.sh`, `netgen-compare.sh`.

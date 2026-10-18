@@ -1,6 +1,6 @@
 # OpenSTA (timing + power), WebAssembly build
 
-- Upstream: https://github.com/parallaxsw/OpenSTA commit defec0b (3.1.0, 2026-04-09), GPL-3.0 (see LICENSE), source unmodified.
+- Upstream: https://github.com/parallaxsw/OpenSTA commit defec0b (3.1.0, 2026-04-09), GPL-3.0 (see LICENSE), source unmodified (checked: `git diff` in the build tree is empty, so there is no patch; only our `main_wasm.cc` is added).
   This is the exact commit the iic-osic-tools `openroad` (26Q2-254-g61932e897) bundles as src/sta, so `report_checks` and
   `report_power` text is byte-identical to its `/foss/tools/openroad/bin/sta`. (Upstream HEAD 574500d gives a slightly different
   power number on an 8-bit counter, 1.69 vs 1.71 mW, timing identical: power activity code changed between commits.)
@@ -18,4 +18,4 @@
 - Size: sta.wasm 5.6 MB, sta.js 120 KB.
 - Liberty: ../../gf180mcu/lib-tt5v0-full/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib.gz (2.8 MB, 20 MB unpacked) is the unmodified merged file from the
   container `$PDK_ROOT/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/lib/` (gf180mcu-pdk, Apache-2.0); the worker gunzips it with DecompressionStream.
-- Check: web/studio/engines/opensta.selftest.mjs (shreg4 + 8-bit counter vs native `sta` numbers). Full report text was diffed against native: identical.
+- Check: web/studio/engines/opensta.selftest.mjs (shreg4 + 8-bit counter vs native `sta` numbers). Re-run 2026-10-18 with `docs/validation/sta-compare.sh`: the full output (all path reports, wns/tns, power) of native `sta` and the browser build is identical on both designs, banner aside.

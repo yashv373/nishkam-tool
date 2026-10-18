@@ -13,7 +13,7 @@
   - Boost 1.83 headers (emscripten port: `embuilder build boost_headers`), BSL-1.0; iostreams `zlib.cpp` + `gzip.cpp` compiled from boostorg/iostreams boost-1.83.0; zlib from `embuilder build zlib`
   - CUDD (The-OpenROAD-Project/cudd d47718f), BSD-style: same recipe as ../../opensta/defec0b/SOURCE.md
   - Tcl 8.6.14 static (from the Netgen build), BSD-style
-- Patches to the OpenROAD tree (the full list, in order):
+- Patches to the OpenROAD tree: [`openroad-wasm.patch`](openroad-wasm.patch) (`git apply` on commit 61932e8; checked to apply cleanly) holds items 1-3, 5, 7-10 and 12 below as one diff, plus the new file `grt_stub.cc` (item 11, here). The remaining items are build settings, not source changes. The list, in order:
   1. Root `CMakeLists.txt` and `src/CMakeLists.txt` replaced by trimmed versions (modules above only); compile defs `FMT_CONSTEVAL= FMT_DEPRECATED_OSTREAM=1`.
   2. `odb/CMakeLists.txt`: dropped `src/3dblox` (needs yaml-cpp, only used by ord).
   3. `src/OpenRoad.cc`: initialises only utl/odb/sta/dbSta/stt/dpl/rsz/cts/est and a stub gui; `global_router_ = nullptr`; 3dblox methods stubbed.

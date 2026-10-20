@@ -2,7 +2,7 @@
 # bash docs/validation/sta-compare.sh : native OpenSTA (container gf180, read-only apart from /foss/designs/nishkam_validation) vs browser OpenSTA, full text diff.
 # Run from the repo root, in Git Bash, from a folder where node finds @yowasp/yosys is not needed (STA only).
 set -e; export MSYS_NO_PATHCONV=1
-D=/foss/designs/nishkam_validation/sta; H=${HOME_DESIGNS:-$HOME/eda/designs}/nishkam_validation/sta
+D=/foss/designs/nishkam_validation/sta; H=${HOME_DESIGNS:-/c/Users/Asus/eda/designs}/nishkam_validation/sta
 rm -rf "$H"; mkdir -p "$H"; node docs/validation/sta-compare.mjs "$(cygpath -m "$H")"
 for t in shreg4 cnt8; do
   docker exec gf180 bash -lc "cd $D/$t && sta -no_init -exit run.tcl > native.out 2>&1"

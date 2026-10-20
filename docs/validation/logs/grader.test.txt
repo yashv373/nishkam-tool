@@ -1,0 +1,8 @@
+   cdc-async-fifo: binary pointers (2-flop sync per bit): cex (sat 791 ms, 16 steps) total 974 ms
+      step 4: the bus "wbin" changed more than one bit in a single source-clock event. A bus that crosses clocks must change one bit at a time (Gray code), because a flop that catches it mid-change ca
+   cdc-async-fifo: pointers cross with one flop: struct total 130 ms
+      "wgray[0]" crosses from wclk to rclk, but the first rclk flop ("wq1[0]") feeds logic or a different clock instead of a second rclk flop. Use at least two flops in a row with nothing between them
+   cdc-pulse-sync: reference (toggle, 2 flops + edge): pass (sat 15303 ms, 24 steps) total 15395 ms
+   cdc-pulse-sync: 1 flop: struct total 86 ms
+      "tog" crosses from clk_a to clk_b, but the first clk_b flop ("s1") feeds logic or a different clock instead of a second clk_b flop. Use at least two flops in a row with nothing between them.
+all CDC tests passed (slowest 15395 ms)

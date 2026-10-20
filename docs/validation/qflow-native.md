@@ -1,6 +1,6 @@
 # Browser placement and routing vs. native upstream tools (adder2)
 
-Question: are the WebAssembly builds of graywolf, qflow's helpers and qrouter used in the browser flow the same as the same sources built natively?
+Issue #29. Question: are the WebAssembly builds of graywolf, qflow's helpers and qrouter in Studio the same as the same sources built natively?
 
 ## Setup
 - Design: `adder2` from `DESIGNS` in `web/studio/engines/pd.flow.mjs` (8-bit adder plus XOR, 43 cells, gf180mcuD 7-track 5 V).
@@ -13,7 +13,7 @@ Question: are the WebAssembly builds of graywolf, qflow's helpers and qrouter us
 - vlog2Cel and addspacers: qflow commit 52ecda1 (`web/vendor/qrouter/c8f1111/`), unmodified.
 
 ## How native was built
-- Image `hpretl/iic-osic-tools:chipathon26` run as a new throwaway container (`docker run --rm`, `--skip bash`), gcc and cmake from the image. The `gf180` container was not touched.
+- Image `hpretl/iic-osic-tools:chipathon26` run as a new throwaway container (`docker run --rm`, `--skip bash`), gcc and cmake from the image. The owner's `gf180` container was not touched.
 - Sources cloned from GitHub at the same commits (qrouter c8f1111, qflow 52ecda1, graywolf 33fbcaa).
 - qrouter: same file list, flags and stubs as our `build.sh`, with `gcc -O2`, plus the same one-line main.c patch: `{ int L; for (L = 0; L <= 2; L++) apply_drc_blocks(L, 0.0, -0.095); }` before `read_def(NULL);`.
 - vlog2Cel, addspacers: gcc with the same flags as `build.sh`.

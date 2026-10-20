@@ -2,8 +2,8 @@
 # bash docs/validation/magic-compare.sh [designs...] : browser Magic (DRC + SPICE extraction) vs native Magic in container gf180, same routed DEF and PDK files.
 # Writes only under /foss/designs/nishkam_validation. Compares the DRC count, the DRC rule texts, the extracted SPICE and the GDS (as KLayout XOR, if present).
 set -e; export MSYS_NO_PATHCONV=1
-mkdir -p "${HOME_DESIGNS:-$HOME/eda/designs}/nishkam_validation"; cp docs/validation/gds-xor.py "${HOME_DESIGNS:-$HOME/eda/designs}/nishkam_validation/"
-HD=${HOME_DESIGNS:-$HOME/eda/designs}/nishkam_validation/magic; C=/foss/designs/nishkam_validation/magic
+mkdir -p "${HOME_DESIGNS:-/c/Users/Asus/eda/designs}/nishkam_validation"; cp docs/validation/gds-xor.py "${HOME_DESIGNS:-/c/Users/Asus/eda/designs}/nishkam_validation/"
+HD=${HOME_DESIGNS:-/c/Users/Asus/eda/designs}/nishkam_validation/magic; C=/foss/designs/nishkam_validation/magic
 for d in ${@:-sr8 adder2 tiny8}; do
   rm -rf "$HD/$d"; mkdir -p "$HD/$d"
   node docs/validation/magic-compare.mjs $d "$(cygpath -m "$HD/$d")" | tee docs/validation/logs/magic-browser-$d.txt

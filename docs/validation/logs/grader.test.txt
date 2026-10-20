@@ -1,8 +1,33 @@
-   cdc-async-fifo: binary pointers (2-flop sync per bit): cex (sat 791 ms, 16 steps) total 974 ms
-      step 4: the bus "wbin" changed more than one bit in a single source-clock event. A bus that crosses clocks must change one bit at a time (Gray code), because a flop that catches it mid-change ca
-   cdc-async-fifo: pointers cross with one flop: struct total 130 ms
-      "wgray[0]" crosses from wclk to rclk, but the first rclk flop ("wq1[0]") feeds logic or a different clock instead of a second rclk flop. Use at least two flops in a row with nothing between them
-   cdc-pulse-sync: reference (toggle, 2 flops + edge): pass (sat 15303 ms, 24 steps) total 15395 ms
-   cdc-pulse-sync: 1 flop: struct total 86 ms
+   counter-en: reference proved in 3495 ms; alternative proved=true
+ok counter-en  (cells=11, bug caught at cycle 39)
+   rise-edge: reference proved in 243 ms; alternative proved=true
+ok rise-edge  (cells=2, bug caught at cycle 0)
+   seq-1011: reference proved in 408 ms; alternative proved=true
+ok seq-1011  (cells=17, bug caught at cycle 31)
+   gray-counter: reference proved in 2062 ms; alternative proved=true
+ok gray-counter  (cells=12, bug caught at cycle 2)
+   rr-arbiter: reference proved in 3827 ms; alternative proved=true
+ok rr-arbiter  (cells=33, bug caught at cycle 4)
+ok late bug caught at cycle 39
+ok syntax error -> ERROR: syntax error, unexpected ';', expecting ')' or ',' or '='
+all grader tests passed
+   cdc-sync2: reference (2 flops): pass (sat 367 ms, 34 steps) total 457 ms
+   cdc-sync2: 3 flops: pass (sat 479 ms, 34 steps) total 557 ms
+   cdc-sync2: 1 flop: struct total 59 ms
+      "d" crosses from clk_a to clk_b, but the first clk_b flop ("q") feeds an output instead of a second clk_b flop. Use at least two flops in a row with nothing between them.
+   cdc-sync2: logic between the flops: struct total 58 ms
+      "d" crosses from clk_a to clk_b, but the first clk_b flop ("s1") feeds logic or a different clock instead of a second clk_b flop. Use at least two flops in a row with nothing between them.
+   cdc-sync2: d also used elsewhere: struct total 70 ms
+      "d" crosses from clk_a to clk_b, but the first clk_b flop ("e") feeds logic or a different clock instead of a second clk_b flop. Use at least two flops in a row with nothing between them.
+   cdc-sync2: inverted output (wrong value): cex (sat 282 ms, 34 steps) total 366 ms
+      step 3: q was 1 but d never was 1
+   cdc-async-fifo: reference (Gray pointers): pass (sat 6448 ms, 16 steps) total 6603 ms
+   cdc-async-fifo: Gray, flags one cycle later: pass (sat 3991 ms, 16 steps) total 4108 ms
+   cdc-async-fifo: binary pointers (2-flop sync per bit): cex (sat 541 ms, 16 steps) total 675 ms
+      step 4: the bus "wbin" changed more than one bit in a single source-clock event. A bus that crosses clocks must change one bit at a time (Gray code), because a flop that catches it mid-change can see any mix of old and new bits
+   cdc-async-fifo: pointers cross with one flop: struct total 86 ms
+      "wgray[0]" crosses from wclk to rclk, but the first rclk flop ("wq1[0]") feeds logic or a different clock instead of a second rclk flop. Use at least two flops in a row with nothing between them.
+   cdc-pulse-sync: reference (toggle, 2 flops + edge): pass (sat 14136 ms, 24 steps) total 14201 ms
+   cdc-pulse-sync: 1 flop: struct total 51 ms
       "tog" crosses from clk_a to clk_b, but the first clk_b flop ("s1") feeds logic or a different clock instead of a second clk_b flop. Use at least two flops in a row with nothing between them.
-all CDC tests passed (slowest 15395 ms)
+all CDC tests passed (slowest 14201 ms)

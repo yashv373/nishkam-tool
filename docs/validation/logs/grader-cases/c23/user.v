@@ -1,0 +1,2 @@
+module counter(input clk, input rst, input en, output reg [3:0] q);
+  reg seen; always @(posedge clk) begin if (rst && !seen) begin q <= 0; seen <= 1; end else if (rst) q <= q; else if (en) q <= q + 1; end endmodule

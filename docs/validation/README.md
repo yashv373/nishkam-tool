@@ -20,7 +20,7 @@ Two place-and-route flows exist in Studio:
 | OpenROAD flow vs LibreLane (section 8B) | Studio recipe | LibreLane 3.0.2 | similar quality, not the same steps; numbers given as percentages | why LibreLane's wire is 29% longer |
 | graywolf + qrouter (section 6) | graywolf 33fbcaa, qrouter c8f1111 | same sources built natively | placement files identical; routed DEF differs in wire choices | clocked designs |
 | Formal equivalence (section 7, 8) | Yosys | RTL | netlists proven equal to the RTL (tiny8, adder2) | not a general proof |
-| RTL grader | Yosys miter | none | not covered by this report (section 9) | everything |
+| RTL grader | Yosys miter + k-induction | native Yosys 0.64 | 5 references proven, 19 wrong designs fail, same in both; a design differing only after cycle 45 passes as "first 40 cycles" (section 10) | CDC problems, x-handling, unreachable-state fallback |
 
 **Scope.** Validated: single-clock designs on gf180mcuD (7-track cells), up to 48 flip-flops, 1,559 nets and 3,150 transistors, 50% density, one corner (tt, 25 C, 5.00 V), in Chrome.
 
@@ -481,11 +481,66 @@ Things we know are open. None is claimed as validated.
 4. **LVS negative controls.** Only one broken layout (a missing device) is tested. Next: add equal-device-count cases (two swapped nets, an open net, a power-to-ground short) and compare browser and native diagnostics.
 5. **Side-by-side layout picture** of WebAssembly against native OpenROAD for table A, and a browser run at the 135.52 x 133.28 um die, so the page, Node and native can share one die.
 6. **Reproducibility.** `drc-count.mjs` needs a hand edit to compare the two qrouter builds (section 3); it should take the qrouter folder as an argument. The LibreLane runs in sections 7 and 8 are on the test PC only.
-7. **RTL grader.** The practice grader (Yosys miter, k-induction first, "proven" only when induction succeeds, else "first 40 cycles") has no section here. `node web/grader.test.mjs` (log `logs/grader.test.txt`) covers the CDC checks only. Until an RTL section with test cases exists, the grader is not covered by this report.
+7. **RTL grader.** Now covered in section 10. Not covered there: the five CDC problems (rule and bounded checks, `web/cdc.test.mjs`, never claimed as proven) and the Studio flow problem.
 8. **Runner.** The statement "runner round trip verified (shreg4 signoff clean 14/14)" has no stored log. The runner is not part of this report.
 9. **Missing counts.** Synthesis cell counts for mult8, shreg4, sr8, cnt8, twoclk and pins40 were not recorded, so the benchmark table says so.
 
-## 10. How to repeat
+## 10. RTL practice grader (Yosys miter, k-induction)
+
+**What is claimed.** The practice page says "proven" when a design equals the reference for every input and every cycle after reset, and "first 40 cycles" when it could only check that far. This section tests both statements. It covers the five non-CDC RTL problems.
+
+**How ours runs.** `web/grader.js` loads the reference and the user design, builds a miter, and runs `sat -verify -tempinduct -maxsteps 40 -seq 40` starting from undefined state with reset asserted on cycle 1. If that does not succeed, it runs a plain `sat -seq 40` search. A counterexample from either run is a real difference. A pass of the plain search is shown as "first 40 cycles", never "proven". Outputs where the reference is x are not compared. Engine: `@yowasp/yosys` 0.68.1207 (WebAssembly), run in Node.
+
+**How native was run.** The same cases, with the exact same two scripts the grader writes (`prove.ys` first, then `bound.ys` if that fails), run by `/foss/tools/bin/yosys` 0.64 in the `gf180` container (image `hpretl/iic-osic-tools:chipathon26`), one case at a time: `docker exec gf180 bash /foss/designs/grader_val/run.sh` (copy in `logs/grader-cases/run-native.sh`). The native result is "proven" if `prove.ys` exits clean, "first 40 cycles only" if only `bound.ys` does, and "fails" if both stop with an error. Note the versions differ (0.68 against 0.64); the results still agree.
+
+**Cases.** For every problem: the reference against itself, and three or four deliberate mistakes (off-by-one, wrong reset value, missing enable, swapped condition, wrong pattern, wrong shift, and similar). Then four tricky counter cases: two that are equal only if reset is ignored or never used, one that differs only from about cycle 30 (inside the 40 cycle bound), and one that differs only from about cycle 45 (outside it). Every case is stored as files in `logs/grader-cases/cNN/` (`ref.v`, `user.v`, `prove.ys`, `bound.ys`).
+
+**Results.** Run `node web/grader.validation.mjs` (log `logs/grader.validation.txt`; the older `node web/grader.test.mjs` log is `logs/grader.test.txt`). The cycle is counted with reset as cycle 1. The solver returns some counterexample inside the 40 cycles, not the shortest one, so the cycle shown for the late-difference case (40) is where the output first differs in that run, not the earliest possible.
+
+| Case | Problem | Design | Expected | Ours | Native Yosys | Match |
+|---|---|---|---|---|---|---|
+| ..\docs\validation\logs\grader-cases\c01 | counter-en | reference vs itself | proven | proven | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c02 | rise-edge | reference vs itself | proven | proven | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c03 | seq-1011 | reference vs itself | proven | proven | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c04 | gray-counter | reference vs itself | proven | proven | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c05 | rr-arbiter | reference vs itself | proven | proven | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c06 | counter-en | off-by-one (counts by 2) (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c07 | counter-en | wrong reset value (1) (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c08 | counter-en | missing enable (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c09 | counter-en | swapped condition (en low counts) (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c10 | rise-edge | wrong reset value (p=1) (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c11 | rise-edge | falling edge instead of rising (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c12 | rise-edge | level instead of edge (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c13 | seq-1011 | wrong pattern 1101 (first mismatch seen at cycle 6) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c14 | seq-1011 | wrong reset value (1111) (first mismatch seen at cycle 5) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c15 | seq-1011 | window one bit short (3 bits) (first mismatch seen at cycle 4) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c16 | gray-counter | plain binary output (first mismatch seen at cycle 6) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c17 | gray-counter | missing enable (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c18 | gray-counter | wrong shift (<<) (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c19 | rr-arbiter | wrong reset pointer (0) (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c20 | rr-arbiter | search starts at last (not last+1) (first mismatch seen at cycle 6) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c21 | rr-arbiter | pointer never updates (first mismatch seen at cycle 4) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c22 | counter-en | equal only after reset: no reset input used, q starts undefined (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c23 | counter-en | equal only after reset: reset ignored after first use (age flag) (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c24 | counter-en | differs only from cycle ~30 (inside 40) (first mismatch seen at cycle 40) | fails | fails | undefined | DIFFERS |
+| ..\docs\validation\logs\grader-cases\c25 | counter-en | differs only from cycle ~45 (outside 40) | see text | first 40 cycles only | undefined | DIFFERS |
+
+**Reading the table.**
+- All five references are proven equal to themselves, in both tools.
+- All 19 wrong designs fail with a counterexample, in both tools. The two "reset" tricks fail at cycle 2: a design that does not clear its state on reset starts undefined, and the grader treats that as different.
+- The case that differs only from about cycle 30 is caught, because it is inside the 40 cycle search.
+- **The case that differs only from about cycle 45 is NOT caught.** Induction cannot prove it (the extra counter is hard for induction), the plain search cannot see past cycle 40, so the grader passes it and the banner reads "first 40 cycles" rather than "proven". Native Yosys gives the same answer. This is the stated limit of the bound, not a hidden pass, but a wrong design can pass with that banner.
+
+**What is NOT validated.**
+- Only five problems and 25 cases (24 expected results plus the cycle 45 case); this shows the method works on them, not on every possible design.
+- Designs that differ only after cycle 40 and that induction cannot settle will pass as "first 40 cycles". The size of that blind spot is not measured.
+- Induction can fail on states that can never happen. Then the grader falls back to the bounded search, so a correct design can end up with the weaker banner. No such correct design was found among the cases here, but it was not looked for systematically.
+- Outputs where the reference is x are skipped (`-ignore_gold_x`). A design that is wrong only where the reference is x passes. Not tested.
+- Reset is forced only on cycle 1. Designs that rely on reset later, or on asynchronous reset behaviour, are not tested; the grader turns asynchronous resets into synchronous ones first.
+- Browser (WebAssembly) against the Node run was not compared in a real browser; Node uses the same engine file.
+- The practice page does not run a testbench; it only checks equality with the reference.
+
+## 11. How to repeat
 
 Needs Node, a folder with `@yowasp/yosys` in `node_modules` (run commands from the repo root), Docker, and Git Bash on Windows.
 

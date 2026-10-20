@@ -1,0 +1,32 @@
+yowasp-yosys: fetched 0% (0 / 77829808)
+yowasp-yosys: fetched 14% (10598400 / 77829808)
+yowasp-yosys: fetched 100% (77793115 / 77829808)
+yowasp-yosys: fetched 100% (77827796 / 77829808)
+yowasp-yosys: fetched 100% (77829178 / 77829808)
+yowasp-yosys: fetched 100% (77829808 / 77829808)
+ok   ..\docs\validation\logs\grader-cases\c01 counter-en | reference vs itself | expect proven | ours proven
+ok   ..\docs\validation\logs\grader-cases\c02 rise-edge | reference vs itself | expect proven | ours proven
+ok   ..\docs\validation\logs\grader-cases\c03 seq-1011 | reference vs itself | expect proven | ours proven
+ok   ..\docs\validation\logs\grader-cases\c04 gray-counter | reference vs itself | expect proven | ours proven
+ok   ..\docs\validation\logs\grader-cases\c05 rr-arbiter | reference vs itself | expect proven | ours proven
+ok   ..\docs\validation\logs\grader-cases\c06 counter-en | off-by-one (counts by 2) | expect fail | ours fail (first mismatch at cycle 3)
+ok   ..\docs\validation\logs\grader-cases\c07 counter-en | wrong reset value (1) | expect fail | ours fail (first mismatch at cycle 2)
+ok   ..\docs\validation\logs\grader-cases\c08 counter-en | missing enable | expect fail | ours fail (first mismatch at cycle 3)
+ok   ..\docs\validation\logs\grader-cases\c09 counter-en | swapped condition (en low counts) | expect fail | ours fail (first mismatch at cycle 3)
+ok   ..\docs\validation\logs\grader-cases\c10 rise-edge | wrong reset value (p=1) | expect fail | ours fail (first mismatch at cycle 2)
+ok   ..\docs\validation\logs\grader-cases\c11 rise-edge | falling edge instead of rising | expect fail | ours fail (first mismatch at cycle 2)
+ok   ..\docs\validation\logs\grader-cases\c12 rise-edge | level instead of edge | expect fail | ours fail (first mismatch at cycle 3)
+ok   ..\docs\validation\logs\grader-cases\c13 seq-1011 | wrong pattern 1101 | expect fail | ours fail (first mismatch at cycle 6)
+ok   ..\docs\validation\logs\grader-cases\c14 seq-1011 | wrong reset value (1111) | expect fail | ours fail (first mismatch at cycle 5)
+ok   ..\docs\validation\logs\grader-cases\c15 seq-1011 | window one bit short (3 bits) | expect fail | ours fail (first mismatch at cycle 4)
+ok   ..\docs\validation\logs\grader-cases\c16 gray-counter | plain binary output | expect fail | ours fail (first mismatch at cycle 6)
+ok   ..\docs\validation\logs\grader-cases\c17 gray-counter | missing enable | expect fail | ours fail (first mismatch at cycle 3)
+ok   ..\docs\validation\logs\grader-cases\c18 gray-counter | wrong shift (<<) | expect fail | ours fail (first mismatch at cycle 3)
+ok   ..\docs\validation\logs\grader-cases\c19 rr-arbiter | wrong reset pointer (0) | expect fail | ours fail (first mismatch at cycle 2)
+ok   ..\docs\validation\logs\grader-cases\c20 rr-arbiter | search starts at last (not last+1) | expect fail | ours fail (first mismatch at cycle 6)
+ok   ..\docs\validation\logs\grader-cases\c21 rr-arbiter | pointer never updates | expect fail | ours fail (first mismatch at cycle 4)
+ok   ..\docs\validation\logs\grader-cases\c22 counter-en | equal only after reset: no reset input used, q starts undefined | expect fail | ours fail (first mismatch at cycle 2)
+ok   ..\docs\validation\logs\grader-cases\c23 counter-en | equal only after reset: reset ignored after first use (age flag) | expect fail | ours fail (first mismatch at cycle 2)
+ok   ..\docs\validation\logs\grader-cases\c24 counter-en | differs only from cycle ~30 (inside 40) | expect fail | ours fail (first mismatch at cycle 40)
+ok   ..\docs\validation\logs\grader-cases\c25 counter-en | differs only from cycle ~45 (outside 40) | expect late45 | ours bounded
+grader validation: all cases as expected

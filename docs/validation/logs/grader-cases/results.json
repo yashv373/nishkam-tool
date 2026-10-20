@@ -1,0 +1,252 @@
+[
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c01",
+  "problem": "counter-en",
+  "name": "reference vs itself",
+  "expect": "proven",
+  "ours": "proven",
+  "cycle": null,
+  "ok": true,
+  "ms": 4143
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c02",
+  "problem": "rise-edge",
+  "name": "reference vs itself",
+  "expect": "proven",
+  "ours": "proven",
+  "cycle": null,
+  "ok": true,
+  "ms": 299
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c03",
+  "problem": "seq-1011",
+  "name": "reference vs itself",
+  "expect": "proven",
+  "ours": "proven",
+  "cycle": null,
+  "ok": true,
+  "ms": 434
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c04",
+  "problem": "gray-counter",
+  "name": "reference vs itself",
+  "expect": "proven",
+  "ours": "proven",
+  "cycle": null,
+  "ok": true,
+  "ms": 2161
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c05",
+  "problem": "rr-arbiter",
+  "name": "reference vs itself",
+  "expect": "proven",
+  "ours": "proven",
+  "cycle": null,
+  "ok": true,
+  "ms": 3689
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c06",
+  "problem": "counter-en",
+  "name": "off-by-one (counts by 2)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 3,
+  "ok": true,
+  "ms": 1116
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c07",
+  "problem": "counter-en",
+  "name": "wrong reset value (1)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 2,
+  "ok": true,
+  "ms": 1211
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c08",
+  "problem": "counter-en",
+  "name": "missing enable",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 3,
+  "ok": true,
+  "ms": 878
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c09",
+  "problem": "counter-en",
+  "name": "swapped condition (en low counts)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 3,
+  "ok": true,
+  "ms": 1153
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c10",
+  "problem": "rise-edge",
+  "name": "wrong reset value (p=1)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 2,
+  "ok": true,
+  "ms": 221
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c11",
+  "problem": "rise-edge",
+  "name": "falling edge instead of rising",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 2,
+  "ok": true,
+  "ms": 196
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c12",
+  "problem": "rise-edge",
+  "name": "level instead of edge",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 3,
+  "ok": true,
+  "ms": 163
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c13",
+  "problem": "seq-1011",
+  "name": "wrong pattern 1101",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 6,
+  "ok": true,
+  "ms": 367
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c14",
+  "problem": "seq-1011",
+  "name": "wrong reset value (1111)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 5,
+  "ok": true,
+  "ms": 392
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c15",
+  "problem": "seq-1011",
+  "name": "window one bit short (3 bits)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 4,
+  "ok": true,
+  "ms": 403
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c16",
+  "problem": "gray-counter",
+  "name": "plain binary output",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 6,
+  "ok": true,
+  "ms": 1071
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c17",
+  "problem": "gray-counter",
+  "name": "missing enable",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 3,
+  "ok": true,
+  "ms": 1033
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c18",
+  "problem": "gray-counter",
+  "name": "wrong shift (<<)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 3,
+  "ok": true,
+  "ms": 1227
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c19",
+  "problem": "rr-arbiter",
+  "name": "wrong reset pointer (0)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 2,
+  "ok": true,
+  "ms": 3924
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c20",
+  "problem": "rr-arbiter",
+  "name": "search starts at last (not last+1)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 6,
+  "ok": true,
+  "ms": 5855
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c21",
+  "problem": "rr-arbiter",
+  "name": "pointer never updates",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 4,
+  "ok": true,
+  "ms": 4468
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c22",
+  "problem": "counter-en",
+  "name": "equal only after reset: no reset input used, q starts undefined",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 2,
+  "ok": true,
+  "ms": 1254
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c23",
+  "problem": "counter-en",
+  "name": "equal only after reset: reset ignored after first use (age flag)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 2,
+  "ok": true,
+  "ms": 1651
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c24",
+  "problem": "counter-en",
+  "name": "differs only from cycle ~30 (inside 40)",
+  "expect": "fail",
+  "ours": "fail",
+  "cycle": 40,
+  "ok": true,
+  "ms": 1834
+ },
+ {
+  "case": "..\\docs\\validation\\logs\\grader-cases\\c25",
+  "problem": "counter-en",
+  "name": "differs only from cycle ~45 (outside 40)",
+  "expect": "late45",
+  "ours": "bounded",
+  "cycle": null,
+  "ok": true,
+  "ms": 4754
+ }
+]

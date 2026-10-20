@@ -4,7 +4,7 @@ Open-source chip-design tools compiled to WebAssembly, as used by [nishkam.world
 
 This repository does two things:
 
-1. **Source for the GPL, LGPL and EUPL binaries.** For every such binary served by nishkam.world, the complete corresponding source (pinned upstream source, our patches, build scripts) is published as assets of the GitHub Release [source-2026-10-20](https://github.com/yashv373/nishkam-tool/releases/tag/source-2026-10-20), free to download, with `SHA256SUMS.txt`. Each `nishkam-<tool>-wasm-build.tar.gz` holds our patches, entry points, licences and the build recipe for that tool; the upstream sources are the unmodified archives next to it.
+1. **Source for the GPL, LGPL and EUPL binaries.** For every such binary served by nishkam.world, the complete corresponding source (pinned upstream source, our patches, build scripts) is published as assets of the GitHub Release [source-2026-10-20](https://github.com/yashv373/nishkam-tool/releases/tag/source-2026-10-20), free to download, with `SHA256SUMS.txt`. Each `nishkam-<tool>-wasm-build.tar.gz` holds our patches, entry points, licences and the build recipe for that tool; the upstream sources are the unmodified archives next to it. If a download is ever missing, write to nishkam.world@gmail.com and we will send the same archive at no charge beyond delivery; this offer lasts three years after we last serve the binary in question.
 
 ### Corresponding source
 

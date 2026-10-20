@@ -1,0 +1,8 @@
+{"design":"tiny8","die":[250,250],"place":{"violations":null,"drcTrajectory":[],"wirelengthUm":null,"vias":null,"instances":696,"ms":8276,"memMB":100,"top":"tiny8","components":696,"die":"( 0 0 ) ( 500000 500000 )"},"cts":{"clkbufs":7,"sinks":48,"latency_ns":1.01,"skew_ns":0,"setup_skew_ns":0,"hold_skew_ns":null,"ms":25959},"route":{"violations":0,"drcTrajectory":[42,3,3,0],"wirelengthUm":11776,"vias":1848,"instances":null,"ms":37153,"memMB":299,"top":"tiny8"},"magicDrc":0,"drcInCells":0,"drcFromLayout":0,"lvs":true,"lvsDevices":[3150,3150],"lvsNets":[1559,1559],"setupWs":11.445,"holdWs":0.9211,"equiv":true,"equivRtl":true,"equivNegativeControlFails":true,"buffersBefore":0,"buffersAfter":41,"T":{"synth":8.5,"place":9.4,"cts":26.9,"route":38.1,"magic":18.8,"lvs":0.6,"sta":4.7}}
+ok   TritonRoute final violations 0
+ok   Magic DRC 0 (got 0, 0 inside library cells)
+ok   Netgen LVS match
+ok   post-PnR netlist (port/repair/CTS buffers) equivalent to the pre-PnR synthesized netlist (Yosys equiv_induct)
+ok   post-PnR netlist equivalent to the RTL (same proof)
+ok   negative control: the same proof fails when one gate is changed
+pnr-flow selftest ok

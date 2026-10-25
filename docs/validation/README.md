@@ -495,6 +495,25 @@ Also not covered: the unresolved `_Unwind_GetIP` symbol (never reached in these 
 - Large or hard designs. Both designs are tiny, at 50% density with a relaxed 24 ns clock (setup slack above 9 ns). Congestion, tight timing and the browser memory limit are not tested on anything bigger.
 - Firefox and Safari. Power. adder2 timing. A side-by-side native layout picture. The clock tree natively on this exact run.
 
+## 8.y OpenRCX parasitics and PDNSim IR drop (2026-10-25, #65, #68)
+
+**How ours was built.** The 6f3f28c wasm of section 8.x with two more modules switched on (`rcx`, `psm`; patch `tools/openroad-pnr/openroad-6f3f28c-rcx-psm.patch`, recipe in `web/vendor/openroad-pnr/6f3f28c/SOURCE.md`). Studio runs them in the route step of `engines/pnr.worker.js`: `set_extraction_rules_file` (ORFS gf180 rules, 1p5m 9k OPTB, typical corner, fetched at run time from jsDelivr at ORFS 5c761de72dd0 and sha256-checked; not stored in the repo), `extract_parasitics`, `write_spef`; then `set_pdnsim_net_voltage` (5 V read from the liberty, 0 V for VSS) and `analyze_power_grid` for VDD and VSS. Post-route STA reads that SPEF.
+
+**How native was run.** Docker image `or-native-61:6f3f28c` (section 8.x), `openroad -threads 1 -exit post.tcl` with the same Tcl and the same inputs: the routed tiny8 DEF written by the browser flow (`node web/studio/engines/pnr-flow.selftest.mjs tiny8`, OUT=dir), gf180 LEF/tlef, liberty and rules file. Script and both logs: `docs/validation/logs/or-native-6f3f28c/rcx-psm/` (post.tcl, nat.log, wasm.log).
+
+| tiny8 routed DEF | Native 6f3f28c | Wasm 6f3f28c | Result |
+|---|---|---|---|
+| Nets in SPEF (*D_NET) | 294 | 294 | match |
+| SPEF text, except date and version lines | | | 0 differing lines |
+| VDD worst IR drop | 2.60e-3 V | 2.60e-3 V | match |
+| VDD average IR drop | 4.98e-4 V | 4.98e-4 V | match |
+| VSS worst / average | 1.05e-3 / 4.69e-4 V | 1.05e-3 / 4.69e-4 V | match |
+| Total power used | 4.93e-3 W | 4.93e-3 W | match |
+
+In the Studio flow (170 um die default) the Reports card shows worst 0.593 mV on VDD (0.012% of 5 V). Post-route setup/hold slack on tiny8 moved from 11.527 / 0.913 ns (Magic SPEF, section 8.x) to 11.706 / 0.876 ns (OpenRCX SPEF).
+
+**NOT validated.** One design (tiny8), one corner (typical), one rules file. The IR numbers use default switching activity, not real activity, and the power grid is our own pdngen script, not LibreLane's. We compared against native OpenROAD, not against Magic, a signoff extractor, or silicon. OpenRCX against Magic extraction was not compared net by net. The rules file has no licence, so it is fetched, not shipped. No IR heat map yet (follow-up).
+
 ## 9. Known limits and next checks
 
 Things we know are open. None is claimed as validated.

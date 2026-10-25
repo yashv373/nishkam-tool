@@ -1,0 +1,136 @@
+OpenROAD 26Q4-1108-g6f3f28cc85 
+Features included (+) or not (-): -GPU -GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 1 thread(s).
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via1 :"
+  	EOLENCLOSURE 0.34 0.06 ;"
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via2 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via3 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via4 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0227] LEF file: /w/tech.lef, created 15 layers, 56 vias
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /w/cells.lef at line 2.
+
+[INFO ODB-0227] LEF file: /w/cells.lef, created 152 library cells
+[INFO ODB-0127] Reading DEF file: /w/in.def
+[INFO ODB-0128] Design: tiny8
+[INFO ODB-0130]     Created 36 pins.
+[INFO ODB-0131]     Created 725 components and 3628 component-terminals.
+[INFO ODB-0132]     Created 2 special nets and 980 connections.
+[INFO ODB-0133]     Created 294 nets and 997 connections.
+[INFO ODB-0134] Finished DEF file: /w/in.def
+[WARNING ORD-2056] The following 77 liberty cell(s) do not have LEF masters and will be marked as dont-use:
+  gf180mcu_fd_sc_mcu7t5v0__addf_4
+  gf180mcu_fd_sc_mcu7t5v0__addh_4
+  gf180mcu_fd_sc_mcu7t5v0__and2_4
+  gf180mcu_fd_sc_mcu7t5v0__and3_4
+  gf180mcu_fd_sc_mcu7t5v0__and4_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi211_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi21_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi221_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi222_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi22_4
+  gf180mcu_fd_sc_mcu7t5v0__buf_12
+  gf180mcu_fd_sc_mcu7t5v0__buf_16
+  gf180mcu_fd_sc_mcu7t5v0__buf_20
+  gf180mcu_fd_sc_mcu7t5v0__bufz_12
+  gf180mcu_fd_sc_mcu7t5v0__bufz_16
+  gf180mcu_fd_sc_mcu7t5v0__bufz_3
+  gf180mcu_fd_sc_mcu7t5v0__bufz_4
+  gf180mcu_fd_sc_mcu7t5v0__bufz_8
+  gf180mcu_fd_sc_mcu7t5v0__clkbuf_12
+  gf180mcu_fd_sc_mcu7t5v0__clkbuf_16
+  gf180mcu_fd_sc_mcu7t5v0__clkbuf_20
+  gf180mcu_fd_sc_mcu7t5v0__clkinv_12
+  gf180mcu_fd_sc_mcu7t5v0__clkinv_16
+  gf180mcu_fd_sc_mcu7t5v0__clkinv_20
+  gf180mcu_fd_sc_mcu7t5v0__dffnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffnrnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffnsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffrnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffrsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dlya_4
+  gf180mcu_fd_sc_mcu7t5v0__dlyb_4
+  gf180mcu_fd_sc_mcu7t5v0__dlyc_4
+  gf180mcu_fd_sc_mcu7t5v0__dlyd_4
+  gf180mcu_fd_sc_mcu7t5v0__icgtn_4
+  gf180mcu_fd_sc_mcu7t5v0__icgtp_4
+  gf180mcu_fd_sc_mcu7t5v0__inv_12
+  gf180mcu_fd_sc_mcu7t5v0__inv_16
+  gf180mcu_fd_sc_mcu7t5v0__inv_20
+  gf180mcu_fd_sc_mcu7t5v0__invz_12
+  gf180mcu_fd_sc_mcu7t5v0__invz_16
+  gf180mcu_fd_sc_mcu7t5v0__invz_3
+  gf180mcu_fd_sc_mcu7t5v0__invz_4
+  gf180mcu_fd_sc_mcu7t5v0__invz_8
+  gf180mcu_fd_sc_mcu7t5v0__latq_4
+  gf180mcu_fd_sc_mcu7t5v0__latrnq_4
+  gf180mcu_fd_sc_mcu7t5v0__latrsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__latsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__mux2_4
+  gf180mcu_fd_sc_mcu7t5v0__mux4_4
+  gf180mcu_fd_sc_mcu7t5v0__nand2_4
+  gf180mcu_fd_sc_mcu7t5v0__nand3_4
+  gf180mcu_fd_sc_mcu7t5v0__nand4_4
+  gf180mcu_fd_sc_mcu7t5v0__nor2_4
+  gf180mcu_fd_sc_mcu7t5v0__nor3_4
+  gf180mcu_fd_sc_mcu7t5v0__nor4_4
+  gf180mcu_fd_sc_mcu7t5v0__oai211_4
+  gf180mcu_fd_sc_mcu7t5v0__oai21_4
+  gf180mcu_fd_sc_mcu7t5v0__oai221_4
+  gf180mcu_fd_sc_mcu7t5v0__oai222_4
+  gf180mcu_fd_sc_mcu7t5v0__oai22_4
+  gf180mcu_fd_sc_mcu7t5v0__oai31_4
+  gf180mcu_fd_sc_mcu7t5v0__oai32_4
+  gf180mcu_fd_sc_mcu7t5v0__oai33_4
+  gf180mcu_fd_sc_mcu7t5v0__or2_4
+  gf180mcu_fd_sc_mcu7t5v0__or3_4
+  gf180mcu_fd_sc_mcu7t5v0__or4_4
+  gf180mcu_fd_sc_mcu7t5v0__sdffq_4
+  gf180mcu_fd_sc_mcu7t5v0__sdffrnq_4
+  gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__xnor2_4
+  gf180mcu_fd_sc_mcu7t5v0__xnor3_4
+  gf180mcu_fd_sc_mcu7t5v0__xor2_4
+  gf180mcu_fd_sc_mcu7t5v0__xor3_4
+[INFO RCX-0435] Reading extraction model file /w/rcx.rules ...
+[INFO RCX-0434] Defined process_corner MinMax0 with ext_model_index 0 (using extRulesFile defaults)
+[INFO RCX-0436] RC segment generation tiny8 (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 1165 rc segments
+[INFO RCX-0439] Coupling Cap extraction tiny8 ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 49% of 1802 wires extracted
+[INFO RCX-0442] 100% of 1802 wires extracted
+[INFO RCX-0045] Extract 294 nets, 1459 rsegs, 1459 caps, 2527 ccs
+[INFO RCX-0443] 294 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+[WARNING STA-2402] power activity propagation through registers did not converge after 50 passes.
+########## IR report #################
+Net              : VDD
+Corner           : default
+Total power      : 4.93e-03 W
+Supply voltage   : 5.00e+00 V
+Worstcase voltage: 5.00e+00 V
+Average voltage  : 5.00e+00 V
+Average IR drop  : 4.98e-04 V
+Worstcase IR drop: 2.60e-03 V
+Percentage drop  : 0.05 %
+######################################
+[INFO PSM-0040] All shapes on net VSS are connected.
+########## IR report #################
+Net              : VSS
+Corner           : default
+Total power      : 4.93e-03 W
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 1.05e-03 V
+Average voltage  : 4.69e-04 V
+Average IR drop  : 4.69e-04 V
+Worstcase IR drop: 1.05e-03 V
+Percentage drop  : 0.02 %
+######################################
+@@DONE

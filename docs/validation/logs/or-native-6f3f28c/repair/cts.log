@@ -1,0 +1,297 @@
+OpenROAD 26Q4-1108-g6f3f28cc85 
+Features included (+) or not (-): -GPU -GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 1 thread(s).
+[INFO ORD-0030] Using 1 thread(s).
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via1 :"
+  	EOLENCLOSURE 0.34 0.06 ;"
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via2 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via3 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via4 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0227] LEF file: /w/tech.lef, created 15 layers, 56 vias
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /w/cells.lef at line 2.
+
+[INFO ODB-0227] LEF file: /w/cells.lef, created 152 library cells
+[INFO ODB-0127] Reading DEF file: /w/placed.def
+[INFO ODB-0128] Design: tiny8
+[INFO ODB-0130]     Created 36 pins.
+[INFO ODB-0131]     Created 407 components and 2340 component-terminals.
+[INFO ODB-0132]     Created 2 special nets and 980 connections.
+[INFO ODB-0133]     Created 289 nets and 984 connections.
+[INFO ODB-0134] Finished DEF file: /w/placed.def
+[WARNING ORD-2056] The following 77 liberty cell(s) do not have LEF masters and will be marked as dont-use:
+  gf180mcu_fd_sc_mcu7t5v0__addf_4
+  gf180mcu_fd_sc_mcu7t5v0__addh_4
+  gf180mcu_fd_sc_mcu7t5v0__and2_4
+  gf180mcu_fd_sc_mcu7t5v0__and3_4
+  gf180mcu_fd_sc_mcu7t5v0__and4_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi211_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi21_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi221_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi222_4
+  gf180mcu_fd_sc_mcu7t5v0__aoi22_4
+  gf180mcu_fd_sc_mcu7t5v0__buf_12
+  gf180mcu_fd_sc_mcu7t5v0__buf_16
+  gf180mcu_fd_sc_mcu7t5v0__buf_20
+  gf180mcu_fd_sc_mcu7t5v0__bufz_12
+  gf180mcu_fd_sc_mcu7t5v0__bufz_16
+  gf180mcu_fd_sc_mcu7t5v0__bufz_3
+  gf180mcu_fd_sc_mcu7t5v0__bufz_4
+  gf180mcu_fd_sc_mcu7t5v0__bufz_8
+  gf180mcu_fd_sc_mcu7t5v0__clkbuf_12
+  gf180mcu_fd_sc_mcu7t5v0__clkbuf_16
+  gf180mcu_fd_sc_mcu7t5v0__clkbuf_20
+  gf180mcu_fd_sc_mcu7t5v0__clkinv_12
+  gf180mcu_fd_sc_mcu7t5v0__clkinv_16
+  gf180mcu_fd_sc_mcu7t5v0__clkinv_20
+  gf180mcu_fd_sc_mcu7t5v0__dffnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffnrnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffnsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffrnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffrsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dffsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__dlya_4
+  gf180mcu_fd_sc_mcu7t5v0__dlyb_4
+  gf180mcu_fd_sc_mcu7t5v0__dlyc_4
+  gf180mcu_fd_sc_mcu7t5v0__dlyd_4
+  gf180mcu_fd_sc_mcu7t5v0__icgtn_4
+  gf180mcu_fd_sc_mcu7t5v0__icgtp_4
+  gf180mcu_fd_sc_mcu7t5v0__inv_12
+  gf180mcu_fd_sc_mcu7t5v0__inv_16
+  gf180mcu_fd_sc_mcu7t5v0__inv_20
+  gf180mcu_fd_sc_mcu7t5v0__invz_12
+  gf180mcu_fd_sc_mcu7t5v0__invz_16
+  gf180mcu_fd_sc_mcu7t5v0__invz_3
+  gf180mcu_fd_sc_mcu7t5v0__invz_4
+  gf180mcu_fd_sc_mcu7t5v0__invz_8
+  gf180mcu_fd_sc_mcu7t5v0__latq_4
+  gf180mcu_fd_sc_mcu7t5v0__latrnq_4
+  gf180mcu_fd_sc_mcu7t5v0__latrsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__latsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__mux2_4
+  gf180mcu_fd_sc_mcu7t5v0__mux4_4
+  gf180mcu_fd_sc_mcu7t5v0__nand2_4
+  gf180mcu_fd_sc_mcu7t5v0__nand3_4
+  gf180mcu_fd_sc_mcu7t5v0__nand4_4
+  gf180mcu_fd_sc_mcu7t5v0__nor2_4
+  gf180mcu_fd_sc_mcu7t5v0__nor3_4
+  gf180mcu_fd_sc_mcu7t5v0__nor4_4
+  gf180mcu_fd_sc_mcu7t5v0__oai211_4
+  gf180mcu_fd_sc_mcu7t5v0__oai21_4
+  gf180mcu_fd_sc_mcu7t5v0__oai221_4
+  gf180mcu_fd_sc_mcu7t5v0__oai222_4
+  gf180mcu_fd_sc_mcu7t5v0__oai22_4
+  gf180mcu_fd_sc_mcu7t5v0__oai31_4
+  gf180mcu_fd_sc_mcu7t5v0__oai32_4
+  gf180mcu_fd_sc_mcu7t5v0__oai33_4
+  gf180mcu_fd_sc_mcu7t5v0__or2_4
+  gf180mcu_fd_sc_mcu7t5v0__or3_4
+  gf180mcu_fd_sc_mcu7t5v0__or4_4
+  gf180mcu_fd_sc_mcu7t5v0__sdffq_4
+  gf180mcu_fd_sc_mcu7t5v0__sdffrnq_4
+  gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4
+  gf180mcu_fd_sc_mcu7t5v0__xnor2_4
+  gf180mcu_fd_sc_mcu7t5v0__xnor3_4
+  gf180mcu_fd_sc_mcu7t5v0__xor2_4
+  gf180mcu_fd_sc_mcu7t5v0__xor3_4
+[INFO CTS-0050] Root buffer is gf180mcu_fd_sc_mcu7t5v0__clkbuf_8.
+[INFO CTS-0051] Sink buffer is gf180mcu_fd_sc_mcu7t5v0__clkbuf_4.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    gf180mcu_fd_sc_mcu7t5v0__clkbuf_2
+                    gf180mcu_fd_sc_mcu7t5v0__clkbuf_4
+                    gf180mcu_fd_sc_mcu7t5v0__clkbuf_8
+[INFO CTS-0049] Characterization buffer is gf180mcu_fd_sc_mcu7t5v0__clkbuf_8.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[WARNING CTS-0041] Net "clk" has 1 sinks. Skipping...
+[INFO CTS-0010]  Clock net "net1" has 48 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 3 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net net1.
+[INFO CTS-0028]  Total number of sinks: 48.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 39200  dbu (19 um).
+[INFO CTS-0023]  Original sink region: [(17530, 43120), (219130, 223440)].
+[INFO CTS-0024]  Normalized sink region: [(0.447194, 1.1), (5.59005, 5.7)].
+[INFO CTS-0025]     Width:  5.1429.
+[INFO CTS-0026]     Height: 4.6000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 24
+    Sub-region size: 2.5714 X 4.6000
+[INFO CTS-0034]     Segment length (rounded): 1.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 12
+    Sub-region size: 2.5714 X 2.3000
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (7827.115 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 48.
+[INFO CTS-0018]     Created 5 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 5 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 10:2, 13:1, 15:1..
+[INFO CTS-0017]     Max level of the clock tree: 2.
+[INFO CTS-0098] Clock net "net1"
+[INFO CTS-0099]  Sinks 51
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 165.88 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 3
+[INFO CTS-0500] Runtime: 1.15s
+[INFO RSZ-0058] Using max wire length 7827um.
+[INFO DPL-0006] Core area: 12442.39 um^2
+[INFO DPL-0007] Movable instances area: 8776.41 um^2
+[INFO DPL-0008] Fixed instances area within core: 597.09 um^2
+[INFO DPL-0009] Utilization: 75.3%
+[INFO DPL-0005] Diamond search max displacement: +/- 892 sites horizontally, +/- 25 rows vertically.
+[INFO DPL-1102] Legalizing using negotiation legalizer.
+[INFO DPL-1103] Negotiation base search window: +/-20 sites horizontally, +/-5 rows vertically 
+	Automatic search window extension enabled.
+	Search window extendable up to the max displacement cap of +/-892 sites, +/-25 rows near walls.
+[INFO DPL-1104] NegotiationLegalizer DRC penalty: 5.
+[INFO DPL-0392] Negotiation cell height distribution (1 unique row-count(s)):
+[INFO DPL-0393]   height 1 row(s): 415 cells
+          |      Total |  Illegal |  Illegal
+Iteration | Violations |    Cells |    Sites
+---------------------------------------------
+        0 |         62 |        10 |        52
+        1 |          0 |         0 |         0
+Negotiation phase 1 converged at iteration 1.
+[INFO DPL-0500] Runtime: 0.02s
+Detailed Placement Analysis
+---------------------------------
+legalizer            negotiation
+total moves                 177
+total displacement        476.7 u
+average displacement        1.1 u
+max displacement           19.0 u
+original HPWL            8364.4 u
+legalized HPWL           8653.0 u
+delta HPWL                    3 %
+
+[INFO DPL-0020] Mirrored 81 instances
+[INFO DPL-0021] HPWL before            8653.0 u
+[INFO DPL-0022] HPWL after             8447.6 u
+[INFO DPL-0023] HPWL delta               -2.4 %
+@@STEP timing repair
+REPAIR_BEFORE setup -1.6428938674498033 hold 0.7108841494453492 tns -15.94074251051853
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 17 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 17 out of 17 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            | Endpts | Endpoint
+------------------------------------------------------------------------------------------------------------------------------
+       0* |       0 |       0 |        0 |      0 |     0 |    +0.0% |   -1.643 |      -15.9 |     17 | _412_/D
+      10* |       0 |       7 |        2 |      0 |     0 |    +0.8% |   -0.584 |       -3.6 |     17 | _412_/D
+      20* |       0 |      16 |        3 |      0 |     0 |    +1.9% |   -0.256 |       -1.8 |     17 | _412_/D
+      26* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      27* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      28* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      29* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      30* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      30* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      31* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      32* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      33* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      34* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      35* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      36* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      37* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      38* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      39* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      40* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      40* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      41* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      42* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+      42* |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |     17 | _412_/D
+    final |       0 |      21 |        3 |      0 |     1 |    +2.3% |    0.033 |        0.0 |      0 | _412_/D
+------------------------------------------------------------------------------------------------------------------------------
+[INFO RSZ-0040] Inserted 3 buffers.
+[INFO RSZ-0051] Resized 21 instances: 21 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 1 instances.
+[INFO RSZ-0505] Runtime: 0.51s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.00s
+[INFO DPL-0006] Core area: 12442.39 um^2
+[INFO DPL-0007] Movable instances area: 8995.93 um^2
+[INFO DPL-0008] Fixed instances area within core: 597.09 um^2
+[INFO DPL-0009] Utilization: 77.1%
+[INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
+[INFO DPL-1102] Legalizing using negotiation legalizer.
+[INFO DPL-1103] Negotiation base search window: +/-20 sites horizontally, +/-5 rows vertically 
+	Automatic search window extension enabled.
+	Search window extendable up to the max displacement cap of +/-500 sites, +/-100 rows near walls.
+[INFO DPL-1104] NegotiationLegalizer DRC penalty: 5.
+[INFO DPL-0392] Negotiation cell height distribution (1 unique row-count(s)):
+[INFO DPL-0393]   height 1 row(s): 418 cells
+          |      Total |  Illegal |  Illegal
+Iteration | Violations |    Cells |    Sites
+---------------------------------------------
+        0 |         78 |        16 |        62
+        1 |         38 |         4 |        34
+        2 |         24 |         2 |        22
+        3 |         24 |         2 |        22
+        4 |          6 |         2 |         4
+        5 |         20 |         2 |        18
+        6 |          0 |         0 |         0
+Negotiation phase 1 converged at iteration 6.
+[INFO DPL-0500] Runtime: 0.03s
+Detailed Placement Analysis
+---------------------------------
+legalizer            negotiation
+total moves                 262
+total displacement        528.8 u
+average displacement        1.3 u
+max displacement           19.0 u
+original HPWL            8514.4 u
+legalized HPWL           8809.9 u
+delta HPWL                    3 %
+
+REPAIR_AFTER setup 0.01656363981743936 hold 0.7121864410900658 tns 0.0
+@@REPORT
+Total number of Clock Roots: 1.
+Total number of Buffers Inserted: 5.
+Total number of Clock Subnets: 5.
+Total number of Sinks: 48.
+Cells used:
+  gf180mcu_fd_sc_mcu7t5v0__clkbuf_8: 5
+Dummys used:
+  gf180mcu_fd_sc_mcu7t5v0__clkinv_2: 1
+  gf180mcu_fd_sc_mcu7t5v0__inv_4: 2
+Clock clk
+   1.08 source latency _402_/CLK ^
+  -1.08 target latency _383_/CLK ^
+   0.00 CRPR
+--------------
+  -0.00 setup skew
+
+Clock clk
+rise -> rise
+    min     max
+   0.00    0.00 source latency
+   1.08         network latency _379_/CLK
+           1.08 network latency _378_/CLK
+---------------
+   1.08    1.08 latency
+           0.00 skew
+
+fall -> fall
+    min     max
+   0.00    0.00 source latency
+   1.07         network latency _379_/CLK
+           1.07 network latency _378_/CLK
+---------------
+   1.07    1.07 latency
+           0.00 skew
+
+
+CLKBUF_COUNT 8
+@@DONE

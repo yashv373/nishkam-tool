@@ -514,6 +514,28 @@ In the Studio flow (170 um die default) the Reports card shows worst 0.593 mV on
 
 **NOT validated.** One design (tiny8), one corner (typical), one rules file. The IR numbers use default switching activity, not real activity, and the power grid is our own pdngen script, not LibreLane's. We compared against native OpenROAD, not against Magic, a signoff extractor, or silicon. OpenRCX against Magic extraction was not compared net by net. The rules file has no licence, so it is fetched, not shipped. No IR heat map yet (follow-up).
 
+## 8.z Timing repair after the clock tree (2026-10-25, #70)
+
+**How ours was built.** Same 6f3f28c wasm as section 8.x. In `engines/cts.worker.js` the OpenROAD CTS script now ends, when Properties "Timing repair" is on (default), with: gf180 layer RC from OpenROAD-flow-scripts `platforms/gf180/setRC.tcl` (`set_layer_rc` Metal2 to Metal5; signal wires on Metal2, clock wires on Metal4), `estimate_parasitics -placement`, `repair_timing -setup`, `repair_timing -hold`, `detailed_placement`, `check_placement`. `repair_design` already ran in the place step (after `buffer_ports`). The dont_use list (`drc_exclude.cells`) is applied before, so repair cannot pick the excluded cells; CTS itself still uses clkbuf_8/4/2 only. Global-route repair is NOT done (the browser route step has no SDC and would need a second global route).
+
+**How native was run.** Image `or-native-61:6f3f28c` (section 8.x), `openroad -threads 1 -exit` on the Tcl written by `engines/pnr-native.mjs` (`PERIOD=7 REPAIR=1`), same synthesized netlist as the browser run (`PERIOD=7 node web/studio/engines/pnr-flow.selftest.mjs tiny8`, `RAW=1` prints the OpenROAD log). Logs: `logs/or-native-6f3f28c/repair/`. The traditional flow (LibreLane/ORFS) was not run for this step.
+
+tiny8, die 135.52 x 133.28 um, 7 ns clock (input/output delay 20%). A 7 ns clock makes tiny8 fail setup on purpose (24 ns, used elsewhere, has 11 ns slack and nothing to repair).
+
+| tiny8, 7 ns | Repair off | Repair on (wasm) | Native, repair on | Result |
+|---|---|---|---|---|
+| Setup WNS / TNS after CTS, estimated (ns) | -1.643 / -15.94 (before repair) | 0.017 / 0 | 0.017 / 0 | wasm = native, every printed digit |
+| Hold WNS after CTS (ns) | 0.711 | 0.712 | 0.712 | match |
+| Repair moves | | 3 buffers inserted, 21 resized up, 1 pin swap, no hold violations | same | match |
+| Cells / cell area after CTS | 279 / 8776 um2 | 282 / 8996 um2 (+2.5%) | 282 / 8996 um2 | match |
+| Final netlist, wasm vs native | | | | 0 differing lines |
+| Post-route setup / hold WNS, OpenRCX (ns) | -1.894 / 0.739 | -0.087 / 0.750 | n/a | repair closes 95% of the setup gap; not fully, route adds wire delay the estimate did not have |
+| TritonRoute violations / Magic DRC / LVS / equivalence | 0 / 0 / match / pass | 0 / 0 / match / pass | route: 0 (native wire 10184 um, 1902 vias, wasm 10142 um, 1911 vias) | |
+
+Default 24 ns run (nothing violates, so repair does nothing): setup/hold 11.709 / 0.882 ns, DRC 0, LVS match, same as before. Run `REPAIR=0 PERIOD=7 node web/studio/engines/pnr-flow.selftest.mjs tiny8` for the "off" column.
+
+**NOT validated.** One design (tiny8), one clock. Repair quality (does it beat LibreLane's repair on the same design): not compared, LibreLane was not run. Repair after global route is absent. A 3 ns clock on tiny8 was tried: repair ran about 1100 iterations, grew area 30%, and still left -6.7 ns WNS, so very tight clocks are not fixed by this step. The ORFS setRC values were used for repair only; placement and CTS still use the average layer RC from the tech LEF. aes (ORFS stress test, #64) is re-run separately and not part of this table.
+
 ## 9. Known limits and next checks
 
 Things we know are open. None is claimed as validated.

@@ -663,3 +663,25 @@ Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design>
 **In-browser flow checked (2026-10-25).** Studio `?mock`, Examples > shreg4, Run All (LVS match), GDS tab, then the Tiny Tapeout Explorer button: the 3D view opened from the in-browser Magic GDS (patched power labels), no error text, new colours visible. Not compared against KLayout 3D.
 
 **NOT validated.** Metal and poly/diffusion geometry against KLayout (only via counts and 2D counts); the 3D picture against a KLayout 3D render; labels and net highlighting; large designs (largest tested: m8, 650 KB); Safari/Firefox; GDS from the in-browser Magic flow on every example.
+
+## 13. Formal tab: SymbiYosys in the browser (2026-10-25, issue #66)
+
+**Setup.** Studio, Properties, "Formal tab (SymbiYosys)" on. SBY 0.64 (Python, unmodified, `web/vendor/sby/0.64/`) runs under Pyodide 0.27.7 in a Web Worker. SBY starts tools as processes; the browser cannot, so `web/studio/engines/formal_shim.py` replaces `subprocess.Popen`: commands SBY would run (`yosys`, `yosys-abc`) are run by JavaScript in the same YoWASP Yosys 0.68.1207 that Lint and Synthesis use (ABC is inside it, run through the `abc -script` pass), then SBY is restarted and replays the results (about 6 restarts per run). `yosys-witness` runs as Python. Engines: `abc pdr` (mode prove) and `abc bmc3` (mode bmc). Not available: mode cover and the `smtbmc` engine (needs an SMT solver; SBY itself refuses cover mode with abc engines).
+**Our flow differs from native in one place:** the YoWASP Yosys has no `sim` pass, and SBY's other trace route needs yices. So the counterexample VCD is made by replaying ABC's witness (`trace.aiw`) on SBY's own AIGER model (`design_aiger.aig`), in `formal_shim.py`. The `vcd_sim on` option is added to the .sby for this.
+
+**Traditional flow.** Container `gf180` (oss-cad-suite), `SBY v0.64-dirty`, `Yosys 0.64`, native ABC. Same files: `sby -f <file>.sby` (script `web/studio/engines/formal.native.sh`). Ours: `node web/studio/engines/formal.selftest.mjs <dir>` then `node web/studio/engines/formal.compare.mjs <dir>` (cases in `formal.cases.mjs`). Also checked in the browser (Studio ?mock, Chrome, local server): the counter (formal) example gives PASS, PASS, FAIL and opens the failing waveform in Surfer.
+
+| Case (task) | Ours | Native | Result |
+|---|---|---|---|
+| counter, prove (abc pdr) | PASS | PASS | match |
+| counter, bmc (abc bmc3) | PASS | PASS | match |
+| counter, bug (bmc3) | FAIL step 6, 7 cycles | FAIL step 6, 7 cycles | match, all 3 signals identical |
+| deep, prove | FAIL step 13, 14 cycles | FAIL step 13, 14 cycles | match, identical |
+| deep, bmc | FAIL step 13, 14 cycles | FAIL step 13, 14 cycles | match, identical |
+| fifo-ok, prove / bmc | PASS / PASS | PASS / PASS | match |
+| fifo-bug, bmc | FAIL step 6, 7 cycles | FAIL step 6, 7 cycles | match, 9 signals identical |
+| fifo-bug, prove | FAIL step 6, 7 cycles | FAIL step 6, 7 cycles | status and length match; `count` differs |
+
+The one difference: PDR may pick another valid counterexample (here the unconstrained start value of `count`); both fail the same assert at the same step. Time: 3 to 8 s per file in Node after the downloads.
+
+**NOT validated.** Mode cover, `smtbmc`/yices/z3, `aiger` and other engines, mode live, `append`, multi-clock and memories, large designs (largest tested: a 4-entry FIFO), the first-run download size and time on a slow link, Safari/Firefox, the live site's console (checked only on a local server). Trace values are checked against native on the cases above only.

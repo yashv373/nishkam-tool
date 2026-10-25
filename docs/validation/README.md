@@ -621,3 +621,24 @@ docker exec -w /foss/designs/nishkam_jobs/parity_tiny8_x gf180 bash -lc "librela
 Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design> <outdir>` (set `HEADROOM=0,8970` for tiny8, `0,4400` for adder2 to get the section 7 dies); proofs with `web/studio/engines/parity/equiv.sh` inside the container.
 
 **Note on the log images.** The `img/term-*.png` pictures are log text drawn into an image by `python docs/validation/make-terminal-images.py` from the stored files in `logs/`. They are not screenshots of a terminal; the text is not edited. The `img/pnr-browser-*.png` pictures are real browser screenshots.
+
+## 12. Tiny Tapeout Explorer 3D view (2026-10-25, issue #63)
+
+**Setup.** Studio opens the GDS in the Tiny Tapeout Explorer (`web/vendor/tt-explorer/59a43fb/`, upstream binary, only the layer names edited) inside an iframe. Browser: Chrome/Vivaldi, served from `python -m http.server`. Designs: tiny8 (`web/studio/demo/final/gds`), shreg4, add and m8 (LibreLane `final/gds` from earlier runner jobs). Traditional side: KLayout (container `gf180`, `klayout -b -r`), counting shapes of the top cell recursively per GDS layer.
+
+**What we compared.** The explorer prints per-layer rectangle counts in its own log. Via layers are single rectangles, so they can be compared one to one. Mapping (the explorer's wasm uses sky130 slot names): MCON = Via1 (35/0), VIA1 = Via2 (38/0), VIA2 = Via3 (40/0), VIA3 = Via4 (41/0), MET4 = Metal5 (81/0).
+
+| Design | Via1 35/0 | Via2 38/0 | Via3 40/0 | Via4 41/0 | Metal5 81/0 | Cells (KLayout / Studio 2D parser) | Result |
+|---|---|---|---|---|---|---|---|
+| tiny8 | 1355 / 1355 | 1104 / 1104 | 127 / 127 | 18 / 18 | 2 / 2 | 41 / 41 | match |
+| shreg4 | 93 / 93 | 85 / 85 | 54 / 54 | 18 / 18 | 2 / 2 | 14 (KLayout) | match |
+| add | 251 / 251 | 206 / 206 | 33 / 33 | 18 / 18 | 2 / 2 | 19 (KLayout) | match |
+| m8 | 1289 / 1289 | 940 / 940 | 109 / 109 | 18 / 18 | 2 / 2 | 52 (KLayout) | match |
+
+(each pair is KLayout / explorer). For tiny8 the Studio 2D parser also gives the same flattened polygon count as KLayout on every drawing layer (the KLayout excess on the `/10` datatypes is text labels, e.g. Metal2 1024 + 21 polygons vs 1024 + 21 labels). Top cell tiny8, shreg4, add, m8 found correctly. Load plus process time in the explorer: 58 to 190 ms.
+
+**Differs.** Metal layers are cut into rectangles by the explorer, so counts are higher than polygon counts (tiny8 Metal2: 2138 rects vs 1024 polygons; Metal3 601 vs 451). Not compared further. Colours and heights are the explorer's own generic values (Metal1 blue, Metal2 purple, ...), NOT the PDK colours used in Studio 2D; the layer order is correct. A "not to scale" note is shown.
+
+**Behaviour fixes in our wrapper.** A file that is not GDSII, or a damaged file, now gives "Could not open the 3D view" (checked with 20 junk bytes and a valid header followed by garbage); upstream otherwise shows its loading text forever.
+
+**NOT validated.** Metal and poly/diffusion geometry against KLayout (only via counts and 2D counts); the 3D picture against a KLayout 3D render; labels and net highlighting; large designs (largest tested: m8, 650 KB); Safari/Firefox; GDS from the in-browser Magic flow on every example.

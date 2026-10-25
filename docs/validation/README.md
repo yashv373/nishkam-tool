@@ -656,8 +656,10 @@ Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design>
 
 (each pair is KLayout / explorer). For tiny8 the Studio 2D parser also gives the same flattened polygon count as KLayout on every drawing layer (the KLayout excess on the `/10` datatypes is text labels, e.g. Metal2 1024 + 21 polygons vs 1024 + 21 labels). Top cell tiny8, shreg4, add, m8 found correctly. Load plus process time in the explorer: 58 to 190 ms.
 
-**Differs.** Metal layers are cut into rectangles by the explorer, so counts are higher than polygon counts (tiny8 Metal2: 2138 rects vs 1024 polygons; Metal3 601 vs 451). Not compared further. Colours and heights are the explorer's own generic values (Metal1 blue, Metal2 purple, ...), NOT the PDK colours used in Studio 2D; the layer order is correct. A "not to scale" note is shown.
+**Differs.** Metal layers are cut into rectangles by the explorer, so counts are higher than polygon counts (tiny8 Metal2: 2138 rects vs 1024 polygons; Metal3 601 vs 451). Not compared further. Colours: since the colour edit (#63) the layer colours in `circuit_viewer.js` are the gf180 PDK colours from `gf180-layers.json`, the same as Studio 2D (Metal1 yellow, Metal2 lime, ...). Heights are the explorer's own display values; the layer order is correct. A "not to scale" note is shown.
 
 **Behaviour fixes in our wrapper.** A file that is not GDSII, or a damaged file, now gives "Could not open the 3D view" (checked with 20 junk bytes and a valid header followed by garbage); upstream otherwise shows its loading text forever.
+
+**In-browser flow checked (2026-10-25).** Studio `?mock`, Examples > shreg4, Run All (LVS match), GDS tab, then the Tiny Tapeout Explorer button: the 3D view opened from the in-browser Magic GDS (patched power labels), no error text, new colours visible. Not compared against KLayout 3D.
 
 **NOT validated.** Metal and poly/diffusion geometry against KLayout (only via counts and 2D counts); the 3D picture against a KLayout 3D render; labels and net highlighting; large designs (largest tested: m8, 650 KB); Safari/Firefox; GDS from the in-browser Magic flow on every example.

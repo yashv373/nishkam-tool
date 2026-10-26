@@ -1,0 +1,12 @@
+post.max_ff_n40C_5v50 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 14.3691 worst slack min 0.4511 
+post.max_ss_125C_4v50 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 4.7566 worst slack min 1.5685 
+post.max_tt_025C_5v00 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 11.4653 worst slack min 0.7894 
+post.min_ff_n40C_5v50 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 14.5408 worst slack min 0.4419 
+post.min_ss_125C_4v50 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 5.2162 worst slack min 1.5447 
+post.min_tt_025C_5v00 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 11.7299 worst slack min 0.7754 
+post.nom_ff_n40C_5v50 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 14.4627 worst slack min 0.4461 
+post.nom_ss_125C_4v50 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 4.9992 worst slack min 1.5556 
+post.nom_tt_025C_5v00 IDENTICAL(7677 lines) tns max 0.0000 tns min 0.0000 worst slack max 11.6088 worst slack min 0.7818 
+pre.nom_ff_n40C_5v50 IDENTICAL(5598 lines) tns max 0.0000 tns min 0.0000 worst slack max 15.1870 worst slack min 0.3927 
+pre.nom_ss_125C_4v50 IDENTICAL(5598 lines) tns max 0.0000 tns min 0.0000 worst slack max 6.9110 worst slack min 1.3937 
+pre.nom_tt_025C_5v00 IDENTICAL(5598 lines) tns max 0.0000 tns min 0.0000 worst slack max 12.6876 worst slack min 0.6956 

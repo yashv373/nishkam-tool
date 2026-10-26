@@ -745,4 +745,41 @@ What the clock tree and wires cost on tiny8: setup slack drops by 1.0787 ns (12.
 
 **Differences found.** The two reports are byte-identical once surrounding blank lines are trimmed. Nothing differs in the numbers.
 
+**Side by side** (the same tiny8 flow as section 15: browser Timing tab, then native `sta` output for the same corner; later screenshots were taken with Multi-corner on, the nom_tt corner is the one compared here):
+
+![Studio Timing tab: Post-route against Pre-PnR](img/sta-pre-post-browser.png)
+![native sta: pre and post summary lines](img/sta-pre-post-native.png)
+
 **NOT validated.** Designs other than tiny8; other corners (Studio uses tt 25C 5V only); any case where `check_setup` or the max slew / capacitance / fanout lists are not empty (the lists were empty on tiny8, so only the "empty" output is compared); the Magic extractor path of Post-route STA (the Magic SPEF is checked in sections 4 and 8.y, not re-run here); the runner (LibreLane) mapping of its own `stapostpnr` reports into the same Timing tab; SDC with false paths or multicycle paths (not offered in Properties); Safari/Firefox.
+
+## 15. Multi-corner STA (2026-10-26, issue #72)
+
+**Setup.** Same design and constraints as section 14 (tiny8, 24 ns, input and output delay 4.8 ns, load 0 pF, uncertainty 0.1 ns). Properties > Multi-corner (off by default) runs OpenSTA once per corner of the standard flow instead of once.
+
+**The corners are copied, not chosen.** Source: the container's `$PDK_ROOT/gf180mcuD/libs.tech/librelane/config.tcl` (open_pdks 7b70722) and LibreLane's `config/pdk_compat.py` (quoted in issue #72). `LIB_SYNTH` tt_025C_5v00, `LIB_SLOWEST` ss_125C_4v50, `LIB_FASTEST` ff_n40C_5v50; `RCX_RULES`, `RCX_RULES_MIN`, `RCX_RULES_MAX` become `RCX_RULESETS nom_* min_* max_*`; `STA_CORNERS` = nom, min, max times tt, ss, ff (9 names); `DEFAULT_CORNER` = nom_tt_025C_5v00. Studio uses the same names (`STA_CORNERS` in `web/studio/engines/opensta.worker.js`). The 7t5v0 cell-library config itself sets no corner list.
+
+**Our flow.** OpenSTA defec0b in WebAssembly (section 4), one OpenSTA process per corner as LibreLane does (`define_corners`, `read_liberty -corner`, `read_spef -corner`, `report_checks -corner`). Full libraries ss 125C 4.50 V and ff -40C 5.50 V are vendored gzipped next to the tt one (`web/vendor/gf180mcu/lib-ss4v5-full`, `lib-ff5v5-full`, about 2.8 MB each, downloaded only with Multi-corner on). Pre-PnR has no wires, so nom, min and max are the same there and only the three nom corners run (LibreLane also skips identical corners). Post-route runs all nine. During Routing, OpenRCX is run three times with the PDK's own rule files (`web/vendor/gf180mcu/rcx-pdk-7b70722/`, sha256 checked) and writes `tiny8.spef` (nom), `tiny8_min.spef`, `tiny8_max.spef`; each corner reads the SPEF of its prefix. If a routing was made without Multi-corner, or the Magic extractor is chosen, only one SPEF exists; then every corner uses it and the Timing tab and log say so.
+
+**Traditional flow.** Container `gf180`, native `/foss/tools/openroad/bin/sta` 3.1.0 and `or-native-61:6f3f28c` OpenROAD. Script `docs/validation/sta-mc-compare.sh <dir>` (with `OUT=<dir> node web/studio/engines/pnr-flow.selftest.mjs tiny8` first): for each corner the same Tcl, the same netlists and SPEFs, the container's own `.lib` files (sha256 equal to ours), `sta -no_init -exit run.tcl`, then a full text diff. Logs: `logs/sta-mc/`.
+
+| Corner | Pre setup / hold WNS (ns) | Post setup / hold WNS (ns) | Native text |
+|---|---|---|---|
+| nom_tt_025C_5v00 | 12.6876 / 0.6956 | 11.6088 / 0.7818 | identical |
+| nom_ss_125C_4v50 | 6.9110 / 1.3937 | 4.9992 / 1.5556 | identical |
+| nom_ff_n40C_5v50 | 15.1870 / 0.3927 | 14.4627 / 0.4461 | identical |
+| min_tt / min_ss / min_ff | (same as nom, no wires) | 11.7299 / 0.7754; 5.2162 / 1.5447; 14.5408 / 0.4419 | identical |
+| max_tt / max_ss / max_ff | (same as nom, no wires) | 11.4653 / 0.7894; 4.7566 / 1.5685; 14.3691 / 0.4511 | identical |
+| Worst setup | | max_ss_125C_4v50, 4.7566 | |
+| Worst hold | | min_ff_n40C_5v50, 0.4419 (pre-PnR: nom_ff_n40C_5v50, 0.3927) | |
+| TNS (all corners) | 0 | 0 | identical |
+
+All 12 runs (3 pre, 9 post) match native line by line (5598 lines pre, 7677 post). OpenRCX with the PDK min and max rules: native OpenROAD 6f3f28c on the same routed DEF gives the same 294 nets with identical net capacitances (nom / min / max sum 1.5696 / 1.4037 / 1.7693 pF); STA on the native SPEFs gives the same slacks (checked at min_tt and max_ss). The SPEF files differ only in the numbering of the name map.
+
+**Side by side.** Studio Timing tab (all corners table, Studio run with the tiny8 knobs of this section: 24 ns, 4.8 ns delays, 0 pF, die 135.52 x 133.28 um) and native `sta` worst-slack lines of six corners:
+
+![Studio Timing tab, all corners](img/sta-mc-browser.png)
+![native sta, worst slack per corner](img/sta-mc-native.png)
+
+**Note on the nominal corner.** Without Multi-corner, Post-route STA keeps using the ORFS typical rules (section 8.y). With it, nom uses the PDK's `rules.openrcx.gf180mcuD.nom`, so nom_tt gives 11.6088 ns here against 11.6089 ns in section 14. The two rule files are not the same file.
+
+**NOT validated.** Designs other than tiny8; the Pre-PnR min and max corners are not run (identical to nom without wires, as in LibreLane); OpenSTA's output was not compared with a full LibreLane run (its `stapostpnr` step also uses the real repaired netlist, the flow's own SDC and its own CTS); the other four 7t5v0 liberty corners (e.g. ss_n40C, ff_125C) and the 9-track library; timing repair per corner (the browser does not repair at all corners); the Magic-extractor fallback; the memory use on larger designs (each corner is one OpenSTA process in turn, so memory stays at one corner, but time grows nine-fold post-route); Safari/Firefox.

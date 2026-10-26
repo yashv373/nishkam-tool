@@ -818,3 +818,44 @@ All 12 runs (3 pre, 9 post) match native line by line (5598 lines pre, 7677 post
 ![Widget, flip-flop CLK to Q, with the four table points marked and the OpenSTA numbers beside](img/celldelay-widget.jpg)
 
 **NOT validated.** CCS and ECSM current-source models (only the NLDM tables, as in the default OpenSTA delay calculation of this flow). The effective-capacitance and wire-delay calculation after routing (see above). Setup, hold and other constraint tables (only cell delay and output slew). Cells with several `when` arcs on the same pins were only checked through the arc-matching in the path view, not against separate native runs per condition. 1-D or template-indexed tables are skipped. The ss and ff corner files use the same code but were not compared point by point. The panel was checked in Chromium at desktop width only. The screenshot is the widget mounted on its own, not inside the Timing tab (the Timing tab pre-fill was checked by script with the same data).
+
+## 17. Verilator simulation in the browser (2026-10-26, issue #77)
+
+**Design and setup.** tiny8 (`web/studio/engines/vsim-fixtures/tiny8.v`) with two testbenches: a C++ one (`tb.cpp`, 2000 cycles, writes `w.vcd` with `VerilatedVcdC`) and a SystemVerilog one (`tb.sv`, `$dumpfile`/`$dumpvars`, 1000 clock cycles, `$finish`). The check: the VCD our browser flow writes must be byte for byte the VCD native Verilator writes for the same sources.
+
+**Our flow, built this way.** Studio, Properties, Simulation engine, "Verilator (C++ compiled in your browser)" (`web/studio/engines/verilator-sim.worker.js`). Steps, all in one Web Worker:
+1. `verilator-wasm@1.0.0` (Verilator 5.051 devel, commit e6cee9d54) writes the C++: `--cc --exe --trace -O1` for a C++ testbench; `--cc --exe --main --timing --trace -O1 --top-module <tb top>` for a SystemVerilog one.
+2. `@yowasp/clang@22.0.0-git20542-10` (LLVM built to WebAssembly) compiles one file that `#include`s every generated `.cpp`: `clang++ -std=c++20 -O1 -fno-exceptions <the -DVM_* flags from Verilator's own makefile> -Iinclude ... unity.cpp libverilated.a -o sim.wasm`.
+3. `libverilated.a` is prebuilt once, from the Verilator `include/` at the same commit (`web/vendor/verilator-sim/5.051-e6cee9d/SOURCE.md`).
+4. The result runs as a WASI program on the WASI shim and in-memory filesystem of `verilator-wasm`; the VCD is read from that filesystem and shown in the Waveform tab.
+
+**Traditional flow.** Container `gf180` (`hpretl/iic-osic-tools:chipathon26`), native Verilator 5.046 (2026-02-28): `verilator --cc --exe --build --trace -O1 tb.cpp tiny8.v` for the C++ testbench, `verilator --binary --timing --trace -O1 --top-module tb tiny8.v tb.sv` for the SV one, then the generated executable.
+
+**Version note.** The browser Verilator is 5.051 devel (the commit `verilator-wasm` is built from); the container has 5.046. The two writers differ by a few months of upstream changes, and the VCDs still came out identical for these designs. The compiler headers must match the Verilator that writes the C++, so we vendor the headers from the `verilator-wasm` commit, not from the container.
+
+| Check | Result |
+|---|---|
+| C++ testbench VCD, browser flow vs native 5.046 | identical (112,654 bytes, SHA-256 equal) |
+| SV testbench (`--main --timing`) VCD, browser flow vs native 5.046 | identical (105,285 bytes, SHA-256 equal) |
+| Console text of the SV run (`done pc=67 out=6`) | same as native |
+| Native build time, `-j4`, `--trace` (container) | 7.5 to 7.9 s |
+| Browser build, warm (compiler cached), tiny8 | 10 to 15 s for C++ compile + link; run 0.01 to 0.03 s |
+| Browser, first run (compiler downloaded from jsDelivr, fast link) | 20.5 s in total |
+| Peak memory (Node, one compile) | 540 to 590 MB for the compiler, 52 MB to run the result |
+| Compiler download | about 25 MB sent (br), 105 MB unpacked; cached in the browser (Cache API) after the first run |
+
+Per-file compiling costs about 6 s per C++ file (starting the compiler and reading the Verilator headers dominate), which is why we compile one combined file: 10 to 15 s instead of about 55 s. `-O0`, `-O1` and `-O2` were within one second of each other here.
+
+Repeat: `cd <scratch> && npm i @yowasp/clang@22.0.0-git20542-10 verilator-wasm@1.0.0 && node <repo>/web/studio/engines/verilator-sim.selftest.mjs` (checks the two hashes in `vsim-fixtures/native-vcd.json`). The scripts that built `libverilated.a` are in `tools/vsim-spike/`.
+
+**Side by side.** Browser: Studio with shreg4, the Verilator engine, the console showing "C++ compiled and linked in 12.9 s", the testbench's `PASS q=0110` and the Waveform tab. There is no native screenshot: the native comparison is a byte-for-byte file match, which has nothing to look at.
+
+![Studio, Verilator simulation of shreg4](img/vsim-studio-shreg4.jpg)
+
+**NOT validated.**
+- Designs and testbenches other than tiny8 (shreg4 ran in the browser and printed `PASS`, but its VCD was not compared with a native one).
+- UVM, DPI, `$readmemh`/file input, `--coverage`, multi-threaded models (`--threads`) and FST output: not built or not enabled; the model runs on one thread.
+- Large designs: memory and compile time were measured only on tiny8-size designs. A big design may exceed the browser's memory or take minutes to compile.
+- Exceptions: the compiler's C++ library has none, so everything is built with `-fno-exceptions`.
+- Safari and Firefox (Studio was checked in Chromium only); the numbers above come from one PC.
+- The timings of the first browser run depend on the network to jsDelivr.

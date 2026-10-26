@@ -707,3 +707,32 @@ Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design>
 The one difference: PDR may pick another valid counterexample (here the unconstrained start value of `count`); both fail the same assert at the same step. Time: 3 to 8 s per file in Node after the downloads.
 
 **NOT validated.** Mode cover, `smtbmc`/yices/z3, `aiger` and other engines, mode live, `append`, multi-clock and memories, large designs (largest tested: a 4-entry FIFO), the first-run download size and time on a slow link, Safari/Firefox, the live site's console (checked only on a local server). Trace values are checked against native on the cases above only.
+
+## 14. Two STA steps: Pre-PnR and Post-route (2026-10-26, issue #71)
+
+**Setup.** Design tiny8 (the `squeeze-tiny8` design), clock 24 ns, input and output delay 4.8 ns (20%), output load 0 pF, clock uncertainty 0.1 ns, gf180mcu 7t5v0, typical corner (tt 25C 5V). Two OpenSTA runs:
+- **Pre-PnR STA** (Studio stage after Synthesis): the Yosys netlist, ideal clock, no parasitics.
+- **Post-route STA** (stage after Routing): the netlist after the clock tree (OpenROAD TritonCTS), `set_propagated_clock`, and the SPEF written by OpenRCX during Routing.
+Each run prints setup and hold (`report_checks -path_delay max` and `min`), `check_setup -verbose`, and `report_check_types -max_slew -max_capacitance -max_fanout -violators`. The Timing tab shows both and a table that compares them. The "difference" column is post minus pre, computed by the page from OpenSTA's numbers.
+
+**Our flow.** OpenSTA defec0b built to WebAssembly (`web/vendor/opensta/defec0b/SOURCE.md`), the same engine as section 4. Netlists and SPEF come from `node web/studio/engines/pnr-flow.selftest.mjs tiny8` (Yosys 0.68.1207, OpenROAD 6f3f28c place, CTS, route, OpenRCX), with `OUT=<dir>` to keep the files. The script text OpenSTA runs is `script()` in `web/studio/engines/opensta.worker.js`.
+
+**Traditional flow.** Container `gf180` (image `hpretl/iic-osic-tools:chipathon26`), native `/foss/tools/openroad/bin/sta`, version 3.1.0. The same Tcl script (generated from `script()`), the same three input files (synthesized netlist, post-CTS netlist, OpenRCX SPEF), the same SDC, and the container's `gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib`. Command: `sta -no_splash -exit pre.tcl` and `post.tcl`. Both run only the STA step on the same inputs, so this checks the STA engine and our script, not the place-and-route steps (those are sections 8 to 8.z).
+
+| Number | Pre-PnR ours | Pre-PnR native | Post-route ours | Post-route native | Result |
+|---|---|---|---|---|---|
+| Setup worst slack (ns) | 12.6876 | 12.6876 | 11.6089 | 11.6089 | match |
+| Hold worst slack (ns) | 0.6956 | 0.6956 | 0.7818 | 0.7818 | match |
+| Setup / hold TNS (ns) | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | match |
+| `report_checks` max text (every path, 50 per group) | | | | | identical, line by line |
+| `report_checks` min text | | | | | identical, line by line |
+| `check_setup -verbose` | no output | no output | no output | no output | match |
+| max slew / cap / fanout violators | no output | no output | no output | no output | match |
+| Worst setup path | instr[9] to _411_ | same | instr[9] to _412_ | same | match |
+| `report_power` table | | | | | identical (the browser file also keeps its `@@POWER` marker line, cosmetic) |
+
+What the clock tree and wires cost on tiny8: setup slack drops by 1.0787 ns (12.6876 to 11.6089) and hold slack rises by 0.0862 ns (0.6956 to 0.7818). Hold goes up because the clock tree delays the capture clock. These are one design and one corner.
+
+**Differences found.** The two reports are byte-identical once surrounding blank lines are trimmed. Nothing differs in the numbers.
+
+**NOT validated.** Designs other than tiny8; other corners (Studio uses tt 25C 5V only); any case where `check_setup` or the max slew / capacitance / fanout lists are not empty (the lists were empty on tiny8, so only the "empty" output is compared); the Magic extractor path of Post-route STA (the Magic SPEF is checked in sections 4 and 8.y, not re-run here); the runner (LibreLane) mapping of its own `stapostpnr` reports into the same Timing tab; SDC with false paths or multicycle paths (not offered in Properties); Safari/Firefox.

@@ -497,9 +497,11 @@ Also not covered: the unresolved `_Unwind_GetIP` symbol (never reached in these 
 
 ## 8.y OpenRCX parasitics and PDNSim IR drop (2026-10-25, #65, #68)
 
-**How ours was built.** The 6f3f28c wasm of section 8.x with two more modules switched on (`rcx`, `psm`; patch `tools/openroad-pnr/openroad-6f3f28c-rcx-psm.patch`, recipe in `web/vendor/openroad-pnr/6f3f28c/SOURCE.md`). Studio runs them in the route step of `engines/pnr.worker.js`: `set_extraction_rules_file` (ORFS gf180 rules, 1p5m 9k OPTB, typical corner, fetched at run time from jsDelivr at ORFS 5c761de72dd0 and sha256-checked; not stored in the repo), `extract_parasitics`, `write_spef`; then `set_pdnsim_net_voltage` (5 V read from the liberty, 0 V for VSS) and `analyze_power_grid` for VDD and VSS. Post-route STA reads that SPEF.
+**How ours was built.** The 6f3f28c wasm of section 8.x with two more modules switched on (`rcx`, `psm`; patch `tools/openroad-pnr/openroad-6f3f28c-rcx-psm.patch`, recipe in `web/vendor/openroad-pnr/6f3f28c/SOURCE.md`). Studio runs them in the route step of `engines/pnr.worker.js`: `set_extraction_rules_file` (the PDK's own `rules.openrcx.gf180mcuD.nom`, the file LibreLane uses for nom; vendored in `web/vendor/gf180mcu/rcx-pdk-7b70722/`, sha256-checked), `extract_parasitics`, `write_spef`; then `set_pdnsim_net_voltage` (5 V read from the liberty, 0 V for VSS) and `analyze_power_grid` for VDD and VSS. Post-route STA reads that SPEF.
 
 **How native was run.** Docker image `or-native-61:6f3f28c` (section 8.x), `openroad -threads 1 -exit post.tcl` with the same Tcl and the same inputs: the routed tiny8 DEF written by the browser flow (`node web/studio/engines/pnr-flow.selftest.mjs tiny8`, OUT=dir), gf180 LEF/tlef, liberty and rules file. Script and both logs: `docs/validation/logs/or-native-6f3f28c/rcx-psm/` (post.tcl, nat.log, wasm.log).
+
+**History.** Until 2026-10-26 this step used the ORFS typ rules (`gf180mcu_1p5m_1tm_9k_sp_smim_OPTB_typ.rules`, ORFS 5c761de72dd0, sha256 39ca464e...) fetched from jsDelivr: setup WNS 11.6089 ns. The 294-net, IR and power rows below were measured with those rules; the SPEF match and the slack were re-run with the PDK nom rules on 2026-10-26 (#75): 294 nets, every net capacitance identical to native OpenROAD 6f3f28c (sum 1.5696 pF), VDD worst IR drop 2.53e-3 V and power 4.93e-3 W identical, setup WNS 11.6088 ns. Log: `logs/or-native-6f3f28c/rcx-pdk-nom/`.
 
 | tiny8 routed DEF | Native 6f3f28c | Wasm 6f3f28c | Result |
 |---|---|---|---|
@@ -512,7 +514,7 @@ Also not covered: the unresolved `_Unwind_GetIP` symbol (never reached in these 
 
 In the Studio flow (170 um die default) the Reports card shows worst 0.593 mV on VDD (0.012% of 5 V). Post-route setup/hold slack on tiny8 moved from 11.527 / 0.913 ns (Magic SPEF, section 8.x) to 11.706 / 0.876 ns (OpenRCX SPEF).
 
-**NOT validated.** One design (tiny8), one corner (typical), one rules file. The IR numbers use default switching activity, not real activity, and the power grid is our own pdngen script, not LibreLane's. We compared against native OpenROAD, not against Magic, a signoff extractor, or silicon. OpenRCX against Magic extraction was not compared net by net. The rules file has no licence, so it is fetched, not shipped. No IR heat map yet (follow-up).
+**NOT validated.** One design (tiny8), one corner (typical), one rules file (the PDK nom file). The IR numbers use default switching activity, not real activity, and the power grid is our own pdngen script, not LibreLane's. We compared against native OpenROAD, not against Magic, a signoff extractor, or silicon. OpenRCX against Magic extraction was not compared net by net. No IR heat map yet (follow-up).
 
 ## 8.z Timing repair after the clock tree (2026-10-25, #70)
 
@@ -731,7 +733,7 @@ Each run prints setup and hold (`report_checks -path_delay max` and `min`), `che
 
 | Number | Pre-PnR ours | Pre-PnR native | Post-route ours | Post-route native | Result |
 |---|---|---|---|---|---|
-| Setup worst slack (ns) | 12.6876 | 12.6876 | 11.6089 | 11.6089 | match |
+| Setup worst slack (ns) | 12.6876 | 12.6876 | 11.6088 | 11.6088 | match |
 | Hold worst slack (ns) | 0.6956 | 0.6956 | 0.7818 | 0.7818 | match |
 | Setup / hold TNS (ns) | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | match |
 | `report_checks` max text (every path, 50 per group) | | | | | identical, line by line |
@@ -741,7 +743,7 @@ Each run prints setup and hold (`report_checks -path_delay max` and `min`), `che
 | Worst setup path | instr[9] to _411_ | same | instr[9] to _412_ | same | match |
 | `report_power` table | | | | | identical (the browser file also keeps its `@@POWER` marker line, cosmetic) |
 
-What the clock tree and wires cost on tiny8: setup slack drops by 1.0787 ns (12.6876 to 11.6089) and hold slack rises by 0.0862 ns (0.6956 to 0.7818). Hold goes up because the clock tree delays the capture clock. These are one design and one corner.
+What the clock tree and wires cost on tiny8: setup slack drops by 1.0787 ns (12.6876 to 11.6088) and hold slack rises by 0.0862 ns (0.6956 to 0.7818). Hold goes up because the clock tree delays the capture clock. These are one design and one corner.
 
 **Differences found.** The two reports are byte-identical once surrounding blank lines are trimmed. Nothing differs in the numbers.
 
@@ -780,6 +782,6 @@ All 12 runs (3 pre, 9 post) match native line by line (5598 lines pre, 7677 post
 ![Studio Timing tab, all corners](img/sta-mc-browser.png)
 ![native sta, worst slack per corner](img/sta-mc-native.png)
 
-**Note on the nominal corner.** Without Multi-corner, Post-route STA keeps using the ORFS typical rules (section 8.y). With it, nom uses the PDK's `rules.openrcx.gf180mcuD.nom`, so nom_tt gives 11.6088 ns here against 11.6089 ns in section 14. The two rule files are not the same file.
+**Note on the nominal corner.** Single-corner and Multi-corner both use the PDK's `rules.openrcx.gf180mcuD.nom` for nom, so the single-corner run gives 11.6088 ns, the same as nom_tt. History: until 2026-10-26 single-corner used the ORFS typ rules, 11.6089 ns (#75).
 
 **NOT validated.** Designs other than tiny8; the Pre-PnR min and max corners are not run (identical to nom without wires, as in LibreLane); OpenSTA's output was not compared with a full LibreLane run (its `stapostpnr` step also uses the real repaired netlist, the flow's own SDC and its own CTS); the other four 7t5v0 liberty corners (e.g. ss_n40C, ff_125C) and the 9-track library; timing repair per corner (the browser does not repair at all corners); the Magic-extractor fallback; the memory use on larger designs (each corner is one OpenSTA process in turn, so memory stays at one corner, but time grows nine-fold post-route); Safari/Firefox.

@@ -132,7 +132,17 @@ Other `pd.cases.selftest.mjs` results (all PASS, 0 failed nets, LVS true): twocl
 
 **Version note:** native Netgen is 1.5.318; the browser build is 1.5.324 plus one fix. Netgen 1.5.324 native was not available.
 
-**Not validated:** mismatch cases beyond one broken layout (a swapped net, an open net and a short are not tested; see section 9), so native and browser may differ on other mismatch reports. This section's flow has no well-tap cells and LVS assumes wells are tied to power. The OpenROAD flow (section 8) adds tap cells and its LVS (3150 devices / 1559 nets) includes them, but that run has no native Netgen comparison.
+**rmult20 (2595 cells, issue #20, 2026-10-26).** The browser flow (graywolf + qrouter, Studio options, die 243.6 x 243.0 um) ends with 360 failed nets, and LVS says mismatch: 17885/17885 devices, 10145 layout nets against 9067 netlist nets (the extra nets are the unrouted wires cut into pieces). Native Netgen 1.5.318 with the PDK's own `gf180mcuD_setup.tcl` on the same extracted SPICE and the same netlist gives the same counts and the same verdict ("failed pin matching"). So the browser LVS is right; the layout is open. The 2026-10-20 note that the counts were equal with 0 failed nets came from an older router build and cannot be reproduced. A larger die (72% full) still fails 13 nets and gives 9196 against 9067 nets, again a mismatch. rmult20 therefore has no LVS match in the old flow; the cause is the router, not Netgen. The OpenROAD flow on rmult20 was not measured (memory).
+
+| rmult20, old flow | Browser Netgen | Native Netgen 1.5.318 |
+|---|---|---|
+| Devices (layout / netlist) | 17885 / 17885 | 17885 / 17885 |
+| Nets (layout / netlist) | 10145 / 9067 | 10145 / 9067 |
+| Verdict | mismatch | mismatch |
+
+An open-net control (one pin moved to a new net, same device count) is now in `lvs.selftest.mjs` and is caught.
+
+**Not validated:** native Magic extraction of the rmult20 GDS (only Netgen was run natively, on the browser's SPICE); a swapped net and a power-to-ground short are not tested; see section 9, so native and browser may differ on other mismatch reports. This section's flow has no well-tap cells and LVS assumes wells are tied to power. The OpenROAD flow (section 8) adds tap cells and its LVS (3150 devices / 1559 nets) includes them, but that run has no native Netgen comparison.
 
 Log excerpts (rendered from the stored logs). Browser Netgen, then native Netgen on the same files:
 
@@ -320,7 +330,7 @@ Layouts, same die, same renderer (KLayout). Left old flow, right LibreLane:
 | tiny8, smallest die, no spare room | - | fails: clock tree stage stops (no room for clock buffers) | 41 s |
 | tiny8, Studio default die | 103.6 x 101.9 (81.5% full) | passes: 0 failed nets, LVS match, 197 DRC tiles (before the qrouter fix) | 68 s |
 | adder2, smallest die | 34.2 x 31.4 | fails: 1 failed net, LVS mismatch | 10 s |
-| rmult20 (2,595 cells) | 243.6 x 243.0 | fails: LVS mismatch with equal device and net counts (open issue), 1272 DRC tiles | 1254 s (with other jobs running) |
+| rmult20 (2,595 cells) | 243.6 x 243.0 | fails: 360 failed nets, so LVS mismatch (10145 vs 9067 nets; native Netgen agrees, section 2) | 473 s |
 
 **Not validated:** layout equality (not possible, different tools); old-flow DRC cleanliness (11 to 1,272 tiles on these designs); power; timing with different constraints; the formal proof covers logic function from the same reset state, not timing, clock-domain or physical correctness, and it trusts Yosys and each cell's liberty function. Only two small designs.
 
@@ -545,7 +555,7 @@ Things we know are open. None is claimed as validated.
 1. **Cell-position difference in table A (127 of 305 cells).** Not yet traced: which command first diverges (`global_placement` or `detailed_placement`), the cause (for example 32-bit against 64-bit arithmetic or ordering), and the mean and maximum cell move in microns. Next: dump the placement after each command in both builds and compare.
 2. **SPEF timing.** Section 4 compares OpenSTA without wire parasitics. Next: feed tiny8's Magic SPEF to both browser and native `sta` and diff the reports.
 3. **Combinational timing.** adder2 has no clock, so no timing is compared. Next: add a virtual clock or `set_max_delay` to `pnr-timing-same-tool.mjs`.
-4. **LVS negative controls.** Only one broken layout (a missing device) is tested. Next: add equal-device-count cases (two swapped nets, an open net, a power-to-ground short) and compare browser and native diagnostics.
+4. **LVS negative controls.** Only one broken layout (a missing device) is tested. An open net is now tested (section 2). Next: add a swapped net and a power-to-ground short and compare browser and native diagnostics.
 5. **Side-by-side layout picture** of WebAssembly against native OpenROAD for table A, and a browser run at the 135.52 x 133.28 um die, so the page, Node and native can share one die.
 6. **Reproducibility.** `drc-count.mjs` needs a hand edit to compare the two qrouter builds (section 3); it should take the qrouter folder as an argument. The LibreLane runs in sections 7 and 8 are on the test PC only.
 7. **RTL grader.** Now covered in section 10. Not covered there: the five CDC problems (rule and bounded checks, `web/cdc.test.mjs`, never claimed as proven) and the Studio flow problem.

@@ -1,0 +1,2240 @@
+@@CASE inv_1 0.1 0.02 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0047    0.1000    0.0000    0.0000 v a (in)
+             0.1000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0200    0.3805    0.2498    0.2498 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.3805    0.0000    0.2498 ^ z (out)
+                                 0.2498   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.2498   data arrival time
+-------------------------------------------------------------------------------
+                                 9.7502   slack (MET)
+
+
+@@CASE inv_1 0.1 0.02 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0047    0.1000    0.0000    0.0000 ^ a (in)
+             0.1000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0200    0.2247    0.1660    0.1660 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.2247    0.0000    0.1660 v z (out)
+                                 0.1660   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1660   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8340   slack (MET)
+
+
+@@CASE inv_1 0.03 0.005 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0047    0.0300    0.0000    0.0000 v a (in)
+             0.0300    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0050    0.1319    0.0908    0.0908 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.1319    0.0000    0.0908 ^ z (out)
+                                 0.0908   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0908   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9092   slack (MET)
+
+
+@@CASE inv_1 0.03 0.005 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0047    0.0300    0.0000    0.0000 ^ a (in)
+             0.0300    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0050    0.0772    0.0636    0.0636 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.0772    0.0000    0.0636 v z (out)
+                                 0.0636   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0636   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9364   slack (MET)
+
+
+@@CASE inv_1 0.5 0.09 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0047    0.5000    0.0000    0.0000 v a (in)
+             0.5000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0900    1.5371    1.0123    1.0123 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             1.5371    0.0000    1.0123 ^ z (out)
+                                 1.0123   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.0123   data arrival time
+-------------------------------------------------------------------------------
+                                 8.9877   slack (MET)
+
+
+@@CASE inv_1 0.5 0.09 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0047    0.5000    0.0000    0.0000 ^ a (in)
+             0.5000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0900    0.9125    0.6586    0.6586 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.9125    0.0000    0.6586 v z (out)
+                                 0.6586   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.6586   data arrival time
+-------------------------------------------------------------------------------
+                                 9.3414   slack (MET)
+
+
+@@CASE inv_1 1.3 0.15 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0047    1.3000    0.0000    0.0000 v a (in)
+             1.3000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.1500    2.5285    1.8061    1.8061 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             2.5285    0.0000    1.8061 ^ z (out)
+                                 1.8061   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.8061   data arrival time
+-------------------------------------------------------------------------------
+                                 8.1939   slack (MET)
+
+
+@@CASE inv_1 1.3 0.15 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0047    1.3000    0.0000    0.0000 ^ a (in)
+             1.3000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.1500    1.5491    1.1793    1.1793 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             1.5491    0.0000    1.1793 v z (out)
+                                 1.1793   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.1793   data arrival time
+-------------------------------------------------------------------------------
+                                 8.8207   slack (MET)
+
+
+@@CASE inv_1 0.02 0.001 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0047    0.0200    0.0000    0.0000 v a (in)
+             0.0200    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0010    0.0656    0.0499    0.0499 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.0656    0.0000    0.0499 ^ z (out)
+                                 0.0499   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0499   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9501   slack (MET)
+
+
+@@CASE inv_1 0.02 0.001 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0047    0.0200    0.0000    0.0000 ^ a (in)
+             0.0200    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0010    0.0378    0.0377    0.0377 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.0378    0.0000    0.0377 v z (out)
+                                 0.0377   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0377   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9623   slack (MET)
+
+
+@@CASE inv_1 2.5 0.2 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0047    2.5000    0.0000    0.0000 v a (in)
+             2.5000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.2000    3.3791    2.6425    2.6425 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             3.3791    0.0000    2.6425 ^ z (out)
+                                 2.6425   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -2.6425   data arrival time
+-------------------------------------------------------------------------------
+                                 7.3575   slack (MET)
+
+
+@@CASE inv_1 2.5 0.2 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0047    2.5000    0.0000    0.0000 ^ a (in)
+             2.5000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.2000    2.2153    1.7160    1.7160 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             2.2153    0.0000    1.7160 v z (out)
+                                 1.7160   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.7160   data arrival time
+-------------------------------------------------------------------------------
+                                 8.2840   slack (MET)
+
+
+@@CASE inv_1 6.0 0.5 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0047    6.0000    0.0000    0.0000 v a (in)
+             6.0000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.5000    7.4771    6.5357    6.5357 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             7.4771    0.0000    6.5357 ^ z (out)
+                                 6.5357   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -6.5357   data arrival time
+-------------------------------------------------------------------------------
+                                 3.4643   slack (MET)
+
+
+@@CASE inv_1 6.0 0.5 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0047    6.0000    0.0000    0.0000 ^ a (in)
+             6.0000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.5000    5.6959    4.7532    4.7532 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             5.6959    0.0000    4.7532 v z (out)
+                                 4.7532   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -4.7532   data arrival time
+-------------------------------------------------------------------------------
+                                 5.2468   slack (MET)
+
+
+@@CASE inv_1 0.01 0.0004 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0047    0.0100    0.0000    0.0000 v a (in)
+             0.0100    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0004    0.0556    0.0415    0.0415 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.0556    0.0000    0.0415 ^ z (out)
+                                 0.0415   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0415   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9585   slack (MET)
+
+
+@@CASE inv_1 0.01 0.0004 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0047    0.0100    0.0000    0.0000 ^ a (in)
+             0.0100    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+   0.0004    0.0312    0.0321    0.0321 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_1)
+             0.0312    0.0000    0.0321 v z (out)
+                                 0.0321   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0321   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9679   slack (MET)
+
+
+@@CASE buf_2 0.1 0.02 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0050    0.1000    0.0000    0.0000 ^ a (in)
+             0.1000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0200    0.2055    0.2403    0.2403 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.2055    0.0000    0.2403 ^ z (out)
+                                 0.2403   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.2403   data arrival time
+-------------------------------------------------------------------------------
+                                 9.7597   slack (MET)
+
+
+@@CASE buf_2 0.1 0.02 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0050    0.1000    0.0000    0.0000 v a (in)
+             0.1000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0200    0.1482    0.2506    0.2506 v u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.1482    0.0000    0.2506 v z (out)
+                                 0.2506   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.2506   data arrival time
+-------------------------------------------------------------------------------
+                                 9.7494   slack (MET)
+
+
+@@CASE buf_2 0.03 0.005 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0050    0.0300    0.0000    0.0000 ^ a (in)
+             0.0300    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0050    0.0872    0.1557    0.1557 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.0872    0.0000    0.1557 ^ z (out)
+                                 0.1557   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1557   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8443   slack (MET)
+
+
+@@CASE buf_2 0.03 0.005 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0050    0.0300    0.0000    0.0000 v a (in)
+             0.0300    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0050    0.0789    0.1741    0.1741 v u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.0789    0.0000    0.1741 v z (out)
+                                 0.1741   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1741   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8259   slack (MET)
+
+
+@@CASE buf_2 0.5 0.09 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0050    0.5000    0.0000    0.0000 ^ a (in)
+             0.5000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0900    0.7819    0.6118    0.6118 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.7819    0.0000    0.6118 ^ z (out)
+                                 0.6118   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.6118   data arrival time
+-------------------------------------------------------------------------------
+                                 9.3882   slack (MET)
+
+
+@@CASE buf_2 0.5 0.09 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0050    0.5000    0.0000    0.0000 v a (in)
+             0.5000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0900    0.4734    0.5824    0.5824 v u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.4734    0.0000    0.5824 v z (out)
+                                 0.5824   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.5824   data arrival time
+-------------------------------------------------------------------------------
+                                 9.4176   slack (MET)
+
+
+@@CASE buf_2 1.3 0.15 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0050    1.3000    0.0000    0.0000 ^ a (in)
+             1.3000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.1500    1.2783    0.9102    0.9102 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             1.2783    0.0000    0.9102 ^ z (out)
+                                 0.9102   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.9102   data arrival time
+-------------------------------------------------------------------------------
+                                 9.0898   slack (MET)
+
+
+@@CASE buf_2 1.3 0.15 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0050    1.3000    0.0000    0.0000 v a (in)
+             1.3000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.1500    0.7671    0.9489    0.9489 v u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.7671    0.0000    0.9489 v z (out)
+                                 0.9489   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.9489   data arrival time
+-------------------------------------------------------------------------------
+                                 9.0511   slack (MET)
+
+
+@@CASE buf_2 0.02 0.001 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0050    0.0200    0.0000    0.0000 ^ a (in)
+             0.0200    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0010    0.0568    0.1335    0.1335 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.0568    0.0000    0.1335 ^ z (out)
+                                 0.1335   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1335   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8665   slack (MET)
+
+
+@@CASE buf_2 0.02 0.001 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0050    0.0200    0.0000    0.0000 v a (in)
+             0.0200    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0010    0.0574    0.1522    0.1522 v u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.0574    0.0000    0.1522 v z (out)
+                                 0.1522   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1522   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8478   slack (MET)
+
+
+@@CASE buf_2 2.5 0.2 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0050    2.5000    0.0000    0.0000 ^ a (in)
+             2.5000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.2000    1.6979    1.1289    1.1289 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             1.6979    0.0000    1.1289 ^ z (out)
+                                 1.1289   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.1289   data arrival time
+-------------------------------------------------------------------------------
+                                 8.8711   slack (MET)
+
+
+@@CASE buf_2 2.5 0.2 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0050    2.5000    0.0000    0.0000 v a (in)
+             2.5000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.2000    1.0254    1.3387    1.3387 v u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             1.0254    0.0000    1.3387 v z (out)
+                                 1.3387   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.3387   data arrival time
+-------------------------------------------------------------------------------
+                                 8.6613   slack (MET)
+
+
+@@CASE buf_2 6.0 0.5 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0050    6.0000    0.0000    0.0000 ^ a (in)
+             6.0000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.5000    4.1677    2.4137    2.4137 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             4.1677    0.0000    2.4137 ^ z (out)
+                                 2.4137   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -2.4137   data arrival time
+-------------------------------------------------------------------------------
+                                 7.5863   slack (MET)
+
+
+@@CASE buf_2 6.0 0.5 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0050    6.0000    0.0000    0.0000 v a (in)
+             6.0000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.5000    2.5032    2.8714    2.8714 v u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             2.5032    0.0000    2.8714 v z (out)
+                                 2.8714   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -2.8714   data arrival time
+-------------------------------------------------------------------------------
+                                 7.1286   slack (MET)
+
+
+@@CASE buf_2 0.01 0.0004 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0050    0.0100    0.0000    0.0000 ^ a (in)
+             0.0100    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0004    0.0523    0.1286    0.1286 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.0523    0.0000    0.1286 ^ z (out)
+                                 0.1286   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1286   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8714   slack (MET)
+
+
+@@CASE buf_2 0.01 0.0004 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0050    0.0100    0.0000    0.0000 v a (in)
+             0.0100    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+   0.0004    0.0541    0.1469    0.1469 v u/Z (gf180mcu_fd_sc_mcu7t5v0__buf_2)
+             0.0541    0.0000    0.1469 v z (out)
+                                 0.1469   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1469   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8531   slack (MET)
+
+
+@@CASE clkbuf_4 0.1 0.02 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0055    0.1000    0.0000    0.0000 ^ a (in)
+             0.1000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0200    0.1417    0.2675    0.2675 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.1417    0.0000    0.2675 ^ z (out)
+                                 0.2675   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.2675   data arrival time
+-------------------------------------------------------------------------------
+                                 9.7325   slack (MET)
+
+
+@@CASE clkbuf_4 0.1 0.02 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0055    0.1000    0.0000    0.0000 v a (in)
+             0.1000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0200    0.1427    0.2631    0.2631 v u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.1427    0.0000    0.2631 v z (out)
+                                 0.2631   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.2631   data arrival time
+-------------------------------------------------------------------------------
+                                 9.7369   slack (MET)
+
+
+@@CASE clkbuf_4 0.03 0.005 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0055    0.0300    0.0000    0.0000 ^ a (in)
+             0.0300    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0050    0.0872    0.2120    0.2120 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.0872    0.0000    0.2120 ^ z (out)
+                                 0.2120   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.2120   data arrival time
+-------------------------------------------------------------------------------
+                                 9.7880   slack (MET)
+
+
+@@CASE clkbuf_4 0.03 0.005 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0055    0.0300    0.0000    0.0000 v a (in)
+             0.0300    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0050    0.0837    0.1975    0.1975 v u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.0837    0.0000    0.1975 v z (out)
+                                 0.1975   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1975   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8025   slack (MET)
+
+
+@@CASE clkbuf_4 0.5 0.09 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0055    0.5000    0.0000    0.0000 ^ a (in)
+             0.5000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0900    0.4146    0.5166    0.5166 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.4146    0.0000    0.5166 ^ z (out)
+                                 0.5166   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.5166   data arrival time
+-------------------------------------------------------------------------------
+                                 9.4834   slack (MET)
+
+
+@@CASE clkbuf_4 0.5 0.09 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0055    0.5000    0.0000    0.0000 v a (in)
+             0.5000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0900    0.4181    0.5499    0.5499 v u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.4181    0.0000    0.5499 v z (out)
+                                 0.5499   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.5499   data arrival time
+-------------------------------------------------------------------------------
+                                 9.4501   slack (MET)
+
+
+@@CASE clkbuf_4 1.3 0.15 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0055    1.3000    0.0000    0.0000 ^ a (in)
+             1.3000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.1500    0.6614    0.7613    0.7613 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.6614    0.0000    0.7613 ^ z (out)
+                                 0.7613   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.7613   data arrival time
+-------------------------------------------------------------------------------
+                                 9.2387   slack (MET)
+
+
+@@CASE clkbuf_4 1.3 0.15 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0055    1.3000    0.0000    0.0000 v a (in)
+             1.3000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.1500    0.6673    0.8431    0.8431 v u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.6673    0.0000    0.8431 v z (out)
+                                 0.8431   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.8431   data arrival time
+-------------------------------------------------------------------------------
+                                 9.1569   slack (MET)
+
+
+@@CASE clkbuf_4 0.02 0.001 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0055    0.0200    0.0000    0.0000 ^ a (in)
+             0.0200    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0010    0.0717    0.1968    0.1968 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.0717    0.0000    0.1968 ^ z (out)
+                                 0.1968   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1968   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8032   slack (MET)
+
+
+@@CASE clkbuf_4 0.02 0.001 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0055    0.0200    0.0000    0.0000 v a (in)
+             0.0200    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0010    0.0667    0.1803    0.1803 v u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.0667    0.0000    0.1803 v z (out)
+                                 0.1803   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1803   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8197   slack (MET)
+
+
+@@CASE clkbuf_4 2.5 0.2 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0055    2.5000    0.0000    0.0000 ^ a (in)
+             2.5000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.2000    0.8782    0.9827    0.9827 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.8782    0.0000    0.9827 ^ z (out)
+                                 0.9827   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.9827   data arrival time
+-------------------------------------------------------------------------------
+                                 9.0173   slack (MET)
+
+
+@@CASE clkbuf_4 2.5 0.2 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0055    2.5000    0.0000    0.0000 v a (in)
+             2.5000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.2000    0.8931    1.1256    1.1256 v u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.8931    0.0000    1.1256 v z (out)
+                                 1.1256   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.1256   data arrival time
+-------------------------------------------------------------------------------
+                                 8.8744   slack (MET)
+
+
+@@CASE clkbuf_4 6.0 0.5 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0055    6.0000    0.0000    0.0000 ^ a (in)
+             6.0000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.5000    2.1455    1.9001    1.9001 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             2.1455    0.0000    1.9001 ^ z (out)
+                                 1.9001   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.9001   data arrival time
+-------------------------------------------------------------------------------
+                                 8.0999   slack (MET)
+
+
+@@CASE clkbuf_4 6.0 0.5 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0055    6.0000    0.0000    0.0000 v a (in)
+             6.0000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.5000    2.1782    2.2511    2.2511 v u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             2.1782    0.0000    2.2511 v z (out)
+                                 2.2511   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -2.2511   data arrival time
+-------------------------------------------------------------------------------
+                                 7.7489   slack (MET)
+
+
+@@CASE clkbuf_4 0.01 0.0004 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0055    0.0100    0.0000    0.0000 ^ a (in)
+             0.0100    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0004    0.0695    0.1932    0.1932 ^ u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.0695    0.0000    0.1932 ^ z (out)
+                                 0.1932   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1932   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8068   slack (MET)
+
+
+@@CASE clkbuf_4 0.01 0.0004 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0055    0.0100    0.0000    0.0000 v a (in)
+             0.0100    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+   0.0004    0.0641    0.1757    0.1757 v u/Z (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4)
+             0.0641    0.0000    0.1757 v z (out)
+                                 0.1757   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1757   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8243   slack (MET)
+
+
+@@CASE inv_4 0.1 0.02 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0185    0.1000    0.0000    0.0000 v a (in)
+             0.1000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0200    0.1234    0.1026    0.1026 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.1234    0.0000    0.1026 ^ z (out)
+                                 0.1026   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.1026   data arrival time
+-------------------------------------------------------------------------------
+                                 9.8974   slack (MET)
+
+
+@@CASE inv_4 0.1 0.02 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0185    0.1000    0.0000    0.0000 ^ a (in)
+             0.1000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0200    0.0797    0.0699    0.0699 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.0797    0.0000    0.0699 v z (out)
+                                 0.0699   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0699   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9301   slack (MET)
+
+
+@@CASE inv_4 0.03 0.005 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0185    0.0300    0.0000    0.0000 v a (in)
+             0.0300    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0050    0.0569    0.0471    0.0471 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.0569    0.0000    0.0471 ^ z (out)
+                                 0.0471   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0471   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9529   slack (MET)
+
+
+@@CASE inv_4 0.03 0.005 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0185    0.0300    0.0000    0.0000 ^ a (in)
+             0.0300    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0050    0.0335    0.0362    0.0362 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.0335    0.0000    0.0362 v z (out)
+                                 0.0362   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0362   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9638   slack (MET)
+
+
+@@CASE inv_4 0.5 0.09 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0185    0.5000    0.0000    0.0000 v a (in)
+             0.5000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0900    0.4398    0.3886    0.3886 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.4398    0.0000    0.3886 ^ z (out)
+                                 0.3886   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.3886   data arrival time
+-------------------------------------------------------------------------------
+                                 9.6114   slack (MET)
+
+
+@@CASE inv_4 0.5 0.09 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0185    0.5000    0.0000    0.0000 ^ a (in)
+             0.5000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0900    0.3182    0.2411    0.2411 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.3182    0.0000    0.2411 v z (out)
+                                 0.2411   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.2411   data arrival time
+-------------------------------------------------------------------------------
+                                 9.7589   slack (MET)
+
+
+@@CASE inv_4 1.3 0.15 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0185    1.3000    0.0000    0.0000 v a (in)
+             1.3000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.1500    0.7938    0.7704    0.7704 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.7938    0.0000    0.7704 ^ z (out)
+                                 0.7704   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.7704   data arrival time
+-------------------------------------------------------------------------------
+                                 9.2296   slack (MET)
+
+
+@@CASE inv_4 1.3 0.15 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0185    1.3000    0.0000    0.0000 ^ a (in)
+             1.3000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.1500    0.6384    0.4269    0.4269 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.6384    0.0000    0.4269 v z (out)
+                                 0.4269   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.4269   data arrival time
+-------------------------------------------------------------------------------
+                                 9.5731   slack (MET)
+
+
+@@CASE inv_4 0.02 0.001 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0185    0.0200    0.0000    0.0000 v a (in)
+             0.0200    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0010    0.0402    0.0344    0.0344 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.0402    0.0000    0.0344 ^ z (out)
+                                 0.0344   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0344   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9656   slack (MET)
+
+
+@@CASE inv_4 0.02 0.001 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0185    0.0200    0.0000    0.0000 ^ a (in)
+             0.0200    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0010    0.0227    0.0282    0.0282 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.0227    0.0000    0.0282 v z (out)
+                                 0.0282   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0282   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9718   slack (MET)
+
+
+@@CASE inv_4 2.5 0.2 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0185    2.5000    0.0000    0.0000 v a (in)
+             2.5000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.2000    1.1986    1.2201    1.2201 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             1.1986    0.0000    1.2201 ^ z (out)
+                                 1.2201   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.2201   data arrival time
+-------------------------------------------------------------------------------
+                                 8.7799   slack (MET)
+
+
+@@CASE inv_4 2.5 0.2 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0185    2.5000    0.0000    0.0000 ^ a (in)
+             2.5000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.2000    1.0185    0.5902    0.5902 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             1.0185    0.0000    0.5902 v z (out)
+                                 0.5902   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.5902   data arrival time
+-------------------------------------------------------------------------------
+                                 9.4098   slack (MET)
+
+
+@@CASE inv_4 6.0 0.5 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0185    6.0000    0.0000    0.0000 v a (in)
+             6.0000    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.5000    2.9192    3.0154    3.0154 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             2.9192    0.0000    3.0154 ^ z (out)
+                                 3.0154   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -3.0154   data arrival time
+-------------------------------------------------------------------------------
+                                 6.9846   slack (MET)
+
+
+@@CASE inv_4 6.0 0.5 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0185    6.0000    0.0000    0.0000 ^ a (in)
+             6.0000    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.5000    2.5258    1.5077    1.5077 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             2.5258    0.0000    1.5077 v z (out)
+                                 1.5077   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -1.5077   data arrival time
+-------------------------------------------------------------------------------
+                                 8.4923   slack (MET)
+
+
+@@CASE inv_4 0.01 0.0004 rise
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 v input external delay
+   0.0185    0.0100    0.0000    0.0000 v a (in)
+             0.0100    0.0000    0.0000 v u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0004    0.0372    0.0302    0.0302 ^ u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.0372    0.0000    0.0302 ^ z (out)
+                                 0.0302   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0302   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9698   slack (MET)
+
+
+@@CASE inv_4 0.01 0.0004 fall
+OpenSTA 3.1.0 defec0bda3 Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Startpoint: a (input port clocked by clk)
+Endpoint: z (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+      Cap      Slew     Delay      Time   Description
+-------------------------------------------------------------------------------
+             0.0000    0.0000    0.0000   clock clk (rise edge)
+                       0.0000    0.0000   clock network delay (ideal)
+                       0.0000    0.0000 ^ input external delay
+   0.0185    0.0100    0.0000    0.0000 ^ a (in)
+             0.0100    0.0000    0.0000 ^ u/I (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+   0.0004    0.0195    0.0257    0.0257 v u/ZN (gf180mcu_fd_sc_mcu7t5v0__inv_4)
+             0.0195    0.0000    0.0257 v z (out)
+                                 0.0257   data arrival time
+
+             0.0000   10.0000   10.0000   clock clk (rise edge)
+                       0.0000   10.0000   clock network delay (ideal)
+                       0.0000   10.0000   clock reconvergence pessimism
+                       0.0000   10.0000   output external delay
+                                10.0000   data required time
+-------------------------------------------------------------------------------
+                                10.0000   data required time
+                                -0.0257   data arrival time
+-------------------------------------------------------------------------------
+                                 9.9743   slack (MET)
+
+

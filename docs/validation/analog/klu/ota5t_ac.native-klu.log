@@ -1,0 +1,45 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: ota5t open-loop ac, tail 20 ua, cl 1 pf
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using KLU as Direct Linear Solver
+
+No. of Data Rows : 1
+v(out) = 2.361618e+00
+@m.xota.xm1.m0[vth] = 8.742319e-01
+@m.xota.xm1.m0[vdsat] = 1.265944e-01
+@m.xota.xm1.m0[vds] = 1.810197e+00
+@m.xota.xm1.m0[vgs] = 9.485795e-01
+@m.xota.xm2.m0[vth] = 8.742319e-01
+@m.xota.xm2.m0[vdsat] = 1.265944e-01
+@m.xota.xm2.m0[vds] = 1.810197e+00
+@m.xota.xm2.m0[vgs] = 9.485795e-01
+@m.xota.xm3.m0[vth] = 7.839390e-01
+@m.xota.xm3.m0[vdsat] = 1.522926e-01
+@m.xota.xm3.m0[vds] = 9.383824e-01
+@m.xota.xm3.m0[vgs] = 9.383824e-01
+@m.xota.xm4.m0[vth] = 7.839390e-01
+@m.xota.xm4.m0[vdsat] = 1.522926e-01
+@m.xota.xm4.m0[vds] = 9.383824e-01
+@m.xota.xm4.m0[vgs] = 9.383824e-01
+@m.xota.xm5.m0[vth] = 6.884374e-01
+@m.xota.xm5.m0[vdsat] = 1.639351e-01
+@m.xota.xm5.m0[vds] = 5.514205e-01
+@m.xota.xm5.m0[vgs] = 8.234830e-01
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using KLU as Direct Linear Solver
+
+No. of Data Rows : 181
+ASCII raw file "ota5t_ac.raw"
+gain_dc             =  4.79036e+01
+ugf                 =  2.06745e+07
+ph_ugf              =  -9.56966e+01
+pm = 8.430338e+01
+Note: Simulation executed from .control section 

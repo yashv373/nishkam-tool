@@ -1,0 +1,3 @@
+browser netgen sr8-good: match true devices 224,224 nets 109,109
+browser netgen sr8-broken: match false devices 216,224 nets 109,109
+browser netgen sr8-open: match false devices 224,224 nets 109,109

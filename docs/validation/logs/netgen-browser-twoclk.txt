@@ -1,0 +1,1 @@
+browser netgen twoclk: match true devices 56,56 nets 32,32

@@ -1,0 +1,103 @@
+== nmos_idvg (220 ms) raw points 662/662 (native/browser)
+   v(v-sweep): max|diff|/max|value| = 0.00e+0
+   v(g): max|diff|/max|value| = 0.00e+0
+   i(vd): max|diff|/max|value| = 5.20e-11
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+Circuit: nmos idvg nfet_03v3 w=1u l=0.28u
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 662
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 1
+i(vd) = -1.49706e-04
+@m.xm1.m0[vth] = 6.249512e-01
+@m.xm1.m0[vdsat] = 6.546577e-01
+@m.xm1.m0[gm] = 1.963739e-04
+@m.xm1.m0[vgs] = 1.650000e+00
+@m.xm1.m0[vds] = 1.650000e+00
+== pmos_idvg (66 ms) raw points 662/662 (native/browser)
+   v(v-sweep): max|diff|/max|value| = 0.00e+0
+   v(g): max|diff|/max|value| = 0.00e+0
+   i(vd): max|diff|/max|value| = 1.98e-12
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+Circuit: pmos idvg pfet_03v3 w=1u l=0.28u (source at 3.3 v; vg and vd swept down)
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 662
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 1
+i(vd) = 5.125095e-05
+@m.xm1.m0[vth] = 7.006352e-01
+@m.xm1.m0[vdsat] = 8.159598e-01
+@m.xm1.m0[gm] = 8.584982e-05
+@m.xm1.m0[vgs] = 1.650000e+00
+@m.xm1.m0[vds] = 1.650000e+00
+== mirror (67 ms) raw points 331/331 (native/browser)
+   v(v-sweep): max|diff|/max|value| = 0.00e+0
+   i(vo): max|diff|/max|value| = 2.67e-7
+   v(ref): max|diff|/max|value| = 7.85e-8
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+Circuit: nmos 1:1 current mirror, iref 10 ua, w=2u l=1u
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using KLU as Direct Linear Solver
+No. of Data Rows : 331
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using KLU as Direct Linear Solver
+No. of Data Rows : 1
+i(vo) = -1.01683e-05
+@m.xm1.m0[vgs] = 9.397547e-01
+@m.xm1.m0[vth] = 6.846909e-01
+@m.xm1.m0[vdsat] = 2.491464e-01
+@m.xm1.m0[vds] = 9.397547e-01
+@m.xm2.m0[vgs] = 9.397547e-01
+@m.xm2.m0[vth] = 6.846896e-01
+@m.xm2.m0[vdsat] = 2.491474e-01
+@m.xm2.m0[vds] = 1.650000e+00
+== ota5t_ac (66 ms) raw points 181/181 (native/browser)
+   frequency: max|diff|/max|value| = 0.00e+0
+   v(out): max|diff|/max|value| = 0.00e+0
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 1
+v(out) = 2.361618e+00
+@m.xota.xm1.m0[vth] = 8.742319e-01
+@m.xota.xm1.m0[vdsat] = 1.265944e-01
+@m.xota.xm1.m0[vds] = 1.810197e+00
+@m.xota.xm1.m0[vgs] = 9.485795e-01
+@m.xota.xm2.m0[vth] = 8.742319e-01
+@m.xota.xm2.m0[vdsat] = 1.265944e-01
+@m.xota.xm2.m0[vds] = 1.810197e+00
+@m.xota.xm2.m0[vgs] = 9.485795e-01
+@m.xota.xm3.m0[vth] = 7.839390e-01
+@m.xota.xm3.m0[vdsat] = 1.522926e-01
+@m.xota.xm3.m0[vds] = 9.383824e-01
+@m.xota.xm3.m0[vgs] = 9.383824e-01
+@m.xota.xm4.m0[vth] = 7.839390e-01
+@m.xota.xm4.m0[vdsat] = 1.522926e-01
+@m.xota.xm4.m0[vds] = 9.383824e-01
+@m.xota.xm4.m0[vgs] = 9.383824e-01
+@m.xota.xm5.m0[vth] = 6.884374e-01
+@m.xota.xm5.m0[vdsat] = 1.639351e-01
+@m.xota.xm5.m0[vds] = 5.514205e-01
+@m.xota.xm5.m0[vgs] = 8.234830e-01
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 181
+gain_dc             =  4.79036e+01
+ugf                 =  2.06745e+07
+ph_ugf              =  -9.56966e+01
+pm = 8.430338e+01
+== inv_tran (273 ms) raw points 6026/6026 (native/browser)
+   time: max|diff|/max|value| = 0.00e+0
+   v(in): max|diff|/max|value| = 0.00e+0
+   v(out): max|diff|/max|value| = 0.00e+0
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+Circuit: inverter w=1u/2u l=0.28u, load 10 ff, 20 ns pulse
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+Using SPARSE 1.3 as Direct Linear Solver
+No. of Data Rows : 6026
+tphl                =  6.05040e-11 targ=  2.11050e-09 trig=  2.05000e-09
+tplh                =  6.67168e-11 targ=  2.22167e-08 trig=  2.21500e-08

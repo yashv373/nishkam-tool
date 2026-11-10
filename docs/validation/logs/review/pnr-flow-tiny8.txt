@@ -1,0 +1,19 @@
+{"design":"tiny8","die":[135.52,133.28],"place":{"violations":null,"drcTrajectory":[],"irDrop":null,"wirelengthUm":null,"vias":null,"instances":407,"ms":9214,"memMB":173,"top":"tiny8","components":407,"die":"( 0 0 ) ( 271040 266560 )"},"cts":{"clkbufs":6,"sinks":48,"latency_ns":1.07,"skew_ns":0,"setup_skew_ns":0,"hold_skew_ns":null,"repair":{"before":{"setupWns":11.957104089739774,"holdWns":0.8770899810251778,"setupTns":0},"after":{"setupWns":11.963469664653795,"holdWns":0.8755511008472223,"setupTns":0}},"ms":12381},"route":{"violations":0,"drcTrajectory":[45,10,18,0],"irDrop":{"VDD":{"supplyV":5,"worstV":0.00253,"avgV":0.000486,"powerW":0.00493},"VSS":{"supplyV":0,"worstV":0.00105,"avgV":0.00046,"powerW":0.00493}},"wirelengthUm":9992,"vias":1891,"instances":null,"ms":40426,"memMB":299,"top":"tiny8"},"magicDrc":0,"drcInCells":0,"drcFromLayout":0,"lvs":true,"lvsDevices":[3148,3148],"lvsNets":[1558,1558],"preSetupWs":12.6876,"preHoldWs":0.6956,"setupWs":11.6088,"holdWs":0.7818,"equiv":true,"equivRtl":true,"equivNegativeControlFails":true,"buffersBefore":0,"buffersAfter":40,"T":{"synth":6,"place":10.2,"cts":13.4,"route":41.4,"magic":16,"lvs":0.7,"sta":10.2,"mc":72.5}}
+ok   Pre-PnR STA: setup + hold + check_setup + limits report, uncertainty in the SDC
+ok   Post-route STA: propagated clock + SPEF
+ok   multi-corner: 9 LibreLane corners, 3 distinct pre-PnR runs
+ok   OpenRCX wrote min and max SPEFs with the PDK rules
+ok   multi-corner pre-PnR: finite slack at every corner
+ok   pre-PnR setup slack ordered ss < tt < ff
+ok   multi-corner post-route: finite slack at all 9 corners
+ok   post-route setup slack: max-RC corner no better than min-RC corner
+ok   post-route setup slack: ss worse than ff
+ok   TritonRoute final violations 0
+ok   OpenRCX wrote a SPEF with nets
+ok   PDNSim VDD worst IR drop 0.00253 V (supply 5 V, under 1%)
+ok   Magic DRC 0 (got 0, 0 inside library cells)
+ok   Netgen LVS match
+ok   post-PnR netlist (port/repair/CTS buffers) equivalent to the pre-PnR synthesized netlist (Yosys equiv_induct)
+ok   post-PnR netlist equivalent to the RTL (same proof)
+ok   negative control: the same proof fails when one gate is changed
+pnr-flow selftest ok

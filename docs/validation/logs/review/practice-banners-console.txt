@@ -1,0 +1,5 @@
+Edge 157.0.4341.42
+== c01: ✓ Correct: matches the reference for every input (proven) | Proved equal to the reference for all cycles after reset. 1 of 9 solved. | Next problem: Rising-edge detector → | 10 generic cells after synthesis (1× AND, 1× NAND, 1× NOT, 4× SDFFE_PP0P, 1× XNOR, 2× XOR) | Score area and speed Downloads the synthesis and timing tools (cached after the first time). | Take it to silicon (gf180) Connect the
+timeout c24
+== c24: Not equal to the reference | Before you look: which cycle do you think goes wrong, and what should q be? | Cycle  | Expected value  | Show me | Skip |  Always skip this
+== c25: ✓ Passed: no difference in the first 40 cycles (not proven for longer runs) | A full proof was not possible, so only the first cycles after reset were checked. A design that goes wrong later could still pass. 1 of 9 solved. | Next problem: Rising-edge detector → | 33 generic cells after synthesis (8× AND, 3× NAND, 1× NOT, 2× OR, 4× SDFFE_PP0N, 6× SDFFE_PP0P, 2× XNOR, 7× XOR) | Score area and speed

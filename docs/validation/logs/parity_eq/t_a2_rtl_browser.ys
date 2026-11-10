@@ -1,0 +1,21 @@
+read_liberty -ignore_miss_func -ignore_miss_dir -ignore_miss_data_latch -ignore_buses /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/lib/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib
+read_verilog -sv adder2.rtl.v
+rename add gold
+read_verilog -sv adder2.final.v
+rename add gate
+proc
+flatten
+opt_clean
+design -save both
+# --- proof 1: equiv_* (match by name, then prove by induction)
+equiv_make gold gate eq
+hierarchy -top eq
+equiv_simple -seq 5
+equiv_induct -seq 5
+equiv_status -assert
+design -load both
+# --- proof 2: miter + temporal induction on the miter output
+miter -equiv -flatten -make_assert -ignore_gold_x gold gate m
+hierarchy -top m
+async2sync
+sat -verify -prove-asserts -tempinduct -set-init-zero -seq 20 -maxsteps 40

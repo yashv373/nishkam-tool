@@ -1,0 +1,12 @@
+read_liberty -ignore_miss_func -ignore_miss_dir -ignore_miss_data_latch -ignore_buses /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/lib/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib
+read_verilog -sv tiny8.rtl.v
+rename tiny8 gold
+read_verilog -sv tiny8.ll_final_mut.v
+rename tiny8 gate
+proc
+flatten
+async2sync
+opt_clean
+miter -equiv -flatten -make_assert -ignore_gold_x gold gate m
+hierarchy -top m
+sat -verify -prove-asserts -set-init-zero -seq 6

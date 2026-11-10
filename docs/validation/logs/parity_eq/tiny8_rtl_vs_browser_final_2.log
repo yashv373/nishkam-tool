@@ -1,0 +1,1327 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.64 (git sha1 6d2c445ae, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+
+-- Executing script file `tiny8_rtl_vs_browser_final_2.ys' --
+
+1. Executing Liberty frontend: /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/lib/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib
+Ignoring cell gf180mcu_fd_sc_mcu7t5v0__icgtn_1 with missing function on output IQ3.
+Ignoring cell gf180mcu_fd_sc_mcu7t5v0__icgtn_2 with missing function on output IQ3.
+Ignoring cell gf180mcu_fd_sc_mcu7t5v0__icgtn_4 with missing function on output IQ3.
+Ignoring cell gf180mcu_fd_sc_mcu7t5v0__icgtp_1 with missing function on output IQ2.
+Ignoring cell gf180mcu_fd_sc_mcu7t5v0__icgtp_2 with missing function on output IQ2.
+Ignoring cell gf180mcu_fd_sc_mcu7t5v0__icgtp_4 with missing function on output IQ2.
+Imported 223 cell types from liberty file.
+
+2. Executing Verilog-2005 frontend: tiny8.rtl.v
+Parsing SystemVerilog input from `tiny8.rtl.v' to AST representation.
+Generating RTLIL representation for module `\tiny8'.
+Successfully finished Verilog frontend.
+Renaming module \tiny8 to \gold.
+
+3. Executing Verilog-2005 frontend: tiny8.final.v
+Parsing SystemVerilog input from `tiny8.final.v' to AST representation.
+Generating RTLIL representation for module `\tiny8'.
+Successfully finished Verilog frontend.
+Renaming module \tiny8 to \gate.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$tiny8.rtl.v:27$2027 in module gold.
+Marked 1 switch rules as full_case in process $proc$tiny8.rtl.v:27$2027 in module gold.
+Removed 1 dead cases from process $proc$tiny8.rtl.v:26$2024 in module gold.
+Marked 1 switch rules as full_case in process $proc$tiny8.rtl.v:26$2024 in module gold.
+Marked 2 switch rules as full_case in process $proc$tiny8.rtl.v:42$2012 in module gold.
+Marked 1 switch rules as full_case in process $proc$tiny8.rtl.v:32$2009 in module gold.
+Removed a total of 2 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 8 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\gold.$proc$tiny8.rtl.v:42$2012'.
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~6 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\gold.$proc$tiny8.rtl.v:27$2027'.
+     1/1: $1$mem2reg_rd$\rf$tiny8.rtl.v:27$2008_DATA[7:0]$2029
+Creating decoders for process `\gold.$proc$tiny8.rtl.v:26$2024'.
+     1/1: $1$mem2reg_rd$\rf$tiny8.rtl.v:26$2007_DATA[7:0]$2026
+Creating decoders for process `\gold.$proc$tiny8.rtl.v:20$2023'.
+Creating decoders for process `\gold.$proc$tiny8.rtl.v:19$2022'.
+Creating decoders for process `\gold.$proc$tiny8.rtl.v:18$2021'.
+Creating decoders for process `\gold.$proc$tiny8.rtl.v:17$2020'.
+Creating decoders for process `\gold.$proc$tiny8.rtl.v:42$2012'.
+     1/6: $0\pc[7:0]
+     2/6: $0\r3[7:0]
+     3/6: $0\r2[7:0]
+     4/6: $0\r1[7:0]
+     5/6: $0\r0[7:0]
+     6/6: $0\out[7:0]
+Creating decoders for process `\gold.$proc$tiny8.rtl.v:32$2009'.
+     1/2: $1\wdata[7:0]
+     2/2: $1\we[0:0]
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\gold.$mem2reg_rd$\rf$tiny8.rtl.v:27$2008_DATA' from process `\gold.$proc$tiny8.rtl.v:27$2027'.
+No latch inferred for signal `\gold.$mem2reg_rd$\rf$tiny8.rtl.v:26$2007_DATA' from process `\gold.$proc$tiny8.rtl.v:26$2024'.
+No latch inferred for signal `\gold.\rf[3]' from process `\gold.$proc$tiny8.rtl.v:20$2023'.
+No latch inferred for signal `\gold.\rf[2]' from process `\gold.$proc$tiny8.rtl.v:19$2022'.
+No latch inferred for signal `\gold.\rf[1]' from process `\gold.$proc$tiny8.rtl.v:18$2021'.
+No latch inferred for signal `\gold.\rf[0]' from process `\gold.$proc$tiny8.rtl.v:17$2020'.
+No latch inferred for signal `\gold.\wdata' from process `\gold.$proc$tiny8.rtl.v:32$2009'.
+No latch inferred for signal `\gold.\we' from process `\gold.$proc$tiny8.rtl.v:32$2009'.
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\gold.\pc' using process `\gold.$proc$tiny8.rtl.v:42$2012'.
+  created $adff cell `$procdff$2078' with positive edge clock and positive level reset.
+Creating register for signal `\gold.\out' using process `\gold.$proc$tiny8.rtl.v:42$2012'.
+  created $adff cell `$procdff$2083' with positive edge clock and positive level reset.
+Creating register for signal `\gold.\r0' using process `\gold.$proc$tiny8.rtl.v:42$2012'.
+  created $adff cell `$procdff$2088' with positive edge clock and positive level reset.
+Creating register for signal `\gold.\r1' using process `\gold.$proc$tiny8.rtl.v:42$2012'.
+  created $adff cell `$procdff$2093' with positive edge clock and positive level reset.
+Creating register for signal `\gold.\r2' using process `\gold.$proc$tiny8.rtl.v:42$2012'.
+  created $adff cell `$procdff$2098' with positive edge clock and positive level reset.
+Creating register for signal `\gold.\r3' using process `\gold.$proc$tiny8.rtl.v:42$2012'.
+  created $adff cell `$procdff$2103' with positive edge clock and positive level reset.
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\gold.$proc$tiny8.rtl.v:27$2027'.
+Removing empty process `gold.$proc$tiny8.rtl.v:27$2027'.
+Found and cleaned up 1 empty switch in `\gold.$proc$tiny8.rtl.v:26$2024'.
+Removing empty process `gold.$proc$tiny8.rtl.v:26$2024'.
+Removing empty process `gold.$proc$tiny8.rtl.v:20$2023'.
+Removing empty process `gold.$proc$tiny8.rtl.v:19$2022'.
+Removing empty process `gold.$proc$tiny8.rtl.v:18$2021'.
+Removing empty process `gold.$proc$tiny8.rtl.v:17$2020'.
+Found and cleaned up 3 empty switches in `\gold.$proc$tiny8.rtl.v:42$2012'.
+Removing empty process `gold.$proc$tiny8.rtl.v:42$2012'.
+Found and cleaned up 1 empty switch in `\gold.$proc$tiny8.rtl.v:32$2009'.
+Removing empty process `gold.$proc$tiny8.rtl.v:32$2009'.
+Cleaned up 6 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gate.
+Optimizing module gold.
+<suppressed ~16 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor3_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor3_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor2_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor2_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor3_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor3_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor2_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor2_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__tiel.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__tieh.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffrnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffrnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffrnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__sdffq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or4_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or4_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or4_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or3_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or3_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or2_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or2_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai222_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai222_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai222_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai221_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai221_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai221_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai211_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai211_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai211_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai33_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai33_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai33_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai32_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai32_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai32_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai31_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai31_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai31_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai22_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai22_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai22_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai21_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai21_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai21_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor4_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor4_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor4_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor3_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor3_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor2_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor2_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand4_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand4_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand4_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand3_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand3_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand2_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand2_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux4_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux4_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux4_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux2_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux2_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latsnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latsnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latsnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latrsnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latrsnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latrsnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latrnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latrnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latrnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__latq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__invz_16.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__invz_12.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__invz_8.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__invz_4.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__invz_3.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__invz_2.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__invz_1.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__inv_20.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__inv_16.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__inv_12.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__inv_8.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__inv_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__inv_3.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__inv_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__inv_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__hold.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__filltie.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fillcap_64.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fillcap_32.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fillcap_16.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fillcap_8.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fillcap_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fill_64.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fill_32.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fill_16.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fill_8.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fill_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fill_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__fill_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__endcap.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyd_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyd_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyd_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyc_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyc_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyc_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyb_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyb_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlyb_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlya_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlya_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dlya_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffsnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffsnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffsnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffrsnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffrsnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffrnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffrnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffrnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnsnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnsnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnrnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnrnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnq_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnq_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_20.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_16.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_12.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_8.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_3.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkbuf_20.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkbuf_16.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkbuf_12.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkbuf_8.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkbuf_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkbuf_3.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkbuf_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkbuf_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__bufz_16.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__bufz_12.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__bufz_8.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__bufz_4.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__bufz_3.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__bufz_2.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__bufz_1.
+<suppressed ~1 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__buf_20.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__buf_16.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__buf_12.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__buf_8.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__buf_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__buf_3.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__buf_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__buf_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi222_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi222_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi222_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi221_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi221_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi221_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi211_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi211_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi211_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi22_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi22_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi22_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi21_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi21_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi21_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__antenna.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and4_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and4_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and4_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and3_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and3_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and2_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and2_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__addh_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__addh_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__addh_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__addf_4.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__addf_2.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__addf_1.
+
+5. Executing FLATTEN pass (flatten design).
+<suppressed ~263 debug messages>
+
+6. Executing ASYNC2SYNC pass.
+Replacing gate.$flatten\_461_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_461_.RN, D=\_461_.D, Q=\_461_.IQ1
+Replacing gate.$flatten\_460_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_460_.RN, D=\_460_.D, Q=\_460_.IQ1
+Replacing gate.$flatten\_459_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_459_.RN, D=\_459_.D, Q=\_459_.IQ1
+Replacing gate.$flatten\_458_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_458_.RN, D=\_458_.D, Q=\_458_.IQ1
+Replacing gate.$flatten\_457_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_457_.RN, D=\_457_.D, Q=\_457_.IQ1
+Replacing gate.$flatten\_456_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_456_.RN, D=\_456_.D, Q=\_456_.IQ1
+Replacing gate.$flatten\_455_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_455_.RN, D=\_455_.D, Q=\_455_.IQ1
+Replacing gate.$flatten\_454_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_454_.RN, D=\_454_.D, Q=\_454_.IQ1
+Replacing gate.$flatten\_453_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_453_.RN, D=\_453_.D, Q=\_453_.IQ1
+Replacing gate.$flatten\_452_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_452_.RN, D=\_452_.D, Q=\_452_.IQ1
+Replacing gate.$flatten\_451_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_451_.RN, D=\_451_.D, Q=\_451_.IQ1
+Replacing gate.$flatten\_450_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_450_.RN, D=\_450_.D, Q=\_450_.IQ1
+Replacing gate.$flatten\_449_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_449_.RN, D=\_449_.D, Q=\_449_.IQ1
+Replacing gate.$flatten\_448_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_448_.RN, D=\_448_.D, Q=\_448_.IQ1
+Replacing gate.$flatten\_447_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_447_.RN, D=\_447_.D, Q=\_447_.IQ1
+Replacing gate.$flatten\_446_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_446_.RN, D=\_446_.D, Q=\_446_.IQ1
+Replacing gate.$flatten\_445_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_445_.RN, D=\_445_.D, Q=\_445_.IQ1
+Replacing gate.$flatten\_444_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_444_.RN, D=\_444_.D, Q=\_444_.IQ1
+Replacing gate.$flatten\_443_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_443_.RN, D=\_443_.D, Q=\_443_.IQ1
+Replacing gate.$flatten\_442_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_442_.RN, D=\_442_.D, Q=\_442_.IQ1
+Replacing gate.$flatten\_441_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_441_.RN, D=\_441_.D, Q=\_441_.IQ1
+Replacing gate.$flatten\_440_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_440_.RN, D=\_440_.D, Q=\_440_.IQ1
+Replacing gate.$flatten\_439_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_439_.RN, D=\_439_.D, Q=\_439_.IQ1
+Replacing gate.$flatten\_438_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_438_.RN, D=\_438_.D, Q=\_438_.IQ1
+Replacing gate.$flatten\_437_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_437_.RN, D=\_437_.D, Q=\_437_.IQ1
+Replacing gate.$flatten\_436_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_436_.RN, D=\_436_.D, Q=\_436_.IQ1
+Replacing gate.$flatten\_435_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_435_.RN, D=\_435_.D, Q=\_435_.IQ1
+Replacing gate.$flatten\_434_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_434_.RN, D=\_434_.D, Q=\_434_.IQ1
+Replacing gate.$flatten\_433_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_433_.RN, D=\_433_.D, Q=\_433_.IQ1
+Replacing gate.$flatten\_432_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_432_.RN, D=\_432_.D, Q=\_432_.IQ1
+Replacing gate.$flatten\_431_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_431_.RN, D=\_431_.D, Q=\_431_.IQ1
+Replacing gate.$flatten\_430_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_430_.RN, D=\_430_.D, Q=\_430_.IQ1
+Replacing gate.$flatten\_429_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_429_.RN, D=\_429_.D, Q=\_429_.IQ1
+Replacing gate.$flatten\_428_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_428_.RN, D=\_428_.D, Q=\_428_.IQ1
+Replacing gate.$flatten\_427_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_427_.RN, D=\_427_.D, Q=\_427_.IQ1
+Replacing gate.$flatten\_426_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_426_.RN, D=\_426_.D, Q=\_426_.IQ1
+Replacing gate.$flatten\_425_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_425_.RN, D=\_425_.D, Q=\_425_.IQ1
+Replacing gate.$flatten\_424_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_424_.RN, D=\_424_.D, Q=\_424_.IQ1
+Replacing gate.$flatten\_423_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_423_.RN, D=\_423_.D, Q=\_423_.IQ1
+Replacing gate.$flatten\_422_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_422_.RN, D=\_422_.D, Q=\_422_.IQ1
+Replacing gate.$flatten\_421_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_421_.RN, D=\_421_.D, Q=\_421_.IQ1
+Replacing gate.$flatten\_420_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_420_.RN, D=\_420_.D, Q=\_420_.IQ1
+Replacing gate.$flatten\_419_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_419_.RN, D=\_419_.D, Q=\_419_.IQ1
+Replacing gate.$flatten\_418_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_418_.RN, D=\_418_.D, Q=\_418_.IQ1
+Replacing gate.$flatten\_417_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_417_.RN, D=\_417_.D, Q=\_417_.IQ1
+Replacing gate.$flatten\_416_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_416_.RN, D=\_416_.D, Q=\_416_.IQ1
+Replacing gate.$flatten\_415_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_415_.RN, D=\_415_.D, Q=\_415_.IQ1
+Replacing gate.$flatten\_414_.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\_414_.RN, D=\_414_.D, Q=\_414_.IQ1
+Replacing gold.$procdff$2093 ($adff): ARST=\rst_n, D=$procmux$2053_Y, Q=\r1
+Replacing gold.$procdff$2088 ($adff): ARST=\rst_n, D=$procmux$2060_Y, Q=\r0
+Replacing gold.$procdff$2098 ($adff): ARST=\rst_n, D=$procmux$2047_Y, Q=\r2
+Replacing gold.$procdff$2083 ($adff): ARST=\rst_n, D=$procmux$2062_Y, Q=\out
+Replacing gold.$procdff$2103 ($adff): ARST=\rst_n, D=$procmux$2042_Y, Q=\r3
+Replacing gold.$procdff$2078 ($adff): ARST=\rst_n, D=$ternary$tiny8.rtl.v:51$2018_Y, Q=\pc
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4.$auto$liberty.cc:255:create_ff$1958 ($_DFF_PN1_): ARST=\SETN, D=$auto$rtlil.cc:3495:OrGate$1954, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2.$auto$liberty.cc:255:create_ff$1946 ($_DFF_PN1_): ARST=\SETN, D=$auto$rtlil.cc:3495:OrGate$1942, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1.$auto$liberty.cc:255:create_ff$1934 ($_DFF_PN1_): ARST=\SETN, D=$auto$rtlil.cc:3495:OrGate$1930, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_4.$auto$liberty.cc:255:create_ff$1922 ($_DFFSR_PNN_): SET=\SETN, CLR=\RN, D=$auto$rtlil.cc:3495:OrGate$1916, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_2.$auto$liberty.cc:255:create_ff$1908 ($_DFFSR_PNN_): SET=\SETN, CLR=\RN, D=$auto$rtlil.cc:3495:OrGate$1902, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_1.$auto$liberty.cc:255:create_ff$1894 ($_DFFSR_PNN_): SET=\SETN, CLR=\RN, D=$auto$rtlil.cc:3495:OrGate$1888, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffrnq_4.$auto$liberty.cc:255:create_ff$1880 ($_DFF_PN0_): ARST=\RN, D=$auto$rtlil.cc:3495:OrGate$1876, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffrnq_2.$auto$liberty.cc:255:create_ff$1868 ($_DFF_PN0_): ARST=\RN, D=$auto$rtlil.cc:3495:OrGate$1864, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__sdffrnq_1.$auto$liberty.cc:255:create_ff$1856 ($_DFF_PN0_): ARST=\RN, D=$auto$rtlil.cc:3495:OrGate$1852, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__latsnq_4.$auto$liberty.cc:392:create_latch$1088 ($_DLATCH_P_): EN=$auto$liberty.cc:389:create_latch$1087, D=$auto$liberty.cc:384:create_latch$1085, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latsnq_2.$auto$liberty.cc:392:create_latch$1078 ($_DLATCH_P_): EN=$auto$liberty.cc:389:create_latch$1077, D=$auto$liberty.cc:384:create_latch$1075, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latsnq_1.$auto$liberty.cc:392:create_latch$1068 ($_DLATCH_P_): EN=$auto$liberty.cc:389:create_latch$1067, D=$auto$liberty.cc:384:create_latch$1065, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latrsnq_4.$auto$liberty.cc:392:create_latch$1058 ($_DLATCH_P_): EN=$auto$liberty.cc:389:create_latch$1057, D=$auto$liberty.cc:384:create_latch$1055, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latrsnq_2.$auto$liberty.cc:392:create_latch$1040 ($_DLATCH_P_): EN=$auto$liberty.cc:389:create_latch$1039, D=$auto$liberty.cc:384:create_latch$1037, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latrsnq_1.$auto$liberty.cc:392:create_latch$1022 ($_DLATCH_P_): EN=$auto$liberty.cc:389:create_latch$1021, D=$auto$liberty.cc:384:create_latch$1019, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latrnq_4.$auto$liberty.cc:392:create_latch$1004 ($_DLATCH_P_): EN=$auto$liberty.cc:361:create_latch$1003, D=$auto$liberty.cc:356:create_latch$1001, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latrnq_2.$auto$liberty.cc:392:create_latch$994 ($_DLATCH_P_): EN=$auto$liberty.cc:361:create_latch$993, D=$auto$liberty.cc:356:create_latch$991, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latrnq_1.$auto$liberty.cc:392:create_latch$984 ($_DLATCH_P_): EN=$auto$liberty.cc:361:create_latch$983, D=$auto$liberty.cc:356:create_latch$981, Q=\IQ2
+Replacing gf180mcu_fd_sc_mcu7t5v0__latq_4.$auto$liberty.cc:392:create_latch$974 ($_DLATCH_P_): EN=\E, D=$auto$rtlil.cc:3492:NotGate$972, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__latq_2.$auto$liberty.cc:392:create_latch$970 ($_DLATCH_P_): EN=\E, D=$auto$rtlil.cc:3492:NotGate$968, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__latq_1.$auto$liberty.cc:392:create_latch$966 ($_DLATCH_P_): EN=\E, D=$auto$rtlil.cc:3492:NotGate$964, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffsnq_4.$auto$liberty.cc:255:create_ff$886 ($_DFF_PN1_): ARST=\SETN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffsnq_2.$auto$liberty.cc:255:create_ff$882 ($_DFF_PN1_): ARST=\SETN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffsnq_1.$auto$liberty.cc:255:create_ff$878 ($_DFF_PN1_): ARST=\SETN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffrsnq_4.$auto$liberty.cc:255:create_ff$874 ($_DFFSR_PNN_): SET=\SETN, CLR=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffrsnq_2.$auto$liberty.cc:255:create_ff$868 ($_DFFSR_PNN_): SET=\SETN, CLR=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1.$auto$liberty.cc:255:create_ff$862 ($_DFFSR_PNN_): SET=\SETN, CLR=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffrnq_4.$auto$liberty.cc:255:create_ff$856 ($_DFF_PN0_): ARST=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffrnq_2.$auto$liberty.cc:255:create_ff$852 ($_DFF_PN0_): ARST=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffrnq_1.$auto$liberty.cc:255:create_ff$848 ($_DFF_PN0_): ARST=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnsnq_4.$auto$liberty.cc:255:create_ff$838 ($_DFF_NN1_): ARST=\SETN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnsnq_2.$auto$liberty.cc:255:create_ff$832 ($_DFF_NN1_): ARST=\SETN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1.$auto$liberty.cc:255:create_ff$826 ($_DFF_NN1_): ARST=\SETN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_4.$auto$liberty.cc:255:create_ff$820 ($_DFFSR_NNN_): SET=\SETN, CLR=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_2.$auto$liberty.cc:255:create_ff$812 ($_DFFSR_NNN_): SET=\SETN, CLR=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1.$auto$liberty.cc:255:create_ff$804 ($_DFFSR_NNN_): SET=\SETN, CLR=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnrnq_4.$auto$liberty.cc:255:create_ff$796 ($_DFF_NN0_): ARST=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnrnq_2.$auto$liberty.cc:255:create_ff$790 ($_DFF_NN0_): ARST=\RN, D=\D, Q=\IQ1
+Replacing gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1.$auto$liberty.cc:255:create_ff$784 ($_DFF_NN0_): ARST=\RN, D=\D, Q=\IQ1
+
+7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gate..
+Finding unused cells or wires in module \gold..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xor3_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xor3_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xor3_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xor2_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xor2_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xor2_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xnor3_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xnor3_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xnor3_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xnor2_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xnor2_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__xnor2_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__tiel..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__tieh..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffrnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffrnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffrnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__sdffq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or4_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or4_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or4_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or3_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or3_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or3_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or2_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or2_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__or2_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai222_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai222_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai222_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai221_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai221_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai221_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai211_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai211_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai211_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai33_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai33_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai33_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai32_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai32_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai32_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai31_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai31_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai31_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai22_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai22_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai22_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai21_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai21_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__oai21_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor4_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor4_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor4_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor3_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor3_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor3_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor2_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor2_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nor2_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand4_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand4_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand4_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand3_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand3_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand3_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand2_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand2_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__nand2_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__mux4_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__mux4_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__mux4_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__mux2_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__mux2_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__mux2_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latsnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latsnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latsnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latrsnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latrsnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latrsnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latrnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latrnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latrnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__latq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__invz_16..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__invz_12..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__invz_8..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__invz_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__invz_3..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__invz_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__invz_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__inv_20..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__inv_16..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__inv_12..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__inv_8..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__inv_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__inv_3..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__inv_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__inv_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__hold..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__filltie..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fillcap_64..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fillcap_32..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fillcap_16..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fillcap_8..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fillcap_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fill_64..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fill_32..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fill_16..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fill_8..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fill_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fill_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__fill_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__endcap..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyd_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyd_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyd_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyc_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyc_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyc_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyb_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyb_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlyb_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlya_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlya_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dlya_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffsnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffsnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffsnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffrsnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffrsnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffrnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffrnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffrnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnsnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnsnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnrnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnrnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnq_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnq_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__dffnq_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkinv_20..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkinv_16..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkinv_12..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkinv_8..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkinv_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkinv_3..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkinv_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkinv_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkbuf_20..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkbuf_16..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkbuf_12..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkbuf_8..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkbuf_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkbuf_3..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkbuf_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__clkbuf_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__bufz_16..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__bufz_12..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__bufz_8..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__bufz_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__bufz_3..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__bufz_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__bufz_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__buf_20..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__buf_16..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__buf_12..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__buf_8..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__buf_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__buf_3..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__buf_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__buf_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi222_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi222_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi222_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi221_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi221_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi221_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi211_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi211_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi211_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi22_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi22_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi22_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi21_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi21_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__aoi21_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__antenna..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and4_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and4_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and4_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and3_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and3_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and3_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and2_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and2_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__and2_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__addh_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__addh_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__addh_1..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__addf_4..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__addf_2..
+Finding unused cells or wires in module \gf180mcu_fd_sc_mcu7t5v0__addf_1..
+Removed 225 unused cells and 842 unused wires.
+<suppressed ~495 debug messages>
+
+8. Executing MITER pass (creating miter circuit).
+Creating miter cell "m" with gold cell "gold" and gate cell "gate".
+
+8.1. Executing FLATTEN pass (flatten design).
+<suppressed ~2 debug messages>
+
+8.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module m.
+<suppressed ~25 debug messages>
+Removed 10 unused cells and 53 unused wires.
+
+9. Executing HIERARCHY pass (managing design hierarchy).
+
+9.1. Analyzing design hierarchy..
+Top module:  \m
+
+9.2. Analyzing design hierarchy..
+Top module:  \m
+Removing unused module `\gate'.
+Removing unused module `\gold'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor3_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor2_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__tiel'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__tieh'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or4_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or3_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or2_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai222_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai222_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai222_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai221_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai221_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai221_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai211_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai211_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai211_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai33_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai33_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai33_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai32_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai32_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai32_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai31_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai31_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai31_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai22_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai22_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai22_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai21_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai21_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai21_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor4_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor3_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor2_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand4_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand3_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand2_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux4_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux2_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_20'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__hold'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__filltie'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_64'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_32'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_64'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_32'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__endcap'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlya_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlya_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlya_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_20'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_20'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_20'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__antenna'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and4_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and3_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and2_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addh_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addh_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addh_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addf_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addf_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addf_1'.
+Removed 225 unused modules.
+Module m directly or indirectly contains formal properties -> setting "keep" attribute.
+
+10. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+** Trying induction with length 1 **
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Final init constraint equation: { $flatten\gold.$auto$async2sync.cc:234:execute$2473 $flatten\gold.$auto$async2sync.cc:234:execute$2469 $flatten\gold.$auto$async2sync.cc:234:execute$2467 $flatten\gold.$auto$async2sync.cc:234:execute$2465 $flatten\gold.$auto$async2sync.cc:234:execute$2471 $flatten\gold.$auto$async2sync.cc:234:execute$2463 $flatten\gate.$auto$async2sync.cc:234:execute$2369 $flatten\gate.$auto$async2sync.cc:234:execute$2373 $flatten\gate.$auto$async2sync.cc:234:execute$2377 $flatten\gate.$auto$async2sync.cc:234:execute$2381 $flatten\gate.$auto$async2sync.cc:234:execute$2385 $flatten\gate.$auto$async2sync.cc:234:execute$2389 $flatten\gate.$auto$async2sync.cc:234:execute$2393 $flatten\gate.$auto$async2sync.cc:234:execute$2397 $flatten\gate.$auto$async2sync.cc:234:execute$2401 $flatten\gate.$auto$async2sync.cc:234:execute$2405 $flatten\gate.$auto$async2sync.cc:234:execute$2409 $flatten\gate.$auto$async2sync.cc:234:execute$2413 $flatten\gate.$auto$async2sync.cc:234:execute$2417 $flatten\gate.$auto$async2sync.cc:234:execute$2421 $flatten\gate.$auto$async2sync.cc:234:execute$2425 $flatten\gate.$auto$async2sync.cc:234:execute$2429 $flatten\gate.$auto$async2sync.cc:234:execute$2433 $flatten\gate.$auto$async2sync.cc:234:execute$2437 $flatten\gate.$auto$async2sync.cc:234:execute$2441 $flatten\gate.$auto$async2sync.cc:234:execute$2445 $flatten\gate.$auto$async2sync.cc:234:execute$2449 $flatten\gate.$auto$async2sync.cc:234:execute$2453 $flatten\gate.$auto$async2sync.cc:234:execute$2457 $flatten\gate.$auto$async2sync.cc:234:execute$2461 $flatten\gate.$auto$async2sync.cc:234:execute$2367 $flatten\gate.$auto$async2sync.cc:234:execute$2371 $flatten\gate.$auto$async2sync.cc:234:execute$2375 $flatten\gate.$auto$async2sync.cc:234:execute$2379 $flatten\gate.$auto$async2sync.cc:234:execute$2383 $flatten\gate.$auto$async2sync.cc:234:execute$2387 $flatten\gate.$auto$async2sync.cc:234:execute$2391 $flatten\gate.$auto$async2sync.cc:234:execute$2395 $flatten\gate.$auto$async2sync.cc:234:execute$2399 $flatten\gate.$auto$async2sync.cc:234:execute$2403 $flatten\gate.$auto$async2sync.cc:234:execute$2407 $flatten\gate.$auto$async2sync.cc:234:execute$2411 $flatten\gate.$auto$async2sync.cc:234:execute$2415 $flatten\gate.$auto$async2sync.cc:234:execute$2419 $flatten\gate.$auto$async2sync.cc:234:execute$2423 $flatten\gate.$auto$async2sync.cc:234:execute$2427 $flatten\gate.$auto$async2sync.cc:234:execute$2431 $flatten\gate.$auto$async2sync.cc:234:execute$2435 $flatten\gate.$auto$async2sync.cc:234:execute$2439 $flatten\gate.$auto$async2sync.cc:234:execute$2443 $flatten\gate.$auto$async2sync.cc:234:execute$2447 $flatten\gate.$auto$async2sync.cc:234:execute$2451 $flatten\gate.$auto$async2sync.cc:234:execute$2455 $flatten\gate.$auto$async2sync.cc:234:execute$2459 } = 96'000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[base case 1] Solving problem with 6590 variables and 17184 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[induction step 1] Solving problem with 13274 variables and 34559 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                     Dec       Hex           Bin
+  ---- ------------------------------------------------------- ----------- --------- -------------
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2367                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2369                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2371                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2373                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2375                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2377                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2379                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2381                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2383                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2385                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2387                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2389                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2391                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2393                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2395                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2397                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2399                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2401                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2403                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2405                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2407                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2409                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2411                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2413                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2415                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2417                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2419                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2421                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2423                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2425                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2427                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2429                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2431                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2433                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2435                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2437                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2439                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2441                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2443                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2445                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2447                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2449                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2451                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2453                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2455                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2457                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2459                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2461                1         1             1
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2463              255        ff      11111111
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2465                0         0      00000000
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2467                0         0      00000000
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2469              255        ff      11111111
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2471                0         0      00000000
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2473              254        fe      11111110
+
+** Trying induction with length 2 **
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[base case 2] Solving problem with 13755 variables and 36193 clauses..
+Base case for induction length 2 proven.
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[induction step 2] Solving problem with 20728 variables and 54530 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                     Dec       Hex           Bin
+  ---- ------------------------------------------------------- ----------- --------- -------------
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2367                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2369                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2371                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2373                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2375                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2377                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2379                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2381                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2383                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2385                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2387                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2389                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2391                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2393                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2395                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2397                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2399                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2401                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2403                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2405                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2407                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2409                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2411                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2413                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2415                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2417                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2419                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2421                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2423                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2425                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2427                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2429                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2431                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2433                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2435                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2437                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2439                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2441                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2443                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2445                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2447                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2449                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2451                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2453                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2455                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2457                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2459                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2461                1         1             1
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2463              157        9d      10011101
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2465                0         0      00000000
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2467                0         0      00000000
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2469              102        66      01100110
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2471               36        24      00100100
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2473                6         6      00000110
+
+** Trying induction with length 3 **
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[base case 3] Solving problem with 21209 variables and 56164 clauses..
+Base case for induction length 3 proven.
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[induction step 3] Solving problem with 28471 variables and 75463 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                     Dec       Hex           Bin
+  ---- ------------------------------------------------------- ----------- --------- -------------
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2367                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2369                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2371                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2373                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2375                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2377                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2379                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2381                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2383                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2385                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2387                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2389                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2391                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2393                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2395                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2397                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2399                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2401                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2403                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2405                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2407                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2409                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2411                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2413                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2415                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2417                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2419                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2421                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2423                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2425                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2427                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2429                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2431                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2433                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2435                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2437                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2439                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2441                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2443                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2445                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2447                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2449                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2451                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2453                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2455                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2457                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2459                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2461                1         1             1
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2463              129        81      10000001
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2465                0         0      00000000
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2467                0         0      00000000
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2469              115        73      01110011
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2471              164        a4      10100100
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2473                6         6      00000110
+
+** Trying induction with length 4 **
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[base case 4] Solving problem with 28952 variables and 77097 clauses..
+Base case for induction length 4 proven.
+
+Setting up time step 5:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[induction step 4] Solving problem with 36503 variables and 97358 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                     Dec       Hex           Bin
+  ---- ------------------------------------------------------- ----------- --------- -------------
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2367                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2369                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2371                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2373                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2375                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2377                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2379                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2381                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2383                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2385                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2387                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2389                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2391                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2393                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2395                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2397                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2399                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2401                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2403                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2405                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2407                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2409                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2411                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2413                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2415                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2417                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2419                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2421                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2423                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2425                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2427                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2429                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2431                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2433                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2435                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2437                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2439                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2441                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2443                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2445                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2447                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2449                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2451                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2453                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2455                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2457                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2459                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2461                1         1             1
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2463              193        c1      11000001
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2465                0         0      00000000
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2467              130        82      10000010
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2469              115        73      01110011
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2471              164        a4      10100100
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2473                6         6      00000110
+
+** Trying induction with length 5 **
+
+Setting up time step 5:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[base case 5] Solving problem with 36984 variables and 98992 clauses..
+Base case for induction length 5 proven.
+
+Setting up time step 6:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[induction step 5] Solving problem with 44824 variables and 120215 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                                     Dec       Hex           Bin
+  ---- ------------------------------------------------------- ----------- --------- -------------
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2367                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2369                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2371                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2373                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2375                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2377                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2379                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2381                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2383                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2385                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2387                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2389                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2391                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2393                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2395                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2397                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2399                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2401                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2403                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2405                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2407                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2409                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2411                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2413                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2415                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2417                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2419                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2421                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2423                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2425                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2427                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2429                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2431                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2433                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2435                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2437                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2439                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2441                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2443                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2445                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2447                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2449                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2451                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2453                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2455                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2457                0         0             0
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2459                1         1             1
+  init $flatten\gate.$auto$async2sync.cc:234:execute$2461                1         1             1
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2463              193        c1      11000001
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2465                1         1      00000001
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2467              179        b3      10110011
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2469              207        cf      11001111
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2471              170        aa      10101010
+  init $flatten\gold.$auto$async2sync.cc:234:execute$2473                6         6      00000110
+
+** Trying induction with length 6 **
+
+Setting up time step 6:
+Final constraint equation: { } = { }
+Imported 1322 cells to SAT database.
+Import proof for assert: $auto$miter.cc:268:create_miter_equiv$2668 when 1'1.
+
+[base case 6] Solving problem with 45305 variables and 121849 clauses..

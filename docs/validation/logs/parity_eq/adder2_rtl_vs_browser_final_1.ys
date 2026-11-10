@@ -1,0 +1,17 @@
+read_liberty -ignore_miss_func -ignore_miss_dir -ignore_miss_data_latch -ignore_buses /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/lib/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib
+read_verilog -sv adder2.rtl.v
+rename add gold
+read_verilog -sv adder2.final.v
+rename add gate
+proc
+flatten
+async2sync
+opt_clean
+splitnets
+rename -hide w:_*
+opt_clean -purge
+equiv_make gold gate eq
+hierarchy -top eq
+equiv_simple -seq 5
+equiv_induct -seq 5
+equiv_status -assert

@@ -1,0 +1,5 @@
+UC Berkeley, ABC 1.01 (compiled Apr 16 2026 21:01:18)
+abc 01> quit
+UC Berkeley, ABC 1.01 (compiled Apr 16 2026 21:01:18)
+lrwxrwxrwx 1 root root 28 Apr 17  2026 /foss/tools/bin/sta -> /foss/tools/openroad/bin/sta
+ee433c20c9a17211febb70edabf9f9208808f9789a9b763a4616cf771edefa18  /foss/tools/openroad/bin/sta

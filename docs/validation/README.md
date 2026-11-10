@@ -20,6 +20,7 @@ Two place-and-route flows exist in Studio:
 | OpenROAD flow vs LibreLane (section 8B) | Studio recipe | LibreLane 3.0.2 | similar quality, not the same steps; numbers given as percentages | why LibreLane's wire is 29% longer |
 | graywolf + qrouter (section 6) | graywolf 33fbcaa, qrouter c8f1111 | same sources built natively | placement files identical; routed DEF differs in wire choices | clocked designs |
 | Formal equivalence (section 7, 8) | Yosys | RTL | netlists proven equal to the RTL (tiny8, adder2) | not a general proof |
+| Analog simulation (section 18) | ngspice-46 (KLU compiled in; these runs used SPARSE) | native ngspice-46 (KLU build), same models | all printed numbers identical on 5 decks; raw files agree to 3e-7 or better, per vector | other corners, Monte Carlo, noise, big circuits, Safari/Firefox |
 | RTL grader | Yosys miter + k-induction | native Yosys 0.64 | 5 references proven, 19 wrong designs fail, same in both; a design differing only after cycle 45 passes as "first 40 cycles" (section 10) | CDC problems, x-handling, unreachable-state fallback |
 
 **Scope.** Validated: single-clock designs on gf180mcuD (7-track cells), up to 48 flip-flops, 1,559 nets and 3,150 transistors, 50% density, one corner (tt, 25 C, 5.00 V), in Chrome.
@@ -859,3 +860,64 @@ Repeat: `cd <scratch> && npm i @yowasp/clang@22.0.0-git20542-10 verilator-wasm@1
 - Exceptions: the compiler's C++ library has none, so everything is built with `-fno-exceptions`.
 - Safari and Firefox (Studio was checked in Chromium only); the numbers above come from one PC.
 - The timings of the first browser run depend on the network to jsDelivr.
+
+## 18. Analog: ngspice in the browser (issue #86)
+
+**Design and setup.** Five small decks on gf180mcuD, typical corner, 27 C, in `docs/validation/analog/decks/`: NMOS Id-Vg (`nfet_03v3`, W=1u L=0.28u), PMOS Id-Vg (`pfet_03v3`, same size), 1:1 NMOS current mirror (W=2u L=1u, 10 uA), a 5-transistor OTA (open-loop AC, 20 uA tail, 1 pF load) and an inverter transient (W=1u/2u, 10 fF load, 3.3 V). The check: the same deck, the same model files, must give the same numbers in the browser build and in native ngspice.
+
+**Our flow, built this way.** ngspice-46 from the official release tarball (sha256 `a0d1699a...`), no source patches, built with Emscripten 3.1.74 (`web/vendor/ngspice/46/SOURCE.md`, `build.sh`). Configure: `--without-x --with-readline=no --disable-openmp --disable-xspice --disable-cider`, `-O2`. KLU is compiled in (ngspice 43 and later enable it by default; the page log prints "Compiled with KLU Direct Linear Solver"), but these decks ran on SPARSE 1.3, the same as native. No threads. The models are the container's own files from open_pdks 7b70722 (`web/vendor/gf180mcu/models-7b70722/`: `design.ngspice`, `sm141064.ngspice`, `sm141064_mim.ngspice`). The container's sha256 values were taken on 2026-11-10 (`inventory.txt`, section sha256) and the three vendored files give the same values: `design.ngspice` `091cb530...6692`, `sm141064.ngspice` `677822db...3c46`, `sm141064_mim.ngspice` `b7918b5a...9767` (full values in `inventory.txt`). So the model files are byte-identical. Only `design.ngspice` and `sm141064.ngspice` are used by the decks; `sm141064_mim.ngspice` is vendored for later and is NOT validated (no deck has a MIM cap). The browser needs `/proc/meminfo` in its virtual disk and a `~/.spiceinit` with `set ngbehavior=hsa` (the gf180 models need it; the container sets the same). Run by `node docs/validation/analog/run-browser.mjs` (Node, same `.wasm` and `.js` the page loads); logs are in `docs/validation/analog/browser/`.
+
+**Traditional flow.** Container `gf180` (`hpretl/iic-osic-tools:chipathon26`), `ngspice-46` (compiled with KLU, built 2026-04-16), open_pdks 7b70722, models in `/foss/pdks/gf180mcuD/libs.tech/ngspice/`, home `.spiceinit` as in `inventory.txt` (`ngbehavior=hsa`, `ng_nomodcheck`, `num_threads=4`, `enable_noisy_r`). Each deck ran with `ngspice -b -o <deck>.log <deck>.cir` via `docs/validation/analog/run-native.sh`; results are in `docs/validation/analog/native/`. Both logs say "Using SPARSE 1.3 as Direct Linear Solver" (both binaries have KLU compiled in, but ngspice uses SPARSE unless a deck sets `.options klu`, and these decks do not), so the solver is the same.
+
+| Quantity | Native ngspice-46 | Browser ngspice-46 | Result |
+|---|---|---|---|
+| NMOS Id (Vgs=Vds=1.65 V) | -1.49706e-04 A | -1.49706e-04 A | match |
+| NMOS Vth / Vdsat / gm | 0.6249512 V / 0.6546577 V / 196.3739 uS | same, all digits printed | match |
+| PMOS Id (Vsg=Vsd=1.65 V) | 5.125095e-05 A | 5.125095e-05 A | match |
+| PMOS Vth / Vdsat / gm | 0.7006352 V / 0.8159598 V / 85.84982 uS | same | match |
+| Mirror Iout at Vo=1.65 V (Iref 10 uA) | 10.1683 uA (ratio 1.0168) | 10.1683 uA | match |
+| Mirror M1 / M2 Vth | 0.6846909 / 0.6846896 V | same | match |
+| OTA output DC | 2.361618 V | 2.361618 V | match |
+| OTA gain at 1 Hz | 47.9036 dB | 47.9036 dB | match |
+| OTA unity-gain frequency | 20.6745 MHz | 20.6745 MHz | match |
+| OTA phase margin | 84.30338 deg | 84.30338 deg | match |
+| OTA M1..M5 Vth, Vdsat, Vds, Vgs | see `native/ota5t_ac.log` | all 20 values equal | match |
+| Inverter tpHL | 60.5040 ps | 60.5040 ps | match |
+| Inverter tpLH | 66.7168 ps | 66.7168 ps | match |
+
+**Tolerance.** We call a number a match when it agrees to the digits ngspice prints (6 significant digits, so about 1e-5 relative) and the target was 0.5%. Every printed number is identical. We also compared the full ASCII raw files (every point of every plotted vector) against the native raw files, as max difference divided by the largest value in the file:
+
+Correction: the first version of this table divided every difference by the largest value in the whole file, which is the 3.3 V sweep axis, so the current columns looked far better than they are. The table below is per vector (each vector divided by its own largest native value), made by `run-browser.mjs`:
+
+| Deck | Points (native / browser) | Max difference / largest value, per vector |
+|---|---|---|
+| nmos_idvg (2-D sweep) | 662 / 662 | v(g) 0, i(vd) 5.2e-11 |
+| pmos_idvg (2-D sweep) | 662 / 662 | v(g) 0, i(vd) 2.0e-12 |
+| mirror (DC sweep) | 331 / 331 | i(vo) 2.7e-7, v(ref) 7.9e-8 |
+| ota5t_ac (AC, 1 Hz to 1 GHz) | 181 / 181 | frequency 0, v(out) 0 |
+| inv_tran (transient, 60 ns) | 6026 / 6026 | time 0, v(in) 0, v(out) 0 (even the time steps are the same) |
+
+**Bias coverage.** The Id-Vg decks write the whole sweep, not one point: Vgs 0 to 3.3 V in 10 mV steps at Vds = 0.1 V (linear region) and Vds = 3.3 V (saturation), 331 points each. Vth is 0.625 V (NMOS), so the sweep runs from deep subthreshold, through threshold, to strong inversion; the max difference above is over all 662 points. The mirror sweeps Vo from 0 to 3.3 V (triode to saturation of M2). The OTA is checked at one DC point plus the AC curve. gds is not probed or compared in any deck (only gm, Vth, Vdsat and the currents/voltages in the raw files), so output conductance is not validated on its own.
+
+**Negative control (can the comparison fail?).** Run `PERTURB=nmos_idvg:W=1u:W=1.001u node docs/validation/analog/run-browser.mjs`. This changes the NMOS width in the browser run only (0.1 percent) and compares against the unchanged native raw file with the same method. Result: Id at the bias point becomes -1.49850e-04 A (native -1.49706e-04 A) and the i(vd) difference is 9.6e-4, about seven orders of magnitude above the 5.2e-11 of the unperturbed run. The other decks stay at their normal values. So a 0.1 percent change is clearly visible and a real mismatch would be caught.
+
+The transient took the same 6026 time points, so the step-size control behaves the same. The small non-zero difference on the first three is rounding in the last digits (different compiler and maths library). Run times: 63 to 197 ms per deck are warm runs in Node with the same `.wasm` (module already loaded, one PC). They are not browser timings. In a real browser (Edge, Lab page, starter `ota5t` deck, `http://localhost:8040/lab.html?mock`) the page console reports `Simulation passed in 216 ms`; this was one run and the time to fetch the 4.9 MB `.wasm` first was not timed separately.
+
+One note: the browser log shows the line `Warning: m=xx on .subckt line will override multiplier m hierarchy!` (from the gf180 model wrapper). The native logs do not contain it. We do not know why (the guess that native prints it only to the terminal is unconfirmed). No result differs, but this is unexplained. Owner step, with Docker running: `docker exec gf180 bash -lc "cd /foss/designs/analog_ref/run && ngspice -b nmos_idvg.cir > o.txt 2>&1; grep -c 'm=xx' o.txt"` and read the count; it would show whether native also prints it.
+
+**Lab page check (pipeline only, not a native comparison).** On 2026-11-10 the Lab page (deck builder, raw-file reader, plots) was run in a browser. For the `ota5t.spice` starter (W=10u L=1u, so a different deck from the validation `ota5t_ac`): gain_dc 47.976 dB and ugf 20.741 MHz, the same from the hand-written deck and from the drawn schematic. A 3-analysis deck gave gain_dc 47.976, ugf 2.0741e7, vmax 2.36119, vo 2.36119 and 4 plot canvases. These show the page reads and plots ngspice output; they are not compared with native. Screenshot of the Plots tab for the starter deck: `docs/validation/img/lab-plots-starter.png`.
+
+**Side by side.** No native-versus-browser screenshots: the comparison is a number and file match (tables above).
+
+**NOT validated.**
+- Corners other than typical (ss, ff, fs, sf), temperatures other than 27 C, and the 5 V / 6 V devices.
+- Mismatch, Monte Carlo and the `statistical` models; noise analysis (`.noise`); `.tf`, `.pz`; temperature sweeps.
+- Circuits bigger than these five decks (only SPARSE was exercised; KLU on large netlists is not compared); memory and run time limits.
+- Other model blocks: diodes, BJTs, resistors, MIM and MOS caps (the decks do not use them). `sm141064_mim.ngspice` is vendored but never used by a deck.
+- XSPICE code models and CIDER are compiled out of the browser build (`--disable-xspice --disable-cider`); the native binary has code models. Any deck needing them will not run in the browser.
+- Memory: the browser build gets a fake `/proc/meminfo` and has a wasm32 memory ceiling (4 GB at most). Behaviour near that limit is untested.
+- gds and other small-signal conductances (see bias coverage).
+- `sm141064_mim.ngspice`: same files as the container, but no simulation uses it.
+- Safari and Firefox (Node only so far; Chrome through the Lab page was not part of this run).
+- The browser does not run the native binary's multi-thread path, and the KLU path was not exercised on either side; any difference they cause is not measured.
+- A good analog design: these decks only check the simulator.

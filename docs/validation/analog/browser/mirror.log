@@ -1,0 +1,30 @@
+Warning: can't find the initialization file spinit.
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: nmos 1:1 current mirror, iref 10 ua, w=2u l=1u
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 331
+ASCII raw file "mirror.raw"
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+i(vo) = -1.01683e-05
+@m.xm1.m0[vgs] = 9.397547e-01
+@m.xm1.m0[vth] = 6.846909e-01
+@m.xm1.m0[vdsat] = 2.491464e-01
+@m.xm1.m0[vds] = 9.397547e-01
+@m.xm2.m0[vgs] = 9.397547e-01
+@m.xm2.m0[vth] = 6.846896e-01
+@m.xm2.m0[vdsat] = 2.491474e-01
+@m.xm2.m0[vds] = 1.650000e+00
+Note: Simulation executed from .control section 

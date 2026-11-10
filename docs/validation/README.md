@@ -2,7 +2,7 @@
 
 Every time we say a part of the flow "matches" the traditional tool, the proof is here: the test design, how our browser version was built, how the traditional tool was run, the numbers, and what we did not check. Test designs only check the tools. They do not show a design is good.
 
-Logs are in `docs/validation/logs/`, pictures in `docs/validation/img/`. Runs were done between 2026-10-18 and 2026-10-20; each section says which.
+Logs are in `docs/validation/logs/`, pictures in `docs/validation/img/`. Runs were done between 2026-10-18 and 2026-11-10; each section says which (section 2 rmult20 and sections 8.x to 18 are later than 2026-10-20). Section 9 lists what is open, and the last section, "Claims under review", lists reviewer points that need a new run.
 
 ## Summary: what is and is not validated
 
@@ -16,16 +16,17 @@ Two place-and-route flows exist in Studio:
 | LVS (section 2) | Netgen 3cb047b (v1.5.324) | native Netgen 1.5.318 | same verdict and counts on 3 designs | many kinds of mismatch (one broken layout only) |
 | Magic DRC, extraction, GDS (section 5) | Magic bed8d4f | native Magic 8.3.636 | same DRC count and rule texts, same SPICE, GDS XOR area 0 | DRC tile positions |
 | Timing and power (section 4) | OpenSTA defec0b (3.1.0) | native `sta` 3.1.0 | full report text identical on 2 designs | wire parasitics (SPEF), other corners |
-| OpenROAD place and route (section 8) | OpenROAD 61932e8 | native OpenROAD, same commit, 1 thread | same netlist; results agree to about 1%; not bit-identical; both end at 0 violations | large or hard designs |
+| OpenROAD place and route (section 8) | OpenROAD 61932e8 | native OpenROAD, same commit, 1 thread | same netlist; on tiny8 HPWL +1.2%, wire +0.1%, vias -0.6%, but 127 of 305 cells (41.6%) sit elsewhere and the router's first-iteration violations differ (33 against 50); both end at 0 violations; not bit-identical | large or hard designs; why cells move |
+| OpenROAD 6f3f28c, the current default (section 8.x, run in Node) | OpenROAD 6f3f28c | native OpenROAD built from 6f3f28c (not run with `-threads 1`) | placement and clock tree: every cell at the same spot, HPWL equal; routed wire +0.4%, vias -0.05%; both end at 0 violations | native DRC/LVS/timing on the native route; other designs; in-page run |
 | OpenROAD flow vs LibreLane (section 8B) | Studio recipe | LibreLane 3.0.2 | similar quality, not the same steps; numbers given as percentages | why LibreLane's wire is 29% longer |
 | graywolf + qrouter (section 6) | graywolf 33fbcaa, qrouter c8f1111 | same sources built natively | placement files identical; routed DEF differs in wire choices | clocked designs |
 | Formal equivalence (section 7, 8) | Yosys | RTL | netlists proven equal to the RTL (tiny8, adder2) | not a general proof |
-| Analog simulation (section 18) | ngspice-46 (KLU compiled in; these runs used SPARSE) | native ngspice-46 (KLU build), same models | all printed numbers identical on 5 decks; raw files agree to 3e-7 or better, per vector | other corners, Monte Carlo, noise, big circuits, Safari/Firefox |
+| Analog simulation (section 18, run in Node, not in a page) | ngspice-46 (KLU compiled in; these runs used SPARSE, as native did) | native ngspice-46 (KLU build, SPARSE used), same models | all printed numbers identical on 5 decks; raw files agree to 2.7e-7 or better of each vector's largest value (relative, per vector) | KLU path, other corners, Monte Carlo, noise, big circuits, any browser |
 | RTL grader | Yosys miter + k-induction | native Yosys 0.64 | 5 references proven, 19 wrong designs fail, same in both; a design differing only after cycle 45 passes as "first 40 cycles" (section 10) | CDC problems, x-handling, unreachable-state fallback |
 
-**Scope.** Validated: single-clock designs on gf180mcuD (7-track cells), up to 48 flip-flops, 1,559 nets and 3,150 transistors, 50% density, one corner (tt, 25 C, 5.00 V), in Chrome.
+**Scope.** Validated: single-clock designs on gf180mcuD (7-track cells), up to 48 flip-flops, 50% density, one corner (tt, 25 C, 5.00 V). LVS was compared with native Netgen up to 3,100 devices and 1,537 nets (old flow, tiny8). The OpenROAD-flow tiny8 layout (3,150 devices, 1,559 nets, with tap cells) has an LVS match in our browser Netgen only; it was not compared with native Netgen. Most runs were made in Node with the same WebAssembly files the page loads; where a Chrome page was used, the section says so (section 8 browser run, a few checks in 12 and 13).
 
-**Not validated:** more than one clock, other corners (ss, ff), signoff-grade extraction (OpenRCX), designs above about 1,600 nets, congestion, antenna and IR-drop checks, Firefox and Safari.
+**Not validated:** any browser other than Chrome (Edge only for one ngspice page check), more than one clock, other corners (ss, ff), signoff-grade extraction (OpenRCX), designs above about 1,600 nets, congestion, antenna and IR-drop checks, Firefox and Safari.
 
 ### Terms
 - **Studio**: the browser IDE (`web/studio.html`). It runs every tool in this report in WebAssembly.
@@ -59,7 +60,7 @@ The browser and native versions differ for Yosys, Netgen and Magic. Where that c
 |---|---|---|---|---|---|
 | adder2 | 8-bit adder + XOR, no clock | 43 (old flow) / 35 (OpenROAD flow) / 45 (LibreLane) | none | 77.28 x 74.48 um (parity, 8); auto-sized in 3, 5 | 2, 3, 5, 6, 7, 8 |
 | adder | same logic as adder2, different RTL names | 43 | none | auto | 2 |
-| tiny8 | small 8-bit CPU, 48 flip-flops (`squeeze-tiny8` problem) | 236 / 255 / 287 (see 8B) | 24 ns | 135.52 x 133.28 um (7, 8A, 8B); 250 x 250 um (8 browser run); auto 103.6 x 101.9 um (2, 3, 5) | 1 to 8 |
+| tiny8 | small 8-bit CPU, 48 flip-flops (`squeeze-tiny8` problem) | 236 / 255 / 287 (see 8B) | 24 ns | 135.52 x 133.28 um (7, 8A, 8B); 250 x 250 um (8 browser run); auto 103.6 x 101.9 um (2, 3, 5) | 1, 2, 3, 5, 7, 8 (not 4 or 6: those use other designs) |
 | mult8 | 8x8 multiplier | not recorded | none | auto | 2, 3 |
 | shreg4, sr8 | 4-bit and 8-bit shift registers (`sr8` made by `pd.selftest.mjs 8`, the number is the width) | not recorded | 10 ns (shreg4) | auto | 4, 5 |
 | cnt8 | 8-bit counter | not recorded | 10 ns | auto | 4 |
@@ -72,11 +73,11 @@ RTL for all of them is in `web/studio/engines/pd.flow.mjs` (`DESIGNS`); tiny8 is
 
 **Claimed:** the browser clock tree gives the same result as native OpenROAD.
 
-**Test design:** tiny8 (48 flops), the placed DEF LibreLane wrote (`web/studio/demo/34-openroad-detailedplacement/tiny8.def`, 343 cells before CTS) and the SDC LibreLane used (`web/studio/engines/cts.tiny8.sdc`).
+**Test design:** tiny8 (48 flops), the placed DEF LibreLane wrote (`web/studio/demo/34-openroad-detailedplacement/tiny8.def`: 544 components, of which 343 are logic and buffer cells and 201 are tap and endcap cells; 544 + 9 clock buffers = 553 in the output) and the SDC LibreLane used (`web/studio/engines/cts.tiny8.sdc`).
 
 **Our flow:** OpenROAD commit 61932e8 built to WebAssembly (`web/vendor/openroad-cts/61932e8/SOURCE.md`). Same commit as the container's OpenROAD. Run it with `node web/studio/engines/cts.selftest.mjs`.
 
-**Traditional flow:** native OpenROAD 26Q2-254-g61932e897 in the container, TritonCTS run from `cts_golden.tcl` on the same placed DEF. Its output DEF is kept at `web/studio/demo/35-openroad-cts/tiny8.def`.
+**Traditional flow:** native OpenROAD 26Q2-254-g61932e897 in the container (run between 2026-10-18 and 2026-10-20; the exact date was not recorded), TritonCTS run from `cts_golden.tcl` on the same placed DEF. Studio's browser build carries the 33-file patch of section 8. Skew is 0 ns here with 61932e8; the 6f3f28c build gives 0.01 ns (section 8.x). Its output DEF is kept at `web/studio/demo/35-openroad-cts/tiny8.def`.
 
 **Result:**
 
@@ -107,7 +108,7 @@ Log excerpt (rendered from `logs/cts.txt`, see the note at the end):
 
 ## 2. Netgen LVS matches native Netgen
 
-**Claimed:** the browser Netgen says match or mismatch the same way as native Netgen, and the old browser flow gives LVS match on the test designs.
+**Claimed:** the browser Netgen says match or mismatch the same way as native Netgen, and the old browser flow gives LVS match on adder2, mult8 and tiny8 (rmult20 does not, see below).
 
 **Test design:** adder2, mult8, tiny8 through the old flow (Yosys, graywolf, qrouter, Magic extract), at the flow's automatic die size. Also adder, twoclk and pins40 in `pd.cases.selftest.mjs`.
 
@@ -127,7 +128,7 @@ Logs: `logs/netgen-native-*.log`. One command re-runs both sides: `bash docs/val
 
 The tiny8 counts here (3100 / 1537) are from the automatic die (103.6 x 101.9 um). Section 7 and 8B use the larger die 135.52 x 133.28 um and get 3098 / 1536 with the old flow. Different die, different run; both are match.
 
-Other `pd.cases.selftest.mjs` results (all PASS, 0 failed nets, LVS true): twoclk 56/32, adder 256/146, pins40 20/20. `lvs.selftest.mjs`: sr8 matches (224/224 devices, 109/109 nets) and a deliberately broken layout is caught (216 vs 224 devices).
+Other `pd.cases.selftest.mjs` results (all PASS, 0 failed nets, LVS true): twoclk 56/32, adder 256/146, pins40 20/20. `lvs.selftest.mjs`: sr8 matches (224/224 devices, 109/109 nets) and a deliberately broken layout is caught (216 vs 224 devices). These cases, and the open-net control below, were run in the browser build only; native Netgen was not run on them.
 
 **Flatten check:** `run.tcl` uses `catch {netgen::flatten class {<cell> <file index>}}`, and `catch` hides errors, so we checked that it works. Native Netgen 1.5.318 on adder2 prints 18 "Flattening instances of ..." lines (both files) and compares 256 devices / 146 nets; with the flatten lines removed it prints none and compares 43 devices / 61 nets (still "match uniquely"). So the syntax is right. Logs: `logs/netgen-native-adder2-flatten.log`, `-noflatten.log`.
 
@@ -159,7 +160,7 @@ Log excerpts (rendered from the stored logs). Browser Netgen, then native Netgen
 
 **Our flow:** qrouter commit c8f1111 (unmodified build) and `c8f1111-drc` (one change: call upstream's own `apply_drc_blocks()` on Metal1-3). Details in `web/vendor/qrouter/c8f1111-drc/SOURCE.md`. `node docs/validation/drc-count.mjs <design>` runs one design. To compare with the unmodified build, point `qf` in `web/studio/engines/place.worker.js` at the old qrouter folder, run, then put it back.
 
-**Traditional flow:** none. This is a before/after on our own browser flow. Native LibreLane gives clean routing on these designs, which is the target we have not reached.
+**Traditional flow:** none. This is a before/after on our own browser flow, so nothing here says it matches a traditional router. Run date and the adder2/mult8 auto die sizes were not recorded (the log is `logs/drc.txt`). Native LibreLane gives clean routing on these designs, which is the target we have not reached.
 
 **Result (`logs/drc.txt`):**
 
@@ -210,7 +211,7 @@ Log excerpt (rendered from `logs/opensta.txt`):
 
 **How:** `bash docs/validation/magic-compare.sh` runs the old browser flow, then browser Magic, then native Magic 8.3.636 in the container on the same routed DEF and the same PDK files (same command list as `magic.worker.js`). It compares the DRC total, the DRC rule texts, the extracted SPICE (apart from the `$SUB` name) and the GDS (KLayout 0.30.8 XOR, `gds-xor.py`). Logs: `logs/magic-native-*.txt`, `logs/magic-browser-*.txt`. Run 2026-10-18.
 
-| Design | DRC tiles native / browser | Rule texts | SPICE | GDS XOR area |
+| Design | DRC tiles native / browser | Rule texts | SPICE (apart from `$SUB`) | GDS XOR area |
 |---|---|---|---|---|
 | sr8 | 0 / 0 | same | same | 0 (25 layers) |
 | adder2 | 3 / 3 | same | same | 0 (25 layers) |
@@ -222,7 +223,7 @@ Log excerpt (rendered from `logs/opensta.txt`):
 
 Left half of each picture is native Magic's GDS, right half is the browser's, both drawn by KLayout (`render-gds.py`). They match because the GDS geometry is the same.
 
-**Not validated:** the DRC tile positions were not compared, only count and rule texts (the GDS match covers the layout itself). Same Magic tech file on both sides. Browser Magic is a different version from the container's. Only old-flow layouts were used here.
+**Not validated:** no side-by-side picture for sr8 (only adder2 and tiny8); die sizes and the Magic command lists are in `magic-compare.sh`, not repeated here; the DRC tile positions were not compared, only count and rule texts (the GDS match covers the layout itself). Same Magic tech file on both sides. Browser Magic is a different version from the container's. Only old-flow layouts were used here.
 
 Log excerpt (rendered from the stored logs: browser lines and the last lines of the native logs):
 
@@ -232,7 +233,7 @@ Log excerpt (rendered from the stored logs: browser lines and the last lines of 
 
 **Question:** are the WebAssembly builds of graywolf, qflow's helpers and qrouter the same as the same sources built natively?
 
-**Setup:** adder2, run in Node (`web/studio/engines/parity/browser.mjs adder2`), every tool call recorded. Each native tool got the same arguments and input files. Native tools were built in a throwaway container from the same image (`docker run --rm`, gcc and cmake from the image) at the same commits (graywolf 33fbcaa, qrouter c8f1111, qflow 52ecda1), with the same patches as our WebAssembly build. Details in `qflow-native.md`.
+**Setup:** adder2 (run date not recorded), run in Node (`web/studio/engines/parity/browser.mjs adder2`), every tool call recorded. Each native tool got the same arguments and input files. Native tools were built in a throwaway container from the same image (`docker run --rm`, gcc and cmake from the image) at the same commits (graywolf 33fbcaa, qrouter c8f1111, qflow 52ecda1), with the same patches as our WebAssembly build. The qrouter on both sides is `c8f1111-drc` (c8f1111 plus the one-line `apply_drc_blocks()` call of section 3, see `qflow-native.md`), which is why 3 DRC tiles appear below and 18 in section 3 before the fix. Details in `qflow-native.md`.
 
 **Result (sha256 of the whole file; "same" means byte for byte):**
 
@@ -240,17 +241,17 @@ Log excerpt (rendered from the stored logs: browser lines and the last lines of 
 |---|---|---|
 | qrouter -i | add.info | same |
 | vlog2Cel | add.cel | same |
-| graywolf chain (syntax, Mincut, TimberWolfMC, TimberWolfSC) | add.pl1, add.pl2, add.pin | same |
+| graywolf chain, final outputs only (the files between its steps were not compared) | add.pl1, add.pl2, add.pin | same |
 | addspacers | add_filled.def, add.obsx | same |
 | qrouter (route) | add_route.def | **differs** |
 
 The routed DEF differs in 223 lines, all inside the wires of some nets (header, components and pins are identical). Native: 438 wire segments, 417 vias; browser: 443 and 425. Both report "No failed routes". Magic DRC and Netgen LVS on both routed DEFs: 3 DRC tiles and LVS match each. A native build with `-ffp-contract=off` gave the same output as the normal native build, so fused multiply-add is not the cause. A 32-bit native build was not possible in the image. The cause is not known; word size is the remaining guess.
 
-**Not validated:** only adder2, no clocked design, graywolf intermediate files not compared one by one.
+**Not validated:** only adder2, no clocked design, graywolf intermediate files not compared one by one, no picture of the 223 differing lines, no tolerance defined for the routed DEF (byte for byte or nothing), run date and exact command lines not recorded here.
 
 ## 7. LibreLane against the old browser flow, RTL to GDS (adder2, tiny8)
 
-Run 2026-10-18 (browser numbers re-measured 2026-10-20 with the same result). Same RTL, PDK, clock, clock-buffer choice and die. Layouts differ by design: different placer and router, and LibreLane adds port, repair and tap cells. What can be proven is that both layouts are the same circuit.
+Run 2026-10-18 (old-flow numbers re-measured 2026-10-20 with the same result). The old-flow numbers come from Node runs of the same WebAssembly files the page loads, not from a page; the rmult20 row is from 2026-10-26. Versions are in the version table above; the die was set with `HEADROOM` (section 11). "Same clock and clock-buffer choice" applies to tiny8 only; adder2 has no clock. Same RTL, PDK, clock, clock-buffer choice and die. Layouts differ by design: different placer and router, and LibreLane adds port, repair and tap cells. What the proof below shows is narrower: each final netlist is logically equal to the RTL under the liberty cell functions (Yosys), and each passes LVS against its own drawn layout. The old-flow layouts still have DRC spacing tiles (2 and 88).
 
 **Dies.** adder2 77.28 x 74.48 um, tiny8 135.52 x 133.28 um. LibreLane needs more room than the old flow, so these are the smallest tried that LibreLane passed (tiny8 130 x 130 and adder2 74.48 x 68.88 failed with DPL-0036). The old flow was made to produce exactly these dies by changing only its spare-room setting, then the numbers were given to LibreLane as `DIE_AREA`.
 
@@ -276,13 +277,13 @@ For adder2, `DIE_AREA` is `[0, 0, 77.28, 74.48]` and `CLOCK_PORT` is null. Libre
 | adder2 | RTL = old-flow final netlist | proven | proven | proven |
 | adder2 | RTL = LibreLane synthesis netlist | proven | proven | proven |
 | adder2 | negative control (one gate swapped) | fails as it should | fails | fails |
-| tiny8 | old-flow synthesis netlist = LibreLane synthesis netlist | proven | not run | not finished in 600 s |
-| tiny8 | RTL = LibreLane final netlist | proven | not run | not finished in 600 s |
-| tiny8 | RTL = old-flow final netlist | proven | not run | not finished in 600 s |
-| tiny8 | RTL = LibreLane synthesis netlist | proven | not run | not finished in 600 s |
+| tiny8 | old-flow synthesis netlist = LibreLane synthesis netlist | proven | not run | inconclusive: no answer in 600 s |
+| tiny8 | RTL = LibreLane final netlist | proven | not run | inconclusive: no answer in 600 s |
+| tiny8 | RTL = old-flow final netlist | proven | not run | inconclusive: no answer in 600 s |
+| tiny8 | RTL = LibreLane synthesis netlist | proven | not run | inconclusive: no answer in 600 s |
 | tiny8 | negative control (one gate swapped) | fails as it should | not run | fails |
 
-For tiny8, proof A carries the claim; B was not run and C did not return (not a failure). Full logs are in `parity_eq/` next to the LibreLane jobs on the test PC (not copied into this repo). With LVS passing on both sides, the chain is: RTL = final netlist (proof) = drawn layout (LVS).
+For tiny8, proof A carries the claim; B was not run and C gave no answer in 600 s (inconclusive: it neither proves nor refutes). The rows "RTL = old-flow synthesis netlist" and "old-flow final = LibreLane final" were not run (the chain through the RTL covers them only if the other rows hold). Full logs are in `parity_eq/` next to the LibreLane jobs on the test PC (not copied into this repo). With LVS passing on both sides, the chain is: RTL = final netlist (proof) = drawn layout (LVS).
 
 **Signoff, same die, tt 25 C 5.00 V:**
 
@@ -295,7 +296,7 @@ For tiny8, proof A carries the claim; B was not run and C did not return (not a 
 | Power (uW) | not measured | 488 | 4,120 | 6,972 |
 | Run time (s) | 10 | 99 | 56 | 156 |
 
-The old flow's remaining errors are Metal1/2/3 minimum-spacing rules (M1.2a, M2.2a, M3.2a), none inside library cells. Power is not a validated number: the switching-activity assumptions were not aligned. LibreLane's setup and hold differ from ours partly because LibreLane uses a different parasitic extractor (section 8B).
+The old flow's remaining errors are Metal1/2/3 minimum-spacing rules (M1.2a, M2.2a, M3.2a), none inside library cells. Power is not a validated number: the switching-activity assumptions were not aligned. Marks, in plain words: LVS and formal equivalence: match. DRC: differs (2 and 88 against 0). Setup and hold slack: differs (12.90 against 9.62, 0.956 against 0.665 on tiny8). Power: not validated. Cell counts, wire, vias, skew: differs. The slack gap has causes that were not separated for this old flow: a different extractor (section 8B), a different netlist and buffering (263 against 488 cells, 5 against 9 clock buffers) and a different clock tree. The adder2 hold 10.5 ns is LibreLane's own number for a design without a clock port; which constraint produced it was not checked.
 
 **Physical comparison, tiny8** (old flow against LibreLane; the percentage is against the LibreLane value):
 
@@ -315,7 +316,7 @@ The old flow's remaining errors are Metal1/2/3 minimum-spacing rules (M1.2a, M2.
 | Wire length (um) | 1,117 | 1,903 | -41% |
 | Vias | 367 | 395 | -7% |
 
-LibreLane's extra cells are port buffers, repair buffers and tap cells (tiny8: 56 repair buffers, 84 tap cells, 9 clock buffers).
+LibreLane's extra cells include port buffers, repair buffers and tap cells (tiny8: 56 cells added before the clock tree, 84 tap cells, 9 clock buffers, i.e. 4 more than ours). That is about 149 of the 225 extra cells (488 against 263); the rest (synthesis gave 287 cells against 255, and other cells) was not itemised.
 
 Layouts, same die, same renderer (KLayout). Left old flow, right LibreLane:
 
@@ -323,17 +324,17 @@ Layouts, same die, same renderer (KLayout). Left old flow, right LibreLane:
 
 ![adder2 side by side](img/adder2-side-by-side.png)
 
-**Stress runs of the old flow** (`web/studio/engines/parity/stress.mjs`, wall time on the test PC):
+**Stress runs of the old flow** (`web/studio/engines/parity/stress.mjs`, wall time on the test PC; an old-flow-only diagnostic, no LibreLane comparison and no pictures; the 56 s of the signoff table and the 68 to 76 s here were timed by different scripts and were not reconciled; the signoff table's 2 and 88 DRC tiles are with the qrouter fix):
 
 | Case | Die (um) | Result | Time |
 |---|---|---|---|
 | tiny8 x5 (parity die) | 135.5 x 133.3 | 5 of 5 give identical placement and route hashes; all LVS match | 68 to 76 s |
 | tiny8, smallest die, no spare room | - | fails: clock tree stage stops (no room for clock buffers) | 41 s |
-| tiny8, Studio default die | 103.6 x 101.9 (81.5% full) | passes: 0 failed nets, LVS match, 197 DRC tiles (before the qrouter fix) | 68 s |
+| tiny8, Studio default die | 103.6 x 101.9 (81.5% full) | passes: 0 failed nets, LVS match, 197 DRC tiles (before the qrouter fix; 66 after, section 3) | 68 s |
 | adder2, smallest die | 34.2 x 31.4 | fails: 1 failed net, LVS mismatch | 10 s |
 | rmult20 (2,595 cells) | 243.6 x 243.0 | fails: 360 failed nets, so LVS mismatch (10145 vs 9067 nets; native Netgen agrees, section 2) | 473 s |
 
-**Not validated:** layout equality (not possible, different tools); old-flow DRC cleanliness (11 to 1,272 tiles on these designs); power; timing with different constraints; the formal proof covers logic function from the same reset state, not timing, clock-domain or physical correctness, and it trusts Yosys and each cell's liberty function. Only two small designs.
+**Not validated:** layout equality (not possible, different tools); old-flow DRC cleanliness (2 and 88 tiles on adder2 and tiny8 here, 66 at the automatic die; `librelane-parity.md` lists 11 to 1,272 tiles over all designs including rmult20, from an older router build); power; timing with different constraints; the formal proof covers logic function: for tiny8 only the unbounded induction (proof A) finished, B and C were completed for adder2 only; it does not cover timing, clock-domain or physical correctness, and it trusts Yosys and each cell's liberty function. Only two small designs.
 
 ## 8. OpenROAD place and route in the browser
 
@@ -356,8 +357,8 @@ Run 2026-10-20 (A and B in Node with `node web/studio/engines/pnr-flow.selftest.
 
 | Removed | What it does | In the browser flow instead | Effect on results |
 |---|---|---|---|
-| `ifp` | floorplan commands (`initialize_floorplan`, `make_tracks`) | floorplan written as a DEF | none on the layout; the DEF carries the same numbers |
-| `rcx` (OpenRCX) | wire parasitic extraction | Magic extraction + OpenSTA | timing differs from LibreLane's own report (hold +35.5%, see 8B); not validated against OpenRCX |
+| `ifp` | floorplan commands (`initialize_floorplan`, `make_tracks`) | floorplan written as a DEF | expected none; the DEF carries the die, rows and tracks, but it was not compared with what native `initialize_floorplan` writes |
+| `rcx` (OpenRCX) | wire parasitic extraction | Magic extraction + OpenSTA | timing differs from LibreLane's own report (hold +35.5% on our layout, +44.1% on LibreLane's, see 8B); not validated against OpenRCX (OpenRCX is back in the default build, section 8.y) |
 | `psm` | IR-drop analysis | none | no IR-drop check in the browser flow |
 | `mpl`, `par`, `ram`, `rmp`, `cgt`, `dft`, `exa`, `fin`, `pad`, `upf` | macro placement, partitioning, RAM generator, resynthesis, clock gating, scan, examples, fill, pads, power intent | not used | none for these designs; no macros, scan or pads |
 | web server, GUI, distributed router | interface only | none | none |
@@ -381,11 +382,11 @@ Other changes: OpenMP stubbed, the check in TritonRoute that expects 2 threads d
 | Vias | 1,889 | 1,878 | -0.6% |
 | Time place / route (s) | 6 to 8 / 33 to 37 | 2.8 / 16.9 | WebAssembly is about 2 to 3 times slower per thread |
 
-The WebAssembly build is not bit-identical to native OpenROAD, but the results agree to about 1% and both route to zero violations. We do not claim identical output. Which command first diverges and by how many microns cells move was not measured (section 9). The clock tree was not re-run natively on this exact run (section 1 does that).
+The WebAssembly build is not bit-identical to native OpenROAD. Wire length (+0.1%), vias (-0.6%) and HPWL (+1.2%) agree to about 1%, and both route to zero violations, but 41.6% of the placed cells are at other positions and the router's violations per iteration differ (33 against 50 at the first iteration). Marks: netlist: match; wire length, vias, HPWL: close (about 1%, a limit chosen after seeing the numbers); cell positions and violation path: differs, reason not found (section 9.1). We do not claim identical output. Which command first diverges and by how many microns cells move was not measured (section 9). The clock tree was not re-run natively on this exact run (section 1 does that).
 
 ### B. Studio flow against LibreLane (tiny8)
 
-Each column's difference is the percentage against the LibreLane value. No marks are given. Wire length and vias come from ONE parser, `docs/validation/def-stats.mjs`, run on the final routed DEF of every flow. Timing comes from ONE tool chain, `docs/validation/pnr-timing-same-tool.mjs` (our Magic extraction + our OpenSTA), run on every flow's final DEF and netlist, LibreLane's included. "Studio OpenROAD on LibreLane's netlist" starts from LibreLane's own synthesized netlist (`NETLIST=... pnr-flow.selftest.mjs`), which removes the synthesis difference. "Old flow" is graywolf + qrouter (`parity/browser.mjs`, re-run 2026-10-20 with the same numbers as section 7).
+Each column's difference is the percentage against the LibreLane value. Marks: 0 violations, 0 DRC tiles and LVS: match; hold slack on LibreLane's netlist (-0.5%): match; cell counts, clock buffers, wire length, vias, setup path time: differs (14% to 37%), reasons in the bullets below (the 29% wire-length gap has no known reason). The cell counts "after place" and "at the end" differ by 1 to 3 cells from place plus clock buffers (for example 271 + 7 = 278 against 279); this was not reconciled. One run each. Wire length and vias come from ONE parser, `docs/validation/def-stats.mjs`, run on the final routed DEF of every flow. Timing comes from ONE tool chain, `docs/validation/pnr-timing-same-tool.mjs` (our Magic extraction + our OpenSTA), run on every flow's final DEF and netlist, LibreLane's included. "Studio OpenROAD on LibreLane's netlist" starts from LibreLane's own synthesized netlist (`NETLIST=... pnr-flow.selftest.mjs`), which removes the synthesis difference. "Old flow" is graywolf + qrouter (`parity/browser.mjs`, re-run 2026-10-20 with the same numbers as section 7).
 
 | tiny8 | Studio OpenROAD | Delta vs LibreLane | Studio OpenROAD on LibreLane's netlist | Delta vs LibreLane | Old flow | LibreLane |
 |---|---|---|---|---|---|---|
@@ -404,7 +405,7 @@ Each column's difference is the percentage against the LibreLane value. No marks
 | Setup slack (ns), for reference | 11.56 | +21.4% | 11.96 | +25.6% | 12.90 | 9.52 |
 | Hold slack (ns) | 0.901 | -6.0% | 0.953 | -0.5% | 0.957 | 0.958 |
 
-All columns except the last: same extraction (Magic) and same OpenSTA. LibreLane's own report, which uses OpenRCX and OpenSTA, gives setup 9.62 ns and hold 0.665 ns. Against that number our hold slack (0.901 ns) is +35.5% higher; the gap is the extractor, not the layout (see the last bullet).
+All columns except the last: same extraction (Magic) and same OpenSTA. LibreLane's own report, which uses OpenRCX and OpenSTA, gives setup 9.62 ns and hold 0.665 ns. Against that number our hold slack (0.901 ns) is +35.5% higher. That gap mixes extractor and layout. On the same LibreLane layout, Magic gives 0.958 ns against OpenRCX's 0.665 ns, +44.1%, so the extractor alone is as large as the whole gap (see the table below).
 
 Parasitic extractor, as a 2-row table (LibreLane's final layout, same tt corner):
 
@@ -414,14 +415,14 @@ Parasitic extractor, as a 2-row table (LibreLane's final layout, same tt corner)
 | OpenRCX + OpenSTA (LibreLane's own report) | 0.665 | 9.62 |
 
 What the table says, in plain words:
-- In LibreLane, `repair_timing` added 0 buffers (setup 0, hold 0, from the step metrics). The 56 cells added before CTS were 33 port buffers (`dlyb_1` delay cells) and 23 from `repair_design`. We add 33 port buffers (`buf_1`) and 2 inverters. So the buffers are not the main reason for LibreLane's longer wires.
+- In LibreLane, `repair_timing` added 0 buffers (setup 0, hold 0, from the step metrics). The 56 cells added before CTS: the table counts 54 `dlyb_1` and 2 buffers; an earlier reading of the same step logs said 33 port buffers (`dlyb_1`) and 23 from `repair_design`. The two splits disagree and were not re-checked (the LibreLane job folders are on the test PC only). We add 33 port buffers (`buf_1`) and 2 inverters. So the buffers are not the main reason for LibreLane's longer wires.
 - The flows do not start from the same netlist. Yosys gives 236 cells in the Studio OpenROAD flow, 255 in the old flow and 287 in LibreLane. The old-flow and LibreLane netlists are proven equal to the RTL in section 7; the OpenROAD flow's is covered by the equivalence check below. The synthesis difference comes from different Yosys scripts and versions (0.68.1207 against 0.64); which of the two matters was not tested. With LibreLane's netlist the Studio flow gets 11,138 um instead of 10,236 um, so about 900 um of the gap is the netlist. About 4,500 um (29% of LibreLane's wire) remains and we do not know why. LibreLane turns on routability-driven placement and uses different pin buffers and a different power grid; we did not test which matters.
 - Timing, like with like: with the same extraction and the same OpenSTA, LibreLane's layout gives hold 0.958 ns and ours 0.901 ns (-6%), and the critical path uses 14.48 ns against our 12.44 ns (-14%). Slack as a percentage is a weak measure (it depends on the clock we picked), so setup is compared as the time the path takes; hold does not depend on the clock.
 - Magic extraction was not validated against OpenRCX.
 
 ### Logic equivalence of the place-and-route netlist
 
-`pnr-flow.selftest.mjs` also proves with Yosys (`equiv_make`, `equiv_simple`, `equiv_induct`, cell functions from the liberty, same recipe as section 7) that (1) the netlist after place + clock tree (with port, repair and clock buffers) is equivalent to the netlist Yosys made before place, and (2) it is equivalent to the RTL. A negative control (one gate swapped for its dual) makes the proof fail, as it must. tiny8 and adder2 pass all three. This closes the gap that LVS alone leaves (LVS only compares the layout with the place-and-route tool's own netlist). It checks this build's netlist edits on these two designs; it is not a general proof.
+`pnr-flow.selftest.mjs` also proves with Yosys (`equiv_make`, `equiv_simple`, `equiv_induct`; the proof is on the cell functions from the liberty, so it does not see power pins or physical errors; same recipe as section 7) that (1) the netlist after place + clock tree (with port, repair and clock buffers) is equivalent to the netlist Yosys made before place, and (2) it is equivalent to the RTL. A negative control (one gate swapped for its dual) makes the proof fail, as it must. tiny8 and adder2 pass all three. This closes the gap that LVS alone leaves (LVS only compares the layout with the place-and-route tool's own netlist). It checks this build's netlist edits on these two designs; it is not a general proof.
 
 ### adder2
 
@@ -450,7 +451,7 @@ LibreLane's 156 s (tiny8) is the whole container run: synthesis to signoff, incl
 
 ### In the browser (Studio), and the same die in Node
 
-Browser run, 2026-10-20, Chrome 155 on Windows 11, Studio opened from a local server (`studio.html?mock=1`), example tiny8, clock 24 ns, **die 250 x 250 um**, density 50%, "In-browser place and route = OpenROAD (TritonRoute)", "Run All". One run. Total 96 s. The Node column is the same flow at the same die (`node web/studio/engines/pnr-flow.selftest.mjs tiny8 250 250`, run 2026-10-20, log `logs/pnr-node-tiny8-250.txt`).
+Browser run (the only run in a real page in section 8), 2026-10-20, Chrome 155 on Windows 11, Studio opened from a local server (`studio.html?mock=1`), example tiny8, clock 24 ns, **die 250 x 250 um**, density 50%, "In-browser place and route = OpenROAD (TritonRoute)", "Run All". One run. Total 96 s. The Node column is the same flow at the same die (`node web/studio/engines/pnr-flow.selftest.mjs tiny8 250 250`, run 2026-10-20, log `logs/pnr-node-tiny8-250.txt`).
 
 | tiny8, 250 x 250 um | Chrome (Studio page) | Node (same code) |
 |---|---|---|
@@ -463,7 +464,7 @@ Browser run, 2026-10-20, Chrome 155 on Windows 11, Studio opened from a local se
 | Signoff setup / hold slack (ns) | 11.45 / 0.92 | 11.445 / 0.9211 |
 | Time place / CTS / route (s) | 6.3 / 20.0 / 33.0 | 9.4 / 26.9 / 38.1 (PC busier) |
 
-So the browser page and Node give the same layout at this die. Native OpenROAD was not run at 250 x 250 um; the browser-to-native link is table A at the 135.52 x 133.28 um die, so "browser = Node = native" is shown in two steps, not one table. Other browser rows: Timing (STA after routing) setup 12.79 ns, hold 0.99 ns, Fmax 89.19 MHz; signoff timing with Magic wire delays setup 11.45 ns, hold 0.92 ns, Fmax 79.65 MHz.
+So the browser page and Node give the same layout at this die. The Chrome slacks are the page's rounded numbers (11.45 / 0.92); the unrounded ones were not saved. Native OpenROAD was not run at 250 x 250 um; the browser-to-native link is table A at the 135.52 x 133.28 um die, so "browser = Node = native" is shown in two steps, not one table. Other browser rows: Timing (STA after routing) setup 12.79 ns, hold 0.99 ns, Fmax 89.19 MHz; signoff timing with Magic wire delays setup 11.45 ns, hold 0.92 ns, Fmax 79.65 MHz.
 
 No browser console errors were seen after the run started (console was read only from then on; load-time errors were not checked). Switching the select to graywolf + qrouter and running Placement still works. Only Chrome was tried.
 
@@ -479,7 +480,7 @@ No browser console errors were seen after the run started (console was read only
 
 Built the same way as above from OpenROAD master 6f3f28c (2026-10-24, emsdk 3.1.74, patches in `tools/openroad-pnr/openroad-6f3f28c-wasm.patch`, recipe in `web/vendor/openroad-pnr/6f3f28c/SOURCE.md`). Browser clock tree and place and route now both use this one binary (it contains TritonCTS). Run with `node web/studio/engines/pnr-flow.selftest.mjs tiny8` (the old build: `OR_PNR_VER=61932e8 OR_CTS_DIR=<openroad-cts/61932e8>`).
 
-**Native reference built from the same commit.** Docker image `or-native-61:6f3f28c`: OpenROAD source at 6f3f28cc85, `cmake /src -DCMAKE_BUILD_TYPE=Release -DBUILD_GUI=OFF -DCMAKE_PREFIX_PATH=/opt/or-deps $(cat /src/deps-prefixes.sh)`, then `make -j6 openroad` (script `dobuild.sh` on the test PC, `C:\Users\Asus\eda\designs\or-native-61\dobuild.sh`); dependencies under /opt/or-deps; binary `/build/bin/openroad`, version 26Q4-1108-g6f3f28cc85. It has no PDK: the same gf180 LEF, liberty and tech files as the browser are mounted. Run: `docker run --rm --entrypoint bash -v <dir>:/w or-native-61:6f3f28c -c 'cd /w; /build/bin/openroad -exit place.tcl; ...'` with the Tcl written by `web/studio/engines/pnr-native.mjs` (`/w/` paths unchanged). Logs: `logs/or-native-6f3f28c/`. Same synthesized netlist, same Tcl as the browser scripts, die 135.52 x 133.28 um, 50% density, 24 ns clock, one run each.
+**Native reference built from the same commit.** Docker image `or-native-61:6f3f28c`: OpenROAD source at 6f3f28cc85, `cmake /src -DCMAKE_BUILD_TYPE=Release -DBUILD_GUI=OFF -DCMAKE_PREFIX_PATH=/opt/or-deps $(cat /src/deps-prefixes.sh)`, then `make -j6 openroad` (script `dobuild.sh` on the test PC, `C:\Users\Asus\eda\designs\or-native-61\dobuild.sh`); dependencies under /opt/or-deps; binary `/build/bin/openroad`, version 26Q4-1108-g6f3f28cc85. It has no PDK: the same gf180 LEF, liberty and tech files as the browser are mounted. Run: `docker run --rm --entrypoint bash -v <dir>:/w or-native-61:6f3f28c -c 'cd /w; /build/bin/openroad -exit place.tcl; ...'` with the Tcl written by `web/studio/engines/pnr-native.mjs` (`/w/` paths unchanged). Logs: `logs/or-native-6f3f28c/`. Same synthesized netlist, same Tcl as the browser scripts, die 135.52 x 133.28 um, 50% density, 24 ns clock, one run each. This native run used `openroad -exit` without `-threads 1`, and "wasm" here means the Node run, not a page. Instance counts here include tap cells (407), unlike table A (305). The last column is from earlier runs with a different input and is not the same run as table A, so do not compare it with table A.
 
 | Step (tiny8) | Native 6f3f28c | Wasm 6f3f28c (default) | Result | Earlier: native 61932e8 / wasm 61932e8 |
 |---|---|---|---|---|
@@ -487,7 +488,7 @@ Built the same way as above from OpenROAD master 6f3f28c (2026-10-24, emsdk 3.1.
 | HPWL after detailed placement (um) | 8044.8 | 8044.8 | match | 8584.3 / 8479.5 |
 | Placement DEF cells at the same spot as native | 407 of 407 | 407 of 407 | match | 283 of 407 |
 | After CTS: cells at the same spot | 415 of 415 | 415 of 415 | match | n/a |
-| Clock buffers / sinks | 6 / 48 | 6 / 48 | match | 6 / 7 |
+| Clock buffers / sinks | 6 / 48 | 6 / 48 | match | native CTS not run / 7 buffers (wasm) |
 | CTS skew (ns), latency | 0.01 (0.95) | 0.01 (0.94) in the full flow | match (rounding) | n/a |
 | Route wire (um) / vias | 9752 / 1858 | 9789 / 1857 | close: wire +0.4%, vias -0.05% | 10461 / 1872 vs 10235 / 1889 |
 | TritonRoute violations per iteration | 31 / 11 / 6 / 0 | 33 / 7 / 4 / 0 | final 0 both; path differs | 47-15-5-0 vs 33-8-7-0 |
@@ -496,15 +497,16 @@ Built the same way as above from OpenROAD master 6f3f28c (2026-10-24, emsdk 3.1.
 
 CTS golden (LibreLane tiny8 placed DEF, `cts.selftest.mjs`), regenerated with native 6f3f28c using the browser's own CTS Tcl on the same pre-processed DEF: 9 clkbuf_8, 48 sinks, latency 0.67 ns, **skew 0.01 ns** (was 0.00 with 61932e8; the upstream commit changed it, and the native run of the new commit gives 0.01 too). The wasm result has the same COMPONENTS as native line for line, and the NETS have the same words; only DEF annotations (`+ USE SIGNAL`, the NDR name, row lines) differ, which the browser removes for its own router. Selftest golden updated to skew 0.01.
 
-Reading: with the native binary built from the same commit, the browser placement and clock tree are identical to native (every cell, HPWL to 0.1 um), and routing is within 0.4% in wire length. The earlier cell and HPWL gap (8584 vs 8044) was the upstream commit change, not the wasm port. Router violation counts per iteration differ (TritonRoute single thread against native threads) but both end at 0. This is now held to the same bar as the older build (about 1%, not bit-identical), and met more tightly for placement.
+Reading: with the native binary built from the same commit, the Node (WebAssembly) placement and clock tree put every cell at the same spot as native, with HPWL equal to 0.1 um, and routing is within 0.4% in wire length. The difference between native 61932e8 and native 6f3f28c (8584 vs 8044) is the upstream commit change. Why the 61932e8 WebAssembly build moved 41.6% of the cells away from the native 61932e8 build while the 6f3f28c one does not was not found. Router violation counts per iteration differ (TritonRoute single thread against native threads) but both end at 0. This is now held to the same bar as the older build (about 1%, not bit-identical), and met more tightly for placement.
 Also not covered: the unresolved `_Unwind_GetIP` symbol (never reached in these runs), Firefox/Safari, designs other than tiny8, the old build is no longer the browser default.
 
 **NOT validated in section 8.**
-- Bit-identical results to native OpenROAD (they are not; table A).
+- Bit-identical results to native OpenROAD (61932e8: they are not, table A; 6f3f28c on tiny8: placement and clock tree are, routing is not).
+- For 8.x: native DRC, LVS, extraction and timing on the native routed DEF, a native run with `-threads 1`, designs other than tiny8, adder2, and any run in a page (all 8.x and 8.y numbers are Node).
 - Why LibreLane's wire is 29% longer than ours on the same netlist.
 - Magic extraction against OpenRCX; other corners (ss, ff).
 - Large or hard designs. Both designs are tiny, at 50% density with a relaxed 24 ns clock (setup slack above 9 ns). Congestion, tight timing and the browser memory limit are not tested on anything bigger.
-- Firefox and Safari. Power. adder2 timing. A side-by-side native layout picture. The clock tree natively on this exact run.
+- Firefox and Safari. Power. adder2 timing. A side-by-side native layout picture (there is none for 8, 8.x, 8.y or 8.z; only single-pane Studio screenshots of the 250 um run). The clock tree natively on this exact run. Studio's floorplan DEF against native `initialize_floorplan`.
 
 ## 8.y OpenRCX parasitics and PDNSim IR drop (2026-10-25, #65, #68)
 
@@ -518,12 +520,12 @@ Also not covered: the unresolved `_Unwind_GetIP` symbol (never reached in these 
 |---|---|---|---|
 | Nets in SPEF (*D_NET) | 294 | 294 | match |
 | SPEF text, except date and version lines | | | 0 differing lines |
-| VDD worst IR drop | 2.60e-3 V | 2.60e-3 V | match |
+| VDD worst IR drop (ORFS typ rules; the PDK nom re-run gave 2.53e-3 V, also identical to native) | 2.60e-3 V | 2.60e-3 V | match |
 | VDD average IR drop | 4.98e-4 V | 4.98e-4 V | match |
 | VSS worst / average | 1.05e-3 / 4.69e-4 V | 1.05e-3 / 4.69e-4 V | match |
 | Total power used | 4.93e-3 W | 4.93e-3 W | match |
 
-In the Studio flow (170 um die default) the Reports card shows worst 0.593 mV on VDD (0.012% of 5 V). Post-route setup/hold slack on tiny8 moved from 11.527 / 0.913 ns (Magic SPEF, section 8.x) to 11.706 / 0.876 ns (OpenRCX SPEF).
+In the Studio flow (a 170 um die, which is not one of the dies in the table above and was not compared with native) the Reports card shows worst 0.593 mV on VDD (0.012% of 5 V). Post-route setup/hold slack on tiny8 moved from 11.527 / 0.913 ns (Magic SPEF, section 8.x) to 11.706 / 0.876 ns (OpenRCX SPEF, ORFS typ rules at the time). The 11.6088 ns above (PDK nom rules) is a different rules file, and the two were not run on the same die in this section; the setup number depends on rules, die and netlist.
 
 **NOT validated.** One design (tiny8), one corner (typical), one rules file (the PDK nom file). The IR numbers use default switching activity, not real activity, and the power grid is our own pdngen script, not LibreLane's. We compared against native OpenROAD, not against Magic, a signoff extractor, or silicon. OpenRCX against Magic extraction was not compared net by net. No IR heat map yet (follow-up).
 
@@ -531,7 +533,7 @@ In the Studio flow (170 um die default) the Reports card shows worst 0.593 mV on
 
 **How ours was built.** Same 6f3f28c wasm as section 8.x. In `engines/cts.worker.js` the OpenROAD CTS script now ends, when Properties "Timing repair" is on (default), with: gf180 layer RC from OpenROAD-flow-scripts `platforms/gf180/setRC.tcl` (`set_layer_rc` Metal2 to Metal5; signal wires on Metal2, clock wires on Metal4), `estimate_parasitics -placement`, `repair_timing -setup`, `repair_timing -hold`, `detailed_placement`, `check_placement`. `repair_design` already ran in the place step (after `buffer_ports`). The dont_use list (`drc_exclude.cells`) is applied before, so repair cannot pick the excluded cells; CTS itself still uses clkbuf_8/4/2 only. Global-route repair is NOT done (the browser route step has no SDC and would need a second global route).
 
-**How native was run.** Image `or-native-61:6f3f28c` (section 8.x), `openroad -threads 1 -exit` on the Tcl written by `engines/pnr-native.mjs` (`PERIOD=7 REPAIR=1`), same synthesized netlist as the browser run (`PERIOD=7 node web/studio/engines/pnr-flow.selftest.mjs tiny8`, `RAW=1` prints the OpenROAD log). Logs: `logs/or-native-6f3f28c/repair/`. The traditional flow (LibreLane/ORFS) was not run for this step.
+**How native was run.** Image `or-native-61:6f3f28c` (section 8.x), `openroad -threads 1 -exit` on the Tcl written by `engines/pnr-native.mjs` (`PERIOD=7 REPAIR=1`), same synthesized netlist as the Node run (`PERIOD=7 node web/studio/engines/pnr-flow.selftest.mjs tiny8`, `RAW=1` prints the OpenROAD log). Logs: `logs/or-native-6f3f28c/repair/`. The traditional flow (LibreLane/ORFS) was not run for this step.
 
 tiny8, die 135.52 x 133.28 um, 7 ns clock (input/output delay 20%). A 7 ns clock makes tiny8 fail setup on purpose (24 ns, used elsewhere, has 11 ns slack and nothing to repair).
 
@@ -542,12 +544,12 @@ tiny8, die 135.52 x 133.28 um, 7 ns clock (input/output delay 20%). A 7 ns clock
 | Repair moves | | 3 buffers inserted, 21 resized up, 1 pin swap, no hold violations | same | match |
 | Cells / cell area after CTS | 279 / 8776 um2 | 282 / 8996 um2 (+2.5%) | 282 / 8996 um2 | match |
 | Final netlist, wasm vs native | | | | 0 differing lines |
-| Post-route setup / hold WNS, OpenRCX (ns) | -1.894 / 0.739 | -0.087 / 0.750 | n/a | repair closes 95% of the setup gap; not fully, route adds wire delay the estimate did not have |
-| TritonRoute violations / Magic DRC / LVS / equivalence | 0 / 0 / match / pass | 0 / 0 / match / pass | route: 0 (native wire 10184 um, 1902 vias, wasm 10142 um, 1911 vias) | |
+| Post-route setup / hold WNS, OpenRCX (ns) | -1.894 / 0.739 | -0.087 / 0.750 | n/a | repair closes 95% of the setup gap (wasm repair on against repair off); not fully: -0.087 ns still fails 7 ns after routing, because route adds wire delay the estimate did not have. Native post-route timing was not run |
+| TritonRoute violations / Magic DRC / LVS / equivalence | 0 / 0 / match / pass | 0 / 0 / match / pass | route: 0 violations (native wire 10184 um, 1902 vias, wasm 10142 um, 1911 vias) | close: wire -0.4%, vias +0.5% (limit about 1%); native DRC, LVS and equivalence on the native route were not run |
 
 Default 24 ns run (nothing violates, so repair does nothing): setup/hold 11.709 / 0.882 ns, DRC 0, LVS match, same as before. Run `REPAIR=0 PERIOD=7 node web/studio/engines/pnr-flow.selftest.mjs tiny8` for the "off" column.
 
-**NOT validated.** One design (tiny8), one clock. Repair quality (does it beat LibreLane's repair on the same design): not compared, LibreLane was not run. Repair after global route is absent. A 3 ns clock on tiny8 was tried: repair ran about 1100 iterations, grew area 30%, and still left -6.7 ns WNS, so very tight clocks are not fixed by this step. The ORFS setRC values were used for repair only; placement and CTS still use the average layer RC from the tech LEF. aes (ORFS stress test, #64) is re-run separately and not part of this table.
+**NOT validated.** Studio's "Timing repair" option and `cts.worker.js` inside a page (only Node ran it); native post-route timing and DRC/LVS of the repaired design; the build files of image `or-native-61:6f3f28c` are on the test PC only. One design (tiny8), one clock. Repair quality (does it beat LibreLane's repair on the same design): not compared, LibreLane was not run. Repair after global route is absent. A 3 ns clock on tiny8 was tried: repair ran about 1100 iterations, grew area 30%, and still left -6.7 ns WNS, so very tight clocks are not fixed by this step. The ORFS setRC values were used for repair only; placement and CTS still use the average layer RC from the tech LEF. aes (ORFS stress test, #64) is re-run separately and not part of this table.
 
 ## 9. Known limits and next checks
 
@@ -562,10 +564,11 @@ Things we know are open. None is claimed as validated.
 7. **RTL grader.** Now covered in section 10. Not covered there: the five CDC problems (rule and bounded checks, `web/cdc.test.mjs`, never claimed as proven) and the Studio flow problem.
 8. **Runner.** The statement "runner round trip verified (shreg4 signoff clean 14/14)" has no stored log. The runner is not part of this report.
 9. **Missing counts.** Synthesis cell counts for mult8, shreg4, sr8, cnt8, twoclk and pins40 were not recorded, so the benchmark table says so.
+10. **Native LVS of the OpenROAD flow.** The tiny8 LVS of the OpenROAD flow (3150 devices / 1559 nets) has no native Netgen comparison. See "Claims under review".
 
 ## 10. RTL practice grader (Yosys miter, k-induction)
 
-**What is claimed.** The practice page says "proven" when a design equals the reference for every input and every cycle after reset, and "first 40 cycles" when it could only check that far. This section tests both statements. It covers the five non-CDC RTL problems.
+**What is claimed.** The grading engine (`web/grader.js`, run in Node; the page banners were not tested) says "proven" when a design equals the reference for every input and every cycle after reset, and "first 40 cycles" when it could only check that far. This section tests both statements. It covers the five non-CDC RTL problems.
 
 **How ours runs.** `web/grader.js` loads the reference and the user design, builds a miter, and runs `sat -verify -tempinduct -maxsteps 40 -seq 40` starting from undefined state with reset asserted on cycle 1. If that does not succeed, it runs a plain `sat -seq 40` search. A counterexample from either run is a real difference. A pass of the plain search is shown as "first 40 cycles", never "proven". Outputs where the reference is x are not compared. Engine: `@yowasp/yosys` 0.68.1207 (WebAssembly), run in Node.
 
@@ -577,31 +580,31 @@ Things we know are open. None is claimed as validated.
 
 | Case | Problem | Design | Expected | Ours | Native Yosys | Match |
 |---|---|---|---|---|---|---|
-| ..\docs\validation\logs\grader-cases\c01 | counter-en | reference vs itself | proven | proven | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c02 | rise-edge | reference vs itself | proven | proven | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c03 | seq-1011 | reference vs itself | proven | proven | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c04 | gray-counter | reference vs itself | proven | proven | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c05 | rr-arbiter | reference vs itself | proven | proven | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c06 | counter-en | off-by-one (counts by 2) (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c07 | counter-en | wrong reset value (1) (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c08 | counter-en | missing enable (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c09 | counter-en | swapped condition (en low counts) (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c10 | rise-edge | wrong reset value (p=1) (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c11 | rise-edge | falling edge instead of rising (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c12 | rise-edge | level instead of edge (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c13 | seq-1011 | wrong pattern 1101 (first mismatch seen at cycle 6) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c14 | seq-1011 | wrong reset value (1111) (first mismatch seen at cycle 5) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c15 | seq-1011 | window one bit short (3 bits) (first mismatch seen at cycle 4) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c16 | gray-counter | plain binary output (first mismatch seen at cycle 6) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c17 | gray-counter | missing enable (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c18 | gray-counter | wrong shift (<<) (first mismatch seen at cycle 3) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c19 | rr-arbiter | wrong reset pointer (0) (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c20 | rr-arbiter | search starts at last (not last+1) (first mismatch seen at cycle 6) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c21 | rr-arbiter | pointer never updates (first mismatch seen at cycle 4) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c22 | counter-en | equal only after reset: no reset input used, q starts undefined (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c23 | counter-en | equal only after reset: reset ignored after first use (age flag) (first mismatch seen at cycle 2) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c24 | counter-en | differs only from cycle ~30 (inside 40) (first mismatch seen at cycle 40) | fails | fails | undefined | DIFFERS |
-| ..\docs\validation\logs\grader-cases\c25 | counter-en | differs only from cycle ~45 (outside 40) | see text | first 40 cycles only | undefined | DIFFERS |
+| c01 | counter-en | reference vs itself | proven | proven | proven | match |
+| c02 | rise-edge | reference vs itself | proven | proven | proven | match |
+| c03 | seq-1011 | reference vs itself | proven | proven | proven | match |
+| c04 | gray-counter | reference vs itself | proven | proven | proven | match |
+| c05 | rr-arbiter | reference vs itself | proven | proven | proven | match |
+| c06 | counter-en | off-by-one (counts by 2) (first mismatch seen at cycle 3) | fails | fails | fails | match |
+| c07 | counter-en | wrong reset value (1) (first mismatch seen at cycle 2) | fails | fails | fails | match |
+| c08 | counter-en | missing enable (first mismatch seen at cycle 3) | fails | fails | fails | match |
+| c09 | counter-en | swapped condition (en low counts) (first mismatch seen at cycle 3) | fails | fails | fails | match |
+| c10 | rise-edge | wrong reset value (p=1) (first mismatch seen at cycle 2) | fails | fails | fails | match |
+| c11 | rise-edge | falling edge instead of rising (first mismatch seen at cycle 2) | fails | fails | fails | match |
+| c12 | rise-edge | level instead of edge (first mismatch seen at cycle 3) | fails | fails | fails | match |
+| c13 | seq-1011 | wrong pattern 1101 (first mismatch seen at cycle 6) | fails | fails | fails | match |
+| c14 | seq-1011 | wrong reset value (1111) (first mismatch seen at cycle 5) | fails | fails | fails | match |
+| c15 | seq-1011 | window one bit short (3 bits) (first mismatch seen at cycle 4) | fails | fails | fails | match |
+| c16 | gray-counter | plain binary output (first mismatch seen at cycle 6) | fails | fails | fails | match |
+| c17 | gray-counter | missing enable (first mismatch seen at cycle 3) | fails | fails | fails | match |
+| c18 | gray-counter | wrong shift (<<) (first mismatch seen at cycle 3) | fails | fails | fails | match |
+| c19 | rr-arbiter | wrong reset pointer (0) (first mismatch seen at cycle 2) | fails | fails | fails | match |
+| c20 | rr-arbiter | search starts at last (not last+1) (first mismatch seen at cycle 6) | fails | fails | fails | match |
+| c21 | rr-arbiter | pointer never updates (first mismatch seen at cycle 4) | fails | fails | fails | match |
+| c22 | counter-en | equal only after reset: no reset input used, q starts undefined (first mismatch seen at cycle 2) | fails | fails | fails | match |
+| c23 | counter-en | equal only after reset: reset ignored after first use (age flag) (first mismatch seen at cycle 2) | fails | fails | fails | match |
+| c24 | counter-en | differs only from cycle ~30 (inside 40) (first mismatch seen at cycle 40) | fails | fails | fails | match |
+| c25 | counter-en | differs only from cycle ~45 (outside 40) | see text | first 40 cycles only | first 40 cycles only | match |
 
 **Reading the table.**
 - All five references are proven equal to themselves, in both tools.
@@ -682,7 +685,7 @@ Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design>
 
 **What we compared.** The explorer prints per-layer rectangle counts in its own log. Via layers are single rectangles, so they can be compared one to one. Mapping (the explorer's wasm uses sky130 slot names): MCON = Via1 (35/0), VIA1 = Via2 (38/0), VIA2 = Via3 (40/0), VIA3 = Via4 (41/0), MET4 = Metal5 (81/0).
 
-| Design | Via1 35/0 | Via2 38/0 | Via3 40/0 | Via4 41/0 | Metal5 81/0 | Cells (KLayout / Studio 2D parser) | Result |
+| Design | Via1 35/0 | Via2 38/0 | Via3 40/0 | Via4 41/0 | Metal5 81/0 | Different cell types in the top cell (KLayout / Studio 2D parser; not instance counts) | Result (vias and Metal5 only) |
 |---|---|---|---|---|---|---|---|
 | tiny8 | 1355 / 1355 | 1104 / 1104 | 127 / 127 | 18 / 18 | 2 / 2 | 41 / 41 | match |
 | shreg4 | 93 / 93 | 85 / 85 | 54 / 54 | 18 / 18 | 2 / 2 | 14 (KLayout) | match |
@@ -691,11 +694,11 @@ Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design>
 
 (each pair is KLayout / explorer). For tiny8 the Studio 2D parser also gives the same flattened polygon count as KLayout on every drawing layer (the KLayout excess on the `/10` datatypes is text labels, e.g. Metal2 1024 + 21 polygons vs 1024 + 21 labels). Top cell tiny8, shreg4, add, m8 found correctly. Load plus process time in the explorer: 58 to 190 ms.
 
-**Differs.** Metal layers are cut into rectangles by the explorer, so counts are higher than polygon counts (tiny8 Metal2: 2138 rects vs 1024 polygons; Metal3 601 vs 451). Not compared further. Colours: since the colour edit (#63) the layer colours in `circuit_viewer.js` are the gf180 PDK colours from `gf180-layers.json`, the same as Studio 2D (Metal1 yellow, Metal2 lime, ...). Heights are the explorer's own display values; the layer order is correct. A "not to scale" note is shown.
+**Differs.** Metal1 to Metal4, poly and diffusion were not compared (only vias and Metal5). Metal layers are cut into rectangles by the explorer, so counts are higher than polygon counts (tiny8 Metal2: 2138 rects vs 1024 polygons; Metal3 601 vs 451). Not compared further. Colours: since the colour edit (#63) the layer colours in `circuit_viewer.js` are the gf180 PDK colours from `gf180-layers.json`, the same as Studio 2D (Metal1 yellow, Metal2 lime, ...). Heights are the explorer's own display values; the layer order is correct. A "not to scale" note is shown.
 
 **Behaviour fixes in our wrapper.** A file that is not GDSII, or a damaged file, now gives "Could not open the 3D view" (checked with 20 junk bytes and a valid header followed by garbage); upstream otherwise shows its loading text forever.
 
-**In-browser flow checked (2026-10-25).** Studio `?mock`, Examples > shreg4, Run All (LVS match), GDS tab, then the Tiny Tapeout Explorer button: the 3D view opened from the in-browser Magic GDS (patched power labels), no error text, new colours visible. Not compared against KLayout 3D.
+**In-browser flow checked (2026-10-25).** Studio `?mock`, Examples > shreg4, Run All (LVS match), GDS tab, then the Tiny Tapeout Explorer button: the 3D view opened from the in-browser Magic GDS (patched power labels), no error text, new colours visible. No explorer counts were recorded in this page check; not compared against KLayout 3D. The KLayout version and the `-r` script were not recorded.
 
 **NOT validated.** Metal and poly/diffusion geometry against KLayout (only via counts and 2D counts); the 3D picture against a KLayout 3D render; labels and net highlighting; large designs (largest tested: m8, 650 KB); Safari/Firefox; GDS from the in-browser Magic flow on every example.
 
@@ -704,9 +707,9 @@ Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design>
 **Setup.** Studio, Properties, "Formal tab (SymbiYosys)" on. SBY 0.64 (Python, unmodified, `web/vendor/sby/0.64/`) runs under Pyodide 0.27.7 in a Web Worker. SBY starts tools as processes; the browser cannot, so `web/studio/engines/formal_shim.py` replaces `subprocess.Popen`: commands SBY would run (`yosys`, `yosys-abc`) are run by JavaScript in the same YoWASP Yosys 0.68.1207 that Lint and Synthesis use (ABC is inside it, run through the `abc -script` pass), then SBY is restarted and replays the results (about 6 restarts per run). `yosys-witness` runs as Python. Engines: `abc pdr` (mode prove), `abc bmc3` (mode bmc) and, since 2026-10-26 (issue #66), `smtbmc` (modes prove, bmc, cover). Not available: `smtbmc` with yices, z3, bitwuzla (no proven WebAssembly build exists for them, see below); SBY refuses mode cover with abc engines.
 **smtbmc, how ours differs.** `yosys-smtbmc` (Python, unmodified, `web/vendor/sby/0.64/smtbmc_main.py`, from the same container) runs in the shim like SBY. Its solver is Boolector 3.2.3 (`@yowasp/boolector@3.2.3-6.30`, the YoWASP WebAssembly build). smtbmc talks to the solver through a pipe and a thread, which Pyodide cannot do, so the shim replaces `SmtIo`'s pipe methods at run time (the files stay unmodified): each time smtbmc waits for an answer the run stops, JavaScript runs Boolector on the script written so far, and smtbmc is started again from the beginning (it is deterministic). The solver always runs non-incrementally (`--noincr`). Whatever solver the `.sby` names (or none), the browser uses Boolector and says so in the log. Traces come from smtbmc's own VCD writer, so no `sim` replay is needed for smtbmc tasks.
 **Solvers checked:** npm has `@yowasp/boolector` only; `@yowasp/yices2`, `@yowasp/z3`, `@yowasp/bitwuzla` do not exist (404, checked 2026-10-26). The native container has yices but not Boolector.
-**Our flow differs from native in one place:** the YoWASP Yosys has no `sim` pass, and SBY's other trace route needs yices. So the counterexample VCD is made by replaying ABC's witness (`trace.aiw`) on SBY's own AIGER model (`design_aiger.aig`), in `formal_shim.py`. The `vcd_sim on` option is added to the .sby for this.
+**Our flow differs from native in these places (Yosys version, the smtbmc solver, `--noincr`, the restarts, and):** the YoWASP Yosys has no `sim` pass, and SBY's other trace route needs yices. So the counterexample VCD is made by replaying ABC's witness (`trace.aiw`) on SBY's own AIGER model (`design_aiger.aig`), in `formal_shim.py`. The `vcd_sim on` option is added to the .sby for this.
 
-**Traditional flow.** Container `gf180` (oss-cad-suite), `SBY v0.64-dirty`, `Yosys 0.64`, native ABC. Same files: `sby -f <file>.sby` (script `web/studio/engines/formal.native.sh`). Ours: `node web/studio/engines/formal.selftest.mjs <dir>` then `node web/studio/engines/formal.compare.mjs <dir>` (cases in `formal.cases.mjs`). Also checked in the browser (Studio ?mock, Chrome, local server): the counter (formal) example gives PASS, PASS, FAIL and opens the failing waveform in Surfer.
+**Traditional flow.** Container `gf180` (image `hpretl/iic-osic-tools:chipathon26`, oss-cad-suite), `SBY v0.64-dirty`, `Yosys 0.64`, native ABC and yices (their versions were not recorded). Same files: `sby -f <file>.sby` (script `web/studio/engines/formal.native.sh`). Ours: `node web/studio/engines/formal.selftest.mjs <dir>` then `node web/studio/engines/formal.compare.mjs <dir>` (cases in `formal.cases.mjs`). Also checked in the browser (Studio ?mock, Chrome, local server): the counter (formal) example gives PASS, PASS, FAIL and opens the failing waveform in Surfer (before the cover task was added; the live-site check below shows PASS, PASS, FAIL, REACHED). The 14-row table was run in Node, not in a page. No side-by-side screenshots.
 
 | Case (task) | Ours | Native | Result |
 |---|---|---|---|
@@ -725,9 +728,9 @@ Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design>
 | tog, cover, one reachable, one never | FAIL step 6; one trace, 7 cycles | FAIL step 6; one trace, 7 cycles | match (SBY reports FAIL when any cover point is unreached); trace identical |
 | counter (formal example), cover q==9, smtbmc | PASS step 10, 11 cycles | PASS step 10, 11 cycles | match, 5 signals identical |
 
-Native runs use yices, ours Boolector, on the same `.sby` files (engine line `smtbmc`). The smtbmc rows are the same status, step and traces; a different solver could choose other free input values in a trace, but none of these traces differ. Cost: Boolector is started once per solver answer (24 to 92 times per task here); a task takes 3 to 16 s in Node on a busy PC, longer for deeper or larger designs. The `tog` design is a 4-bit counter 0 to 9 with `assert (q <= 9)` and `cover` lines; the others are the designs above.
+Native runs use yices, ours Boolector, on the same `.sby` files (engine line `smtbmc`). The smtbmc rows are the same status, step and traces; a different solver could choose other free input values in a trace, but none of these traces differ. Cost: Boolector is started once per solver answer (24 to 92 times per task here); a task takes 3 to 16 s in Node on a busy PC, longer for deeper or larger designs. The `tog` design is a 4-bit counter 0 to 9 with `assert (q <= 9)` and `cover` lines; the others (counter, deep, fifo-ok, fifo-bug) are defined in `web/studio/engines/formal.cases.mjs`.
 
-The one difference: PDR may pick another valid counterexample (here the unconstrained start value of `count`); both fail the same assert at the same step. Time: 3 to 8 s per file in Node after the downloads.
+The one difference in the abc rows: PDR may pick another valid counterexample (here the unconstrained start value of `count`); both fail the same assert at the same step. Time: 3 to 8 s per abc task in Node after the downloads (smtbmc tasks: 3 to 16 s, above).
 
 **NOT validated.** `smtbmc` with solvers other than Boolector, `smtbmc` options (`--basecase`, `--induction`, `smtc`, `--keep-going`, `unroll off`, memories with `nomem off`), cover on large designs or deep depths (the restart scheme is quadratic in the depth), `aiger`/`btor` and other engines, mode live, `append`, multi-clock and memories, large designs (largest tested: a 4-entry FIFO), the first-run download size and time on a slow link, Safari/Firefox, the live site's console for smtbmc and cover (checked once on 2026-10-26: https://nishkam.world/studio, counter (formal) example gives PASS, PASS, FAIL, REACHED and the cover task ran Boolector from jsDelivr; console showed no errors, but console capture began after page load). Trace values are checked against native on the cases above only.
 
@@ -756,16 +759,16 @@ Each run prints setup and hold (`report_checks -path_delay max` and `min`), `che
 | Worst setup path | instr[9] to _411_ | same | instr[9] to _412_ | same | match |
 | `report_power` table | | | | | identical (the browser file also keeps its `@@POWER` marker line, cosmetic) |
 
-What the clock tree and wires cost on tiny8: setup slack drops by 1.0787 ns (12.6876 to 11.6088) and hold slack rises by 0.0862 ns (0.6956 to 0.7818). Hold goes up because the clock tree delays the capture clock. These are one design and one corner.
+What the clock tree and wires cost on tiny8: setup slack drops by 1.0788 ns (12.6876 to 11.6088) and hold slack rises by 0.0862 ns (0.6956 to 0.7818). Hold goes up because the clock tree delays the capture clock. These are one design and one corner.
 
-**Differences found.** The two reports are byte-identical once surrounding blank lines are trimmed. Nothing differs in the numbers.
+**Differences found.** The two reports are identical once surrounding blank lines are trimmed and the browser's `@@POWER` marker line is ignored. Nothing differs in the numbers. The power totals are not copied into the table; they are in the stored reports.
 
 **Side by side** (the same tiny8 flow as section 15: browser Timing tab, then native `sta` output for the same corner; later screenshots were taken with Multi-corner on, the nom_tt corner is the one compared here):
 
 ![Studio Timing tab: Post-route against Pre-PnR](img/sta-pre-post-browser.png)
 ![native sta: pre and post summary lines](img/sta-pre-post-native.png)
 
-**NOT validated.** Designs other than tiny8; other corners (Studio uses tt 25C 5V only); any case where `check_setup` or the max slew / capacitance / fanout lists are not empty (the lists were empty on tiny8, so only the "empty" output is compared); the Magic extractor path of Post-route STA (the Magic SPEF is checked in sections 4 and 8.y, not re-run here); the runner (LibreLane) mapping of its own `stapostpnr` reports into the same Timing tab; SDC with false paths or multicycle paths (not offered in Properties); Safari/Firefox.
+**NOT validated.** Designs other than tiny8; other corners (this section compares tt 25C 5V only; the nine-corner run is section 15); any case where `check_setup` or the max slew / capacitance / fanout lists are not empty (the lists were empty on tiny8, so only the "empty" output is compared); the Magic extractor path of Post-route STA (the Magic SPEF is checked in sections 4 and 8.y, not re-run here); the runner (LibreLane) mapping of its own `stapostpnr` reports into the same Timing tab; SDC with false paths or multicycle paths (not offered in Properties); Safari/Firefox.
 
 ## 15. Multi-corner STA (2026-10-26, issue #72)
 
@@ -788,7 +791,7 @@ What the clock tree and wires cost on tiny8: setup slack drops by 1.0787 ns (12.
 | Worst hold | | min_ff_n40C_5v50, 0.4419 (pre-PnR: nom_ff_n40C_5v50, 0.3927) | |
 | TNS (all corners) | 0 | 0 | identical |
 
-All 12 runs (3 pre, 9 post) match native line by line (5598 lines pre, 7677 post). OpenRCX with the PDK min and max rules: native OpenROAD 6f3f28c on the same routed DEF gives the same 294 nets with identical net capacitances (nom / min / max sum 1.5696 / 1.4037 / 1.7693 pF); STA on the native SPEFs gives the same slacks (checked at min_tt and max_ss). The SPEF files differ only in the numbering of the name map.
+All 12 runs (3 pre, 9 post) match native line by line (5598 lines pre, 7677 post). OpenRCX with the PDK min and max rules: native OpenROAD 6f3f28c on the same routed DEF gives the same 294 nets with identical net capacitances (nom / min / max sum 1.5696 / 1.4037 / 1.7693 pF); STA on the native SPEFs gives the same slacks, checked at min_tt and max_ss only; the other seven post-route corners were not run on native SPEFs. Native image: `hpretl/iic-osic-tools:chipathon26` plus `or-native-61:6f3f28c`. The SPEF files differ only in the numbering of the name map.
 
 **Side by side.** Studio Timing tab (all corners table, Studio run with the tiny8 knobs of this section: 24 ns, 4.8 ns delays, 0 pF, die 135.52 x 133.28 um) and native `sta` worst-slack lines of six corners:
 
@@ -801,17 +804,17 @@ All 12 runs (3 pre, 9 post) match native line by line (5598 lines pre, 7677 post
 
 ## 16. Cell delay lookup in the Timing tab (2026-10-26, issue #36)
 
-**What it is.** A panel under the Timing tab (`web/studio/viewers/celldelay.js`). You pick a gf180 cell, an arc (pin to pin, with the liberty `when` condition if there is one), the output edge, an input slew and an output load. You guess the delay, then press Reveal: the widget shows the real NLDM tables from the liberty, marks the four surrounding points, and gives the delay and the output slew. Clicking an output-pin row of a path opens it filled in with that row's slew (from the input pin row) and load (Cap column). Nothing is estimated: the numbers come from the vendored full liberty (`web/vendor/gf180mcu/lib-{tt5v0,ss4v5,ff5v5}-full`, the Corner list of the panel) and the interpolation is the same one OpenSTA uses (find the segment `x[i] <= v < x[i+1]`, clamped to the first or last segment, then bilinear; outside the table this continues the end segment linearly).
+**What it is.** A panel under the Timing tab (`web/studio/viewers/celldelay.js`). You pick a gf180 cell, an arc (pin to pin, with the liberty `when` condition if there is one), the output edge, an input slew and an output load. You guess the delay, then press Reveal: the widget shows the real NLDM tables from the liberty, marks the four surrounding points, and gives the delay and the output slew. Clicking an output-pin row of a path opens it filled in (checked by script only, not by clicking in the Timing tab; see Not validated) with that row's slew (from the input pin row) and load (Cap column). Nothing is estimated: the numbers come from the vendored full liberty (`web/vendor/gf180mcu/lib-{tt5v0,ss4v5,ff5v5}-full`, the Corner list of the panel) and the interpolation is the same one OpenSTA uses (find the segment `x[i] <= v < x[i+1]`, clamped to the first or last segment, then bilinear; outside the table this continues the end segment linearly).
 
 **Our flow.** The browser parses the liberty and interpolates. "Run OpenSTA on this point" (single-input combinational cells) runs the browser OpenSTA (section 4, defec0b) on a one-cell netlist with `set_input_transition`, `set_load` and `set_false_path -<other edge>_to`, and shows OpenSTA's delay and slew next to ours. In a path, OpenSTA's number is the row of the report.
 
-**Traditional flow.** Container `gf180`, native `/foss/tools/bin/sta` 3.1.0 (defec0bda3, the same commit as our WebAssembly build), the container's own `gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib` (`cmp` identical to ours). Per point: `read_liberty`, a netlist with one cell, `set_load L`, `set_input_transition S`, `set_false_path -<other>_to`, `report_checks -path_delay max -fields {slew cap input_pins} -digits 4`. Script and raw output: `docs/validation/logs/celldelay/all.sh`, `native-sta.out`. The test `node web/studio/viewers/celldelay.test.mjs` compares the widget's lookup with these numbers (`web/studio/viewers/celldelay.sta.json`).
+**Traditional flow.** Container `gf180`, native `/foss/tools/bin/sta` 3.1.0 (a different path from the `/foss/tools/openroad/bin/sta` of sections 14 and 15; the last section has a step to check it is the same binary; defec0bda3, the same commit as our WebAssembly build), the container's own `gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib` (`cmp` identical to ours). Per point: `read_liberty`, a netlist with one cell, `set_load L`, `set_input_transition S`, `set_false_path -<other>_to`, `report_checks -path_delay max -fields {slew cap input_pins} -digits 4`. Script and raw output: `docs/validation/logs/celldelay/all.sh`, `native-sta.out`. The test `node web/studio/viewers/celldelay.test.mjs` compares the widget's lookup with these numbers (`web/studio/viewers/celldelay.sta.json`).
 
 | Check | Points | Result |
 |---|---|---|
-| Native OpenSTA vs widget: inv_1, inv_4, buf_2, clkbuf_4, rise and fall, 8 slew/load points each, 16 of the 64 outside the table (slew 6 ns, load 0.5 pF, slew 0.01 ns, load 0.0004 pF) | 64 delay + 64 output slew | match; worst difference 0.00005 ns = half a unit of the 4 printed digits (extrapolated points match as well) |
+| Native OpenSTA vs widget: inv_1, inv_4, buf_2, clkbuf_4, rise and fall, 8 slew/load points each, 16 of the 64 outside the table (slew 6 ns, load 0.5 pF, slew 0.01 ns, load 0.0004 pF) | 64 delay + 64 output slew | match (rule used here: equal after rounding to the 4 printed digits, i.e. within 0.00005 ns); extrapolated points match as well |
 | Browser OpenSTA (the button) vs widget: inv_1 rise at 0.5 ns / 0.09 pF, buf_2 fall at 1.3 ns / 0.15 pF | 2 x (delay, slew) | identical to 4 digits (1.0123 / 1.5371 and 0.9489 / 0.7671) |
-| Studio Pre-PnR path row, flip-flop dffrnq_1 CLK to Q rising, slew 0, load 0.0667 | delay, slew | widget 1.4454 / 1.1608, report 1.4454 / 1.1609: match (the load in the report is rounded to 4 digits) |
+| Studio Pre-PnR path row, flip-flop dffrnq_1 CLK to Q rising, slew 0, load 0.0667 | delay, slew | widget 1.4454 / 1.1608, report 1.4454 / 1.1609: close (one unit in the last printed digit; the load in the report is rounded to 4 digits) |
 | Studio Post-route path row, buf_1 I to Z rising, slew 0.0001, load 0.0308 (tiny8) | delay, slew | differs: widget 0.4343 / 0.5638, report 0.4330 / 0.5443 |
 
 **Why the post-route row differs (explained, not hidden).** After routing OpenSTA reads the wire parasitics (SPEF). It then calculates with the wire's resistance and an effective load that is lower than the total capacitance printed in the Cap column, so its delay and slew come out lower than a table lookup at the total load. The widget looks up the table at the printed total load and says so when the two differ by more than the 4-digit rounding. Without wires (Pre-PnR, or the one-cell run) the two agree. We did not reproduce the effective-capacitance calculation in the widget.
@@ -839,7 +842,8 @@ All 12 runs (3 pre, 9 post) match native line by line (5598 lines pre, 7677 post
 | C++ testbench VCD, browser flow vs native 5.046 | identical (112,654 bytes, SHA-256 equal) |
 | SV testbench (`--main --timing`) VCD, browser flow vs native 5.046 | identical (105,285 bytes, SHA-256 equal) |
 | Console text of the SV run (`done pc=67 out=6`) | same as native |
-| Native build time, `-j4`, `--trace` (container) | 7.5 to 7.9 s |
+| Native build time, `-j4`, `--trace` (container), C++ and SV testbenches not told apart | 7.5 to 7.9 s |
+| Native run time and peak memory | not recorded |
 | Browser build, warm (compiler cached), tiny8 | 10 to 15 s for C++ compile + link; run 0.01 to 0.03 s |
 | Browser, first run (compiler downloaded from jsDelivr, fast link) | 20.5 s in total |
 | Peak memory (Node, one compile) | 540 to 590 MB for the compiler, 52 MB to run the result |
@@ -849,7 +853,7 @@ Per-file compiling costs about 6 s per C++ file (starting the compiler and readi
 
 Repeat: `cd <scratch> && npm i @yowasp/clang@22.0.0-git20542-10 verilator-wasm@1.0.0 && node <repo>/web/studio/engines/verilator-sim.selftest.mjs` (checks the two hashes in `vsim-fixtures/native-vcd.json`). The scripts that built `libverilated.a` are in `tools/vsim-spike/`.
 
-**Side by side.** Browser: Studio with shreg4, the Verilator engine, the console showing "C++ compiled and linked in 12.9 s", the testbench's `PASS q=0110` and the Waveform tab. There is no native screenshot: the native comparison is a byte-for-byte file match, which has nothing to look at.
+**Side by side.** Browser: Studio with shreg4, the Verilator engine, the console showing "C++ compiled and linked in 12.9 s", the testbench's `PASS q=0110` and the Waveform tab. There is no native screenshot: the native comparison is a byte-for-byte file match, which has nothing to look at. The picture shows shreg4, whose VCD was not compared with native; tiny8, the only compared design, was run in Node only, with no page screenshot.
 
 ![Studio, Verilator simulation of shreg4](img/vsim-studio-shreg4.jpg)
 
@@ -865,11 +869,11 @@ Repeat: `cd <scratch> && npm i @yowasp/clang@22.0.0-git20542-10 verilator-wasm@1
 
 **Design and setup.** Five small decks on gf180mcuD, typical corner, 27 C, in `docs/validation/analog/decks/`: NMOS Id-Vg (`nfet_03v3`, W=1u L=0.28u), PMOS Id-Vg (`pfet_03v3`, same size), 1:1 NMOS current mirror (W=2u L=1u, 10 uA), a 5-transistor OTA (open-loop AC, 20 uA tail, 1 pF load) and an inverter transient (W=1u/2u, 10 fF load, 3.3 V). The check: the same deck, the same model files, must give the same numbers in the browser build and in native ngspice.
 
-**Our flow, built this way.** ngspice-46 from the official release tarball (sha256 `a0d1699a...`), no source patches, built with Emscripten 3.1.74 (`web/vendor/ngspice/46/SOURCE.md`, `build.sh`). Configure: `--without-x --with-readline=no --disable-openmp --disable-xspice --disable-cider`, `-O2`. KLU is compiled in (ngspice 43 and later enable it by default; the page log prints "Compiled with KLU Direct Linear Solver"), but these decks ran on SPARSE 1.3, the same as native. No threads. The models are the container's own files from open_pdks 7b70722 (`web/vendor/gf180mcu/models-7b70722/`: `design.ngspice`, `sm141064.ngspice`, `sm141064_mim.ngspice`). The container's sha256 values were taken on 2026-11-10 (`inventory.txt`, section sha256) and the three vendored files give the same values: `design.ngspice` `091cb530...6692`, `sm141064.ngspice` `677822db...3c46`, `sm141064_mim.ngspice` `b7918b5a...9767` (full values in `inventory.txt`). So the model files are byte-identical. Only `design.ngspice` and `sm141064.ngspice` are used by the decks; `sm141064_mim.ngspice` is vendored for later and is NOT validated (no deck has a MIM cap). The browser needs `/proc/meminfo` in its virtual disk and a `~/.spiceinit` with `set ngbehavior=hsa` (the gf180 models need it; the container sets the same). Run by `node docs/validation/analog/run-browser.mjs` (Node, same `.wasm` and `.js` the page loads); logs are in `docs/validation/analog/browser/`.
+**Our flow, built this way.** ngspice-46 from the official release tarball (sha256 `a0d1699a...`), no source patches, built with Emscripten 3.1.74 (`web/vendor/ngspice/46/SOURCE.md`, `build.sh`). Configure: `--without-x --with-readline=no --disable-openmp --disable-xspice --disable-cider`, `-O2`. KLU is compiled in (ngspice 43 and later enable it by default; the page log prints "Compiled with KLU Direct Linear Solver"), but these decks ran on SPARSE 1.3, the same as native. No threads. The models are the container's own files from open_pdks 7b70722 (`web/vendor/gf180mcu/models-7b70722/`: `design.ngspice`, `sm141064.ngspice`, `sm141064_mim.ngspice`). The container's sha256 values were taken on 2026-11-10 (`inventory.txt`, section sha256) and the three vendored files give the same values: `design.ngspice` `091cb530...6692`, `sm141064.ngspice` `677822db...3c46`, `sm141064_mim.ngspice` `b7918b5a...9767` (full values in `inventory.txt`). So the model files are byte-identical. Only `design.ngspice` and `sm141064.ngspice` are used by the decks; `sm141064_mim.ngspice` is vendored for later and is NOT validated (no deck has a MIM cap). The browser needs `/proc/meminfo` in its virtual disk and a `~/.spiceinit` with `set ngbehavior=hsa` (the gf180 models need it; the container sets this and three more: `ng_nomodcheck`, `num_threads=4`, `enable_noisy_r`, which the browser run does not set). Run by `node docs/validation/analog/run-browser.mjs` (Node, same `.wasm` and `.js` the page loads); logs are in `docs/validation/analog/browser/`.
 
 **Traditional flow.** Container `gf180` (`hpretl/iic-osic-tools:chipathon26`), `ngspice-46` (compiled with KLU, built 2026-04-16), open_pdks 7b70722, models in `/foss/pdks/gf180mcuD/libs.tech/ngspice/`, home `.spiceinit` as in `inventory.txt` (`ngbehavior=hsa`, `ng_nomodcheck`, `num_threads=4`, `enable_noisy_r`). Each deck ran with `ngspice -b -o <deck>.log <deck>.cir` via `docs/validation/analog/run-native.sh`; results are in `docs/validation/analog/native/`. Both logs say "Using SPARSE 1.3 as Direct Linear Solver" (both binaries have KLU compiled in, but ngspice uses SPARSE unless a deck sets `.options klu`, and these decks do not), so the solver is the same.
 
-| Quantity | Native ngspice-46 | Browser ngspice-46 | Result |
+| Quantity | Native ngspice-46 | Browser build ngspice-46 (run in Node) | Result |
 |---|---|---|---|
 | NMOS Id (Vgs=Vds=1.65 V) | -1.49706e-04 A | -1.49706e-04 A | match |
 | NMOS Vth / Vdsat / gm | 0.6249512 V / 0.6546577 V / 196.3739 uS | same, all digits printed | match |
@@ -885,29 +889,29 @@ Repeat: `cd <scratch> && npm i @yowasp/clang@22.0.0-git20542-10 verilator-wasm@1
 | Inverter tpHL | 60.5040 ps | 60.5040 ps | match |
 | Inverter tpLH | 66.7168 ps | 66.7168 ps | match |
 
-**Tolerance.** We call a number a match when it agrees to the digits ngspice prints (6 significant digits, so about 1e-5 relative) and the target was 0.5%. Every printed number is identical. We also compared the full ASCII raw files (every point of every plotted vector) against the native raw files, as max difference divided by the largest value in the file:
+**Tolerance.** We call a number a match when it agrees to the digits ngspice prints (ngspice prints 5 to 7 significant digits, so about 1e-5 relative or better) and the target was 0.5%. Every printed result number is identical (the browser log has one extra warning line, below). For the raw files we call a vector a match if its difference is within 1e-6 of its largest value; this limit was chosen after seeing the data (worst 2.7e-7), not before. We also compared the full ASCII raw files (every point of every plotted vector) against the native raw files, as max difference divided by the largest value in the file:
 
 Correction: the first version of this table divided every difference by the largest value in the whole file, which is the 3.3 V sweep axis, so the current columns looked far better than they are. The table below is per vector (each vector divided by its own largest native value), made by `run-browser.mjs`:
 
-| Deck | Points (native / browser) | Max difference / largest value, per vector |
+| Deck | Points (native / browser) | Max difference / largest value, per vector (all within 1e-6: match) |
 |---|---|---|
 | nmos_idvg (2-D sweep) | 662 / 662 | v(g) 0, i(vd) 5.2e-11 |
 | pmos_idvg (2-D sweep) | 662 / 662 | v(g) 0, i(vd) 2.0e-12 |
 | mirror (DC sweep) | 331 / 331 | i(vo) 2.7e-7, v(ref) 7.9e-8 |
-| ota5t_ac (AC, 1 Hz to 1 GHz) | 181 / 181 | frequency 0, v(out) 0 |
+| ota5t_ac (AC, 1 Hz to 1 GHz) | 181 / 181 | frequency 0, v(out) 0 (complex values: real and imaginary parts combined) |
 | inv_tran (transient, 60 ns) | 6026 / 6026 | time 0, v(in) 0, v(out) 0 (even the time steps are the same) |
 
 **Bias coverage.** The Id-Vg decks write the whole sweep, not one point: Vgs 0 to 3.3 V in 10 mV steps at Vds = 0.1 V (linear region) and Vds = 3.3 V (saturation), 331 points each. Vth is 0.625 V (NMOS), so the sweep runs from deep subthreshold, through threshold, to strong inversion; the max difference above is over all 662 points. The mirror sweeps Vo from 0 to 3.3 V (triode to saturation of M2). The OTA is checked at one DC point plus the AC curve. gds is not probed or compared in any deck (only gm, Vth, Vdsat and the currents/voltages in the raw files), so output conductance is not validated on its own.
 
 **Negative control (can the comparison fail?).** Run `PERTURB=nmos_idvg:W=1u:W=1.001u node docs/validation/analog/run-browser.mjs`. This changes the NMOS width in the browser run only (0.1 percent) and compares against the unchanged native raw file with the same method. Result: Id at the bias point becomes -1.49850e-04 A (native -1.49706e-04 A) and the i(vd) difference is 9.6e-4, about seven orders of magnitude above the 5.2e-11 of the unperturbed run. The other decks stay at their normal values. So a 0.1 percent change is clearly visible and a real mismatch would be caught.
 
-The transient took the same 6026 time points, so the step-size control behaves the same. The small non-zero difference on the first three is rounding in the last digits (different compiler and maths library). Run times: 63 to 197 ms per deck are warm runs in Node with the same `.wasm` (module already loaded, one PC). They are not browser timings. In a real browser (Edge, Lab page, starter `ota5t` deck, `http://localhost:8040/lab.html?mock`) the page console reports `Simulation passed in 216 ms`; this was one run and the time to fetch the 4.9 MB `.wasm` first was not timed separately.
+The transient took the same 6026 time points, so the step-size control behaves the same. The small non-zero difference on the first three (up to 2.7e-7) is larger than double-precision rounding would give; the cause is not known (a different compiler and maths library, or a solver step that stopped one iteration apart, are guesses and were not tested). The Id-Vg decks also contain a separate `op` at Vgs=Vds=1.65 V, which is where the 1.65 V rows of the first table come from. Run times: 63 to 197 ms per deck are warm runs in Node with the same `.wasm` (module already loaded, one PC). They are not browser timings. In a real browser (Edge, Lab page, starter `ota5t` deck, `http://localhost:8040/lab.html?mock`) the page console reports `Simulation passed in 216 ms`; this was one run and the time to fetch the 4.9 MB `.wasm` first was not timed separately.
 
 One note: the browser log shows the line `Warning: m=xx on .subckt line will override multiplier m hierarchy!` (from the gf180 model wrapper). The native logs do not contain it. We do not know why (the guess that native prints it only to the terminal is unconfirmed). No result differs, but this is unexplained. Owner step, with Docker running: `docker exec gf180 bash -lc "cd /foss/designs/analog_ref/run && ngspice -b nmos_idvg.cir > o.txt 2>&1; grep -c 'm=xx' o.txt"` and read the count; it would show whether native also prints it.
 
 **Lab page check (pipeline only, not a native comparison).** On 2026-11-10 the Lab page (deck builder, raw-file reader, plots) was run in a browser. For the `ota5t.spice` starter (W=10u L=1u, so a different deck from the validation `ota5t_ac`): gain_dc 47.976 dB and ugf 20.741 MHz, the same from the hand-written deck and from the drawn schematic. A 3-analysis deck gave gain_dc 47.976, ugf 2.0741e7, vmax 2.36119, vo 2.36119 and 4 plot canvases. These show the page reads and plots ngspice output; they are not compared with native. Screenshot of the Plots tab for the starter deck: `docs/validation/img/lab-plots-starter.png`.
 
-**Side by side.** No native-versus-browser screenshots: the comparison is a number and file match (tables above).
+**Side by side.** (A gap against our own rule, not a pass.) No native-versus-browser screenshots: the comparison is a number and file match (tables above).
 
 **NOT validated.**
 - Corners other than typical (ss, ff, fs, sf), temperatures other than 27 C, and the 5 V / 6 V devices.
@@ -918,6 +922,22 @@ One note: the browser log shows the line `Warning: m=xx on .subckt line will ove
 - Memory: the browser build gets a fake `/proc/meminfo` and has a wasm32 memory ceiling (4 GB at most). Behaviour near that limit is untested.
 - gds and other small-signal conductances (see bias coverage).
 - `sm141064_mim.ngspice`: same files as the container, but no simulation uses it.
-- Safari and Firefox (Node only so far; Chrome through the Lab page was not part of this run).
+- Every browser. All native-against-WebAssembly comparisons here were run in Node. The Edge run of the Lab page used a different deck and was not compared with native, so no browser (Chrome, Edge, Firefox, Safari) is validated against native ngspice.
+- No side-by-side screenshots; the Edge version, the container image digest, native compiler flags and full-length sha256 values are not in this section (see "Claims under review").
 - The browser does not run the native binary's multi-thread path, and the KLU path was not exercised on either side; any difference they cause is not measured.
 - A good analog design: these decks only check the simulator.
+
+## Claims under review
+
+An independent review (a different AI model, 2026-11-10, issue #40) went through this report. Points that were right are fixed in the text above. Points that need a new run are here; until the run is done the claim stays narrowed as written above. Each step needs the container (`docker start gf180`; in Git Bash `export MSYS_NO_PATHCONV=1`).
+
+1. Native LVS of the OpenROAD flow: export the extracted SPICE and netlist from `OUT=$PWD/out node web/studio/engines/pnr-flow.selftest.mjs tiny8`, then `docker exec gf180 bash -lc "cd /foss/designs/<dir> && netgen -batch source run.tcl"` (same method as section 2, `lvs-dump.mjs`).
+2. Native Netgen on adder, twoclk, pins40, sr8 and the two negative controls: same method as section 2.
+3. Native DRC, LVS, extraction and timing on the native routed DEF of 8.x and 8.z (outputs in `logs/or-native-6f3f28c/`), and the 8.x native placement again with `openroad -threads 1 -exit place.tcl`.
+4. The real split of LibreLane's 56 pre-CTS cells and the cell-count sums of 8B: read the LibreLane job logs in `~/eda/designs/nishkam_jobs/parity_tiny8_*`. Also copy the `parity_eq/` logs and `dobuild.sh` (builds `or-native-61:6f3f28c`) into `docs/validation/logs/`.
+5. Run time 56 s against 68 to 76 s: rerun `node web/studio/engines/parity/browser.mjs tiny8 <dir>` and `stress.mjs` on one PC and record one definition of the time.
+6. In-page runs (the 135.52 x 133.28 um die; 8.x, 8.y, 8.z; the practice page banners for cases c01, c24, c25): open Chrome, run, save the console log and screenshots.
+7. ngspice: `docker image inspect --format '{{index .RepoDigests 0}}' hpretl/iic-osic-tools:chipathon26`; `docker exec gf180 bash -lc "ngspice -v; gcc --version | head -1"`; the `m=xx` check of section 18; repeat one deck with the browser's `.spiceinit`; and one deck with `.options klu` on both sides.
+8. Section 16: `docker exec gf180 bash -lc "readlink -f /foss/tools/bin/sta; /foss/tools/bin/sta -version; /foss/tools/openroad/bin/sta -version"`.
+9. Section 12: run shreg4 without `?mock`, save the explorer's layer counts, record `klayout -v`.
+10. Section 13: `docker exec gf180 bash -lc "yosys-abc -h 2>&1 | head -1; yices-smt2 --version"`; produce a real Boolector failure for the ERROR path.

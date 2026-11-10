@@ -1,0 +1,10 @@
+* 5T OTA, gf180mcuD 3.3 V devices. Ports: inp inn out vdd vss ib
+* ib is the diode node of the tail mirror: force 20 uA into it from outside.
+.subckt ota5t inp inn out vdd vss ib
+xm1 d1 inp tail vss nfet_03v3 W=10u L=1u
+xm2 out inn tail vss nfet_03v3 W=10u L=1u
+xm3 d1 d1 vdd vdd pfet_03v3 W=20u L=1u
+xm4 out d1 vdd vdd pfet_03v3 W=20u L=1u
+xm5 tail ib vss vss nfet_03v3 W=10u L=1u
+xm6 ib ib vss vss nfet_03v3 W=10u L=1u
+.ends ota5t

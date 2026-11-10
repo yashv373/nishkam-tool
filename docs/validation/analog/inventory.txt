@@ -1,0 +1,157 @@
+[INFO] Final PATH variable: /foss/tools/bin:/foss/tools/sak:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/foss/tools/kactus2:/foss/tools/klayout:/foss/tools/osic-multitool
+[INFO] Final PYTHONPATH variable: /usr/lib/python312.zip:/usr/lib/python3.12:/usr/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/dist-packages:/usr/lib/python3/dist-packages:/foss/tools/ngspyce/local/lib/python3.12/dist-packages:/foss/tools/openems/local/lib/python3.12/dist-packages:/foss/tools/pyopus/local/lib/python3.12/dist-packages:/foss/tools/yosys/share/yosys/python3:/foss/tools/klayout/pymod:/foss/tools/vacask/lib/vacask/python
+== T1 inventory, container gf180 (hpretl/iic-osic-tools:chipathon26), 2026-11-10 ==
+
+== 1. ngspice -v ==
+******
+** ngspice-46 : Circuit level simulation program
+** Compiled with KLU Direct Linear Solver
+** The U. C. Berkeley CAD Group
+** Copyright 1985-1994, Regents of the University of California.
+** Copyright 2001-2025, The ngspice team.
+** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html
+** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
+** Creation Date: Thu Apr 16 19:53:00 UTC 2026
+******
+
+== configure flags / build ==
+/foss/tools/ngspice
+bin
+include
+lib
+share
+SOURCES
+
+== 2. models dir ==
+total 1344
+drwxr-xr-x 1 root root    4096 Apr 16  2026 .
+drwxr-xr-x 1 root root    4096 Apr 16  2026 ..
+-rw-r--r-- 1 root root    3173 Apr 16  2026 design.ngspice
+-rw-r--r-- 1 root root   14763 Apr 16  2026 sm141064_mim.ngspice
+-rw-r--r-- 1 root root 1307272 Apr 16  2026 sm141064.ngspice
+-rw-r--r-- 1 root root   29581 Apr 16  2026 smbb000149.ngspice
+-rw-r--r-- 1 root root       0 Apr 16  2026 .spiceinit
+
+open_pdks:
+open_pdks 7b70722e33c03fcb5dabcf4d479fb0822d9251c9
+ciel/gf180mcu/versions/7b70722e33c03fcb5dabcf4d479fb0822d9251c9/gf180mcuD
+
+== sha256 ==
+091cb530bf85160a1f07878fb81f789ca367d018991c8ab41a584cd1a85c6692  design.ngspice
+677822db50bf8968f77854bb455006ac5c245deb46ecfc8b352934e752135c46  sm141064.ngspice
+b7918b5ad4f4dad0ce5cb2fc08114e25b10ff5f9f827754334bb0bdfe2a89767  sm141064_mim.ngspice
+
+== .spiceinit (home) ==
+* Set to 4 threads, if not changed otherwise
+set num_threads=4
+* assert BSIM compatibility mode with "nf" vs. "W"
+set ngbehavior=hsa
+* "nomodcheck" speeds up loading time
+set ng_nomodcheck
+* sky130A uses behaviour resistor in models, make sure they add noise
+set enable_noisy_r
+
+== .lib sections used for typical corner (top-level) ==
+.LIB typical
+ .lib 'sm141064.ngspice' nfet_03v3_t
+ .lib 'sm141064.ngspice' pfet_03v3_t
+*
+742:.lib nfet_03v3_t
+4390:.endl nfet_03v3_t
+18996:.lib pfet_03v3_t
+22694:.endl pfet_03v3_t
+
+== all .lib/.LIB sections ==
+105:.LIB typical;140:.LIB ff;175:.LIB ss;210:.LIB fs;245:.LIB sf;280:.LIB bjt_typical;310:.LIB bjt_ss;340:.LIB bjt_ff;371:.LIB diode_typical;378:.LIB diode_ss;385:.LIB diode_ff;393:.LIB res_typical;424:.LIB res_ss;455:.LIB res_ff;487:.LIB mimcap_typical;499:.LIB mimcap_ss;510:.LIB mimcap_ff;523:.lib moscap_typical;537:.lib moscap_ff;551:.lib moscap_ss;566:.LIB statistical;713:.LIB noise_corner;742:.lib nfet_03v3_t;4393:.lib nfet_03v3_f;8041:.lib nfet_03v3_s;11689:.lib nfet_03v3_fs;15342:.lib nfet_03v3_sf;18996:.lib pfet_03v3_t;22697:.lib pfet_03v3_f;26399:.lib pfet_03v3_s;30099:.lib pfet_03v3_fs;33798:.lib pfet_03v3_sf;37502:.lib nfet_06v0_t;37766:.lib nfet_06v0_nvt_t;37920:.lib pfet_06v0_t;38085:.LIB dio;38290:.LIB res;39169:.LIB cap_mim;39261:.LIB moscap;39333:.lib nfet_03v3_stat;42985:.lib pfet_03v3_stat;46687:.lib nfet_06v0_nvt_stat;46843:.lib pfet_06v0_stat;47007:.LIB efuse;47041:.lib fets_mm;47216:.LIB res_statistical_par;47258:.lib res_statistical;47366:.lib bjt_statistical;47412:.lib bjt_mc;47744:.lib mimcap_statistical;
+== OSDI/codemodel ==
+design.ngspice:0
+sm141064_mim.ngspice:0
+sm141064.ngspice:0
+smbb000149.ngspice:0
+model levels in sm141064: (count of level=N)
+     10 level=1
+     10 level=3
+     19 Level=3
+    198 level=54
+BSIM4 level 54, version 4.5, binunit 2: built into ngspice (no dlopen)
+analog.cm
+bsimcmg.osdi
+digital.cm
+ivlng.so
+ivlng.vpi
+psp103_nqs.osdi
+r3_cmc.osdi
+spice2poly.cm
+table.cm
+tlines.cm
+xtradev.cm
+xtraevt.cm
+
+== instance syntax (xschem symbol format) ==
+/foss/pdks/gf180mcuD/libs.tech/xschem/symbols/nfet_03v3.sym:20:format="@spiceprefix@name @pinlist @model L=@L W=@W
+/foss/pdks/gf180mcuD/libs.tech/xschem/symbols/nfet_03v3.sym:24:lvs_format="@name @pinlist @model L=@L W=@W nf=@nf m=@m"
+/foss/pdks/gf180mcuD/libs.tech/xschem/symbols/pfet_03v3.sym:20:format="@spiceprefix@name @pinlist @model L=@L W=@W
+/foss/pdks/gf180mcuD/libs.tech/xschem/symbols/pfet_03v3.sym:24:lvs_format="@name @pinlist @model L=@L W=@W nf=@nf m=@m"
+
+== min L / W of 3.3V bins ==
++lmin    = 2.8e-007      
++wmin    = 2.2e-007      
++lmin    = 5e-007        
+
+== Magic generators ==
+4019:proc gf180mcu::nfet_03v3_draw {parameters} {
+4039:proc gf180mcu::pfet_03v3_draw {parameters} {
+
+== op probe run (deck /foss/designs/analog_ref/t.cir) ==
+         gm             0.0001409
+      vdsat              0.320968
+        vth              0.624951
+         id            3.5289e-05
+@m.xm1.m0[vth] = 6.249512e-01
+@m.xm1.m0[vdsat] = 3.209675e-01
+@m.xm1.m0[vgs] = 1.000000e+00
+@m.xm1.m0[vds] = 1.650000e+00
+@m.xm1.m0[gm] = 1.409001e-04
+@m.xm1.m0[id] = 3.528904e-05
+@m.xm2.m0[vth] = 6.812132e-01
+@m.xm2.m0[vdsat] = 3.238831e-01
+@m.xm2.m0[vgs] = 1.000000e+00
+@m.xm2.m0[vds] = 3.300000e+00
+@m.xm2.m0[gm] = 4.769959e-05
+@m.xm2.m0[id] = 8.993200e-06
+
+== Notes (written by hand from the outputs above) ==
+!! REQUIRED SIMULATOR SETTING: the container's ngspice reads the HOME .spiceinit (shown above) which sets
+!!   set ngbehavior=hsa   (plus ng_nomodcheck, num_threads=4, enable_noisy_r).
+!! The models-dir .spiceinit is empty (0 bytes). Any other ngspice, including our WASM build, must set
+!! ngbehavior=hsa to reproduce these numbers. Without it, results are not comparable to this file.
+
+Typical corner lines for a deck:
+  .include <models>/design.ngspice
+  .lib <models>/sm141064.ngspice typical
+('typical' (lines 105-137 of sm141064.ngspice, checked in the container) pulls in all MOS sections for the corner:
+ nfet_03v3_t, pfet_03v3_t, nfet_06v0_t, pfet_06v0_t, nfet_06v0_nvt_t, noise_corner and fets_mm, plus the 06v0 params.
+ Do NOT add those again (duplicate .subckt/.model errors). Diodes, BJTs and resistors are NOT included: add
+ .LIB diode_typical / bjt_typical / res_typical when a deck uses them; caps: .LIB moscap_typical and
+ .LIB mimcap_typical (sm141064_mim.ngspice cap_mim_new). See section list above.)
+
+OSDI / code models: NOT needed. The grep count for osdi/codemodel/pre_osdi/.hdl/.load is 0 in all four
+model files. All MOS models are .model ... nmos/pmos level=54 (BSIM4 v4.5, built into ngspice). The
+subcircuit wrappers use only behavioural params (agauss, ternary) that ngspice's parser handles.
+The container's ngspice has OSDI files in its lib dir (bsimcmg.osdi etc.) but the gf180 models do not use them.
+=> a WASM ngspice build with BSIM4 (default) and no dlopen/XSPICE-codemodels is enough.
+
+Instance syntax: X<name> d g s b nfet_03v3 W=.. L=.. [nf= m=]  (4 terminals, subckt nfet_03v3 / pfet_03v3,
+which wraps one BSIM4 device named m0). Minimum L = 0.28u (lmin 2.8e-7), minimum W = 0.22u.
+Probe path of a device in a subckt instance: @m.<xinst>.m0[param], lowercase; nested:
+@m.xota.xm1.m0[vth] (instance xota containing xm1). Params available: vth vdsat gm gds gmbs id vgs vds.
+Sign conventions (checked at nfet Vgs=1.0 Vds=1.65 and pfet Vsg=1.0 Vsd=3.3): probes are normalised to
+the device type, so for the PMOS vth, vdsat, vgs, vds and id are all POSITIVE (vgs=+1.0, vds=+3.3,
+vth=+0.681, vdsat=+0.324, gm=+47.7u, id=+8.99u). So region check is the same for both types:
+off if vgs<vth; triode if vds<vdsat; else sat. (These are the normalised @m probes above. The raw i(Vd) of
+the pmos_idvg deck is a different thing: positive i(Vd) means current flows into the + terminal of source Vd,
+i.e. from the circuit node into Vd. Example: +51.25uA at Vsg=1.65, Vsd=1.65.)
+Note: with -b the nested .lib path works with absolute paths; decks use /foss/pdks/gf180mcuD/libs.tech/ngspice/.
+Magic: gf180mcu::nfet_03v3_draw is defined in gf180mcuD.tcl (line 4019). The device name Magic extraction
+writes for a generated nfet was NOT checked in T1 (layout work belongs to a later task).
+ngspice configure flags: NOT recoverable (no config.log in image; ngspice -v prints only ngspice-46, KLU, 2026-04-16).

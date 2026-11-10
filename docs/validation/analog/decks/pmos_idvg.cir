@@ -1,0 +1,18 @@
+pmos idvg pfet_03v3 W=1u L=0.28u (source at 3.3 V; Vg and Vd swept down)
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+Vdd s 0 3.3
+Vg g 0 3.3
+Vd d 0 3.2
+xm1 d g s s pfet_03v3 W=1u L=0.28u
+.control
+set filetype=ascii
+dc Vg 3.3 0 -0.01 Vd 3.2 0 -3.2
+write pmos_idvg.raw v(g) i(Vd)
+alter Vg=1.65
+alter Vd=1.65
+op
+print i(Vd)
+print @m.xm1.m0[vth] @m.xm1.m0[vdsat] @m.xm1.m0[gm] @m.xm1.m0[vgs] @m.xm1.m0[vds]
+.endc
+.end

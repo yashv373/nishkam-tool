@@ -1,0 +1,16 @@
+inverter W=1u/2u L=0.28u, load 10 fF, 20 ns pulse
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+Vdd vdd 0 3.3
+Vin in 0 pulse(0 3.3 2n 100p 100p 20n 50n)
+xmn out in 0 0 nfet_03v3 W=1u L=0.28u
+xmp out in vdd vdd pfet_03v3 W=2u L=0.28u
+CL out 0 10f
+.control
+set filetype=ascii
+tran 10p 60n
+write inv_tran.raw v(in) v(out)
+meas tran tpHL trig v(in) val=1.65 rise=1 targ v(out) val=1.65 fall=1
+meas tran tpLH trig v(in) val=1.65 fall=1 targ v(out) val=1.65 rise=1
+.endc
+.end

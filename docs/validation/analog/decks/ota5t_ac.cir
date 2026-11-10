@@ -1,0 +1,29 @@
+ota5t open-loop AC, tail 20 uA, CL 1 pF
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.include ota5t.spice
+Vdd vdd 0 3.3
+Ib 0 ib 20u
+Vp inp 0 dc 1.5 ac 1
+Vn inn 0 dc 1.5
+xota inp inn out vdd 0 ib ota5t
+CL out 0 1p
+.control
+set filetype=ascii
+set units=degrees
+op
+print v(out)
+print @m.xota.xm1.m0[vth] @m.xota.xm1.m0[vdsat] @m.xota.xm1.m0[vds] @m.xota.xm1.m0[vgs]
+print @m.xota.xm2.m0[vth] @m.xota.xm2.m0[vdsat] @m.xota.xm2.m0[vds] @m.xota.xm2.m0[vgs]
+print @m.xota.xm3.m0[vth] @m.xota.xm3.m0[vdsat] @m.xota.xm3.m0[vds] @m.xota.xm3.m0[vgs]
+print @m.xota.xm4.m0[vth] @m.xota.xm4.m0[vdsat] @m.xota.xm4.m0[vds] @m.xota.xm4.m0[vgs]
+print @m.xota.xm5.m0[vth] @m.xota.xm5.m0[vdsat] @m.xota.xm5.m0[vds] @m.xota.xm5.m0[vgs]
+ac dec 20 1 1G
+write ota5t_ac.raw v(out)
+meas ac gain_dc find vdb(out) at=1
+meas ac ugf when vdb(out)=0 fall=1
+meas ac ph_ugf find vp(out) when vdb(out)=0 fall=1
+let pm = 180 + ph_ugf
+print pm
+.endc
+.end

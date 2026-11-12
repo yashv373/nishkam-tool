@@ -1,0 +1,84 @@
+name: Add a listing
+description: Suggest a job, research position, conference or contest for Opportunities
+title: "Add a listing: "
+labels: [listing]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks. A maintainer checks your listing and adds it. Nothing appears on the site until then.
+        Use the company's or event's own official page for the link. Do not include e-mail addresses or phone numbers.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - job
+        - research
+        - conference
+        - contest
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: Role or event name (120 characters at most)
+      placeholder: "Senior Design Verification Engineer"
+    validations:
+      required: true
+  - type: input
+    id: organisation
+    attributes:
+      label: Organisation
+      description: Company, university group or event organiser (80 characters at most)
+    validations:
+      required: true
+  - type: input
+    id: official-link
+    attributes:
+      label: Official link
+      description: The original posting or event page. Must start with https://
+      placeholder: "https://"
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: City and country, e.g. "Bengaluru, India"
+    validations:
+      required: true
+  - type: input
+    id: years-of-experience
+    attributes:
+      label: Years of experience (jobs only)
+      description: e.g. "3-5 years". Leave empty for other kinds.
+  - type: input
+    id: dates
+    attributes:
+      label: Dates
+      description: Jobs - the posting date (YYYY-MM-DD). Conferences and contests - start and end (YYYY-MM-DD).
+  - type: input
+    id: deadline
+    attributes:
+      label: Deadline
+      description: Application or paper deadline (YYYY-MM-DD), if there is one
+  - type: input
+    id: expires
+    attributes:
+      label: Expires
+      description: Date to hide the listing (YYYY-MM-DD). Jobs and research positions need this, at most 60 days ahead.
+  - type: input
+    id: source-url
+    attributes:
+      label: Source URL (conferences and contests)
+      description: The official page the dates came from. Must start with https://
+      placeholder: "https://"
+  - type: checkboxes
+    id: no-contacts
+    attributes:
+      label: Confirmation
+      options:
+        - label: I am not adding e-mail addresses or phone numbers
+          required: true

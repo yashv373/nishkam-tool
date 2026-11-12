@@ -1,0 +1,36 @@
+name: Report a listing
+description: Tell us a listing is closed, wrong, spam, or should be removed
+title: "Report a listing: "
+labels: [listing, report]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks. We remove or fix listings promptly. Do not include personal contact details.
+  - type: input
+    id: listing-link
+    attributes:
+      label: Link to the listing
+      description: The Opportunities page link, or the official link of the listing
+      placeholder: "https://"
+    validations:
+      required: true
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Reason
+      options:
+        - Expired (closed or past deadline)
+        - Wrong details
+        - Spam
+        - Remove my company's listing
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What is wrong, or what should change
+    validations:
+      required: true

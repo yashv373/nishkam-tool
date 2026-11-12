@@ -585,13 +585,13 @@ Things we know are open. None is claimed as validated.
 
 ## 10. RTL practice grader (Yosys miter, k-induction)
 
-**What is claimed.** The grading engine (`web/grader.js`, run in Node; the page banners were not tested) says "proven" when a design equals the reference for every input and every cycle after reset, and "first 40 cycles" when it could only check that far. This section tests both statements. It covers the five non-CDC RTL problems.
+**What is claimed.** The grading engine (`web/grader.js`, run in Node; the page banners were not tested) says "proven" when a design equals the reference for every input and every cycle after reset, and "first 40 cycles" when it could only check that far. This section tests both statements. It covers the twelve non-CDC RTL problems: the five first ones and seven easy ones added later (and-gate, xor-gate, wire, mux2, counter-3b, seq-101, traffic-light). The first four of the easy ones (and-gate, xor-gate, wire, mux2) are combinational tops with no clock and no reset, so that kind of top is now covered too.
 
 **How ours runs.** `web/grader.js` loads the reference and the user design, builds a miter, and runs `sat -verify -tempinduct -maxsteps 40 -seq 40` starting from undefined state with reset asserted on cycle 1. If that does not succeed, it runs a plain `sat -seq 40` search. A counterexample from either run is a real difference. A pass of the plain search is shown as "first 40 cycles", never "proven". Outputs where the reference is x are not compared. Engine: `@yowasp/yosys` 0.68.1207 (WebAssembly), run in Node.
 
 **How native was run.** The same cases, with the exact same two scripts the grader writes (`prove.ys` first, then `bound.ys` if that fails), run by `/foss/tools/bin/yosys` 0.64 in the `gf180` container (image `hpretl/iic-osic-tools:chipathon26`), one case at a time: `docker exec gf180 bash /foss/designs/grader_val/run.sh` (copy in `logs/grader-cases/run-native.sh`). The native result is "proven" if `prove.ys` exits clean, "first 40 cycles only" if only `bound.ys` does, and "fails" if both stop with an error. Note the versions differ (0.68 against 0.64); the results still agree.
 
-**Cases.** For every problem: the reference against itself, and three or four deliberate mistakes (off-by-one, wrong reset value, missing enable, swapped condition, wrong pattern, wrong shift, and similar). Then four tricky counter cases: two that are equal only if reset is ignored or never used, one that differs only from about cycle 30 (inside the 40 cycle bound), and one that differs only from about cycle 45 (outside it). Every case is stored as files in `logs/grader-cases/cNN/` (`ref.v`, `user.v`, `prove.ys`, `bound.ys`).
+**Cases.** For every problem: the reference against itself, and three or four deliberate mistakes (off-by-one, wrong reset value, missing enable, swapped condition, wrong pattern, wrong shift, and similar). Then four tricky counter cases: two that are equal only if reset is ignored or never used, one that differs only from about cycle 30 (inside the 40 cycle bound), and one that differs only from about cycle 45 (outside it). Cases c26 to c42 are the seven easy problems: each reference against itself (c26 to c32), then two mistakes for each of the problems (c33 to c42; one or two per problem). The case numbers c01 to c25 are unchanged. In the current log of `node web/grader.validation.mjs` the seven new references print first (as c01 to c07), so the log numbers after that are shifted; the table and the case folders use the numbers shown here. Native Yosys results for c26 to c42 are in `logs/grader-cases/native-results-new.txt` (same script, folder renamed). Every case is stored as files in `logs/grader-cases/cNN/` (`ref.v`, `user.v`, `prove.ys`, `bound.ys`).
 
 **Results.** Run `node web/grader.validation.mjs` (log `logs/grader.validation.txt`; the older `node web/grader.test.mjs` log is `logs/grader.test.txt`). The cycle is counted with reset as cycle 1. The solver returns some counterexample inside the 40 cycles, not the shortest one, so the cycle shown for the late-difference case (40) is where the output first differs in that run, not the earliest possible.
 
@@ -622,15 +622,32 @@ Things we know are open. None is claimed as validated.
 | c23 | counter-en | equal only after reset: reset ignored after first use (age flag) (first mismatch seen at cycle 2) | fails | fails | fails | match |
 | c24 | counter-en | differs only from cycle ~30 (inside 40) (first mismatch seen at cycle 40) | fails | fails | fails | match |
 | c25 | counter-en | differs only from cycle ~45 (outside 40) | see text | first 40 cycles only | first 40 cycles only | match |
+| c26 | and-gate | reference vs itself | proven | proven | proven | match |
+| c27 | xor-gate | reference vs itself | proven | proven | proven | match |
+| c28 | wire | reference vs itself | proven | proven | proven | match |
+| c29 | mux2 | reference vs itself | proven | proven | proven | match |
+| c30 | counter-3b | reference vs itself | proven | proven | proven | match |
+| c31 | seq-101 | reference vs itself | proven | proven | proven | match |
+| c32 | traffic-light | reference vs itself | proven | proven | proven | match |
+| c33 | and-gate | OR instead of AND (first mismatch seen at cycle 1) | fails | fails | fails | match |
+| c34 | xor-gate | OR instead of XOR (first mismatch seen at cycle 1) | fails | fails | fails | match |
+| c35 | wire | inverted (first mismatch seen at cycle 1) | fails | fails | fails | match |
+| c36 | mux2 | select swapped (first mismatch seen at cycle 1) | fails | fails | fails | match |
+| c37 | counter-3b | counts by 2 (first mismatch seen at cycle 3) | fails | fails | fails | match |
+| c38 | counter-3b | wrong reset value (1) (first mismatch seen at cycle 2) | fails | fails | fails | match |
+| c39 | seq-101 | wrong pattern 110 (first mismatch seen at cycle 5) | fails | fails | fails | match |
+| c40 | seq-101 | output one cycle early (first mismatch seen at cycle 4) | fails | fails | fails | match |
+| c41 | traffic-light | red goes to yellow (no wrap to green) (first mismatch seen at cycle 7) | fails | fails | fails | match |
+| c42 | traffic-light | reset to red (first mismatch seen at cycle 2) | fails | fails | fails | match |
 
 **Reading the table.**
-- All five references are proven equal to themselves, in both tools.
-- All 19 wrong designs fail with a counterexample, in both tools. The two "reset" tricks fail at cycle 2: a design that does not clear its state on reset starts undefined, and the grader treats that as different.
+- All twelve references are proven equal to themselves, in both tools (c01 to c05 and c26 to c32).
+- All 29 wrong designs fail with a counterexample, in both tools. The four combinational mistakes (c33 to c36) fail at cycle 1, with no clock and no reset in the design. The two "reset" tricks fail at cycle 2: a design that does not clear its state on reset starts undefined, and the grader treats that as different.
 - The case that differs only from about cycle 30 is caught, because it is inside the 40 cycle search.
 - **The case that differs only from about cycle 45 is NOT caught.** Induction cannot prove it (the extra counter is hard for induction), the plain search cannot see past cycle 40, so the grader passes it and the banner reads "first 40 cycles" rather than "proven". Native Yosys gives the same answer. This is the stated limit of the bound, not a hidden pass, but a wrong design can pass with that banner.
 
 **What is NOT validated.**
-- Only five problems and 25 cases (24 expected results plus the cycle 45 case); this shows the method works on them, not on every possible design.
+- Only twelve problems and 42 cases (41 expected results plus the cycle 45 case); this shows the method works on them, not on every possible design.
 - Designs that differ only after cycle 40 and that induction cannot settle will pass as "first 40 cycles". The size of that blind spot is not measured.
 - Induction can fail on states that can never happen. Then the grader falls back to the bounded search, so a correct design can end up with the weaker banner. No such correct design was found among the cases here, but it was not looked for systematically.
 - Outputs where the reference is x are skipped (`-ignore_gold_x`). A design that is wrong only where the reference is x passes. Not tested.

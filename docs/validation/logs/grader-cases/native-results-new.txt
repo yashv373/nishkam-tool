@@ -1,0 +1,17 @@
+c26 proven
+c27 proven
+c28 proven
+c29 proven
+c30 proven
+c31 proven
+c32 proven
+c33 fail
+c34 fail
+c35 fail
+c36 fail
+c37 fail
+c38 fail
+c39 fail
+c40 fail
+c41 fail
+c42 fail

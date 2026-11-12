@@ -1,0 +1,17 @@
+
+read_verilog -sv ref.v
+hierarchy -top xor_gate
+proc; flatten; async2sync
+rename xor_gate gold
+design -stash gold
+read_verilog -sv user.v
+hierarchy -check -top xor_gate
+proc; flatten; async2sync
+rename xor_gate gate
+design -stash gate
+design -copy-from gold -as gold gold
+design -copy-from gate -as gate gate
+miter -equiv -flatten -make_outputs -ignore_gold_x gold gate miter
+hierarchy -top miter
+
+sat -verify  -seq 40  -set-init-undef -enable_undef -set-def-inputs -prove trigger 0 -show-ports -dump_vcd cex.vcd miter

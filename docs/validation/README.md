@@ -968,6 +968,28 @@ One note: the browser log shows the line `Warning: m=xx on .subckt line will ove
 - The browser does not run the native binary's multi-thread path, and the multi-thread path is not exercised; KLU was exercised on two small decks only.
 - A good analog design: these decks only check the simulator.
 
+## 19. Parasitic extraction: Magic vs KLayout-PEX (tiny8, gf180mcuD)
+
+**Claimed:** nothing is validated here. This is a cross-check of two extractors on the same layout. Neither is treated as the reference, and neither result proves the other is right. Issue #114.
+
+**Design and setup:** tiny8 final GDS from the RTL-to-GDS flow run (`20261112-060506-1d07aa`, gf180mcuD). The schematic for kpex is the LVS netlist of the same run (`final/spice/tiny8.spice`). 4063 transistors in both outputs.
+
+**How our flow does it:** the in-browser Studio extraction is Magic (the browser build is upstream commit bed8d4f, `web/vendor/magic/*/SOURCE.md`). It was not run in this comparison. The Magic side here is the container's Magic 8.3.636 with `ext2spice` flat, cthresh 0 and rthresh 0.
+
+**How the other tool was installed and run:** container `gf180` from `hpretl/iic-osic-tools:chipathon26`. KLayout-PEX 0.9.0 (`kpex extract --2.5D --mode CC`) on KLayout 0.30.8 (kpex warns that 0.30.13 is recommended). Wall time 23.3 min. Magic 8.3.636 in 19 s. `kpex --magic` failed (no `magicrc`), so it is not compared. Scripts and outputs are in the private kpex folder (`scripts/run_all.sh`, `scripts/compare.py`, `RESULTS.md`).
+
+| Quantity | KLayout-PEX 2.5D | Magic 8.3.636 | Verdict |
+|---|---|---|---|
+| Caps, total (fF) | 3942.8 | 5055.5 | differs (-22%): 797.9 fF of the gap is one VDD-to-VSS cap in Magic (837 fF) that touches no signal net |
+| Signal-to-ground caps (fF) | 1718.8 | 1979.8 | differs (-13%): Magic has more caps on internal diffusion nodes; reason not checked |
+| Coupling caps, each once (fF) | 2185.1 | 2238.9 | close (-2.4%) |
+| Total without VDD-VSS cap (fF) | 3903.9 | 4218.7 | differs (-7.5%) |
+| Nets matched by name | 34 (ports) | 34 | match (clk, rst_n, instr, out, pc) |
+| Nets matched by structure | 1912 of 2090 (91.5%) | | close: unique colour match, sanity-checked by terminal counts, not LVS |
+| Top 10 nets (Magic total C), per-net diff | | | close to differs: from -5.1% to +10.3%, kpex higher on 9 of 10 |
+
+**Not validated:** which tool is right (both are unchecked against measurement or a golden reference); the browser Magic build (bed8d4f) is not the container's 8.3.636, and the two were not compared; kpex `--magic` (not run); cap values per device or per geometry; net-to-net correspondence from the LVS database (matched by structure only); the physical origin of the 837 fF VDD-to-VSS cap; the statement that kpex `$I` nets are cell-internal (inferred from the netlist). No screenshots yet.
+
 ## Claims under review
 
 An independent review (a different AI model, 2026-11-10, issue #40) went through this report. Points that were right are fixed in the text above. Points that need a new run are here; until the run is done the claim stays narrowed as written above. Each step needs the container (`docker start gf180`; in Git Bash `export MSYS_NO_PATHCONV=1`).

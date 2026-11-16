@@ -2,7 +2,7 @@
 
 Every time we say a part of the flow "matches" the traditional tool, the proof is here: the test design, how our browser version was built, how the traditional tool was run, the numbers, and what we did not check. Test designs only check the tools. They do not show a design is good.
 
-Logs are in `docs/validation/logs/`, pictures in `docs/validation/img/`. Runs were done between 2026-10-18 and 2026-11-10; each section says which (section 2 rmult20 and sections 8.x to 18 are later than 2026-10-20). Section 9 lists what is open, and the last section, "Claims under review", lists reviewer points that need a new run.
+Logs are in `docs/validation/logs/`, pictures in `docs/validation/img/`. Runs were done between 2026-10-18 and 2026-11-16; each section says which (section 2 rmult20 and sections 8.x to 21 are later than 2026-10-20). Section 9 lists what is open, and the last section, "Claims under review", lists reviewer points that need a new run.
 
 ## Summary: what is and is not validated
 
@@ -23,6 +23,8 @@ Two place-and-route flows exist in Studio:
 | Formal equivalence (section 7, 8) | Yosys | RTL | netlists proven equal to the RTL (tiny8, adder2) | not a general proof |
 | Analog simulation (section 18, run in Node, not in a page) | ngspice-46 (KLU compiled in; these runs used SPARSE, as native did) | native ngspice-46 (KLU build, SPARSE used), same models | all printed numbers identical on 5 decks; raw files agree to 2.7e-7 or better of each vector's largest value (relative, per vector) | KLU path, other corners, Monte Carlo, noise, big circuits, any browser |
 | RTL grader | Yosys miter + k-induction | native Yosys 0.64 | 5 references proven, 19 wrong designs fail, same in both; a design differing only after cycle 45 passes as "first 40 cycles" (section 10) | CDC problems, x-handling, unreachable-state fallback |
+| OpenCDC CDC check, early (section 20) | OpenCDC 4101730 (WebAssembly, 5.2 MB) | native OpenCDC 4101730 | same output on all 13 cases; agrees with our CDC grader on 8 of 13 | grader integration; the 5 differences; in-browser click-through |
+| No-arithmetic rule, adder problems (section 21) | Yosys 0.68.1207 (WebAssembly) | none (Node run only) | all 20 adder checks as expected; `+` and `-` rejected on all 4 problems | network depth and cell count; native Yosys |
 
 **Scope.** Validated: single-clock designs on gf180mcuD (7-track cells), up to 48 flip-flops, 50% density, one corner (tt, 25 C, 5.00 V). LVS was compared with native Netgen up to 3,100 devices and 1,537 nets (old flow, tiny8). The OpenROAD-flow tiny8 layout (3,150 devices, 1,559 nets, with tap cells) has an LVS match in our browser Netgen only; it was not compared with native Netgen. Most runs were made in Node with the same WebAssembly files the page loads; where a Chrome page was used, the section says so (section 8 browser run, a few checks in 12 and 13).
 
@@ -989,6 +991,102 @@ One note: the browser log shows the line `Warning: m=xx on .subckt line will ove
 | Top 10 nets (Magic total C), per-net diff | | | close to differs: from -5.1% to +10.3%, kpex higher on 9 of 10 |
 
 **Not validated:** which tool is right (both are unchecked against measurement or a golden reference); the browser Magic build (bed8d4f) is not the container's 8.3.636, and the two were not compared; kpex `--magic` (not run); cap values per device or per geometry; net-to-net correspondence from the LVS database (matched by structure only); the physical origin of the 837 fF VDD-to-VSS cap; the statement that kpex `$I` nets are cell-internal (inferred from the netlist). No screenshots yet.
+
+## 20. OpenCDC clock-domain-crossing check in Studio (early, issue #113)
+
+**Claimed:** nothing is validated as a sign-off check. The browser build of OpenCDC gives the same output as the native build on our 13 CDC cases. Its findings agree with our CDC grader on 8 of 13 cases. The stage is early and optional.
+
+**Design and test set.** The cases are CDC designs from our CDC grader (`web/cdc-problems.js`: `cdc-sync2`, `cdc-async-fifo`, `cdc-pulse-sync`). Issue #113 names these groups: the two-flop synchronizer (7 cases), the FIFO reference and the FIFO "gray-late" case, the pulse synchronizer reference and a pulse one-flop case. The other 2 cases are not named in the sources. OpenCDC cannot give an input port a clock domain, so for the two-flop synchronizer the input is driven through a flop on `clk_a` in a wrapper. Only errors and warnings are counted; "info" (verified safe) is not.
+
+**How our browser build was made.** Upstream OpenCDC at commit 4101730f63ccd687354ad6316566c9e77b5f1f80 (https://github.com/Ayoubbelguellaoui/CDC, Apache-2.0). Built to WebAssembly by `web/vendor/opencdc/4101730/build.sh`, run in Docker:
+```
+docker run --rm -v <parent of checkout>:/work -w /work emscripten/emsdk:3.1.74 bash build.sh
+```
+Details, from `web/vendor/opencdc/4101730/SOURCE.md`:
+- cmake 4.x from pip (the image has 3.22; OpenCDC needs 3.28).
+- Flags include `-DSLANG_USE_MIMALLOC=OFF`, `-sMODULARIZE -sEXPORT_ES6`, `-sALLOW_MEMORY_GROWTH`, `-fexceptions`.
+- Patches: `opencdc-wasm.patch` (one narrowing cast in `crossing.cpp`, two includes in `socket_compat.h`), plus two `sed` edits to the fetched slang in `build.sh`.
+- Output: `wasm/src/opencdc.{js,wasm}`, 5.2 MB (issue #113).
+
+The Studio stage is "CDC check (early)" in Properties. It is optional and off by default (`web/studio/stages.js`, `web/studio/app.js`).
+
+**How native was built and run.** Upstream 4101730 built unchanged; `ctest` passed 576 of 576 (issue #113, 2026-11-12). The 13-case runs and `RESULTS.md` are kept outside the repo in `~/eda/designs/opencdc`. The native compiler, the exact build commands and the run commands are not recorded here.
+
+**Numbers.**
+
+| Quantity | Native OpenCDC 4101730 | Browser build (WebAssembly) | Verdict |
+|---|---|---|---|
+| Findings on the 13 cases (rule, severity, source, destination) | native output | same output | match on all 13 cases |
+| Agreement with our CDC grader on RTL, the 13 cases | 8 of 13 | same as native (output matches) | differs on 5 (below) |
+| Agreement before the input-port fix (phase 1, issue #113) | 5 of 13 | not recorded | historical, replaced by 8 of 13 |
+| Browser build size | not applicable | 5.2 MB | not applicable |
+
+The 5 cases that differ from our grader (issue #113, 2026-11-12): the two-flop synchronizer "bypass" and "inverted-output" cases (the issue notes these are not CDC problems), the FIFO Gray-pointer cases (OpenCDC still flags CDC001 and CDC002 on the wide Gray-pointer synchronizer), and the pulse one-flop case (not flagged).
+
+**What is NOT validated.**
+- Grader integration: our CDC grader does not use OpenCDC, and the grading path does not use it.
+- The 5 differences are recorded, not fixed. No constraint removes the Gray-pointer finding, and the issue gives no further reason.
+- The input-port workaround (a flop on `clk_a` in a wrapper) is not checked against a real input constraint, so results depend on the wrapper.
+- No in-browser click-through yet. The Chrome check failed (issue #113). A live check only showed `opencdc.js` and `opencdc.wasm` served with status 200 and correct types.
+- The repo selftest (`node web/studio/engines/opencdc.selftest.mjs`) runs 2 cases only (a clean synchronizer and a one-flop crossing). The 13-case comparison script is not in the repo.
+- Other designs, other browsers, timing, and screenshots: not checked.
+
+## 21. No-arithmetic rule for the adder problems (issue #127)
+
+**Claimed:** a design for one of the four adder problems that uses an arithmetic operator (such as `+`) is rejected before the equivalence check. The rule checks structure only. The learner must build the carry network.
+
+**Which problems.** The four problems with `noArith: true` in `web/problems.js`: `adder-manchester`, `adder-brent-kung`, `adder-kogge-stone`, `adder-han-carlson`. The rule and the cases ship in commit 9551747 (issue #127), which is on `main`.
+
+**What the check does.** `noArithScript(top)` in `web/grader.js` runs this Yosys script on the user's file:
+```
+read_verilog -sv user.v
+hierarchy -check -top <top>
+proc; flatten; opt_clean
+select -assert-none t:$add t:$sub t:$alu t:$macc t:$neg t:$mul t:$lt t:$le t:$gt t:$ge t:$div t:$mod t:$divfloor t:$modfloor t:$pow
+```
+If the `select` assertion fails, the grader stops with the message "Build the carry network yourself; '+' is not allowed here." A compile error or an empty module does not count as this rejection; the normal run reports it. When the rule fails, the equivalence check is skipped.
+
+The cell list is the 15 types in the script, including `$div`, `$mod`, `$divfloor`, `$modfloor` and `$pow`. The shipped validation cases (table below, in `web/grader.validation.mjs`) test `+`, `-` alone (`a - ~b - ~cin`) and `/` alone (`a / b`). No case uses `%`, `**` or the floor variants, so those types are listed in the code but not exercised by a case.
+
+**How it was tested.** `web/grader.validation.mjs` (cases below), with `@yowasp/yosys` 0.68.1207 in Node. Native Yosys was not run for this check. The run used a scratch copy of the files at 9551747 (before the five types above were added to the list); the `-` and `/` rows were re-run on the 15-type script on 2026-11-16, Node 26.7.0, on 2026-11-16. The log is not saved in `docs/validation/logs/`. Command: `node web/grader.validation.mjs <outdir>`.
+
+**Results.** The whole run printed 62 checks, all as expected. The 20 adder checks are below. The other 42 are the ones in section 10.
+
+| Problem | Case | Design | Expected | Ours |
+|---|---|---|---|---|
+| adder-manchester | c13 | reference vs itself | proven | proven |
+| adder-manchester | c47 | reference equals `a+b+cin` (rule off) | proven | proven |
+| adder-manchester | (none, printed) | uses `+` | rejected | rejected (message above) |
+| adder-manchester | (none, printed) | `a - ~b - ~cin` (`-` only) | rejected | rejected (message above) |
+| adder-manchester | (none, printed) | `a / b` (`/` only) | rejected | rejected (message above) |
+| adder-manchester | c48 | chain stage 2 passes `a` instead of the carry | fails | fails (first mismatch at cycle 4) |
+| adder-brent-kung | c14 | reference vs itself | proven | proven |
+| adder-brent-kung | c49 | reference equals `a+b+cin` (rule off) | proven | proven |
+| adder-brent-kung | (none, printed) | uses `+` | rejected | rejected (message above) |
+| adder-brent-kung | (none, printed) | `a - ~b - ~cin` (`-` only) | rejected | rejected (message above) |
+| adder-brent-kung | (none, printed) | `a / b` (`/` only) | rejected | rejected (message above) |
+| adder-brent-kung | c50 | one prefix cell missing (level 5, bit 4) | fails | fails (first mismatch at cycle 5) |
+| adder-kogge-stone | c15 | reference vs itself | proven | proven |
+| adder-kogge-stone | c51 | reference equals `a+b+cin` (rule off) | proven | proven |
+| adder-kogge-stone | (none, printed) | uses `+` | rejected | rejected (message above) |
+| adder-kogge-stone | (none, printed) | `a - ~b - ~cin` (`-` only) | rejected | rejected (message above) |
+| adder-kogge-stone | (none, printed) | `a / b` (`/` only) | rejected | rejected (message above) |
+| adder-kogge-stone | c52 | one prefix cell missing (level 3, bit 7) | fails | fails (first mismatch at cycle 38) |
+| adder-han-carlson | c16 | reference vs itself | proven | proven |
+| adder-han-carlson | c53 | reference equals `a+b+cin` (rule off) | proven | proven |
+| adder-han-carlson | (none, printed) | uses `+` | rejected | rejected (message above) |
+| adder-han-carlson | (none, printed) | `a - ~b - ~cin` (`-` only) | rejected | rejected (message above) |
+| adder-han-carlson | (none, printed) | `a / b` (`/` only) | rejected | rejected (message above) |
+| adder-han-carlson | c54 | one prefix cell missing (level 3, bit 5) | fails | fails (first mismatch at cycle 9) |
+
+The "rule off" rows check that the function matches, with the structural rule switched off for that case. The "(none, printed)" rows are the rule checks; the log prints them without a case number.
+
+**What is NOT validated.**
+- Network depth and cell count are not checked. A lookup table, or a different prefix network that avoids `+`, passes if its function is right.
+- Only the function (proven by k-induction for the reference cases) and the absence of the 15 listed cell types are checked. Other cell types are not checked.
+- The check runs in the browser. It is not a security control.
+- Native Yosys was not run for this check. The page itself was not clicked through for this rule.
+- Only the four adder problems and the cases above were tested.
 
 ## Claims under review
 

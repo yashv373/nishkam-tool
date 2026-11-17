@@ -1031,6 +1031,20 @@ The 5 cases that differ from our grader (issue #113, 2026-11-12): the two-flop s
 - The repo selftest (`node web/studio/engines/opencdc.selftest.mjs`) runs 2 cases only (a clean synchronizer and a one-flop crossing). The 13-case comparison script is not in the repo.
 - Other designs, other browsers, timing, and screenshots: not checked.
 
+**Decision (issue #113).** OpenCDC is a Studio lint aid and is never used for grading. Reviewed by a second AI model (Gemini Argon), case by case against our grader: case 6 (port-level crossing), our grader is right; case 7 (bit-skew safety), the two tools apply different rules, so they are not comparable; cases 8, 9 and 13 (multi-bit Gray pointers, first-flop tap next to a 2-flop branch), OpenCDC is wrong. OpenCDC is better only for harness-free linting of open designs and for rules we do not have (for example unsynchronized resets).
+
+**CDC grader holes found by the same review (2026-11-17, `web/cdc.test.mjs`).** The reviewer claimed four designs that should fail but pass. Each was built as a test and run against the grader before any change.
+
+| # | Cheating design | Before | Fix | Now |
+|---|---|---|---|---|
+| 1 | extra `clk_a` flop feeds a kept `clk_b` chain, `q = d` | passes: confirmed | an output may not be driven straight from an input pin | fails (structure) |
+| 1b | same, but `q = da` | fails already (timing check, "q did not follow"): claim false | none needed | fails |
+| 2 | first synchronizer flop feeds two `clk_b` flops that reconverge | passes: confirmed | the first flop must feed exactly one place | fails (structure) |
+| 3 | binary pointers as scalar flops `wb0..wb2`, one synchronizer per bit | passes: confirmed (bus grouping went by net name) | crossings are grouped as one bus per direction, not per name | fails (bus rule, one bit at a time) |
+| 4 | flop built from `wdata ^ wbin[0]` crosses with one flop into read-side logic | passes: confirmed | only flops built purely from data ports skip the structure check | fails (structure) |
+
+All 13 earlier cases keep their results. Still open: a flop built purely from `wdata` and used in read-side logic is still exempt (data-path flops are the registered read data case) and only the 16-step timing check covers it. Grouping by direction would wrongly flag two unrelated signals that cross the same way and change together; no current problem has that.
+
 ## 21. No-arithmetic rule for the adder problems (issue #127)
 
 **Claimed:** a design for one of the four adder problems that uses an arithmetic operator (such as `+`) is rejected before the equivalence check. The rule checks structure only. The learner must build the carry network.

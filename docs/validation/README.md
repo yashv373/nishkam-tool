@@ -1048,9 +1048,9 @@ If the `select` assertion fails, the grader stops with the message "Build the ca
 
 The cell list is the 15 types in the script, including `$div`, `$mod`, `$divfloor`, `$modfloor` and `$pow`. The shipped validation cases (table below, in `web/grader.validation.mjs`) test `+`, `-` alone (`a - ~b - ~cin`) and `/` alone (`a / b`). No case uses `%`, `**` or the floor variants, so those types are listed in the code but not exercised by a case.
 
-**How it was tested.** `web/grader.validation.mjs` (cases below), with `@yowasp/yosys` 0.68.1207 in Node. Native Yosys was not run for this check. The run used a scratch copy of the files at 9551747 (before the five types above were added to the list); the `-` and `/` rows were re-run on the 15-type script on 2026-11-16, Node 26.7.0, on 2026-11-16. The log is not saved in `docs/validation/logs/`. Command: `node web/grader.validation.mjs <outdir>`.
+**How it was tested.** `web/grader.validation.mjs` (cases below), with `@yowasp/yosys` 0.68.1207 in Node. Native Yosys was not run for this check. The run used a scratch copy of the files at 9551747 (before the five types above were added to the list); the `-` and `/` rows were re-run on the 15-type script on 2026-11-16, Node 26.7.0. The log is not saved in `docs/validation/logs/`. Command: `node web/grader.validation.mjs <outdir>`.
 
-**Results.** The whole run printed 62 checks, all as expected. The 20 adder checks are below. The other 42 are the ones in section 10.
+**Results.** The whole run printed 66 checks, all as expected. The 24 adder checks are below. The other 42 are the ones in section 10.
 
 | Problem | Case | Design | Expected | Ours |
 |---|---|---|---|---|

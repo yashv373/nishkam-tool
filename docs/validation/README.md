@@ -1088,6 +1088,12 @@ The "rule off" rows check that the function matches, with the structural rule sw
 - Native Yosys was not run for this check. The page itself was not clicked through for this rule.
 - Only the four adder problems and the cases above were tested.
 
+## 22. Python tests in Studio: cocotb-compatible subset (early, issue #67) - NOT YET VALIDATED
+
+Studio can run `test_*.py` files with a small cocotb-compatible subset: our own scheduler in Pyodide (`web/vendor/pyodide/314.0.8/`) drives Icarus (`web/vendor/icarus/a275a9a/`) through a generated Verilog harness. It is not cocotb. No claim is made that it behaves like real cocotb. Supported so far: `cocotb.test`, `Timer`, `RisingEdge`, `FallingEdge`, `ClockCycles`, `Clock` (via `start_soon`), `dut.x.value` read and write, `assert`. Writes take effect at once (real cocotb applies them in a later phase). Values with x or z read as `None`.
+
+Not validated: no side-by-side run against real cocotb with Icarus in the gf180 container has been done yet. That comparison (same tests, same pass/fail and failure messages, screenshots, numbers table) will be added here before any validation claim is made. Only the built-in selftest (`node web/studio/engines/cocotb.selftest.mjs`: one passing, one failing test) has run.
+
 ## Claims under review
 
 An independent review (a different AI model, 2026-11-10, issue #40) went through this report. Points that were right are fixed in the text above. Points that need a new run are here; until the run is done the claim stays narrowed as written above. Each step needs the container (`docker start gf180`; in Git Bash `export MSYS_NO_PATHCONV=1`).

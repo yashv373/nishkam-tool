@@ -1,0 +1,53 @@
+beta-multiplier current reference, 10k source resistor, DC vs temperature
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+Vdd vdd 0 3.3
+XM3 g3 g3 vdd vdd pfet_03v3 W=10u L=2u
+XM4 g1 g3 vdd vdd pfet_03v3 W=10u L=2u
+XM1 g1 g1 0 0 nfet_03v3 W=5u L=2u
+XM2 g3 g1 s2 0 nfet_03v3 W=20u L=2u
+R1 s2 0 10k
+Rst vdd g1 20Meg
+.control
+set filetype=binary
+set appendwrite
+op
+write /op.raw all
+print @m.xm3.m0[vth]
+print @m.xm3.m0[vdsat]
+print @m.xm3.m0[gm]
+print @m.xm3.m0[gds]
+print @m.xm3.m0[vgs]
+print @m.xm3.m0[vds]
+print @m.xm3.m0[id]
+print @m.xm4.m0[vth]
+print @m.xm4.m0[vdsat]
+print @m.xm4.m0[gm]
+print @m.xm4.m0[gds]
+print @m.xm4.m0[vgs]
+print @m.xm4.m0[vds]
+print @m.xm4.m0[id]
+print @m.xm1.m0[vth]
+print @m.xm1.m0[vdsat]
+print @m.xm1.m0[gm]
+print @m.xm1.m0[gds]
+print @m.xm1.m0[vgs]
+print @m.xm1.m0[vds]
+print @m.xm1.m0[id]
+print @m.xm2.m0[vth]
+print @m.xm2.m0[vdsat]
+print @m.xm2.m0[gm]
+print @m.xm2.m0[gds]
+print @m.xm2.m0[vgs]
+print @m.xm2.m0[vds]
+print @m.xm2.m0[id]
+dc temp -40 125 5
+meas dc vg1_m40 find v(g1) at=-40
+meas dc vg1_27 find v(g1) at=27
+meas dc vg1_125 find v(g1) at=125
+meas dc ir_m40 find v(s2) at=-40
+meas dc ir_27 find v(s2) at=27
+meas dc ir_125 find v(s2) at=125
+write /out.raw all
+.endc
+.end

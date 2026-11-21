@@ -1,0 +1,23 @@
+two-stage Miller op-amp, unity-feedback DC via 1 GH inductor, open-loop AC
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+Vdd vdd 0 3.3
+Vcm inp 0 1.65 AC 1
+IB vdd nb 20u
+XM8 nb nb 0 0 nfet_03v3 W=10u L=1u
+XM5 tail nb 0 0 nfet_03v3 W=10u L=1u
+XM1 d3 inn tail 0 nfet_03v3 W=20u L=1u
+XM2 d4 inp tail 0 nfet_03v3 W=20u L=1u
+XM3 d3 d3 vdd vdd pfet_03v3 W=20u L=1u
+XM4 d4 d3 vdd vdd pfet_03v3 W=20u L=1u
+XM6 out d4 vdd vdd pfet_03v3 W=80u L=1u
+XM7 out nb 0 0 nfet_03v3 W=40u L=1u
+Cc d4 out 1p
+CL out 0 2p
+Lfb out inn 1G
+Cfb inn 0 1k
+.ac dec 20 1 1G
+.meas ac gain_dc find vdb(out) at=1
+.meas ac ugf when vdb(out)=0 fall=1
+.meas ac ph_ugf find vp(out) when vdb(out)=0 fall=1
+.end

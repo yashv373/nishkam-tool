@@ -1,0 +1,20 @@
+5T OTA open-loop AC, 20 uA tail, 1 pF load, corner typical
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.param wn=10u lgn=1u wp=20u lgp=1u ib=20u
+Vdd vdd 0 3.3
+VCP inp 0 1.65 AC 0.5
+VCN inn 0 1.65 AC 0.5 180
+IB vdd nb {ib}
+XM3 d3 d3 vdd vdd pfet_03v3 W={wp} L={lgp}
+XM4 out d3 vdd vdd pfet_03v3 W={wp} L={lgp}
+XM1 d3 inp tail 0 nfet_03v3 W={wn} L={lgn}
+XM2 out inn tail 0 nfet_03v3 W={wn} L={lgn}
+XM5 tail nb 0 0 nfet_03v3 W={wn} L={lgn}
+XM6 nb nb 0 0 nfet_03v3 W={wn} L={lgn}
+CL out 0 1p
+.ac dec 20 1 1G
+.meas ac gain_dc find vdb(out) at=1
+.meas ac ugf when vdb(out)=0 fall=1
+.meas ac ph_ugf find vp(out) when vdb(out)=0 fall=1
+.end

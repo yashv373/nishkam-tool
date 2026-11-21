@@ -1,0 +1,66 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: 5t ota open-loop ac, 20 ua tail, 1 pf load, corner ff
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+binary raw file "op.raw"
+@m.xm3.m0[vth] = 6.638621e-01
+@m.xm3.m0[vdsat] = 1.489012e-01
+@m.xm3.m0[gm] = 1.064546e-04
+@m.xm3.m0[gds] = 2.595509e-07
+@m.xm3.m0[vgs] = 8.105132e-01
+@m.xm3.m0[vds] = 8.105132e-01
+@m.xm3.m0[id] = 1.001932e-05
+@m.xm4.m0[vth] = 6.638621e-01
+@m.xm4.m0[vdsat] = 1.489012e-01
+@m.xm4.m0[gm] = 1.064546e-04
+@m.xm4.m0[gds] = 2.595509e-07
+@m.xm4.m0[vgs] = 8.105132e-01
+@m.xm4.m0[vds] = 8.105132e-01
+@m.xm4.m0[id] = 1.001932e-05
+@m.xm1.m0[vth] = 8.158407e-01
+@m.xm1.m0[vdsat] = 1.254353e-01
+@m.xm1.m0[gm] = 1.394889e-04
+@m.xm1.m0[gds] = 3.097109e-07
+@m.xm1.m0[vgs] = 8.861976e-01
+@m.xm1.m0[vds] = 1.725684e+00
+@m.xm1.m0[id] = 1.001920e-05
+@m.xm2.m0[vth] = 8.158407e-01
+@m.xm2.m0[vdsat] = 1.254353e-01
+@m.xm2.m0[gm] = 1.394889e-04
+@m.xm2.m0[gds] = 3.097109e-07
+@m.xm2.m0[vgs] = 8.861976e-01
+@m.xm2.m0[vds] = 1.725684e+00
+@m.xm2.m0[id] = 1.001920e-05
+@m.xm5.m0[vth] = 5.809123e-01
+@m.xm5.m0[vdsat] = 1.596483e-01
+@m.xm5.m0[gm] = 2.175202e-04
+@m.xm5.m0[gds] = 6.880991e-07
+@m.xm5.m0[vgs] = 7.089300e-01
+@m.xm5.m0[vds] = 7.638024e-01
+@m.xm5.m0[id] = 2.003833e-05
+@m.xm6.m0[vth] = 5.809124e-01
+@m.xm6.m0[vdsat] = 1.596483e-01
+@m.xm6.m0[gm] = 2.172095e-04
+@m.xm6.m0[gds] = 7.098948e-07
+@m.xm6.m0[vgs] = 7.089300e-01
+@m.xm6.m0[vds] = 7.089300e-01
+@m.xm6.m0[id] = 2.000000e-05
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 181
+gain_dc             =  4.77555e+01
+ugf                 =  2.15290e+07
+ph_ugf              =  -1.67074e+00
+binary raw file "out.raw"
+Note: Simulation executed from .control section 

@@ -1,0 +1,47 @@
+NMOS source follower, 10 uA mirror load: DC transfer and supply-to-output PSRR
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+Vdd vdd 0 3.3 AC 1
+Vin in 0 2.2
+IB vdd nb 10u
+XM3 nb nb 0 0 nfet_03v3 W=5u L=1u
+XM2 out nb 0 0 nfet_03v3 W=5u L=1u
+XM1 vdd in out 0 nfet_03v3 W=20u L=0.5u
+CL out 0 1p
+.control
+set filetype=binary
+set appendwrite
+op
+write /op.raw all
+print @m.xm3.m0[vth]
+print @m.xm3.m0[vdsat]
+print @m.xm3.m0[gm]
+print @m.xm3.m0[gds]
+print @m.xm3.m0[vgs]
+print @m.xm3.m0[vds]
+print @m.xm3.m0[id]
+print @m.xm2.m0[vth]
+print @m.xm2.m0[vdsat]
+print @m.xm2.m0[gm]
+print @m.xm2.m0[gds]
+print @m.xm2.m0[vgs]
+print @m.xm2.m0[vds]
+print @m.xm2.m0[id]
+print @m.xm1.m0[vth]
+print @m.xm1.m0[vdsat]
+print @m.xm1.m0[gm]
+print @m.xm1.m0[gds]
+print @m.xm1.m0[vgs]
+print @m.xm1.m0[vds]
+print @m.xm1.m0[id]
+dc Vin 1 3.3 0.05
+meas dc vo_in2p2 find v(out) at=2.2
+meas dc vo_in3 find v(out) at=3.0
+write /out.raw all
+ac dec 10 1 1G
+meas ac psrr_1 find vdb(out) at=1
+meas ac psrr_1meg find vdb(out) at=1e6
+meas ac psrr_100meg find vdb(out) at=1e8
+write /out.raw all
+.endc
+.end

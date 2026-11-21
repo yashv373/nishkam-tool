@@ -970,6 +970,63 @@ One note: the browser log shows the line `Warning: m=xx on .subckt line will ove
 - The browser does not run the native binary's multi-thread path, and the multi-thread path is not exercised; KLU was exercised on two small decks only.
 - A good analog design: these decks only check the simulator.
 
+## 18B. Analog: more decks, corners and the Lab page (issue #192)
+
+**Design and setup.** Eight plain gf180mcuD decks in `docs/validation/analog-decks/` (`*.cir`; only `nfet_03v3`, `pfet_03v3`, ideal R/C/L and sources): the 5-transistor OTA at typical, ss and ff (`ota5t_tt/ss/ff`; same circuit as section 18, written inline), a two-stage Miller op-amp (`miller`: AC gain, unity-gain frequency, phase; DC feedback through a 1 GH inductor so the output sits at its real bias point), a 5-stage ring oscillator (`ring5`: period, `.tran`), a StrongARM latch comparator (`strongarm`: decision time, `.tran`), a beta-multiplier current reference (`bmr`: `.dc temp -40 125 5`, read at -40 / 27 / 125 C) and an NMOS source follower (`follower`: `.dc` transfer plus `.ac` supply-to-output PSRR, two analyses in one deck). A bandgap with bipolar devices and an LDO were not built (see NOT validated). The check: the same deck text and the same model files must give the same numbers in the browser build and in native ngspice. Each plain deck is turned into the exact text the Lab page runs (the auto control block of `web/analog/control.js`: `op`, device probes `vth vdsat gm gds vgs vds id`, the analyses, `.meas`, `write`) by `make-page-decks.mjs` into `page/`. Native, Node and the page all run that text.
+
+**Our flow, built this way.** Same as section 18: ngspice-46 built with Emscripten 3.1.74 (`web/vendor/ngspice/46/SOURCE.md`), models from open_pdks 7b70722 (`web/vendor/gf180mcu/models-7b70722/`, byte-identical to the container's, section 18), `.spiceinit` with `ngbehavior=hsa`, `ng_nomodcheck`, `num_threads=1`, `enable_noisy_r` as `web/analog/ngspice.worker.js` writes it. Two ways to run it: (1) `node docs/validation/analog-decks/run-browser.mjs` (Node, same `.wasm`/`.js`, 3 runs per deck, writes `browser/*.log`, `browser/summary.json`, `browser/run.txt`); (2) the real Lab page, `http://127.0.0.1:8165/lab.html?mock` served by `python -m http.server` from `web/`, driven in Microsoft Edge (Playwright, `channel: msedge`, script kept outside the repo): the plain deck is pasted into the editor, Run All, and the numbers are read from the Reports tab (`browser/page-edge.json`). All 8 decks ran in the page.
+
+**Traditional flow.** `ngspice-46` from the image `hpretl/iic-osic-tools:chipathon26` (digest as in section 18; compiled with KLU, SPARSE used), open_pdks 7b70722 models at `/foss/pdks/gf180mcuD/libs.tech/ngspice/`. `docs/validation/analog-decks/run-native.sh` runs `ngspice -b -o log deck.cir` on each `page/*.cir` (3 times each, wall time recorded) with a `.spiceinit` in the working directory (`ngbehavior=hsa`, `ng_nomodcheck`, `num_threads=4`, `enable_noisy_r`; the log says "Compatibility modes selected: hs a"). Logs and raw files are in `native/`. On 2026-11-21 the container `gf180` would not start (host port 8080 was busy), so a throw-away container of the same image was used (`docker run --rm`, no ports); the tool and the model files are the same. Both sides print "Using SPARSE 1.3 as Direct Linear Solver" for every deck.
+
+**Numbers (browser build in Node vs native; the Lab page column is what the Reports tab showed, about 5 significant digits).**
+
+| Deck | Measurement | Native ngspice-46 | Browser (Node) | Browser (Lab page, Edge) | Relative difference | Result |
+|---|---|---|---|---|---|---|
+| ota5t_tt | DC gain / UGF / phase at UGF | 47.976 dB / 20.741 MHz / -1.67011 rad (PM 84.31 deg) | identical, all digits | 47.976 / 20741000 / -1.6701 | 0 | match |
+| ota5t_ss | DC gain / UGF / phase | 48.0524 dB / 19.9491 MHz / -1.66939 rad | identical | 48.052 / 19949000 / -1.6694 | 0 | match |
+| ota5t_ff | DC gain / UGF / phase | 47.7555 dB / 21.5290 MHz / -1.67074 rad | identical | 47.755 / 21529000 / -1.6707 | 0 | match |
+| miller | DC gain / UGF / phase at UGF | 93.7968 dB / 21.7633 MHz / -2.49629 rad (PM 36.97 deg) | identical | 93.797 / 21763000 / -2.4963 | 0 | match |
+| ring5 | period / max / min of v(n1) | 412.202 ps (2.426 GHz) / 3.40667 V / -0.0916378 V | identical | 4.122e-10 / 3.4067 / -0.091638 | 0 | match |
+| strongarm | decision time (clk 50 % to outn 50 %) / outn, outp at 6 ns | 276.729 ps / 1.52483e-8 V / 3.3 V | identical | 2.7673e-10 / 1.5248e-8 / 3.3 | 0 | match |
+| bmr | v(g1) at -40 / 27 / 125 C | 0.908136 / 0.908611 / 0.931564 V | identical | 0.90814 / 0.90861 / 0.93156 | 0 | match |
+| bmr | v(s2) = I x 10k at -40 / 27 / 125 C | 82.8853 / 108.879 / 154.000 mV | identical | 0.082885 / 0.10888 / 0.154 | 0 | match |
+| follower | Vout at Vin = 2.2 V / 3.0 V | 1.18846 / 1.85011 V | identical | 1.1885 / 1.8501 | 0 | match |
+| follower | PSRR at 1 Hz / 1 MHz / 100 MHz | -47.2144 / -47.2178 / -56.6626 dB | identical | -47.214 / -47.218 / -56.663 | 0 | match |
+
+Every printed `.meas` number is identical to all printed digits (relative difference 0 in the log text). The page shows fewer digits (its own formatting) and agrees with native at those digits. The device probe values that the page deck prints (7 per transistor, so `gm` and `gds` are compared too) are also identical: 21 to 77 values per deck, max relative difference 0 for all 8 decks (`browser/run.txt`).
+
+**Raw files, every point.** `op.raw` and `out.raw` (binary) compared vector by vector against native, max difference divided by that vector's own largest value (complex values: real and imaginary parts combined; same method as section 18):
+
+| Deck | Analysis, points | Vectors | Worst relative difference | Result |
+|---|---|---|---|---|
+| ota5t_tt / ss / ff | AC, 181 | 24 each | 0 (bit-identical) | match |
+| miller | AC, 181 | 26 | 0 | match |
+| follower | DC 47 + AC 91 | 25 | 0 | match |
+| bmr | DC temperature sweep, 34 | 17 | 6.1e-15 (supply current) | match |
+| ring5 | transient, 4008 | 18 | 2.0e-13 (i(vdd)); time steps equal | match |
+| strongarm | transient, 3044 | 30 | 1.4e-13 (i(vp)); time steps equal | match |
+
+Both transients take the same number of time steps on each side, and the StrongARM latch (exponential gain on a 5 mV input) still ends on the same value to 1e-13, so the solver path is the same. This is tighter than section 18's 2.7e-7 on the `mirror` DC sweep; the cause of that earlier difference is still unknown and it did not show up here.
+
+**Negative control.** `PERTURB=ota5t_tt:W={wn}:W=10.1u node run-browser.mjs` changes the OTA input-pair width by 1 % in the browser run only. Result: gain_dc 47.987 vs native 47.976 (relative 2.3e-4), UGF 20.8057 vs 20.741 MHz (3.1e-3), raw AC vector difference up to 8.5e-3. So the comparison can fail, and a 1 % device change is far above the 0 to 1e-13 seen on the unperturbed decks.
+
+**Run times (one PC, Windows 11; median of 3 unless noted).** Node/WASM with a warm module (not a browser time): OTA decks 64 to 67 ms, miller 71, follower 65, bmr 70, ring5 423, strongarm 393. Native ngspice in the container (`docker run` process start not counted, but the ngspice process start is): 81 to 126 ms for the AC/DC decks, ring5 367, strongarm 301. Lab page in Edge (one run each, a fresh WASM instance per run, models cached; the first deck also fetched the 4.9 MB `.wasm`): 238 to 299 ms for the AC/DC decks, ring5 679, strongarm 542. So the WASM build is about 0.5 to 1.3 times the native time on these small decks, and the page takes about 1.4 to 4.5 times the Node time (module start-up and parsing). None of these decks is big enough to say anything about large circuits.
+
+**Page screenshots** (Reports tab after Run All, Edge): `img/analog-lab-ota5t_tt.png`, `img/analog-lab-miller.png`, `img/analog-lab-ring5.png`, `img/analog-lab-strongarm.png`. These are not side by side with native (native has no page); the numbers are in the tables above.
+
+**Page issues met while doing this.** (1) The Reports footer always says "gf180mcuD typical corner", also for the ss and ff decks (known; the PVT selector is #184). (2) `ph_ugf` is printed in radians with no unit, so a hand-made phase margin 180 + ph_ugf is wrong; native ngspice prints the same radians, but the page deck never sets `units=degrees`: new issue #195. (3) `.step` / `.step temp` is not supported (known, #185), so the temperature sweep used `.dc temp`. (4) On the localhost run the console shows CORS errors for the `/flags` call and Cloudflare insights, because the page is served from 127.0.0.1; they are not Lab simulation errors. No wrong number was found in the page.
+
+**NOT validated.**
+- A bandgap with bipolar devices (no `pnp` deck; the beta-multiplier is MOS only) and an LDO with an error amplifier and pass device (the source follower is the only supply-rejection deck). BJT and resistor model blocks are still not exercised.
+- Corners fs and sf, 5 V / 6 V devices, and temperatures other than the three read from the bmr sweep (the OTA corners ran at 27 C only).
+- Mismatch / Monte Carlo, `.noise`, `.pz`, `.tf`, `.step`.
+- Circuits larger than about 80 devices; KLU (only SPARSE was run); native multi-thread paths (native had 4 threads set but these decks are too small to use them; the browser is single-thread).
+- The numbers agree, which does not mean the decks are good circuits: the Miller op-amp has no zero-nulling resistor (PM 37 deg) and the beta-multiplier current moves 86 % over -40 to 125 C. They only test the simulator.
+- Browsers: the page runs were Microsoft Edge only, on one machine. Chrome, Firefox and Safari were not run. The Node runs use the same WASM file but are not a browser.
+- The Lab page's plots, schematic editor and Devices table were not compared with native here; only the Reports numbers were read.
+- Run times are small single-machine samples; no large-circuit memory or time limit was tested.
+- Native compiler flags were not recorded (see section 18).
+
 ## 19. Parasitic extraction: Magic vs KLayout-PEX (tiny8, gf180mcuD)
 
 **Claimed:** nothing is validated here. This is a cross-check of two extractors on the same layout. Neither is treated as the reference, and neither result proves the other is right. Issue #114.

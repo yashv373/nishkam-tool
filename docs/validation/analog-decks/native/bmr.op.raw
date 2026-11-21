@@ -1,0 +1,16 @@
+Title: beta-multiplier current reference, 10k source resistor, dc vs temperature
+Date: Sat Nov 21 16:52:40  2026
+Command: ngspice-46, Build Thu Apr 16 19:53:00 UTC 2026
+Plotname: Operating Point
+Flags: real
+No. Variables: 5
+No. Points: 1
+Variables:
+	0	v(vdd)	voltage
+	1	v(g1)	voltage
+	2	v(g3)	voltage
+	3	v(s2)	voltage
+	4	i(vdd)	current
+Binary:
+gfffff
+@D‚u%Gí? kf$@ÁŽÜÙBß»?È>+Àô÷¾

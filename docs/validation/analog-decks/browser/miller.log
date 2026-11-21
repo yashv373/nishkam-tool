@@ -1,0 +1,81 @@
+Warning: can't find the initialization file spinit.
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: two-stage miller op-amp, unity-feedback dc via 1 gh inductor, open-loop ac
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+binary raw file "/op.raw"
+@m.xm8.m0[vth] = 6.884369e-01
+@m.xm8.m0[vdsat] = 1.639355e-01
+@m.xm8.m0[gm] = 2.095408e-04
+@m.xm8.m0[gds] = 6.536223e-07
+@m.xm8.m0[vgs] = 8.234830e-01
+@m.xm8.m0[vds] = 8.234830e-01
+@m.xm8.m0[id] = 2.000000e-05
+@m.xm5.m0[vth] = 6.884371e-01
+@m.xm5.m0[vdsat] = 1.639353e-01
+@m.xm5.m0[gm] = 2.089033e-04
+@m.xm5.m0[gds] = 6.989290e-07
+@m.xm5.m0[vgs] = 8.234830e-01
+@m.xm5.m0[vds] = 7.023550e-01
+@m.xm5.m0[id] = 1.991828e-05
+@m.xm1.m0[vth] = 9.183334e-01
+@m.xm1.m0[vdsat] = 9.940340e-02
+@m.xm1.m0[gm] = 1.634156e-04
+@m.xm1.m0[gds] = 3.804546e-07
+@m.xm1.m0[vgs] = 9.473427e-01
+@m.xm1.m0[vds] = 1.658802e+00
+@m.xm1.m0[id] = 9.950037e-06
+@m.xm2.m0[vth] = 9.183336e-01
+@m.xm2.m0[vdsat] = 9.957313e-02
+@m.xm2.m0[gm] = 1.636676e-04
+@m.xm2.m0[gds] = 3.837668e-07
+@m.xm2.m0[vgs] = 9.476450e-01
+@m.xm2.m0[vds] = 1.577092e+00
+@m.xm2.m0[id] = 9.968256e-06
+@m.xm3.m0[vth] = 7.839390e-01
+@m.xm3.m0[vdsat] = 1.526056e-01
+@m.xm3.m0[gm] = 1.016576e-04
+@m.xm3.m0[gds] = 2.291299e-07
+@m.xm3.m0[vgs] = 9.388425e-01
+@m.xm3.m0[vds] = 9.388425e-01
+@m.xm3.m0[id] = 9.950130e-06
+@m.xm4.m0[vth] = 7.839387e-01
+@m.xm4.m0[vdsat] = 1.526057e-01
+@m.xm4.m0[gm] = 1.018348e-04
+@m.xm4.m0[gds] = 2.157568e-07
+@m.xm4.m0[vgs] = 9.388425e-01
+@m.xm4.m0[vds] = 1.020553e+00
+@m.xm4.m0[id] = 9.968292e-06
+@m.xm6.m0[vth] = 7.839367e-01
+@m.xm6.m0[vdsat] = 2.100534e-01
+@m.xm6.m0[gm] = 6.088623e-04
+@m.xm6.m0[gds] = 1.190473e-06
+@m.xm6.m0[vgs] = 1.020553e+00
+@m.xm6.m0[vds] = 1.650302e+00
+@m.xm6.m0[id] = 8.205965e-05
+@m.xm7.m0[vth] = 6.884353e-01
+@m.xm7.m0[vdsat] = 1.639367e-01
+@m.xm7.m0[gm] = 8.530630e-04
+@m.xm7.m0[gds] = 2.194741e-06
+@m.xm7.m0[vgs] = 8.234830e-01
+@m.xm7.m0[vds] = 1.649698e+00
+@m.xm7.m0[id] = 8.205928e-05
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 181
+gain_dc             =  9.37968e+01
+ugf                 =  2.17633e+07
+ph_ugf              =  -2.49629e+00
+binary raw file "/out.raw"
+Note: Simulation executed from .control section 

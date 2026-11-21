@@ -1,0 +1,109 @@
+StrongARM latch comparator, 5 mV input, 100 MHz clock, 20 fF loads
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+Vdd vdd 0 3.3
+Vclk clk 0 pulse(0 3.3 2n 100p 100p 4.9n 10n)
+Vp inp 0 1.655
+Vn inn 0 1.650
+XMT tail clk 0 0 nfet_03v3 W=8u L=0.28u
+XM1 x inp tail 0 nfet_03v3 W=4u L=0.28u
+XM2 y inn tail 0 nfet_03v3 W=4u L=0.28u
+XM3 outn outp x 0 nfet_03v3 W=2u L=0.28u
+XM4 outp outn y 0 nfet_03v3 W=2u L=0.28u
+XM5 outn outp vdd vdd pfet_03v3 W=4u L=0.28u
+XM6 outp outn vdd vdd pfet_03v3 W=4u L=0.28u
+XM7 outn clk vdd vdd pfet_03v3 W=2u L=0.28u
+XM8 outp clk vdd vdd pfet_03v3 W=2u L=0.28u
+XM9 x clk vdd vdd pfet_03v3 W=2u L=0.28u
+XM10 y clk vdd vdd pfet_03v3 W=2u L=0.28u
+CP outp 0 20f
+CN outn 0 20f
+.control
+set filetype=binary
+set appendwrite
+op
+write /op.raw all
+print @m.xmt.m0[vth]
+print @m.xmt.m0[vdsat]
+print @m.xmt.m0[gm]
+print @m.xmt.m0[gds]
+print @m.xmt.m0[vgs]
+print @m.xmt.m0[vds]
+print @m.xmt.m0[id]
+print @m.xm1.m0[vth]
+print @m.xm1.m0[vdsat]
+print @m.xm1.m0[gm]
+print @m.xm1.m0[gds]
+print @m.xm1.m0[vgs]
+print @m.xm1.m0[vds]
+print @m.xm1.m0[id]
+print @m.xm2.m0[vth]
+print @m.xm2.m0[vdsat]
+print @m.xm2.m0[gm]
+print @m.xm2.m0[gds]
+print @m.xm2.m0[vgs]
+print @m.xm2.m0[vds]
+print @m.xm2.m0[id]
+print @m.xm3.m0[vth]
+print @m.xm3.m0[vdsat]
+print @m.xm3.m0[gm]
+print @m.xm3.m0[gds]
+print @m.xm3.m0[vgs]
+print @m.xm3.m0[vds]
+print @m.xm3.m0[id]
+print @m.xm4.m0[vth]
+print @m.xm4.m0[vdsat]
+print @m.xm4.m0[gm]
+print @m.xm4.m0[gds]
+print @m.xm4.m0[vgs]
+print @m.xm4.m0[vds]
+print @m.xm4.m0[id]
+print @m.xm5.m0[vth]
+print @m.xm5.m0[vdsat]
+print @m.xm5.m0[gm]
+print @m.xm5.m0[gds]
+print @m.xm5.m0[vgs]
+print @m.xm5.m0[vds]
+print @m.xm5.m0[id]
+print @m.xm6.m0[vth]
+print @m.xm6.m0[vdsat]
+print @m.xm6.m0[gm]
+print @m.xm6.m0[gds]
+print @m.xm6.m0[vgs]
+print @m.xm6.m0[vds]
+print @m.xm6.m0[id]
+print @m.xm7.m0[vth]
+print @m.xm7.m0[vdsat]
+print @m.xm7.m0[gm]
+print @m.xm7.m0[gds]
+print @m.xm7.m0[vgs]
+print @m.xm7.m0[vds]
+print @m.xm7.m0[id]
+print @m.xm8.m0[vth]
+print @m.xm8.m0[vdsat]
+print @m.xm8.m0[gm]
+print @m.xm8.m0[gds]
+print @m.xm8.m0[vgs]
+print @m.xm8.m0[vds]
+print @m.xm8.m0[id]
+print @m.xm9.m0[vth]
+print @m.xm9.m0[vdsat]
+print @m.xm9.m0[gm]
+print @m.xm9.m0[gds]
+print @m.xm9.m0[vgs]
+print @m.xm9.m0[vds]
+print @m.xm9.m0[id]
+print @m.xm10.m0[vth]
+print @m.xm10.m0[vdsat]
+print @m.xm10.m0[gm]
+print @m.xm10.m0[gds]
+print @m.xm10.m0[vgs]
+print @m.xm10.m0[vds]
+print @m.xm10.m0[id]
+tran 10p 30n
+meas tran tdec_n trig v(clk) val=1.65 rise=1 targ v(outn) val=1.65 fall=1
+meas tran voutn_end find v(outn) at=6n
+meas tran voutp_end find v(outp) at=6n
+write /out.raw all
+.endc
+.end

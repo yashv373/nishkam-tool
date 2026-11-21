@@ -1,0 +1,3121 @@
+{
+ "bmr": {
+  "ms": [
+   259,
+   70,
+   66
+  ],
+  "natMs": [
+   111,
+   109,
+   113
+  ],
+  "rows": {
+   "@m.xm3.m0[vth]": {
+    "native": 0.775122,
+    "browser": 0.775122,
+    "rel": 0
+   },
+   "@m.xm3.m0[vdsat]": {
+    "native": 0.2970775,
+    "browser": 0.2970775,
+    "rel": 0
+   },
+   "@m.xm3.m0[gm]": {
+    "native": 0.00005269829,
+    "browser": 0.00005269829,
+    "rel": 0
+   },
+   "@m.xm3.m0[gds]": {
+    "native": 1.051817e-7,
+    "browser": 1.051817e-7,
+    "rel": 0
+   },
+   "@m.xm3.m0[vgs]": {
+    "native": 1.157227,
+    "browser": 1.157227,
+    "rel": 0
+   },
+   "@m.xm3.m0[vds]": {
+    "native": 1.157227,
+    "browser": 1.157227,
+    "rel": 0
+   },
+   "@m.xm3.m0[id]": {
+    "native": 0.00001089085,
+    "browser": 0.00001089085,
+    "rel": 0
+   },
+   "@m.xm4.m0[vth]": {
+    "native": 0.775122,
+    "browser": 0.775122,
+    "rel": 0
+   },
+   "@m.xm4.m0[vdsat]": {
+    "native": 0.2970775,
+    "browser": 0.2970775,
+    "rel": 0
+   },
+   "@m.xm4.m0[gm]": {
+    "native": 0.00005313509,
+    "browser": 0.00005313509,
+    "rel": 0
+   },
+   "@m.xm4.m0[gds]": {
+    "native": 5.74299e-8,
+    "browser": 5.74299e-8,
+    "rel": 0
+   },
+   "@m.xm4.m0[vgs]": {
+    "native": 1.157227,
+    "browser": 1.157227,
+    "rel": 0
+   },
+   "@m.xm4.m0[vds]": {
+    "native": 2.391397,
+    "browser": 2.391397,
+    "rel": 0
+   },
+   "@m.xm4.m0[id]": {
+    "native": 0.00001098352,
+    "browser": 0.00001098352,
+    "rel": 0
+   },
+   "@m.xm1.m0[vth]": {
+    "native": 0.6686893,
+    "browser": 0.6686893,
+    "rel": 0
+   },
+   "@m.xm1.m0[vdsat]": {
+    "native": 0.2231802,
+    "browser": 0.2231802,
+    "rel": 0
+   },
+   "@m.xm1.m0[gm]": {
+    "native": 0.00007979993,
+    "browser": 0.00007979993,
+    "rel": 0
+   },
+   "@m.xm1.m0[gds]": {
+    "native": 1.831689e-7,
+    "browser": 1.831689e-7,
+    "rel": 0
+   },
+   "@m.xm1.m0[vgs]": {
+    "native": 0.9086033,
+    "browser": 0.9086033,
+    "rel": 0
+   },
+   "@m.xm1.m0[vds]": {
+    "native": 0.9086033,
+    "browser": 0.9086033,
+    "rel": 0
+   },
+   "@m.xm1.m0[id]": {
+    "native": 0.00001110322,
+    "browser": 0.00001110322,
+    "rel": 0
+   },
+   "@m.xm2.m0[vth]": {
+    "native": 0.7113005,
+    "browser": 0.7113005,
+    "rel": 0
+   },
+   "@m.xm2.m0[vdsat]": {
+    "native": 0.1209761,
+    "browser": 0.1209761,
+    "rel": 0
+   },
+   "@m.xm2.m0[gm]": {
+    "native": 0.0001385702,
+    "browser": 0.0001385702,
+    "rel": 0
+   },
+   "@m.xm2.m0[gds]": {
+    "native": 2.272587e-7,
+    "browser": 2.272587e-7,
+    "rel": 0
+   },
+   "@m.xm2.m0[vgs]": {
+    "native": 0.7997278,
+    "browser": 0.7997278,
+    "rel": 0
+   },
+   "@m.xm2.m0[vds]": {
+    "native": 2.033897,
+    "browser": 2.033897,
+    "rel": 0
+   },
+   "@m.xm2.m0[id]": {
+    "native": 0.00001088787,
+    "browser": 0.00001088787,
+    "rel": 0
+   },
+   "vg1_m40": {
+    "native": 0.908136,
+    "browser": 0.908136,
+    "rel": 0
+   },
+   "vg1_27": {
+    "native": 0.908611,
+    "browser": 0.908611,
+    "rel": 0
+   },
+   "vg1_125": {
+    "native": 0.931564,
+    "browser": 0.931564,
+    "rel": 0
+   },
+   "ir_m40": {
+    "native": 0.0828853,
+    "browser": 0.0828853,
+    "rel": 0
+   },
+   "ir_27": {
+    "native": 0.108879,
+    "browser": 0.108879,
+    "rel": 0
+   },
+   "ir_125": {
+    "native": 0.154,
+    "browser": 0.154,
+    "rel": 0
+   }
+  },
+  "vec": {
+   "op:Operating Point:v(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(g1)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(g3)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(s2)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:temp-sweep": {
+    "np": 34,
+    "npb": 34,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:v(g1)": {
+    "np": 34,
+    "npb": 34,
+    "rel": 1.906853893985516e-15
+   },
+   "out:DC transfer characteristic:v(g3)": {
+    "np": 34,
+    "npb": 34,
+    "rel": 8.19757109247485e-16
+   },
+   "out:DC transfer characteristic:ir_27": {
+    "np": 34,
+    "npb": 34,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:ir_125": {
+    "np": 34,
+    "npb": 34,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:ir_m40": {
+    "np": 34,
+    "npb": 34,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:v(s2)": {
+    "np": 34,
+    "npb": 34,
+    "rel": 4.2354240790857715e-15
+   },
+   "out:DC transfer characteristic:v(vdd)": {
+    "np": 34,
+    "npb": 34,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:i(vdd)": {
+    "np": 34,
+    "npb": 34,
+    "rel": 6.113037663978342e-15
+   },
+   "out:DC transfer characteristic:vg1_27": {
+    "np": 34,
+    "npb": 34,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:vg1_125": {
+    "np": 34,
+    "npb": 34,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:vg1_m40": {
+    "np": 34,
+    "npb": 34,
+    "rel": 0
+   }
+  },
+  "solver": "SPARSE",
+  "natSolver": "SPARSE"
+ },
+ "follower": {
+  "ms": [
+   66,
+   57,
+   65
+  ],
+  "natMs": [
+   121,
+   126,
+   388
+  ],
+  "rows": {
+   "@m.xm3.m0[vth]": {
+    "native": 0.6875061,
+    "browser": 0.6875061,
+    "rel": 0
+   },
+   "@m.xm3.m0[vdsat]": {
+    "native": 0.164524,
+    "browser": 0.164524,
+    "rel": 0
+   },
+   "@m.xm3.m0[gm]": {
+    "native": 0.0001039863,
+    "browser": 0.0001039863,
+    "rel": 0
+   },
+   "@m.xm3.m0[gds]": {
+    "native": 3.354241e-7,
+    "browser": 3.354241e-7,
+    "rel": 0
+   },
+   "@m.xm3.m0[vgs]": {
+    "native": 0.8247571,
+    "browser": 0.8247571,
+    "rel": 0
+   },
+   "@m.xm3.m0[vds]": {
+    "native": 0.8247571,
+    "browser": 0.8247571,
+    "rel": 0
+   },
+   "@m.xm3.m0[id]": {
+    "native": 0.000009999999,
+    "browser": 0.000009999999,
+    "rel": 0
+   },
+   "@m.xm2.m0[vth]": {
+    "native": 0.6875054,
+    "browser": 0.6875054,
+    "rel": 0
+   },
+   "@m.xm2.m0[vdsat]": {
+    "native": 0.1645244,
+    "browser": 0.1645244,
+    "rel": 0
+   },
+   "@m.xm2.m0[gm]": {
+    "native": 0.0001048235,
+    "browser": 0.0001048235,
+    "rel": 0
+   },
+   "@m.xm2.m0[gds]": {
+    "native": 2.976751e-7,
+    "browser": 2.976751e-7,
+    "rel": 0
+   },
+   "@m.xm2.m0[vgs]": {
+    "native": 0.8247571,
+    "browser": 0.8247571,
+    "rel": 0
+   },
+   "@m.xm2.m0[vds]": {
+    "native": 1.188461,
+    "browser": 1.188461,
+    "rel": 0
+   },
+   "@m.xm2.m0[id]": {
+    "native": 0.00001011409,
+    "browser": 0.00001011409,
+    "rel": 0
+   },
+   "@m.xm1.m0[vth]": {
+    "native": 1.032193,
+    "browser": 1.032193,
+    "rel": 0
+   },
+   "@m.xm1.m0[vdsat]": {
+    "native": 0.08282953,
+    "browser": 0.08282953,
+    "rel": 0
+   },
+   "@m.xm1.m0[gm]": {
+    "native": 0.0001873994,
+    "browser": 0.0001873994,
+    "rel": 0
+   },
+   "@m.xm1.m0[gds]": {
+    "native": 0.000001002446,
+    "browser": 0.000001002446,
+    "rel": 0
+   },
+   "@m.xm1.m0[vgs]": {
+    "native": 1.011539,
+    "browser": 1.011539,
+    "rel": 0
+   },
+   "@m.xm1.m0[vds]": {
+    "native": 2.111539,
+    "browser": 2.111539,
+    "rel": 0
+   },
+   "@m.xm1.m0[id]": {
+    "native": 0.00001011409,
+    "browser": 0.00001011409,
+    "rel": 0
+   },
+   "vo_in2p2": {
+    "native": 1.18846,
+    "browser": 1.18846,
+    "rel": 0
+   },
+   "vo_in3": {
+    "native": 1.85011,
+    "browser": 1.85011,
+    "rel": 0
+   },
+   "psrr_1": {
+    "native": -47.2144,
+    "browser": -47.2144,
+    "rel": 0
+   },
+   "psrr_1meg": {
+    "native": -47.2178,
+    "browser": -47.2178,
+    "rel": 0
+   },
+   "psrr_100meg": {
+    "native": -56.6626,
+    "browser": -56.6626,
+    "rel": 0
+   }
+  },
+  "vec": {
+   "op:Operating Point:v(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(in)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(nb)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(out)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vin)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:v(v-sweep)": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:v(in)": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:v(nb)": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:v(out)": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:v(vdd)": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:i(vdd)": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:i(vin)": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:vo_in2p2": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:DC transfer characteristic:vo_in3": {
+    "np": 47,
+    "npb": 47,
+    "rel": 0
+   },
+   "out:AC Analysis:frequency": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:v(in)": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:v(nb)": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:v(out)": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:psrr_1": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:psrr_1meg": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:psrr_100meg": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:v(vdd)": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vdd)": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vin)": {
+    "np": 91,
+    "npb": 91,
+    "rel": 0
+   }
+  },
+  "solver": "SPARSE",
+  "natSolver": "SPARSE"
+ },
+ "miller": {
+  "ms": [
+   73,
+   64,
+   71
+  ],
+  "natMs": [
+   187,
+   100,
+   91
+  ],
+  "rows": {
+   "@m.xm8.m0[vth]": {
+    "native": 0.6884369,
+    "browser": 0.6884369,
+    "rel": 0
+   },
+   "@m.xm8.m0[vdsat]": {
+    "native": 0.1639355,
+    "browser": 0.1639355,
+    "rel": 0
+   },
+   "@m.xm8.m0[gm]": {
+    "native": 0.0002095408,
+    "browser": 0.0002095408,
+    "rel": 0
+   },
+   "@m.xm8.m0[gds]": {
+    "native": 6.536223e-7,
+    "browser": 6.536223e-7,
+    "rel": 0
+   },
+   "@m.xm8.m0[vgs]": {
+    "native": 0.823483,
+    "browser": 0.823483,
+    "rel": 0
+   },
+   "@m.xm8.m0[vds]": {
+    "native": 0.823483,
+    "browser": 0.823483,
+    "rel": 0
+   },
+   "@m.xm8.m0[id]": {
+    "native": 0.00002,
+    "browser": 0.00002,
+    "rel": 0
+   },
+   "@m.xm5.m0[vth]": {
+    "native": 0.6884371,
+    "browser": 0.6884371,
+    "rel": 0
+   },
+   "@m.xm5.m0[vdsat]": {
+    "native": 0.1639353,
+    "browser": 0.1639353,
+    "rel": 0
+   },
+   "@m.xm5.m0[gm]": {
+    "native": 0.0002089033,
+    "browser": 0.0002089033,
+    "rel": 0
+   },
+   "@m.xm5.m0[gds]": {
+    "native": 6.98929e-7,
+    "browser": 6.98929e-7,
+    "rel": 0
+   },
+   "@m.xm5.m0[vgs]": {
+    "native": 0.823483,
+    "browser": 0.823483,
+    "rel": 0
+   },
+   "@m.xm5.m0[vds]": {
+    "native": 0.702355,
+    "browser": 0.702355,
+    "rel": 0
+   },
+   "@m.xm5.m0[id]": {
+    "native": 0.00001991828,
+    "browser": 0.00001991828,
+    "rel": 0
+   },
+   "@m.xm1.m0[vth]": {
+    "native": 0.9183334,
+    "browser": 0.9183334,
+    "rel": 0
+   },
+   "@m.xm1.m0[vdsat]": {
+    "native": 0.0994034,
+    "browser": 0.0994034,
+    "rel": 0
+   },
+   "@m.xm1.m0[gm]": {
+    "native": 0.0001634156,
+    "browser": 0.0001634156,
+    "rel": 0
+   },
+   "@m.xm1.m0[gds]": {
+    "native": 3.804546e-7,
+    "browser": 3.804546e-7,
+    "rel": 0
+   },
+   "@m.xm1.m0[vgs]": {
+    "native": 0.9473427,
+    "browser": 0.9473427,
+    "rel": 0
+   },
+   "@m.xm1.m0[vds]": {
+    "native": 1.658802,
+    "browser": 1.658802,
+    "rel": 0
+   },
+   "@m.xm1.m0[id]": {
+    "native": 0.000009950037,
+    "browser": 0.000009950037,
+    "rel": 0
+   },
+   "@m.xm2.m0[vth]": {
+    "native": 0.9183336,
+    "browser": 0.9183336,
+    "rel": 0
+   },
+   "@m.xm2.m0[vdsat]": {
+    "native": 0.09957313,
+    "browser": 0.09957313,
+    "rel": 0
+   },
+   "@m.xm2.m0[gm]": {
+    "native": 0.0001636676,
+    "browser": 0.0001636676,
+    "rel": 0
+   },
+   "@m.xm2.m0[gds]": {
+    "native": 3.837668e-7,
+    "browser": 3.837668e-7,
+    "rel": 0
+   },
+   "@m.xm2.m0[vgs]": {
+    "native": 0.947645,
+    "browser": 0.947645,
+    "rel": 0
+   },
+   "@m.xm2.m0[vds]": {
+    "native": 1.577092,
+    "browser": 1.577092,
+    "rel": 0
+   },
+   "@m.xm2.m0[id]": {
+    "native": 0.000009968256,
+    "browser": 0.000009968256,
+    "rel": 0
+   },
+   "@m.xm3.m0[vth]": {
+    "native": 0.783939,
+    "browser": 0.783939,
+    "rel": 0
+   },
+   "@m.xm3.m0[vdsat]": {
+    "native": 0.1526056,
+    "browser": 0.1526056,
+    "rel": 0
+   },
+   "@m.xm3.m0[gm]": {
+    "native": 0.0001016576,
+    "browser": 0.0001016576,
+    "rel": 0
+   },
+   "@m.xm3.m0[gds]": {
+    "native": 2.291299e-7,
+    "browser": 2.291299e-7,
+    "rel": 0
+   },
+   "@m.xm3.m0[vgs]": {
+    "native": 0.9388425,
+    "browser": 0.9388425,
+    "rel": 0
+   },
+   "@m.xm3.m0[vds]": {
+    "native": 0.9388425,
+    "browser": 0.9388425,
+    "rel": 0
+   },
+   "@m.xm3.m0[id]": {
+    "native": 0.00000995013,
+    "browser": 0.00000995013,
+    "rel": 0
+   },
+   "@m.xm4.m0[vth]": {
+    "native": 0.7839387,
+    "browser": 0.7839387,
+    "rel": 0
+   },
+   "@m.xm4.m0[vdsat]": {
+    "native": 0.1526057,
+    "browser": 0.1526057,
+    "rel": 0
+   },
+   "@m.xm4.m0[gm]": {
+    "native": 0.0001018348,
+    "browser": 0.0001018348,
+    "rel": 0
+   },
+   "@m.xm4.m0[gds]": {
+    "native": 2.157568e-7,
+    "browser": 2.157568e-7,
+    "rel": 0
+   },
+   "@m.xm4.m0[vgs]": {
+    "native": 0.9388425,
+    "browser": 0.9388425,
+    "rel": 0
+   },
+   "@m.xm4.m0[vds]": {
+    "native": 1.020553,
+    "browser": 1.020553,
+    "rel": 0
+   },
+   "@m.xm4.m0[id]": {
+    "native": 0.000009968292,
+    "browser": 0.000009968292,
+    "rel": 0
+   },
+   "@m.xm6.m0[vth]": {
+    "native": 0.7839367,
+    "browser": 0.7839367,
+    "rel": 0
+   },
+   "@m.xm6.m0[vdsat]": {
+    "native": 0.2100534,
+    "browser": 0.2100534,
+    "rel": 0
+   },
+   "@m.xm6.m0[gm]": {
+    "native": 0.0006088623,
+    "browser": 0.0006088623,
+    "rel": 0
+   },
+   "@m.xm6.m0[gds]": {
+    "native": 0.000001190473,
+    "browser": 0.000001190473,
+    "rel": 0
+   },
+   "@m.xm6.m0[vgs]": {
+    "native": 1.020553,
+    "browser": 1.020553,
+    "rel": 0
+   },
+   "@m.xm6.m0[vds]": {
+    "native": 1.650302,
+    "browser": 1.650302,
+    "rel": 0
+   },
+   "@m.xm6.m0[id]": {
+    "native": 0.00008205965,
+    "browser": 0.00008205965,
+    "rel": 0
+   },
+   "@m.xm7.m0[vth]": {
+    "native": 0.6884353,
+    "browser": 0.6884353,
+    "rel": 0
+   },
+   "@m.xm7.m0[vdsat]": {
+    "native": 0.1639367,
+    "browser": 0.1639367,
+    "rel": 0
+   },
+   "@m.xm7.m0[gm]": {
+    "native": 0.000853063,
+    "browser": 0.000853063,
+    "rel": 0
+   },
+   "@m.xm7.m0[gds]": {
+    "native": 0.000002194741,
+    "browser": 0.000002194741,
+    "rel": 0
+   },
+   "@m.xm7.m0[vgs]": {
+    "native": 0.823483,
+    "browser": 0.823483,
+    "rel": 0
+   },
+   "@m.xm7.m0[vds]": {
+    "native": 1.649698,
+    "browser": 1.649698,
+    "rel": 0
+   },
+   "@m.xm7.m0[id]": {
+    "native": 0.00008205928,
+    "browser": 0.00008205928,
+    "rel": 0
+   },
+   "gain_dc": {
+    "native": 93.7968,
+    "browser": 93.7968,
+    "rel": 0
+   },
+   "ugf": {
+    "native": 21763300,
+    "browser": 21763300,
+    "rel": 0
+   },
+   "ph_ugf": {
+    "native": -2.49629,
+    "browser": -2.49629,
+    "rel": 0
+   }
+  },
+  "vec": {
+   "op:Operating Point:v(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(d3)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(d4)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(lfb)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(nb)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(out)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(tail)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vcm)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "out:AC Analysis:frequency": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(d3)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(d4)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:gain_dc": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(inn)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(inp)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(lfb)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(nb)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(out)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:ph_ugf": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(tail)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:ugf": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vcm)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(vdd)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vdd)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   }
+  },
+  "solver": "SPARSE",
+  "natSolver": "SPARSE"
+ },
+ "ota5t_ff": {
+  "ms": [
+   56,
+   64,
+   97
+  ],
+  "natMs": [
+   107,
+   129,
+   103
+  ],
+  "rows": {
+   "@m.xm3.m0[vth]": {
+    "native": 0.6638621,
+    "browser": 0.6638621,
+    "rel": 0
+   },
+   "@m.xm3.m0[vdsat]": {
+    "native": 0.1489012,
+    "browser": 0.1489012,
+    "rel": 0
+   },
+   "@m.xm3.m0[gm]": {
+    "native": 0.0001064546,
+    "browser": 0.0001064546,
+    "rel": 0
+   },
+   "@m.xm3.m0[gds]": {
+    "native": 2.595509e-7,
+    "browser": 2.595509e-7,
+    "rel": 0
+   },
+   "@m.xm3.m0[vgs]": {
+    "native": 0.8105132,
+    "browser": 0.8105132,
+    "rel": 0
+   },
+   "@m.xm3.m0[vds]": {
+    "native": 0.8105132,
+    "browser": 0.8105132,
+    "rel": 0
+   },
+   "@m.xm3.m0[id]": {
+    "native": 0.00001001932,
+    "browser": 0.00001001932,
+    "rel": 0
+   },
+   "@m.xm4.m0[vth]": {
+    "native": 0.6638621,
+    "browser": 0.6638621,
+    "rel": 0
+   },
+   "@m.xm4.m0[vdsat]": {
+    "native": 0.1489012,
+    "browser": 0.1489012,
+    "rel": 0
+   },
+   "@m.xm4.m0[gm]": {
+    "native": 0.0001064546,
+    "browser": 0.0001064546,
+    "rel": 0
+   },
+   "@m.xm4.m0[gds]": {
+    "native": 2.595509e-7,
+    "browser": 2.595509e-7,
+    "rel": 0
+   },
+   "@m.xm4.m0[vgs]": {
+    "native": 0.8105132,
+    "browser": 0.8105132,
+    "rel": 0
+   },
+   "@m.xm4.m0[vds]": {
+    "native": 0.8105132,
+    "browser": 0.8105132,
+    "rel": 0
+   },
+   "@m.xm4.m0[id]": {
+    "native": 0.00001001932,
+    "browser": 0.00001001932,
+    "rel": 0
+   },
+   "@m.xm1.m0[vth]": {
+    "native": 0.8158407,
+    "browser": 0.8158407,
+    "rel": 0
+   },
+   "@m.xm1.m0[vdsat]": {
+    "native": 0.1254353,
+    "browser": 0.1254353,
+    "rel": 0
+   },
+   "@m.xm1.m0[gm]": {
+    "native": 0.0001394889,
+    "browser": 0.0001394889,
+    "rel": 0
+   },
+   "@m.xm1.m0[gds]": {
+    "native": 3.097109e-7,
+    "browser": 3.097109e-7,
+    "rel": 0
+   },
+   "@m.xm1.m0[vgs]": {
+    "native": 0.8861976,
+    "browser": 0.8861976,
+    "rel": 0
+   },
+   "@m.xm1.m0[vds]": {
+    "native": 1.725684,
+    "browser": 1.725684,
+    "rel": 0
+   },
+   "@m.xm1.m0[id]": {
+    "native": 0.0000100192,
+    "browser": 0.0000100192,
+    "rel": 0
+   },
+   "@m.xm2.m0[vth]": {
+    "native": 0.8158407,
+    "browser": 0.8158407,
+    "rel": 0
+   },
+   "@m.xm2.m0[vdsat]": {
+    "native": 0.1254353,
+    "browser": 0.1254353,
+    "rel": 0
+   },
+   "@m.xm2.m0[gm]": {
+    "native": 0.0001394889,
+    "browser": 0.0001394889,
+    "rel": 0
+   },
+   "@m.xm2.m0[gds]": {
+    "native": 3.097109e-7,
+    "browser": 3.097109e-7,
+    "rel": 0
+   },
+   "@m.xm2.m0[vgs]": {
+    "native": 0.8861976,
+    "browser": 0.8861976,
+    "rel": 0
+   },
+   "@m.xm2.m0[vds]": {
+    "native": 1.725684,
+    "browser": 1.725684,
+    "rel": 0
+   },
+   "@m.xm2.m0[id]": {
+    "native": 0.0000100192,
+    "browser": 0.0000100192,
+    "rel": 0
+   },
+   "@m.xm5.m0[vth]": {
+    "native": 0.5809123,
+    "browser": 0.5809123,
+    "rel": 0
+   },
+   "@m.xm5.m0[vdsat]": {
+    "native": 0.1596483,
+    "browser": 0.1596483,
+    "rel": 0
+   },
+   "@m.xm5.m0[gm]": {
+    "native": 0.0002175202,
+    "browser": 0.0002175202,
+    "rel": 0
+   },
+   "@m.xm5.m0[gds]": {
+    "native": 6.880991e-7,
+    "browser": 6.880991e-7,
+    "rel": 0
+   },
+   "@m.xm5.m0[vgs]": {
+    "native": 0.70893,
+    "browser": 0.70893,
+    "rel": 0
+   },
+   "@m.xm5.m0[vds]": {
+    "native": 0.7638024,
+    "browser": 0.7638024,
+    "rel": 0
+   },
+   "@m.xm5.m0[id]": {
+    "native": 0.00002003833,
+    "browser": 0.00002003833,
+    "rel": 0
+   },
+   "@m.xm6.m0[vth]": {
+    "native": 0.5809124,
+    "browser": 0.5809124,
+    "rel": 0
+   },
+   "@m.xm6.m0[vdsat]": {
+    "native": 0.1596483,
+    "browser": 0.1596483,
+    "rel": 0
+   },
+   "@m.xm6.m0[gm]": {
+    "native": 0.0002172095,
+    "browser": 0.0002172095,
+    "rel": 0
+   },
+   "@m.xm6.m0[gds]": {
+    "native": 7.098948e-7,
+    "browser": 7.098948e-7,
+    "rel": 0
+   },
+   "@m.xm6.m0[vgs]": {
+    "native": 0.70893,
+    "browser": 0.70893,
+    "rel": 0
+   },
+   "@m.xm6.m0[vds]": {
+    "native": 0.70893,
+    "browser": 0.70893,
+    "rel": 0
+   },
+   "@m.xm6.m0[id]": {
+    "native": 0.00002,
+    "browser": 0.00002,
+    "rel": 0
+   },
+   "gain_dc": {
+    "native": 47.7555,
+    "browser": 47.7555,
+    "rel": 0
+   },
+   "ugf": {
+    "native": 21529000,
+    "browser": 21529000,
+    "rel": 0
+   },
+   "ph_ugf": {
+    "native": -1.67074,
+    "browser": -1.67074,
+    "rel": 0
+   }
+  },
+  "vec": {
+   "op:Operating Point:v(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(d3)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(nb)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(out)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(tail)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vcn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vcp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "out:AC Analysis:frequency": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(d3)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:gain_dc": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(inn)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(inp)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(nb)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(out)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:ph_ugf": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(tail)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:ugf": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vcn)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vcp)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(vdd)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vdd)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   }
+  },
+  "solver": "SPARSE",
+  "natSolver": "SPARSE"
+ },
+ "ota5t_ss": {
+  "ms": [
+   64,
+   57,
+   73
+  ],
+  "natMs": [
+   90,
+   128,
+   87
+  ],
+  "rows": {
+   "@m.xm3.m0[vth]": {
+    "native": 0.9039977,
+    "browser": 0.9039977,
+    "rel": 0
+   },
+   "@m.xm3.m0[vdsat]": {
+    "native": 0.1559761,
+    "browser": 0.1559761,
+    "rel": 0
+   },
+   "@m.xm3.m0[gm]": {
+    "native": 0.00009713091,
+    "browser": 0.00009713091,
+    "rel": 0
+   },
+   "@m.xm3.m0[gds]": {
+    "native": 2.09121e-7,
+    "browser": 2.09121e-7,
+    "rel": 0
+   },
+   "@m.xm3.m0[vgs]": {
+    "native": 1.067226,
+    "browser": 1.067226,
+    "rel": 0
+   },
+   "@m.xm3.m0[vds]": {
+    "native": 1.067226,
+    "browser": 1.067226,
+    "rel": 0
+   },
+   "@m.xm3.m0[id]": {
+    "native": 0.000009877185,
+    "browser": 0.000009877185,
+    "rel": 0
+   },
+   "@m.xm4.m0[vth]": {
+    "native": 0.9039977,
+    "browser": 0.9039977,
+    "rel": 0
+   },
+   "@m.xm4.m0[vdsat]": {
+    "native": 0.1559761,
+    "browser": 0.1559761,
+    "rel": 0
+   },
+   "@m.xm4.m0[gm]": {
+    "native": 0.00009713091,
+    "browser": 0.00009713091,
+    "rel": 0
+   },
+   "@m.xm4.m0[gds]": {
+    "native": 2.09121e-7,
+    "browser": 2.09121e-7,
+    "rel": 0
+   },
+   "@m.xm4.m0[vgs]": {
+    "native": 1.067226,
+    "browser": 1.067226,
+    "rel": 0
+   },
+   "@m.xm4.m0[vds]": {
+    "native": 1.067226,
+    "browser": 1.067226,
+    "rel": 0
+   },
+   "@m.xm4.m0[id]": {
+    "native": 0.000009877185,
+    "browser": 0.000009877185,
+    "rel": 0
+   },
+   "@m.xm1.m0[vth]": {
+    "native": 0.9974819,
+    "browser": 0.9974819,
+    "rel": 0
+   },
+   "@m.xm1.m0[vdsat]": {
+    "native": 0.1302329,
+    "browser": 0.1302329,
+    "rel": 0
+   },
+   "@m.xm1.m0[gm]": {
+    "native": 0.0001295853,
+    "browser": 0.0001295853,
+    "rel": 0
+   },
+   "@m.xm1.m0[gds]": {
+    "native": 3.024496e-7,
+    "browser": 3.024496e-7,
+    "rel": 0
+   },
+   "@m.xm1.m0[vgs]": {
+    "native": 1.077782,
+    "browser": 1.077782,
+    "rel": 0
+   },
+   "@m.xm1.m0[vds]": {
+    "native": 1.660556,
+    "browser": 1.660556,
+    "rel": 0
+   },
+   "@m.xm1.m0[id]": {
+    "native": 0.000009877116,
+    "browser": 0.000009877116,
+    "rel": 0
+   },
+   "@m.xm2.m0[vth]": {
+    "native": 0.9974819,
+    "browser": 0.9974819,
+    "rel": 0
+   },
+   "@m.xm2.m0[vdsat]": {
+    "native": 0.1302329,
+    "browser": 0.1302329,
+    "rel": 0
+   },
+   "@m.xm2.m0[gm]": {
+    "native": 0.0001295853,
+    "browser": 0.0001295853,
+    "rel": 0
+   },
+   "@m.xm2.m0[gds]": {
+    "native": 3.024496e-7,
+    "browser": 3.024496e-7,
+    "rel": 0
+   },
+   "@m.xm2.m0[vgs]": {
+    "native": 1.077782,
+    "browser": 1.077782,
+    "rel": 0
+   },
+   "@m.xm2.m0[vds]": {
+    "native": 1.660556,
+    "browser": 1.660556,
+    "rel": 0
+   },
+   "@m.xm2.m0[id]": {
+    "native": 0.000009877116,
+    "browser": 0.000009877116,
+    "rel": 0
+   },
+   "@m.xm5.m0[vth]": {
+    "native": 0.7959229,
+    "browser": 0.7959229,
+    "rel": 0
+   },
+   "@m.xm5.m0[vdsat]": {
+    "native": 0.1680698,
+    "browser": 0.1680698,
+    "rel": 0
+   },
+   "@m.xm5.m0[gm]": {
+    "native": 0.0002000223,
+    "browser": 0.0002000223,
+    "rel": 0
+   },
+   "@m.xm5.m0[gds]": {
+    "native": 7.713847e-7,
+    "browser": 7.713847e-7,
+    "rel": 0
+   },
+   "@m.xm5.m0[vgs]": {
+    "native": 0.9383109,
+    "browser": 0.9383109,
+    "rel": 0
+   },
+   "@m.xm5.m0[vds]": {
+    "native": 0.5722178,
+    "browser": 0.5722178,
+    "rel": 0
+   },
+   "@m.xm5.m0[id]": {
+    "native": 0.00001975423,
+    "browser": 0.00001975423,
+    "rel": 0
+   },
+   "@m.xm6.m0[vth]": {
+    "native": 0.7959221,
+    "browser": 0.7959221,
+    "rel": 0
+   },
+   "@m.xm6.m0[vdsat]": {
+    "native": 0.1680703,
+    "browser": 0.1680703,
+    "rel": 0
+   },
+   "@m.xm6.m0[gm]": {
+    "native": 0.0002019118,
+    "browser": 0.0002019118,
+    "rel": 0
+   },
+   "@m.xm6.m0[gds]": {
+    "native": 6.089562e-7,
+    "browser": 6.089562e-7,
+    "rel": 0
+   },
+   "@m.xm6.m0[vgs]": {
+    "native": 0.9383109,
+    "browser": 0.9383109,
+    "rel": 0
+   },
+   "@m.xm6.m0[vds]": {
+    "native": 0.9383109,
+    "browser": 0.9383109,
+    "rel": 0
+   },
+   "@m.xm6.m0[id]": {
+    "native": 0.00002,
+    "browser": 0.00002,
+    "rel": 0
+   },
+   "gain_dc": {
+    "native": 48.0524,
+    "browser": 48.0524,
+    "rel": 0
+   },
+   "ugf": {
+    "native": 19949100,
+    "browser": 19949100,
+    "rel": 0
+   },
+   "ph_ugf": {
+    "native": -1.66939,
+    "browser": -1.66939,
+    "rel": 0
+   }
+  },
+  "vec": {
+   "op:Operating Point:v(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(d3)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(nb)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(out)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(tail)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vcn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vcp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "out:AC Analysis:frequency": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(d3)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:gain_dc": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(inn)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(inp)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(nb)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(out)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:ph_ugf": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(tail)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:ugf": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vcn)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vcp)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(vdd)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vdd)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   }
+  },
+  "solver": "SPARSE",
+  "natSolver": "SPARSE"
+ },
+ "ota5t_tt": {
+  "ms": [
+   71,
+   67,
+   66
+  ],
+  "natMs": [
+   91,
+   81,
+   80
+  ],
+  "rows": {
+   "@m.xm3.m0[vth]": {
+    "native": 0.783939,
+    "browser": 0.783939,
+    "rel": 0
+   },
+   "@m.xm3.m0[vdsat]": {
+    "native": 0.152582,
+    "browser": 0.152582,
+    "rel": 0
+   },
+   "@m.xm3.m0[gm]": {
+    "native": 0.0001016363,
+    "browser": 0.0001016363,
+    "rel": 0
+   },
+   "@m.xm3.m0[gds]": {
+    "native": 2.290582e-7,
+    "browser": 2.290582e-7,
+    "rel": 0
+   },
+   "@m.xm3.m0[vgs]": {
+    "native": 0.9388079,
+    "browser": 0.9388079,
+    "rel": 0
+   },
+   "@m.xm3.m0[vds]": {
+    "native": 0.9388079,
+    "browser": 0.9388079,
+    "rel": 0
+   },
+   "@m.xm3.m0[id]": {
+    "native": 0.000009946604,
+    "browser": 0.000009946604,
+    "rel": 0
+   },
+   "@m.xm4.m0[vth]": {
+    "native": 0.783939,
+    "browser": 0.783939,
+    "rel": 0
+   },
+   "@m.xm4.m0[vdsat]": {
+    "native": 0.152582,
+    "browser": 0.152582,
+    "rel": 0
+   },
+   "@m.xm4.m0[gm]": {
+    "native": 0.0001016363,
+    "browser": 0.0001016363,
+    "rel": 0
+   },
+   "@m.xm4.m0[gds]": {
+    "native": 2.290582e-7,
+    "browser": 2.290582e-7,
+    "rel": 0
+   },
+   "@m.xm4.m0[vgs]": {
+    "native": 0.9388079,
+    "browser": 0.9388079,
+    "rel": 0
+   },
+   "@m.xm4.m0[vds]": {
+    "native": 0.9388079,
+    "browser": 0.9388079,
+    "rel": 0
+   },
+   "@m.xm4.m0[id]": {
+    "native": 0.000009946604,
+    "browser": 0.000009946604,
+    "rel": 0
+   },
+   "@m.xm1.m0[vth]": {
+    "native": 0.9080993,
+    "browser": 0.9080993,
+    "rel": 0
+   },
+   "@m.xm1.m0[vdsat]": {
+    "native": 0.1279327,
+    "browser": 0.1279327,
+    "rel": 0
+   },
+   "@m.xm1.m0[gm]": {
+    "native": 0.0001344571,
+    "browser": 0.0001344571,
+    "rel": 0
+   },
+   "@m.xm1.m0[gds]": {
+    "native": 3.061917e-7,
+    "browser": 3.061917e-7,
+    "rel": 0
+   },
+   "@m.xm1.m0[vgs]": {
+    "native": 0.9833644,
+    "browser": 0.9833644,
+    "rel": 0
+   },
+   "@m.xm1.m0[vds]": {
+    "native": 1.694557,
+    "browser": 1.694557,
+    "rel": 0
+   },
+   "@m.xm1.m0[id]": {
+    "native": 0.000009946504,
+    "browser": 0.000009946504,
+    "rel": 0
+   },
+   "@m.xm2.m0[vth]": {
+    "native": 0.9080993,
+    "browser": 0.9080993,
+    "rel": 0
+   },
+   "@m.xm2.m0[vdsat]": {
+    "native": 0.1279327,
+    "browser": 0.1279327,
+    "rel": 0
+   },
+   "@m.xm2.m0[gm]": {
+    "native": 0.0001344571,
+    "browser": 0.0001344571,
+    "rel": 0
+   },
+   "@m.xm2.m0[gds]": {
+    "native": 3.061917e-7,
+    "browser": 3.061917e-7,
+    "rel": 0
+   },
+   "@m.xm2.m0[vgs]": {
+    "native": 0.9833644,
+    "browser": 0.9833644,
+    "rel": 0
+   },
+   "@m.xm2.m0[vds]": {
+    "native": 1.694557,
+    "browser": 1.694557,
+    "rel": 0
+   },
+   "@m.xm2.m0[id]": {
+    "native": 0.000009946504,
+    "browser": 0.000009946504,
+    "rel": 0
+   },
+   "@m.xm5.m0[vth]": {
+    "native": 0.6884372,
+    "browser": 0.6884372,
+    "rel": 0
+   },
+   "@m.xm5.m0[vdsat]": {
+    "native": 0.1639352,
+    "browser": 0.1639352,
+    "rel": 0
+   },
+   "@m.xm5.m0[gm]": {
+    "native": 0.000208699,
+    "browser": 0.000208699,
+    "rel": 0
+   },
+   "@m.xm5.m0[gds]": {
+    "native": 7.168811e-7,
+    "browser": 7.168811e-7,
+    "rel": 0
+   },
+   "@m.xm5.m0[vgs]": {
+    "native": 0.823483,
+    "browser": 0.823483,
+    "rel": 0
+   },
+   "@m.xm5.m0[vds]": {
+    "native": 0.6666356,
+    "browser": 0.6666356,
+    "rel": 0
+   },
+   "@m.xm5.m0[id]": {
+    "native": 0.00001989301,
+    "browser": 0.00001989301,
+    "rel": 0
+   },
+   "@m.xm6.m0[vth]": {
+    "native": 0.6884369,
+    "browser": 0.6884369,
+    "rel": 0
+   },
+   "@m.xm6.m0[vdsat]": {
+    "native": 0.1639355,
+    "browser": 0.1639355,
+    "rel": 0
+   },
+   "@m.xm6.m0[gm]": {
+    "native": 0.0002095408,
+    "browser": 0.0002095408,
+    "rel": 0
+   },
+   "@m.xm6.m0[gds]": {
+    "native": 6.536223e-7,
+    "browser": 6.536223e-7,
+    "rel": 0
+   },
+   "@m.xm6.m0[vgs]": {
+    "native": 0.823483,
+    "browser": 0.823483,
+    "rel": 0
+   },
+   "@m.xm6.m0[vds]": {
+    "native": 0.823483,
+    "browser": 0.823483,
+    "rel": 0
+   },
+   "@m.xm6.m0[id]": {
+    "native": 0.00002,
+    "browser": 0.00002,
+    "rel": 0
+   },
+   "gain_dc": {
+    "native": 47.976,
+    "browser": 47.976,
+    "rel": 0
+   },
+   "ugf": {
+    "native": 20741000,
+    "browser": 20741000,
+    "rel": 0
+   },
+   "ph_ugf": {
+    "native": -1.67011,
+    "browser": -1.67011,
+    "rel": 0
+   }
+  },
+  "vec": {
+   "op:Operating Point:v(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(d3)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(nb)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(out)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(tail)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vcn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vcp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "out:AC Analysis:frequency": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(d3)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:gain_dc": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(inn)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(inp)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(nb)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(out)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:ph_ugf": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(tail)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:ugf": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vcn)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vcp)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:v(vdd)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   },
+   "out:AC Analysis:i(vdd)": {
+    "np": 181,
+    "npb": 181,
+    "rel": 0
+   }
+  },
+  "solver": "SPARSE",
+  "natSolver": "SPARSE"
+ },
+ "ring5": {
+  "ms": [
+   423,
+   351,
+   523
+  ],
+  "natMs": [
+   367,
+   396,
+   359
+  ],
+  "rows": {
+   "@m.x1.xmn.m0[vth]": {
+    "native": 0.6274699,
+    "browser": 0.6274699,
+    "rel": 0
+   },
+   "@m.x1.xmn.m0[vdsat]": {
+    "native": 0.5992202,
+    "browser": 0.5992202,
+    "rel": 0
+   },
+   "@m.x1.xmn.m0[gm]": {
+    "native": 0.0001906542,
+    "browser": 0.0001906542,
+    "rel": 0
+   },
+   "@m.x1.xmn.m0[gds]": {
+    "native": 0.00001057354,
+    "browser": 0.00001057354,
+    "rel": 0
+   },
+   "@m.x1.xmn.m0[vgs]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x1.xmn.m0[vds]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x1.xmn.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x1.xmp.m0[vth]": {
+    "native": 0.7115286,
+    "browser": 0.7115286,
+    "rel": 0
+   },
+   "@m.x1.xmp.m0[vdsat]": {
+    "native": 0.882928,
+    "browser": 0.882928,
+    "rel": 0
+   },
+   "@m.x1.xmp.m0[gm]": {
+    "native": 0.000184982,
+    "browser": 0.000184982,
+    "rel": 0
+   },
+   "@m.x1.xmp.m0[gds]": {
+    "native": 0.00001013401,
+    "browser": 0.00001013401,
+    "rel": 0
+   },
+   "@m.x1.xmp.m0[vgs]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x1.xmp.m0[vds]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x1.xmp.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x2.xmn.m0[vth]": {
+    "native": 0.6274699,
+    "browser": 0.6274699,
+    "rel": 0
+   },
+   "@m.x2.xmn.m0[vdsat]": {
+    "native": 0.5992202,
+    "browser": 0.5992202,
+    "rel": 0
+   },
+   "@m.x2.xmn.m0[gm]": {
+    "native": 0.0001906542,
+    "browser": 0.0001906542,
+    "rel": 0
+   },
+   "@m.x2.xmn.m0[gds]": {
+    "native": 0.00001057354,
+    "browser": 0.00001057354,
+    "rel": 0
+   },
+   "@m.x2.xmn.m0[vgs]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x2.xmn.m0[vds]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x2.xmn.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x2.xmp.m0[vth]": {
+    "native": 0.7115286,
+    "browser": 0.7115286,
+    "rel": 0
+   },
+   "@m.x2.xmp.m0[vdsat]": {
+    "native": 0.882928,
+    "browser": 0.882928,
+    "rel": 0
+   },
+   "@m.x2.xmp.m0[gm]": {
+    "native": 0.000184982,
+    "browser": 0.000184982,
+    "rel": 0
+   },
+   "@m.x2.xmp.m0[gds]": {
+    "native": 0.00001013401,
+    "browser": 0.00001013401,
+    "rel": 0
+   },
+   "@m.x2.xmp.m0[vgs]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x2.xmp.m0[vds]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x2.xmp.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x3.xmn.m0[vth]": {
+    "native": 0.6274699,
+    "browser": 0.6274699,
+    "rel": 0
+   },
+   "@m.x3.xmn.m0[vdsat]": {
+    "native": 0.5992202,
+    "browser": 0.5992202,
+    "rel": 0
+   },
+   "@m.x3.xmn.m0[gm]": {
+    "native": 0.0001906542,
+    "browser": 0.0001906542,
+    "rel": 0
+   },
+   "@m.x3.xmn.m0[gds]": {
+    "native": 0.00001057354,
+    "browser": 0.00001057354,
+    "rel": 0
+   },
+   "@m.x3.xmn.m0[vgs]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x3.xmn.m0[vds]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x3.xmn.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x3.xmp.m0[vth]": {
+    "native": 0.7115286,
+    "browser": 0.7115286,
+    "rel": 0
+   },
+   "@m.x3.xmp.m0[vdsat]": {
+    "native": 0.882928,
+    "browser": 0.882928,
+    "rel": 0
+   },
+   "@m.x3.xmp.m0[gm]": {
+    "native": 0.000184982,
+    "browser": 0.000184982,
+    "rel": 0
+   },
+   "@m.x3.xmp.m0[gds]": {
+    "native": 0.00001013401,
+    "browser": 0.00001013401,
+    "rel": 0
+   },
+   "@m.x3.xmp.m0[vgs]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x3.xmp.m0[vds]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x3.xmp.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x4.xmn.m0[vth]": {
+    "native": 0.6274699,
+    "browser": 0.6274699,
+    "rel": 0
+   },
+   "@m.x4.xmn.m0[vdsat]": {
+    "native": 0.5992202,
+    "browser": 0.5992202,
+    "rel": 0
+   },
+   "@m.x4.xmn.m0[gm]": {
+    "native": 0.0001906542,
+    "browser": 0.0001906542,
+    "rel": 0
+   },
+   "@m.x4.xmn.m0[gds]": {
+    "native": 0.00001057354,
+    "browser": 0.00001057354,
+    "rel": 0
+   },
+   "@m.x4.xmn.m0[vgs]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x4.xmn.m0[vds]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x4.xmn.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x4.xmp.m0[vth]": {
+    "native": 0.7115286,
+    "browser": 0.7115286,
+    "rel": 0
+   },
+   "@m.x4.xmp.m0[vdsat]": {
+    "native": 0.882928,
+    "browser": 0.882928,
+    "rel": 0
+   },
+   "@m.x4.xmp.m0[gm]": {
+    "native": 0.000184982,
+    "browser": 0.000184982,
+    "rel": 0
+   },
+   "@m.x4.xmp.m0[gds]": {
+    "native": 0.00001013401,
+    "browser": 0.00001013401,
+    "rel": 0
+   },
+   "@m.x4.xmp.m0[vgs]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x4.xmp.m0[vds]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x4.xmp.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x5.xmn.m0[vth]": {
+    "native": 0.6274699,
+    "browser": 0.6274699,
+    "rel": 0
+   },
+   "@m.x5.xmn.m0[vdsat]": {
+    "native": 0.5992202,
+    "browser": 0.5992202,
+    "rel": 0
+   },
+   "@m.x5.xmn.m0[gm]": {
+    "native": 0.0001906542,
+    "browser": 0.0001906542,
+    "rel": 0
+   },
+   "@m.x5.xmn.m0[gds]": {
+    "native": 0.00001057354,
+    "browser": 0.00001057354,
+    "rel": 0
+   },
+   "@m.x5.xmn.m0[vgs]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x5.xmn.m0[vds]": {
+    "native": 1.531992,
+    "browser": 1.531992,
+    "rel": 0
+   },
+   "@m.x5.xmn.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "@m.x5.xmp.m0[vth]": {
+    "native": 0.7115286,
+    "browser": 0.7115286,
+    "rel": 0
+   },
+   "@m.x5.xmp.m0[vdsat]": {
+    "native": 0.882928,
+    "browser": 0.882928,
+    "rel": 0
+   },
+   "@m.x5.xmp.m0[gm]": {
+    "native": 0.000184982,
+    "browser": 0.000184982,
+    "rel": 0
+   },
+   "@m.x5.xmp.m0[gds]": {
+    "native": 0.00001013401,
+    "browser": 0.00001013401,
+    "rel": 0
+   },
+   "@m.x5.xmp.m0[vgs]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x5.xmp.m0[vds]": {
+    "native": 1.768008,
+    "browser": 1.768008,
+    "rel": 0
+   },
+   "@m.x5.xmp.m0[id]": {
+    "native": 0.00012557,
+    "browser": 0.00012557,
+    "rel": 0
+   },
+   "tper": {
+    "native": 4.12202e-10,
+    "browser": 4.12202e-10,
+    "rel": 0
+   },
+   "vmax": {
+    "native": 3.40667,
+    "browser": 3.40667,
+    "rel": 0
+   },
+   "vmin": {
+    "native": -0.0916378,
+    "browser": -0.0916378,
+    "rel": 0
+   }
+  },
+  "vec": {
+   "op:Operating Point:v(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(n1)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(n2)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(n3)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(n4)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(n5)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "out:Transient Analysis:time": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 0
+   },
+   "out:Transient Analysis:v(n1)": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 1.2775158949758378e-14
+   },
+   "out:Transient Analysis:v(n2)": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 1.68525460289167e-14
+   },
+   "out:Transient Analysis:v(n3)": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 1.9523066200003126e-14
+   },
+   "out:Transient Analysis:v(n4)": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 1.9442031324063833e-14
+   },
+   "out:Transient Analysis:v(n5)": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 2.0453179639958972e-14
+   },
+   "out:Transient Analysis:tper": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 0
+   },
+   "out:Transient Analysis:v(vdd)": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 0
+   },
+   "out:Transient Analysis:i(vdd)": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 2.017282286244605e-13
+   },
+   "out:Transient Analysis:vmax": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 0
+   },
+   "out:Transient Analysis:vmin": {
+    "np": 4008,
+    "npb": 4008,
+    "rel": 0
+   }
+  },
+  "solver": "SPARSE",
+  "natSolver": "SPARSE"
+ },
+ "strongarm": {
+  "ms": [
+   393,
+   385,
+   471
+  ],
+  "natMs": [
+   339,
+   288,
+   301
+  ],
+  "rows": {
+   "@m.xmt.m0[vth]": {
+    "native": 0.6288498,
+    "browser": 0.6288498,
+    "rel": 0
+   },
+   "@m.xmt.m0[vdsat]": {
+    "native": 0.04881257,
+    "browser": 0.04881257,
+    "rel": 0
+   },
+   "@m.xmt.m0[gm]": {
+    "native": 3.883887e-11,
+    "browser": 3.883887e-11,
+    "rel": 0
+   },
+   "@m.xmt.m0[gds]": {
+    "native": 1.219618e-12,
+    "browser": 1.219618e-12,
+    "rel": 0
+   },
+   "@m.xmt.m0[vgs]": {
+    "native": 0,
+    "browser": 0,
+    "rel": 0
+   },
+   "@m.xmt.m0[vds]": {
+    "native": 1.378518,
+    "browser": 1.378518,
+    "rel": 0
+   },
+   "@m.xmt.m0[id]": {
+    "native": 1.390966e-12,
+    "browser": 1.390966e-12,
+    "rel": 0
+   },
+   "@m.xm1.m0[vth]": {
+    "native": 0.8040729,
+    "browser": 0.8040729,
+    "rel": 0
+   },
+   "@m.xm1.m0[vdsat]": {
+    "native": 0.05038647,
+    "browser": 0.05038647,
+    "rel": 0
+   },
+   "@m.xm1.m0[gm]": {
+    "native": 9.264685e-11,
+    "browser": 9.264685e-11,
+    "rel": 0
+   },
+   "@m.xm1.m0[gds]": {
+    "native": 3.777761e-12,
+    "browser": 3.777761e-12,
+    "rel": 0
+   },
+   "@m.xm1.m0[vgs]": {
+    "native": 0.276482,
+    "browser": 0.276482,
+    "rel": 0
+   },
+   "@m.xm1.m0[vds]": {
+    "native": 1.921482,
+    "browser": 1.921482,
+    "rel": 0
+   },
+   "@m.xm1.m0[id]": {
+    "native": 2.992855e-12,
+    "browser": 2.992855e-12,
+    "rel": 0
+   },
+   "@m.xm2.m0[vth]": {
+    "native": 0.8040729,
+    "browser": 0.8040729,
+    "rel": 0
+   },
+   "@m.xm2.m0[vdsat]": {
+    "native": 0.05038646,
+    "browser": 0.05038646,
+    "rel": 0
+   },
+   "@m.xm2.m0[gm]": {
+    "native": 7.937048e-11,
+    "browser": 7.937048e-11,
+    "rel": 0
+   },
+   "@m.xm2.m0[gds]": {
+    "native": 3.236101e-12,
+    "browser": 3.236101e-12,
+    "rel": 0
+   },
+   "@m.xm2.m0[vgs]": {
+    "native": 0.271482,
+    "browser": 0.271482,
+    "rel": 0
+   },
+   "@m.xm2.m0[vds]": {
+    "native": 1.921482,
+    "browser": 1.921482,
+    "rel": 0
+   },
+   "@m.xm2.m0[id]": {
+    "native": 2.563666e-12,
+    "browser": 2.563666e-12,
+    "rel": 0
+   },
+   "@m.xm3.m0[vth]": {
+    "native": 1.015538,
+    "browser": 1.015538,
+    "rel": 0
+   },
+   "@m.xm3.m0[vdsat]": {
+    "native": 0.05211363,
+    "browser": 0.05211363,
+    "rel": 0
+   },
+   "@m.xm3.m0[gm]": {
+    "native": 6.038602e-25,
+    "browser": 6.038602e-25,
+    "rel": 0
+   },
+   "@m.xm3.m0[gds]": {
+    "native": 1.294969e-18,
+    "browser": 1.294969e-18,
+    "rel": 0
+   },
+   "@m.xm3.m0[vgs]": {
+    "native": 1.421698e-8,
+    "browser": 1.421698e-8,
+    "rel": 0
+   },
+   "@m.xm3.m0[vds]": {
+    "native": 1.421508e-8,
+    "browser": 1.421508e-8,
+    "rel": 0
+   },
+   "@m.xm3.m0[id]": {
+    "native": 1.840809e-26,
+    "browser": 1.840809e-26,
+    "rel": 0
+   },
+   "@m.xm4.m0[vth]": {
+    "native": 1.015538,
+    "browser": 1.015538,
+    "rel": 0
+   },
+   "@m.xm4.m0[vdsat]": {
+    "native": 0.05211363,
+    "browser": 0.05211363,
+    "rel": 0
+   },
+   "@m.xm4.m0[gm]": {
+    "native": 5.628183e-25,
+    "browser": 5.628183e-25,
+    "rel": 0
+   },
+   "@m.xm4.m0[gds]": {
+    "native": 1.294969e-18,
+    "browser": 1.294969e-18,
+    "rel": 0
+   },
+   "@m.xm4.m0[vgs]": {
+    "native": 1.324704e-8,
+    "browser": 1.324704e-8,
+    "rel": 0
+   },
+   "@m.xm4.m0[vds]": {
+    "native": 1.324894e-8,
+    "browser": 1.324894e-8,
+    "rel": 0
+   },
+   "@m.xm4.m0[id]": {
+    "native": 1.715697e-26,
+    "browser": 1.715697e-26,
+    "rel": 0
+   },
+   "@m.xm5.m0[vth]": {
+    "native": 0.7400625,
+    "browser": 0.7400625,
+    "rel": 0
+   },
+   "@m.xm5.m0[vdsat]": {
+    "native": 0.04678143,
+    "browser": 0.04678143,
+    "rel": 0
+   },
+   "@m.xm5.m0[gm]": {
+    "native": 4.650826e-20,
+    "browser": 4.650826e-20,
+    "rel": 0
+   },
+   "@m.xm5.m0[gds]": {
+    "native": 2.314567e-13,
+    "browser": 2.314567e-13,
+    "rel": 0
+   },
+   "@m.xm5.m0[vgs]": {
+    "native": 7.462742e-9,
+    "browser": 7.462742e-9,
+    "rel": 0
+   },
+   "@m.xm5.m0[vds]": {
+    "native": 7.464645e-9,
+    "browser": 7.464645e-9,
+    "rel": 0
+   },
+   "@m.xm5.m0[id]": {
+    "native": 1.727742e-21,
+    "browser": 1.727742e-21,
+    "rel": 0
+   },
+   "@m.xm6.m0[vth]": {
+    "native": 0.7400625,
+    "browser": 0.7400625,
+    "rel": 0
+   },
+   "@m.xm6.m0[vdsat]": {
+    "native": 0.04678143,
+    "browser": 0.04678143,
+    "rel": 0
+   },
+   "@m.xm6.m0[gm]": {
+    "native": 4.64964e-20,
+    "browser": 4.64964e-20,
+    "rel": 0
+   },
+   "@m.xm6.m0[gds]": {
+    "native": 2.314567e-13,
+    "browser": 2.314567e-13,
+    "rel": 0
+   },
+   "@m.xm6.m0[vgs]": {
+    "native": 7.464645e-9,
+    "browser": 7.464645e-9,
+    "rel": 0
+   },
+   "@m.xm6.m0[vds]": {
+    "native": 7.462742e-9,
+    "browser": 7.462742e-9,
+    "rel": 0
+   },
+   "@m.xm6.m0[id]": {
+    "native": 1.727302e-21,
+    "browser": 1.727302e-21,
+    "rel": 0
+   },
+   "@m.xm7.m0[vth]": {
+    "native": 0.7323397,
+    "browser": 0.7323397,
+    "rel": 0
+   },
+   "@m.xm7.m0[vdsat]": {
+    "native": 1.906001,
+    "browser": 1.906001,
+    "rel": 0
+   },
+   "@m.xm7.m0[gm]": {
+    "native": 6.759301e-13,
+    "browser": 6.759301e-13,
+    "rel": 0
+   },
+   "@m.xm7.m0[gds]": {
+    "native": 0.0004434236,
+    "browser": 0.0004434236,
+    "rel": 0
+   },
+   "@m.xm7.m0[vgs]": {
+    "native": 3.3,
+    "browser": 3.3,
+    "rel": 0
+   },
+   "@m.xm7.m0[vds]": {
+    "native": 7.464645e-9,
+    "browser": 7.464645e-9,
+    "rel": 0
+   },
+   "@m.xm7.m0[id]": {
+    "native": 3.31e-12,
+    "browser": 3.31e-12,
+    "rel": 0
+   },
+   "@m.xm8.m0[vth]": {
+    "native": 0.7323397,
+    "browser": 0.7323397,
+    "rel": 0
+   },
+   "@m.xm8.m0[vdsat]": {
+    "native": 1.906001,
+    "browser": 1.906001,
+    "rel": 0
+   },
+   "@m.xm8.m0[gm]": {
+    "native": 6.757578e-13,
+    "browser": 6.757578e-13,
+    "rel": 0
+   },
+   "@m.xm8.m0[gds]": {
+    "native": 0.0004434236,
+    "browser": 0.0004434236,
+    "rel": 0
+   },
+   "@m.xm8.m0[vgs]": {
+    "native": 3.3,
+    "browser": 3.3,
+    "rel": 0
+   },
+   "@m.xm8.m0[vds]": {
+    "native": 7.462742e-9,
+    "browser": 7.462742e-9,
+    "rel": 0
+   },
+   "@m.xm8.m0[id]": {
+    "native": 3.309156e-12,
+    "browser": 3.309156e-12,
+    "rel": 0
+   },
+   "@m.xm9.m0[vth]": {
+    "native": 0.7323397,
+    "browser": 0.7323397,
+    "rel": 0
+   },
+   "@m.xm9.m0[vdsat]": {
+    "native": 1.906001,
+    "browser": 1.906001,
+    "rel": 0
+   },
+   "@m.xm9.m0[gm]": {
+    "native": 1.963118e-12,
+    "browser": 1.963118e-12,
+    "rel": 0
+   },
+   "@m.xm9.m0[gds]": {
+    "native": 0.0004434236,
+    "browser": 0.0004434236,
+    "rel": 0
+   },
+   "@m.xm9.m0[vgs]": {
+    "native": 3.3,
+    "browser": 3.3,
+    "rel": 0
+   },
+   "@m.xm9.m0[vds]": {
+    "native": 2.167972e-8,
+    "browser": 2.167972e-8,
+    "rel": 0
+   },
+   "@m.xm9.m0[id]": {
+    "native": 9.613301e-12,
+    "browser": 9.613301e-12,
+    "rel": 0
+   },
+   "@m.xm10.m0[vth]": {
+    "native": 0.7323397,
+    "browser": 0.7323397,
+    "rel": 0
+   },
+   "@m.xm10.m0[vdsat]": {
+    "native": 1.906001,
+    "browser": 1.906001,
+    "rel": 0
+   },
+   "@m.xm10.m0[gm]": {
+    "native": 1.875461e-12,
+    "browser": 1.875461e-12,
+    "rel": 0
+   },
+   "@m.xm10.m0[gds]": {
+    "native": 0.0004434236,
+    "browser": 0.0004434236,
+    "rel": 0
+   },
+   "@m.xm10.m0[vgs]": {
+    "native": 3.3,
+    "browser": 3.3,
+    "rel": 0
+   },
+   "@m.xm10.m0[vds]": {
+    "native": 2.071168e-8,
+    "browser": 2.071168e-8,
+    "rel": 0
+   },
+   "@m.xm10.m0[id]": {
+    "native": 9.184048e-12,
+    "browser": 9.184048e-12,
+    "rel": 0
+   },
+   "tdec_n": {
+    "native": 2.76729e-10,
+    "browser": 2.76729e-10,
+    "rel": 0
+   },
+   "voutn_end": {
+    "native": 1.52483e-8,
+    "browser": 1.52483e-8,
+    "rel": 0
+   },
+   "voutp_end": {
+    "native": 3.3,
+    "browser": 3.3,
+    "rel": 0
+   }
+  },
+  "vec": {
+   "op:Operating Point:v(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(clk)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(inp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(outn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(outp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(tail)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vclk)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vdd)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vn)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:i(vp)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(x)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "op:Operating Point:v(y)": {
+    "np": 1,
+    "npb": 1,
+    "rel": 0
+   },
+   "out:Transient Analysis:time": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 0
+   },
+   "out:Transient Analysis:v(clk)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 0
+   },
+   "out:Transient Analysis:v(inn)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 0
+   },
+   "out:Transient Analysis:v(inp)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 0
+   },
+   "out:Transient Analysis:v(outn)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 1.0891621567710856e-14
+   },
+   "out:Transient Analysis:v(outp)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 1.3624038478979457e-14
+   },
+   "out:Transient Analysis:v(tail)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 1.2642815489574491e-14
+   },
+   "out:Transient Analysis:tdec_n": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 0
+   },
+   "out:Transient Analysis:i(vclk)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 3.633752940380114e-14
+   },
+   "out:Transient Analysis:v(vdd)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 0
+   },
+   "out:Transient Analysis:i(vdd)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 4.193576039233735e-14
+   },
+   "out:Transient Analysis:i(vn)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 1.2531820351958448e-13
+   },
+   "out:Transient Analysis:voutn_end": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 0
+   },
+   "out:Transient Analysis:voutp_end": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 0
+   },
+   "out:Transient Analysis:i(vp)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 1.4414601627661846e-13
+   },
+   "out:Transient Analysis:v(x)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 3.9833931452647445e-15
+   },
+   "out:Transient Analysis:v(y)": {
+    "np": 3044,
+    "npb": 3044,
+    "rel": 2.367559723561341e-15
+   }
+  },
+  "solver": "SPARSE",
+  "natSolver": "SPARSE"
+ }
+}

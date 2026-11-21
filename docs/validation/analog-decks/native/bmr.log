@@ -1,0 +1,57 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: beta-multiplier current reference, 10k source resistor, dc vs temperature
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+binary raw file "op.raw"
+@m.xm3.m0[vth] = 7.751220e-01
+@m.xm3.m0[vdsat] = 2.970775e-01
+@m.xm3.m0[gm] = 5.269829e-05
+@m.xm3.m0[gds] = 1.051817e-07
+@m.xm3.m0[vgs] = 1.157227e+00
+@m.xm3.m0[vds] = 1.157227e+00
+@m.xm3.m0[id] = 1.089085e-05
+@m.xm4.m0[vth] = 7.751220e-01
+@m.xm4.m0[vdsat] = 2.970775e-01
+@m.xm4.m0[gm] = 5.313509e-05
+@m.xm4.m0[gds] = 5.742990e-08
+@m.xm4.m0[vgs] = 1.157227e+00
+@m.xm4.m0[vds] = 2.391397e+00
+@m.xm4.m0[id] = 1.098352e-05
+@m.xm1.m0[vth] = 6.686893e-01
+@m.xm1.m0[vdsat] = 2.231802e-01
+@m.xm1.m0[gm] = 7.979993e-05
+@m.xm1.m0[gds] = 1.831689e-07
+@m.xm1.m0[vgs] = 9.086033e-01
+@m.xm1.m0[vds] = 9.086033e-01
+@m.xm1.m0[id] = 1.110322e-05
+@m.xm2.m0[vth] = 7.113005e-01
+@m.xm2.m0[vdsat] = 1.209761e-01
+@m.xm2.m0[gm] = 1.385702e-04
+@m.xm2.m0[gds] = 2.272587e-07
+@m.xm2.m0[vgs] = 7.997278e-01
+@m.xm2.m0[vds] = 2.033897e+00
+@m.xm2.m0[id] = 1.088787e-05
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+No. of Data Rows : 34
+vg1_m40             =  9.08136e-01
+vg1_27              =  9.08611e-01
+vg1_125             =  9.31564e-01
+ir_m40              =  8.28853e-02
+ir_27               =  1.08879e-01
+ir_125              =  1.54000e-01
+binary raw file "out.raw"
+Note: Simulation executed from .control section 

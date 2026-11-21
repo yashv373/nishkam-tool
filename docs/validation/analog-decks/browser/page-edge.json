@@ -1,0 +1,174 @@
+{
+ "res": {
+  "ota5t_tt": {
+   "ms": "299",
+   "rows": [
+    [
+     "gain_dc",
+     "47.976"
+    ],
+    [
+     "ugf",
+     "20741000"
+    ],
+    [
+     "ph_ugf",
+     "-1.6701"
+    ]
+   ],
+   "err": false
+  },
+  "miller": {
+   "ms": "247",
+   "rows": [
+    [
+     "gain_dc",
+     "93.797"
+    ],
+    [
+     "ugf",
+     "21763000"
+    ],
+    [
+     "ph_ugf",
+     "-2.4963"
+    ]
+   ],
+   "err": false
+  },
+  "ring5": {
+   "ms": "679",
+   "rows": [
+    [
+     "tper",
+     "4.122e-10"
+    ],
+    [
+     "vmax",
+     "3.4067"
+    ],
+    [
+     "vmin",
+     "-0.091638"
+    ]
+   ],
+   "err": false
+  },
+  "strongarm": {
+   "ms": "542",
+   "rows": [
+    [
+     "tdec_n",
+     "2.7673e-10"
+    ],
+    [
+     "voutn_end",
+     "1.5248e-8"
+    ],
+    [
+     "voutp_end",
+     "3.3"
+    ]
+   ],
+   "err": false
+  },
+  "bmr": {
+   "ms": "238",
+   "rows": [
+    [
+     "vg1_m40",
+     "0.90814"
+    ],
+    [
+     "vg1_27",
+     "0.90861"
+    ],
+    [
+     "vg1_125",
+     "0.93156"
+    ],
+    [
+     "ir_m40",
+     "0.082885"
+    ],
+    [
+     "ir_27",
+     "0.10888"
+    ],
+    [
+     "ir_125",
+     "0.154"
+    ]
+   ],
+   "err": false
+  },
+  "follower": {
+   "ms": "239",
+   "rows": [
+    [
+     "vo_in2p2",
+     "1.1885"
+    ],
+    [
+     "vo_in3",
+     "1.8501"
+    ],
+    [
+     "psrr_1",
+     "-47.214"
+    ],
+    [
+     "psrr_1meg",
+     "-47.218"
+    ],
+    [
+     "psrr_100meg",
+     "-56.663"
+    ]
+   ],
+   "err": false
+  },
+  "ota5t_ss": {
+   "ms": "240",
+   "rows": [
+    [
+     "gain_dc",
+     "48.052"
+    ],
+    [
+     "ugf",
+     "19949000"
+    ],
+    [
+     "ph_ugf",
+     "-1.6694"
+    ]
+   ],
+   "err": false
+  },
+  "ota5t_ff": {
+   "ms": "277",
+   "rows": [
+    [
+     "gain_dc",
+     "47.755"
+    ],
+    [
+     "ugf",
+     "21529000"
+    ],
+    [
+     "ph_ugf",
+     "-1.6707"
+    ]
+   ],
+   "err": false
+  }
+ },
+ "errs": [
+  "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8165' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+  "Failed to load resource: net::ERR_FAILED",
+  "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8165' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+  "Failed to load resource: net::ERR_FAILED"
+ ]
+}

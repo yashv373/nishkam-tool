@@ -29,6 +29,8 @@ Two place-and-route flows exist in Studio:
 | Equivalence check, early (section 24) | Yosys 0.68.1207 WebAssembly | native Yosys 0.64 (two model sources) and EQY | same verdicts on 4 cases; tiny8 (236 cells) gives no verdict in either (issue #200) | anything above 13 cells proven; more fault kinds |
 | OpenSTA + OpenROAD on sha1 (6.8k cells) and a two-clock FIFO (2.9k cells) (section 25) | OpenSTA defec0b, OpenROAD 6f3f28c | native sta 3.1.0, native OpenROAD 6f3f28c | 0 of 47,660 STA lines differ; both route to 0 violations; placement differs (50 to 60% of cells elsewhere on the two big designs), HPWL +0.1 to +0.3% | native DRC/LVS, why placement differs |
 | Scan + ATPG, early (section 27) | Yosys 0.68.1207 + `dft-core.js` + Quaigh 0.0.6 (WASM) | native Quaigh 0.0.6 + native Difetto (`difetto.so` + `nl2bench` 0.13.0 on gf180mcuD) | on the same `.bench` (re-run with both flows' files), faults and coverage match native Quaigh on all 6 designs on both sides, simulated outputs match byte for byte, pattern counts equal or close (random fill differs) (c17 bench, counter, acc, s27, s298); scan-flop counts match Difetto on all 6; 4 bugs found (#194, #201, #202, #203), so `s344` crashes in WASM Kissat and `c17.v`/`s298` fail full Studio `handle()` | silicon/gf180 cell coverage in Studio, full LibreLane `DifettoPNR`/`BoundaryScan`/`DifettoTest`, SAT-ATPG path until #194 merges, multi-clock/negedge/large designs, Chrome/Firefox/Safari |
+| SkyWater `sky130A` digital flow (`sky130_fd_sc_hd`, section 28; Node + Edge) | Studio browser stack (`@yowasp/yosys` 0.68.1207, Icarus `a275a9a`, OpenROAD `6f3f28c-viz`, OpenSTA `defec0b`, Magic `bed8d4f`, Netgen `3cb047b`) + open_pdks `7b70722` | native LibreLane 3.0.2 Classic in `hpretl/iic-osic-tools:chipathon26` (`tiny8`, `counter10`) + native KLayout 0.30.8 DRC | 0 TritonRoute DRC, 0 Magic DRC, Netgen LVS match, LEC proven, GLS 0 mismatches (`shreg4`, `counter10`), all 9 STA corners monotonic (`nom/min/max` × `ss/tt/ff`); on `tiny8` `nom_tt_025C_1v80` setup slack is 12.386 ns (Studio) / 11.843 ns (LibreLane Classic) vs 12.265 ns native; browser Magic GDS has 3 KLayout `nsdm.1`/`psdm.1` implant flags vs 0 on KLayout streamout; Edge `counter` passes all 13 stages with KLayout 3D (11 layers) and cell delay lookup | large designs (>500 cells), macros, SRAM, multi-clock, native-vs-browser STA on identical SPEF/netlist, analog `sky130A` SPICE in Analog Lab, Chrome/Firefox/Safari |
+| IHP `ihp-sg13g2` digital flow (`sg13g2_stdcell`, section 29; Node + Edge) | same Studio browser stack + IHP-Open-PDK `be443da` | native LibreLane 3.0.2 Classic in `hpretl/iic-osic-tools:chipathon26` (`tiny8`, `counter10`) + native KLayout 0.30.8 DRC (`ihp-sg13g2.drc`, 581 rules) | 0 TritonRoute DRC, 0 Magic DRC (after adding `sg13g2_decap_8`/`4` fillers like LibreLane), **0 native KLayout DRC violations** on browser GDS (`shreg4`, `counter10`, `tiny8`), Netgen LVS match, LEC proven, GLS 0 mismatches, all 3 STA corners monotonic (`nom_slow/typ/fast`); on `tiny8` LibreLane Classic lands at 10,102 µm wire / 2,284 vias / 13.734 ns setup vs 9,414 µm / 2,263 vias / 13.415 ns native; Edge `counter` passes all 13 stages with KLayout 3D (13 layers) | **analog SPICE (blocked: IHP models need OpenVAF/OSDI dynamic libs, unsupported in `ngspice-46.wasm`)**, large designs, macros, multi-clock, Chrome/Firefox/Safari |
 
 **Scope.** Validated: single-clock digital designs on gf180mcuD (7-track cells), up to 48 flip-flops, 50% density, one corner (tt, 25 C, 5.00 V; multi-corner STA is in section 15), plus 13 small analog decks on gf180mcuD (sections 18 and 18B, incl. ss/ff on the 5T OTA and a -40 to 125 C sweep). LVS was compared with native Netgen up to 3,100 devices and 1,537 nets (old flow, tiny8). The OpenROAD-flow tiny8 layout (3,150 devices, 1,559 nets, with tap cells) has an LVS match in our browser Netgen only; it was not compared with native Netgen. Most runs were made in Node with the same WebAssembly files the page loads; where a real browser page was used, the section says so (section 8 browser run, a few checks in 12 and 13, and all 8 Lab decks in Edge in section 18B).
 
@@ -1494,3 +1496,157 @@ Status: early. Measured on two small designs; the recipe is an opt-in switch (Pr
 **Not validated.** More than two designs; designs with macros, several clocks or above about 500 cells; the 61932e8 wasm as a default; multi-corner repair (LibreLane repairs against nine corners, we against tt; native finds more slew violations, which is a likely part of the wire gap); OpenROAD thread count (one thread here); that the 9 clock buffers and hold are equal for the right reason; Magic DRC and Netgen LVS on the recipe are checked only on tiny8 and counter10 (DRC 0, LVS match, not compared with LibreLane's own signoff); LibreLane's KLayout DRC; the post-global-route repair steps (off in LibreLane's defaults, available here with `postGrt: true`, not run); the Studio default recipe is unchanged and unchanged by this section.
 
 **With all nine corners (`pnrCorners: true`, pinBuffer on), same start and SDC.** tiny8: `repair_design` now finds 8 slew violations (native 8, before 1) in 13 nets (native 13) and inserts 27 buffers (native 23). 356 cells (native 352, +1.1%), area 10,706 (+0.9%), HPWL after legalisation 11,119 (native 11,889, -6.5%), HPWL after CTS 13,361 (-4.0%), global-route wire 23,511 (-3.5%), detailed-route wire 14,745 vs 15,669 (-5.9%, was -11.3%), vias 2,529 vs 2,546 (-0.7%), DRC 0. adder2: unchanged (78 cells, wire 1,794, vias 382; the small design finds no extra violation). The slacks printed by the corner run (tiny8 setup 3.0, hold 0.30 ns) are the worst over all nine corners, so they are not comparable with native's nom_tt numbers above and are not used. Time: about 60 s per step instead of 7 to 20 s (the three libertys are parsed nine times in every step), 776 s for tiny8 in total against 205 s. Mark: the wire gap narrows from -11% to -6% but does not reach 2%, so `pnrCorners` stays off by default and the recipe keeps `pinBuffer`.
+
+## 28. SkyWater sky130A digital flow in Studio (issue #208)
+
+Date: 2026-11-22. **Claimed:** Studio runs a full digital RTL-to-GDS flow on SkyWater `sky130A` (`sky130_fd_sc_hd`, 1.8 V, `VPWR`/`VGND`) in WebAssembly — synthesis, GLS, LEC, pre-PnR STA, OpenROAD placement/CTS/routing, OpenRCX parasitic extraction (`nom`/`min`/`max`), PDNSim IR drop, Magic GDS + DRC + SPICE extraction, Netgen LVS, and 9-corner post-route OpenSTA — landing at 0 TritonRoute DRC, 0 Magic DRC, LVS match, and setup/hold slack close to native LibreLane 3.0.2 Classic on `tiny8` and `counter10`. Not "matches LibreLane bit-for-bit": Yosys versions differ (0.68 vs 0.64) and Studio's default recipe skips pre-CTS `repair_design`.
+
+### Designs and setup
+
+Four designs run in Node (`web/studio/engines/pdk-flow.selftest.mjs`) plus one interactive browser run in Microsoft Edge (`counter`, 4-bit synchronous counter):
+- `tiny8` (8-bit CPU, 48 flip-flops, `110 x 110 um`, 20 ns clock, 50% density): compared against native LibreLane 3.0.2 in both Studio recipe and LibreLane Classic recipe.
+- `counter10` (10-bit counter with async reset, `80 x 80 um`, 20 ns clock, 50% density): compared against native LibreLane 3.0.2, plus GLS and LEC.
+- `shreg4` (4-bit shift register, `60 x 60 um`, 20 ns clock): browser flow with GLS, LEC, 9-corner STA, DRC, LVS.
+- `adder2` (8-bit combinational adder + XOR, no clock, `65 x 65 um`): verifies the clockless path.
+
+### Browser tools and PDK assets
+
+- Engines: `@yowasp/yosys@0.68.1207`, Icarus `a275a9a`, OpenROAD `6f3f28c-viz` (`openroad.wasm.gz`), OpenSTA `defec0b` (3.1.0), Magic `bed8d4f`, Netgen `3cb047b` (1.5.324), KLayout `kwasm` 0.3.1.
+- PDK assets (`web/vendor/sky130A/7b70722/`, Apache-2.0): copied from `open_pdks` commit `7b70722e33c03fcb5dabcf4d479fb0822d9251c9` inside `hpretl/iic-osic-tools:chipathon26`. Every file is under 5 MiB (largest: `sky130_fd_sc_hd.gds` at 4.00 MiB, well below Cloudflare Pages' 25 MiB limit). Full NLDM liberties (`tt_025C_1v80`, `ss_100C_1v60`, `ff_n40C_1v95`) ship gzipped; calibre OpenRCX rules (`nom`/`min`/`max`) are SHA-256 pinned in `web/studio/pdk.js`.
+- Browser command: `node web/studio/engines/pdk-flow.selftest.mjs sky130A <design>` (and with `RECIPE=librelane MC=0` for the LibreLane Classic recipe).
+
+### Native LibreLane 3.0.2 reference
+
+Container `gf180v`, image `hpretl/iic-osic-tools:chipathon26` (`sha256:b3a754709b6d71bf11ce9357c07d2d63b6a4562c2a36b20c1dde33dd0079a9b4`): LibreLane `v3.0.2` Classic, OpenROAD `26Q2-254-g61932e897`, Yosys `0.64 (6d2c445ae)`, Magic `8.3.636`, KLayout `0.30.8`, Netgen `1.5.318`.
+Command (one job at a time, `unset PDK STD_CELL_LIBRARY` so container defaults do not leak):
+```sh
+unset PDK STD_CELL_LIBRARY
+librelane --pdk sky130A --scl sky130_fd_sc_hd config.json --run-tag run
+```
+with `FP_SIZING: "absolute"`, `DIE_AREA: [0, 0, W, H]`, `CLOCK_PERIOD: 20`, `PL_TARGET_DENSITY_PCT: 50`, `CTS_ROOT_BUFFER: "sky130_fd_sc_hd__clkbuf_16"`, `CTS_CLK_BUFFERS: ["sky130_fd_sc_hd__clkbuf_8", "sky130_fd_sc_hd__clkbuf_4", "sky130_fd_sc_hd__clkbuf_2"]`.
+
+### Side-by-side GDS and browser screenshots
+
+| Browser Studio GDS (`tiny8`, 110 × 110 µm, rendered in KLayout with `sky130A.lyp`) | Native LibreLane 3.0.2 GDS (`tiny8`, 110 × 110 µm, same `sky130A.lyp`) |
+|---|---|
+| ![sky130A tiny8 browser GDS](img/sky130-tiny8-browser.png) | ![sky130A tiny8 native GDS](img/sky130-tiny8-native.png) |
+
+![Studio sky130A in Microsoft Edge (all 13 stages passed, KLayout 3D 11 layers, 0 DRC, LVS match)](img/sky130-studio-edge.png)
+
+### Numbers (`sky130A`)
+
+**Table 28A. `tiny8` (`110 x 110 um`, 20 ns, 50% density): Browser Studio vs Browser LibreLane Classic vs Native LibreLane 3.0.2.**
+
+| Metric | Browser (Studio recipe) | Browser (LibreLane Classic recipe) | Native LibreLane 3.0.2 | Verdict & reason |
+|---|---|---|---|---|
+| Yosys synth cells / area | 222 / 3,093.0 µm² | 222 / 3,093.0 µm² | 471 final stdcells (incl. port/repair bufs + taps/decaps) / 4,460.5 µm² | **differs** (Yosys 0.68 vs 0.64; LibreLane Classic adds 34 `repair_design` buffers + 8 clock cells -> 264 logic cells, 3,415.8 µm²) |
+| Routed wirelength | 7,181 µm | 6,922 µm | 8,581 µm | **differs** (-16.3% / -19.3%; fewer cells from Yosys 0.68 and single-corner `repair_design`, same effect as Section 26) |
+| Vias | 2,017 | 1,972 | 2,421 | **differs** (-16.7% / -18.5%; tracks cell and net count) |
+| TritonRoute DRC | 0 | 0 | 0 | **match** |
+| Magic DRC (`drc(full)`) | 0 (0 in cells, 0 layout) | 0 (0 in cells, 0 layout) | 0 | **match** |
+| Native KLayout DRC (`sky130A_mr.drc`) on GDS | 3 (`1× nsdm.1`, `2× psdm.1`) | not run | 0 (on KLayout streamout) | **differs** (browser streams GDS from Magic, not KLayout; Magic GDS meets Magic DRC 0 but leaves 3 implant-edge flags under `sky130A_mr.drc`) |
+| Netgen LVS | Match (`3274/3274` dev, `1712/1712` nets) | Match (`3238/3238` dev, `1694/1694` nets) | 0 errors | **match** |
+| LEC (Yosys equiv vs RTL) | proven | proven | n/a | **pass** |
+| Post-route setup WNS (`nom_tt_025C_1v80`) | 12.386 ns | 11.843 ns | 12.265 ns | **close** (+1.0% Studio / -3.4% Classic) |
+| Post-route hold WNS (`nom_tt_025C_1v80`) | 0.391 ns | 0.394 ns | 0.357 ns | **close** (+0.034 ns) |
+| Worst setup corner (`max_ss_100C_1v60`) | 8.247 ns | not run (`MC=0`) | 8.765 ns | **close** (-0.52 ns; different synthesized netlist) |
+| Fastest setup corner (`min_ff_n40C_1v95`) | 13.839 ns | not run (`MC=0`) | 13.636 ns | **close** (+0.20 ns) |
+| PDNSim worst IR drop (`VPWR`, 1.8 V) | 0.302 mV (0.017%) | 0.520 mV (0.029%) | not extracted | sanity checked |
+| Total power (`nom_tt_025C_1v80`) | 448 µW | 383 µW | 622 µW | **differs** (default activity + different buffer count) |
+
+**Table 28B. Additional `sky130A` designs (Browser Studio recipe vs Native LibreLane where run).**
+
+| Design (die, period) | Synth cells / area | GLS / LEC | Wire / Vias | TritonRoute / Magic DRC | LVS | Post-route setup / hold (`nom_tt_025C_1v80`) | Native LibreLane (`counter10`) |
+|---|---|---|---|---|---|---|---|
+| `counter10` (`80×80`, 20 ns) | 31 / 462.9 µm² | 0 mismatch / proven | 884 µm / 296 | 0 / 0 | Match (`506/506`, `258/258`) | 14.902 / 0.385 ns (9 corners: `ss 13.694 < tt 14.902 < ff 15.269`) | 985 µm / 355 vias, DRC 0, LVS 0, setup 14.571 / hold 0.338 ns |
+| `shreg4` (`60×60`, 20 ns) | 4 / 105.1 µm² | 0 mismatch / proven | 187 µm / 62 | 0 / 0 | Match (`140/140`, `75/75`) | 15.057 / 0.257 ns (9 corners monotonic) | not run |
+| `adder2` (`65×65`, comb) | 38 / 347.8 µm² | n/a / proven | 810 µm / 359 | 0 / 0 | Match (`388/388`, `212/212`) | pre-STA 10.195 / 7.959 ns (no clock) | not run |
+
+**In-browser run (Microsoft Edge 1440×900 & 1280×800, Playwright on `studio.html?mock`):** `#top` stays single-line with 0 horizontal overflow (`#pdk` width 132 px); switching to `sky130A` disables `graywolf + qrouter` and updates Reports/Timing copy; `counter` (`80×80`, 20 ns) passed all 13 stages (`DRC 0`, `LVS MATCH 212/212`, `VPWR` worst IR drop 0.020 mV), KLayout 3D loaded 11 layers, Cell delay lookup loaded `tt_025C_1v80`/`ss_100C_1v60`/`ff_n40C_1v95`, with 0 Studio console or page errors.
+
+### What is NOT validated (`sky130A`)
+
+- Designs larger than `tiny8` (~220–470 cells), macros, SRAMs, multi-clock designs, and negative-edge flops.
+- Native OpenSTA on the browser's exact routed netlist + SPEF (only end-to-end flow comparison was done here).
+- KLayout GDS streamout in the browser (Studio streams GDS through Magic; `sky130A_mr.drc` flagged 3 `nsdm.1`/`psdm.1` implant-edge items on browser `tiny8.gds`).
+- Analog SPICE simulation for `sky130A` in Analog Lab (Analog Lab remains `gf180mcuD` for now).
+- Chrome, Firefox, and Safari (browser run was Microsoft Edge on Windows 11).
+
+## 29. IHP ihp-sg13g2 digital flow in Studio (issue #207)
+
+Date: 2026-11-22. **Claimed:** Studio runs a full **digital** RTL-to-GDS flow on IHP `ihp-sg13g2` (`sg13g2_stdcell`, 1.2 V, `VDD`/`VSS`, integrated well ties with no tapcell/endcap insertion) in WebAssembly — synthesis, GLS, LEC, pre-PnR STA, OpenROAD placement/CTS/routing (`Metal2`–`TopMetal2`), OpenRCX (`IHP_rcx_patterns.rules`), PDNSim IR drop, Magic GDS + DRC + SPICE extraction, Netgen LVS, and 3-corner post-route OpenSTA (`nom_typ_1p20V_25C`, `nom_slow_1p08V_125C`, `nom_fast_1p32V_m40C`, matching LibreLane's 3-corner set). Browser-generated GDS files pass **both Magic DRC (0 errors) and native IHP KLayout signoff DRC (`ihp-sg13g2.drc`, 581 rules, 0 violations)** on `shreg4`, `counter10`, and `tiny8`.
+
+### Designs and setup
+
+- `tiny8` (`130 x 130 um`, 20 ns clock, 50% density): compared against native LibreLane 3.0.2 in both Studio recipe and LibreLane Classic recipe.
+- `counter10` (`100 x 100 um`, 20 ns clock, 50% density): compared against native LibreLane 3.0.2, plus GLS, LEC, and native KLayout DRC on the browser GDS.
+- `shreg4` (`80 x 80 um`, 20 ns clock): browser flow + native KLayout DRC on the browser GDS.
+- `adder2` (`80 x 80 um`, combinational, no clock): clockless path.
+- Interactive Edge run: `counter` (`100 x 100 um`, 20 ns).
+
+### Browser tools, PDK assets, and two fixes found during validation
+
+- Engines: same WebAssembly stack as Section 28.
+- PDK assets (`web/vendor/ihp-sg13g2/be443da/`, Apache-2.0): copied from IHP-Open-PDK commit `be443daab937daa9154c9c4e73584524f431bd97` inside `hpretl/iic-osic-tools:chipathon26`. Every file is under 1 MiB (largest: `sg13g2_stdcell.gds` at 612 KiB). `IHP_rcx_patterns.rules` is SHA-256 pinned in `web/studio/pdk.js`.
+- **Filler fix found during validation:** filling empty rows with only `sg13g2_fill_2` + `sg13g2_fill_1` triggered `Diff tap length < 0.30um (pSD.e/f)` in both browser Magic and native Magic 8.3.636 (572 tiles on `shreg4`, 370 on `counter10`, even though KLayout DRC was 0). Switching to LibreLane's filler order (`sg13g2_decap_8`, `sg13g2_decap_4`, `sg13g2_fill_2`, `sg13g2_fill_1`) dropped Magic DRC to **0 tiles** on every tested design while keeping LVS match.
+- **LibreLane Classic script fix (`io.tcl`):** OpenROAD `6f3f28c` / OpenSTA `84c4d7e` returns SWIG `Scene*` handles from `[sta::scenes]` instead of strings, breaking `set_rc.tcl` whenever a PDK supplies custom `_LAYER_RC_*` (such as `ihp-sg13g2`). Reading corner names from `::env(_LIB_CORNER_*)` in `lln::get_corner_names` (recorded as Edit #2 in `web/vendor/librelane-scripts/3.0.2/SOURCE.md`) made the full LibreLane Classic recipe pass on `ihp-sg13g2`.
+
+### Native LibreLane 3.0.2 and KLayout DRC reference
+
+Same container `gf180v` (`hpretl/iic-osic-tools:chipathon26`, LibreLane `v3.0.2`, KLayout `0.30.8`):
+```sh
+unset PDK STD_CELL_LIBRARY
+librelane --pdk ihp-sg13g2 --scl sg13g2_stdcell config.json --run-tag run
+```
+Native KLayout DRC check run on browser-generated GDS files:
+```sh
+klayout -b -r /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/drc/ihp-sg13g2.drc \
+  -rd input=<browser.gds> -rd report=out.lyrdb -rd topcell=<top> \
+  -rd no_recommended=true -rd run_mode=deep
+```
+
+### Side-by-side GDS and browser screenshots
+
+| Browser Studio GDS (`tiny8`, 130 × 130 µm, rendered in KLayout with `sg13g2.lyp`) | Native LibreLane 3.0.2 GDS (`tiny8`, 130 × 130 µm, same `sg13g2.lyp`) |
+|---|---|
+| ![ihp-sg13g2 tiny8 browser GDS](img/ihp-tiny8-browser.png) | ![ihp-sg13g2 tiny8 native GDS](img/ihp-tiny8-native.png) |
+
+![Studio ihp-sg13g2 in Microsoft Edge (all 13 stages passed, KLayout 3D 13 layers, 0 DRC, LVS match)](img/ihp-studio-edge.png)
+
+### Numbers (`ihp-sg13g2`)
+
+**Table 29A. `tiny8` (`130 x 130 um`, 20 ns, 50% density): Browser Studio vs Browser LibreLane Classic vs Native LibreLane 3.0.2.**
+
+| Metric | Browser (Studio recipe) | Browser (LibreLane Classic recipe) | Native LibreLane 3.0.2 | Verdict & reason |
+|---|---|---|---|---|
+| Yosys synth cells / area | 282 / 4,730.9 µm² | 282 / 4,730.9 µm² (347 final stdcells, 5,546.6 µm²) | 375 final stdcells / 6,519.1 µm² | **differs** (Yosys 0.68 vs 0.64; both place 0 tapcells/endcaps) |
+| Clock buffers (`sg13g2_buf_*`) | 34 | 9 (`buf_16`) | 9 | **match** on LibreLane Classic (9 vs 9); Studio recipe differs |
+| Routed wirelength | 11,218 µm | 10,102 µm | 9,414 µm | **close** on Classic (+7.3%); Studio +19.2% (larger CTS tree) |
+| Vias | 2,487 | 2,284 | 2,263 | **match/close** on Classic (+0.9%); Studio +9.9% |
+| TritonRoute DRC | 0 | 0 | 0 | **match** |
+| Magic DRC (`drc(full)`) | 0 (0 in cells, 0 layout) | 0 (0 in cells, 0 layout) | 0 | **match** |
+| Native KLayout DRC (`ihp-sg13g2.drc`, 581 rules) | **0** | not run | **0** | **match** |
+| Netgen LVS | Match (`3510/3510` dev, `1790/1790` nets) | Match (`3340/3340` dev, `1705/1705` nets) | 0 errors | **match** |
+| LEC (Yosys equiv vs RTL) | proven | proven | n/a | **pass** |
+| Post-route setup WNS (`nom_typ_1p20V_25C`) | 14.347 ns | 13.734 ns | 13.415 ns | **close** (+0.32 ns Classic / +0.93 ns Studio) |
+| Post-route hold WNS (`nom_typ_1p20V_25C`) | 0.187 ns | 0.188 ns | 0.302 ns | **differs** (-0.11 ns; LibreLane adds hold-margin buffering across 3 corners) |
+| Slow corner setup (`nom_slow_1p08V_125C`) | 13.447 ns | not run (`MC=0`) | 12.073 ns | **differs** (different netlist + single-corner repair) |
+| Fast corner setup (`nom_fast_1p32V_m40C`) | 14.891 ns | not run (`MC=0`) | 14.222 ns | **close** (+0.67 ns) |
+| PDNSim worst IR drop (`VDD`, 1.2 V) | 0.449 mV (0.037%) | 0.582 mV (0.049%) | not extracted | sanity checked |
+| Total power (`nom_typ_1p20V_25C`) | 588 µW | 335 µW | 403 µW | **differs** (buffer count and default activity) |
+
+**Table 29B. Additional `ihp-sg13g2` designs (Browser Studio recipe vs Native LibreLane where run).**
+
+| Design (die, period) | Synth cells / area | GLS / LEC | Wire / Vias | TritonRoute / Magic / KLayout DRC | LVS | Post-route setup / hold (`nom_typ_1p20V_25C`) | Native LibreLane (`counter10`) |
+|---|---|---|---|---|---|---|---|
+| `counter10` (`100×100`, 20 ns) | 30 / 727.6 µm² | 0 mismatch / proven | 1,330 µm / 299 | 0 / 0 / **0** | Match (`586/586`, `298/298`) | 15.020 / 0.175 ns (3 corners: `slow 14.530 < typ 15.020 < fast 15.312`) | 1,473 µm / 363 vias, DRC 0, LVS 0, setup 14.564 / hold 0.425 ns |
+| `shreg4` (`80×80`, 20 ns) | 4 / 196.0 µm² | 0 mismatch / proven | 217 µm / 55 | 0 / 0 / **0** | Match (`156/156`, `83/83`) | 15.419 / 0.087 ns (3 corners monotonic) | not run |
+| `adder2` (`80×80`, comb) | 35 / 375.6 µm² | n/a / proven | 1,075 µm / 313 | 0 / 0 / not run | Match (`376/376`, `206/206`) | pre-STA 10.959 / 7.936 ns (no clock) | not run |
+
+**In-browser run (Microsoft Edge 1440×900, Playwright on `studio.html?mock`):** switching from `sky130A` to `ihp-sg13g2` cleared prior results cleanly, kept `graywolf + qrouter` disabled, and ran `counter` (`100×100`, 20 ns) through all 13 stages to green `passed` (`DRC 0`, `LVS MATCH 252/252`, `VDD` 1.2 V worst IR drop 0.176 mV), KLayout 3D loaded 13 layers (`Metal1`–`Metal5` + `TopMetal1`–`2`), Cell delay lookup loaded `typ_1p20V_25C`/`slow_1p08V_125C`/`fast_1p32V_m40C`, with 0 Studio console or page errors.
+
+### What is NOT validated (`ihp-sg13g2`)
+
+- **Analog SPICE simulation (explicitly unsupported):** IHP SG13G2's transistor, resistor, and varactor models (`psp103va`, `r3_cmc`, `mosvar`) require OpenVAF/OSDI compiled shared libraries (`*.osdi`), which fail in `ngspice-46.wasm` (`dynamic linking not enabled`). `ihp-sg13g2` in Nishkam is digital-only until OSDI can be statically linked or dynamically loaded in WebAssembly.
+- **Density & antenna KLayout decks (`density.drc`, `antenna.drc`):** only `ihp-sg13g2.drc` (`main`, `no_recommended=true`) was run on the browser GDS; metal fill generation (`filler.py`) and seal-ring rules were not run.
+- Designs larger than `tiny8`, macros, SRAMs, multi-clock designs, native OpenSTA on identical SPEF/netlist, and browsers other than Microsoft Edge.

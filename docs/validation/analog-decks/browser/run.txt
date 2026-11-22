@@ -1,4 +1,4 @@
-== bmr: node ms 259,70,66; native ms 111,109,113; worst raw vector out:DC transfer characteristic:i(vdd) rel 6.11e-15 points 34/34
+== bmr: node ms 305,114,107; native ms 343,258,272; worst raw vector out:DC transfer characteristic:i(vdd) rel 6.11e-15 points 34/34
    vg1_m40 native 0.908136 browser 0.908136 rel 0.00e+0
    vg1_27 native 0.908611 browser 0.908611 rel 0.00e+0
    vg1_125 native 0.931564 browser 0.931564 rel 0.00e+0
@@ -6,40 +6,41 @@
    ir_27 native 0.108879 browser 0.108879 rel 0.00e+0
    ir_125 native 0.154 browser 0.154 rel 0.00e+0
    device values 28, max rel 0.00e+0
-== follower: node ms 66,57,65; native ms 121,126,388; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
+== follower: node ms 123,131,116; native ms 236,133,139; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
    vo_in2p2 native 1.18846 browser 1.18846 rel 0.00e+0
    vo_in3 native 1.85011 browser 1.85011 rel 0.00e+0
    psrr_1 native -47.2144 browser -47.2144 rel 0.00e+0
    psrr_1meg native -47.2178 browser -47.2178 rel 0.00e+0
    psrr_100meg native -56.6626 browser -56.6626 rel 0.00e+0
    device values 21, max rel 0.00e+0
-== miller: node ms 73,64,71; native ms 187,100,91; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
+== miller: node ms 123,115,114; native ms 142,97,95; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
    gain_dc native 93.7968 browser 93.7968 rel 0.00e+0
    ugf native 21763300 browser 21763300 rel 0.00e+0
    ph_ugf native -2.49629 browser -2.49629 rel 0.00e+0
    device values 56, max rel 0.00e+0
-== ota5t_ff: node ms 56,64,97; native ms 107,129,103; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
+== ota5t_ff: node ms 123,106,109; native ms 99,114,100; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
    gain_dc native 47.7555 browser 47.7555 rel 0.00e+0
    ugf native 21529000 browser 21529000 rel 0.00e+0
    ph_ugf native -1.67074 browser -1.67074 rel 0.00e+0
    device values 42, max rel 0.00e+0
-== ota5t_ss: node ms 64,57,73; native ms 90,128,87; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
+== ota5t_ss: node ms 101,101,99; native ms 102,104,118; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
    gain_dc native 48.0524 browser 48.0524 rel 0.00e+0
    ugf native 19949100 browser 19949100 rel 0.00e+0
    ph_ugf native -1.66939 browser -1.66939 rel 0.00e+0
    device values 42, max rel 0.00e+0
-== ota5t_tt: node ms 71,67,66; native ms 91,81,80; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
+== ota5t_tt: node ms 99,107,107; native ms 115,128,100; worst raw vector op:Operating Point:v(vdd) rel 0.00e+0 points 1/1
    gain_dc native 47.976 browser 47.976 rel 0.00e+0
    ugf native 20741000 browser 20741000 rel 0.00e+0
    ph_ugf native -1.67011 browser -1.67011 rel 0.00e+0
    device values 42, max rel 0.00e+0
-== ring5: node ms 423,351,523; native ms 367,396,359; worst raw vector out:Transient Analysis:i(vdd) rel 2.02e-13 points 4008/4008
+== ring5: node ms 783,829,905; native ms 581,523,876; worst raw vector out:Transient Analysis:i(vdd) rel 2.02e-13 points 4008/4008
    tper native 4.12202e-10 browser 4.12202e-10 rel 0.00e+0
    vmax native 3.40667 browser 3.40667 rel 0.00e+0
    vmin native -0.0916378 browser -0.0916378 rel 0.00e+0
    device values 70, max rel 0.00e+0
-== strongarm: node ms 393,385,471; native ms 339,288,301; worst raw vector out:Transient Analysis:i(vp) rel 1.44e-13 points 3044/3044
+== strongarm: node ms 660,568,562; native ms 632,834,1260; worst raw vector out:Transient Analysis:i(vp) rel 1.44e-13 points 3044/3044
    tdec_n native 2.76729e-10 browser 2.76729e-10 rel 0.00e+0
    voutn_end native 1.52483e-8 browser 1.52483e-8 rel 0.00e+0
    voutp_end native 3.3 browser 3.3 rel 0.00e+0
    device values 77, max rel 0.00e+0
+PASS (8 decks; meas tol 0.000001, raw tol 0.000001)

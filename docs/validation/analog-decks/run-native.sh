@@ -10,7 +10,7 @@ mkdir -p /tmp/r && cd /tmp/r && cp /in/*.cir .
 printf "set ngbehavior=hsa\nset ng_nomodcheck\nset num_threads=4\nset enable_noisy_r\n" > .spiceinit
 ngspice -v | grep ngspice- > /out/version.txt
 for f in *.cir; do d=${f%.cir}; mkdir -p $d; cp .spiceinit $d/; sed "s#write /#write #" $f > $d/deck.cir
-  ( cd $d; for i in 1 2 3; do rm -f op.raw out.raw; s=$(date +%s%N); ngspice -b -o log deck.cir >/dev/null 2>&1 || echo FAIL >> fail; e=$(date +%s%N); echo $d $(( (e-s)/1000000 )) >> /out/times.txt; done )
+  ( cd $d; for i in 1 2 3; do rm -f op.raw out.raw; s=$(date +%s%N); ngspice -b -o log deck.cir >/dev/null 2>&1 || echo FAIL >> fail; [ -f op.raw ] && [ -f out.raw ] || echo FAIL >> fail; e=$(date +%s%N); echo $d $(( (e-s)/1000000 )) >> /out/times.txt; done )
   cp $d/log /out/$d.log; for r in op out; do if [ -f $d/$r.raw ]; then cp $d/$r.raw /out/$d.$r.raw; fi; done   # log copied even when the run failed
   if [ -f $d/fail ]; then echo FAIL $d; bad=1; fi; done
 exit $bad' 2>&1 | { grep -v INFO || true; }

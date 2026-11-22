@@ -1,7 +1,7 @@
 {
  "res": {
   "ota5t_tt": {
-   "ms": "299",
+   "ms": "284",
    "rows": [
     [
      "gain_dc",
@@ -19,7 +19,7 @@
    "err": false
   },
   "miller": {
-   "ms": "247",
+   "ms": "236",
    "rows": [
     [
      "gain_dc",
@@ -37,7 +37,7 @@
    "err": false
   },
   "ring5": {
-   "ms": "679",
+   "ms": "634",
    "rows": [
     [
      "tper",
@@ -55,7 +55,7 @@
    "err": false
   },
   "strongarm": {
-   "ms": "542",
+   "ms": "564",
    "rows": [
     [
      "tdec_n",
@@ -73,7 +73,7 @@
    "err": false
   },
   "bmr": {
-   "ms": "238",
+   "ms": "247",
    "rows": [
     [
      "vg1_m40",
@@ -103,7 +103,7 @@
    "err": false
   },
   "follower": {
-   "ms": "239",
+   "ms": "218",
    "rows": [
     [
      "vo_in2p2",
@@ -129,7 +129,7 @@
    "err": false
   },
   "ota5t_ss": {
-   "ms": "240",
+   "ms": "250",
    "rows": [
     [
      "gain_dc",
@@ -147,7 +147,7 @@
    "err": false
   },
   "ota5t_ff": {
-   "ms": "277",
+   "ms": "231",
    "rows": [
     [
      "gain_dc",
@@ -166,9 +166,9 @@
   }
  },
  "errs": [
-  "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8165' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+  "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8177' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
   "Failed to load resource: net::ERR_FAILED",
-  "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8165' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+  "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8177' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
   "Failed to load resource: net::ERR_FAILED"
  ]
 }

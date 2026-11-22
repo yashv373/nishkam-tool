@@ -2,7 +2,7 @@
 
 Every time we say a part of the flow "matches" the traditional tool, the proof is here: the test design, how our browser version was built, how the traditional tool was run, the numbers, and what we did not check. Test designs only check the tools. They do not show a design is good.
 
-Logs are in `docs/validation/logs/`, pictures in `docs/validation/img/`. Runs were done between 2026-10-18 and 2026-11-22; each section says which (section 2 rmult20 and sections 8.x to 21 are later than 2026-10-20). Section 9 lists what is open, and the last section, "Claims under review", lists reviewer points that need a new run.
+Logs are in `docs/validation/logs/`, pictures in `docs/validation/img/`. Runs were done between 2026-10-18 and 2026-11-22; each section says which (section 2 rmult20 and sections 8.x to 27 are later than 2026-10-20). Section 9 lists what is open, and the last section, "Claims under review", lists reviewer points that need a new run.
 
 ## Summary: what is and is not validated
 
@@ -28,6 +28,7 @@ Two place-and-route flows exist in Studio:
 | Gate-level simulation, early (section 23, Node + one Edge page run) | Icarus 14.0 (devel) WebAssembly + stripped gf180 models | native Icarus 14.0 (devel) + the PDK's own models | all signals, all time steps identical on 3 designs and 1 seeded fault | timing models, multi-clock, latches |
 | Equivalence check, early (section 24) | Yosys 0.68.1207 WebAssembly | native Yosys 0.64 (two model sources) and EQY | same verdicts on 4 cases; tiny8 (236 cells) gives no verdict in either (issue #200) | anything above 13 cells proven; more fault kinds |
 | OpenSTA + OpenROAD on sha1 (6.8k cells) and a two-clock FIFO (2.9k cells) (section 25) | OpenSTA defec0b, OpenROAD 6f3f28c | native sta 3.1.0, native OpenROAD 6f3f28c | 0 of 47,660 STA lines differ; both route to 0 violations; placement differs (50 to 60% of cells elsewhere on the two big designs), HPWL +0.1 to +0.3% | native DRC/LVS, why placement differs |
+| Scan + ATPG, early (section 27) | Yosys 0.68.1207 + `dft-core.js` + Quaigh 0.0.6 (WASM) | native Quaigh 0.0.6 + native Difetto (`difetto.so` + `nl2bench` 0.13.0 on gf180mcuD) | on the same `.bench` (re-run with both flows' files), faults and coverage match native Quaigh on all 6 designs on both sides, simulated outputs match byte for byte, pattern counts equal or close (random fill differs) (c17 bench, counter, acc, s27, s298); scan-flop counts match Difetto on all 6; 4 bugs found (#194, #201, #202, #203), so `s344` crashes in WASM Kissat and `c17.v`/`s298` fail full Studio `handle()` | silicon/gf180 cell coverage in Studio, full LibreLane `DifettoPNR`/`BoundaryScan`/`DifettoTest`, SAT-ATPG path until #194 merges, multi-clock/negedge/large designs, Chrome/Firefox/Safari |
 
 **Scope.** Validated: single-clock digital designs on gf180mcuD (7-track cells), up to 48 flip-flops, 50% density, one corner (tt, 25 C, 5.00 V; multi-corner STA is in section 15), plus 13 small analog decks on gf180mcuD (sections 18 and 18B, incl. ss/ff on the 5T OTA and a -40 to 125 C sweep). LVS was compared with native Netgen up to 3,100 devices and 1,537 nets (old flow, tiny8). The OpenROAD-flow tiny8 layout (3,150 devices, 1,559 nets, with tap cells) has an LVS match in our browser Netgen only; it was not compared with native Netgen. Most runs were made in Node with the same WebAssembly files the page loads; where a real browser page was used, the section says so (section 8 browser run, a few checks in 12 and 13, and all 8 Lab decks in Edge in section 18B).
 
@@ -1335,6 +1336,116 @@ STA with two clocks: both timers print identical reports, including the paths th
 - sha1 has 6.8 thousand cells, above the range asked for; no design between 1 and 5 thousand cells with one clock was run besides the two-clock FIFO (2.9 thousand).
 - The clock-group handling of Studio itself (the page builds one-clock SDC only; the second clock was added through an extra option by the script, not by the page).
 - No page run of the two big designs, no other browser.
+
+## 27. Scan + ATPG in Studio (early, issue #10)
+
+Run on 2026-11-22. Scripts, benchmark designs, and raw outputs are in `docs/validation/dft/`.
+
+**Claimed:** narrow and partial. Two comparisons, each on the SAME `.bench` file on both sides (re-run 2026-11-22 after #194 was fixed on main). (1) Studio's own scan-inserted `.bench` (simple gates) run through our WebAssembly Quaigh 0.0.6 and through native Quaigh 0.0.6: faults detected, total faults and coverage are identical on all 6 designs (`c17` bench, `counter`, `acc`, `s27`, `s298`, `s344`; 100% each), outputs match byte for byte when each side simulates the other's patterns, and pattern counts are equal on 4 designs and close on `s344` (17 against 15, random fill differs). (2) Difetto's own `.bench` files (gf180 cells, made by native Difetto) run through our WebAssembly Quaigh: faults, total and coverage identical on all 6 designs, patterns close (`c17` 5 vs 4, `s298` 25 vs 22, `s344` 20 vs 19, the others equal), and our simulator reproduces Difetto's native outputs byte for byte on all 6. Studio's end-to-end coverage and Difetto's end-to-end coverage are NOT the same number, because the two flows build different netlists (simple gates against gf180 cells); that is expected and explained below. Scan-flop and chain-length counts match native Difetto on all 6 designs (0, 4, 3, 3, 14, 15). End-to-end Studio runs pass in Node on `counter`, `acc`, `s27` and `s344`, and in Microsoft Edge on `counter` and `s27` (including the in-browser chain test). Open: `c17.v` (#201) and `s298` (#202) still fail in the full Studio run. This stage is **not** a silicon or standard-cell fault-coverage check; Studio counts stuck-at faults on a simple-gate netlist, and the UI says so.
+
+### Designs and setup
+
+Six open designs in `docs/validation/dft/designs/` (licences and sources recorded in `docs/validation/dft/designs/LICENSES.md`):
+
+| Design | Function | Primary inputs / outputs | Flip-flops | Source and licence |
+|---|---|---|---|---|
+| `counter` | 4-bit synchronous counter with reset | 2 (clk, rst) / 4 | 4 | `web/studio/engines/selftest-fixtures.js` (Nishkam repo) |
+| `acc` | 3-bit accumulator with reset, enable `go`, comb output `z` | 5 (clk, rst, d[1:0], go) / 4 | 3 | `web/studio/engines/atpg.selftest.mjs` (Nishkam repo) |
+| `c17` | ISCAS'85 combinational 6-NAND circuit (tested as raw `c17.bench` and RTL `c17.v`) | 5 / 2 | 0 | Brglez & Fujiwara, IEEE ISCAS 1985; public-domain academic data (no formal licence) |
+| `s27` | ISCAS'89 sequential benchmark (small FSM, 10 gates) | 5 (CK, G0..G3) / 1 | 3 | Brglez, Bryan & Kozminski, IEEE ISCAS 1989 (DOI `10.1109/ISCAS.1989.100747`); public-domain academic data; normalized synthesizable Verilog from `zeroasiccorp/logikbench` (MIT licence on normalization) |
+| `s298` | ISCAS'89 sequential benchmark (traffic light controller, 119 gates) | 4 (CK, G0..G2) / 6 | 14 | Same ISCAS'89 public-domain source and `zeroasiccorp/logikbench` normalization (MIT) |
+| `s344` | ISCAS'89 sequential benchmark (4x4 add-shift multiplier, 160 gates) | 10 (CK, START, A0..A3, B0..B3) / 11 | 15 | Same ISCAS'89 public-domain source and `zeroasiccorp/logikbench` normalization (MIT) |
+
+### How our browser flow was built and run
+
+Engine files: `web/studio/engines/atpg.js`, `web/studio/engines/atpg.worker.js`, `web/studio/engines/dft-core.js`, `web/studio/engines/wasi.js`, tested by `web/studio/engines/atpg.selftest.mjs`.
+
+1. **Generic synthesis and scan chain (`dft-core.js`):** stock YoWASP Yosys (`@yowasp/yosys@0.68.1207`, Yosys 0.68 git sha1 `38e001a6f`) runs `genericScript()` (`synth -flatten`, `async2sync`, `dfflegalize -cell $_DFF_P_ 01 -cell $_DFF_N_ 01`, `abc -g AND,NAND,OR,NOR,XOR,XNOR,ANDNOT,ORNOT,MUX`, `opt_clean -purge`, `write_json`). Pure JS `insertScan()` puts one `$_MUX_` in front of each rising-edge flop, wires one chain (`scan_in`, `scan_en`, `scan_out`) in natural RTL-name order, and `atpg.worker.js` proves `scan_en = 0` keeps the logic using Yosys `miter -equiv` + `sat -verify -tempinduct -maxsteps 40 -seq 40`.
+2. **Cut and `.bench` writer (`dft-core.js`):** `cutToBench()` turns each flop output (`Q`) into a combinational input and each flop input (`D`) into a combinational output, and writes ISCAS `.bench`.
+3. **Quaigh 0.0.6 in WebAssembly (`web/vendor/quaigh/0.0.6/SOURCE.md`):** upstream `github.com/Coloquinte/quaigh` release `0.0.6`, commit `5b47ca63608d516efc3f225758635df689be70c5` (MIT OR Apache-2.0), with `rustsat-kissat` 0.7.4 / Kissat 4.0.4 (MIT). Built to `wasm32-wasip1` in Docker `rust:1-bookworm` (`tools/quaigh-wasm/build.sh`) using wasi-sdk 25 and 2 patches to the vendored `rustsat-kissat` crate (returning 0 for `ru_maxrss` in `resources.c`, and hand-written `kissat_*` declarations in `bindings_manual.rs`; no Quaigh source change). Output `quaigh.wasm` is 1.47 MB raw (0.48 MB gzip), sha256 `d705372d99f633574af1b0224cf09e6df1eef3748c85cf0ef54e9e68febb40f1`. `atpg.worker.js` runs `quaigh atpg` and `quaigh sim` in memory through `wasi.js`, then cross-checks every expected output against `dft-core.js`'s `simulator()` and writes `dft/scan.v` and `dft/test_chain.py` for Studio's cocotb-subset engine (Pyodide `314.0.8` + Icarus `a275a9a`).
+4. **How we ran ours:**
+   - **Node:** `docs/validation/dft/run-browser.mjs` (same `atpg.worker.js` and `quaigh.wasm` the page loads, Node v26.7.0, median of 3 warm Quaigh runs per `.bench`), plus `node web/studio/engines/atpg.selftest.mjs` (all 12 checks pass).
+   - **Browser (Microsoft Edge):** served `web/` via `python -m http.server 8743 --bind 127.0.0.1`, drove Edge (`1440x900`) via Playwright on `http://127.0.0.1:8743/studio.html?mock` for `counter` and `s27`, ran Scan + ATPG and clicked **Run chain test (early)** (results in `docs/validation/dft/browser/edge-page.json`).
+
+### How the traditional flow was installed and run
+
+Docker image `nixos/nix:latest` (digest `sha256:746280551ddc1c72177d1a597c05eacac86dfaa18d5d649bf86411278bcd5470`), using `github.com/donn/difetto` commit `b1add985a1d40b6269107e4854bb386fb46a9435` (Apache-2.0) built via its Nix flake (`flake.nix`, store cached in Docker volume `difetto-nix-store`). Exact tool versions inside `/nix/store`:
+
+- Native **Quaigh 0.0.6** (`x86_64-linux`, `/nix/store/qg7ixjaii9p61qzasc8pn670gxkrv9pm-quaigh-0.0.6/bin/quaigh`)
+- Native **Yosys 0.62** (`git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf`, `clang++ 21.1.2 -fPIC -O3`) with **yosys-difetto 0.1.0** (`difetto.so`)
+- Native **nl2bench 0.13.0** (`python3.13-nl2bench`)
+- Standard-cell library: `gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib` (open_pdks `7b70722`, `web/vendor/gf180mcu/lib-tt5v0-full/`, byte-identical to container `hpretl/iic-osic-tools:chipathon26`) and Difetto's `tech/gf180mcu_fd_sc_mcu7t5v0_mapping.json`.
+
+Two comparisons were run:
+- **Part A (same `.bench`, Quaigh WASM vs native Quaigh 0.0.6):** `docs/validation/dft/run-native-quaigh.sh` copies each Studio `.bench` into container-local `/tmp` (so timing measures CPU, not Windows bind-mount I/O), runs `quaigh atpg` and `quaigh sim` 3 times (median recorded), and cross-simulates WASM `.tv` with native `quaigh sim` (and reverse: native `.tv` with WASM `quaigh sim`) to compare `.au` outputs byte-for-byte.
+- **Part B (Studio simple-gate flow vs native Difetto gf180mcuD flow):** `docs/validation/dft/run-native-difetto.sh` runs Yosys 0.62 (`synth -flatten`, `dfflibmap`, `abc -liberty`) -> Difetto `scan_replace` (`dff*` -> `sdff*`) -> Difetto `sdff_cut` (excluding the clock port; no `boundary_scan`, so internal scan-flop counts compare directly) -> `nl2bench --msb-first` -> native `quaigh atpg` and `quaigh sim` (3 runs each). Full LibreLane `DifettoPNR` + `DifettoTest` did not run because `python3.13-librelane-3.0.1`'s Nix check phase failed one unrelated dummy-PDK test (`test_tclstep_get_command`) inside Docker; that gap is listed under "What is NOT validated".
+
+### Numbers
+
+**Table 23A. Same `.bench` file: Studio Quaigh 0.0.6 (WASM in Node) vs Native Quaigh 0.0.6 (`x86_64` in Docker `/tmp`).**
+Why raw `.tv` pattern files differ: Quaigh's seeded `SmallRng` uses 32-bit state on `wasm32` and 64-bit state on `x86_64`, so random fill bits differ (`rawTvByteIdentical = false` on every design). We compare faults, coverage, pattern count, and cross-simulated `.au` outputs instead.
+
+| Design (Studio `.bench`) | Faults det/tot (WASM / Native) | Coverage (WASM / Native) | Patterns (WASM / Native) | Cross-sim `.au` byte match (both directions) | Time ATPG / Sim (ms, median of 3, WASM warm / Native) | Verdict |
+|---|---|---|---|---|---|---|
+| `c17` (raw `.bench`) | 20/20 / 20/20 | 100% / 100% | 5 / 5 | yes / yes | 3.5 / 2.0 vs 5.8 / 4.8 | **match** (`.tv` differs: 32 vs 64-bit RNG) |
+| `counter` | 32/32 / 32/32 | 100% / 100% | 6 / 6 | yes / yes | 2.9 / 1.8 vs 5.3 / 4.9 | **match** (`.tv` differs: RNG) |
+| `acc` | 38/38 / 38/38 | 100% / 100% | 6 / 6 | yes / yes | 3.6 / 2.0 vs 5.0 / 4.4 | **match** (`.tv` differs: RNG) |
+| `s27` | 24/24 / 24/24 | 100% / 100% | 6 / 6 | yes / yes | 2.5 / 1.6 vs 5.3 / 4.5 | **match** (`.tv` differs: RNG) |
+| `s298` (via `cutToBench` directly; full `handle()` blocked by #202) | 198/198 / 198/198 | 100% / 100% | 20 / 20 | yes / yes | 11.0 / 5.2 vs 7.6 / 5.4 | **match** on Quaigh (`.tv` differs: RNG); full Studio `handle()` fails (#202) |
+| `s344` (full Studio run; its `.bench`) | 264/264 / 264/264 | 100% / 100% | 17 / 15 | yes / yes | 19.3 / 6.7 vs 6.7 / 4.2 | **match** on faults and coverage; patterns **close** (17 vs 15, RNG); the #194 crash is gone (random patterns catch 262/264, the last 2 need the Kissat pass) |
+
+Note on runtimes: Node WASM times reuse the compiled WebAssembly module in memory with no OS process start; native times include spawning the Linux binary per call. Both are under 15 ms here.
+
+**Table 23B. End-to-end flow: Studio (`atpg.worker.js` `handle()`, simple gates) vs Native Difetto (`yosys-difetto` + `nl2bench` + native Quaigh on `gf180mcu_fd_sc_mcu7t5v0`).**
+
+| Design | Scan flops / chain len (Studio / Difetto) | Studio faults & coverage (Node) | Difetto faults & coverage (`gf180` cells) | Patterns (Studio / Difetto) | Runtime: Studio Node / Studio Edge / Native Difetto | Verdict |
+|---|---|---|---|---|---|---|
+| `c17` (RTL `c17.v`) | 0 / 0 | crash (#201) | 18/22 (81.82%) | crash / 4 | 2.3 s (crash) / not run / 6.7 s | **differs (bug #201)**: `cutToBench` net `n7` collides with input `n7` |
+| `counter` | 4 / 4 | 32/32 (100%), eq proven, 0 xchk err, chain test pass | 50/54 (92.59%) | 6 / 8 | 1.8 s / 4.6 s (+ 4.7 s chain test) / 4.1 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants, see below) |
+| `acc` | 3 / 3 | 38/38 (100%), eq proven, 0 xchk err, chain test pass | 60/64 (93.75%) | 6 / 8 | 102.1 s (#202) / not run / 5.1 s | **scan flops: match**; **faults/coverage: differs** (cell library + `nl2bench` constants); **runtime: differs** (102 s due to `sat -tempinduct`, #202) |
+| `s27` | 3 / 3 | 24/24 (100%), eq proven, 0 xchk err, chain test pass | 44/48 (91.67%) | 6 / 8 | 1.4 s / 4.4 s (+ 4.9 s chain test) / 4.7 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants) |
+| `s298` | 14 / 14 | `handle()` fails eq proof (#202); direct Quaigh 198/198 (100%) | 320/340 (94.12%) | 20 (direct) / 22 | 124.5 s fail (#202) / not run / 3.8 s | **scan flops: match**; **full Studio fails (#202)** (`equiv_induct` proves it in 0.14 s) |
+| `s344` | 15 / 15 | 264/264 (100%), eq proven, 0 xchk err | 290/300 (96.67%) | 17 / 19 | 34.6 s / not run / 4.2 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants); runtime differs (eq proof) |
+
+**Why Difetto's coverage is 81.8% to 96.7% instead of 100%:** `nl2bench 0.13.0` appends two constant gates (`__NL2BENCH_HI__ = VDD()` and `__NL2BENCH_LO__ = VSS()`) to every `.bench` file even when nothing connects to them, adding 4 untestable stuck-at faults to every circuit (`c17` 18/22, `counter` 50/54, `acc` 60/64, `s27` 44/48 — all 4 have exactly 4 undetected faults, so 100% of real circuit faults are caught). On `s298` (320/340) and `s344` (290/300), expanding complex gf180 cells (such as AOI/OAI/MUX) into 2-input gates adds additional internal redundant faults. Studio maps to simple 2-input gates with no unused constant nodes, so total fault counts and coverage numbers are not comparable across the two netlists.
+
+**Table 23C. Cross-check: Studio's `quaigh.wasm` on Difetto's own gf180 `.bench` files.**
+**Same Difetto `.bench`, our WebAssembly Quaigh (re-run 2026-11-22, `docs/validation/dft/run-browser-on-difetto-bench.mjs`, output in `browser-on-difetto-bench/`).** The Difetto `.bench` files from the table above were fed unchanged to Studio's Quaigh 0.0.6 WASM (with the #194 fix now on main):
+
+| Design (Difetto `.bench`) | Faults det/tot (WASM / native Difetto run) | Coverage | Patterns (WASM / native) | WASM `sim` of native `.tv` equals native `.au` | Verdict |
+|---|---|---|---|---|---|
+| `c17` | 18/22 / 18/22 | 81.82% / 81.82% | 5 / 4 | yes | **match** on faults; patterns **close** (RNG) |
+| `counter` | 50/54 / 50/54 | 92.59% / 92.59% | 8 / 8 | yes | **match** |
+| `acc` | 60/64 / 60/64 | 93.75% / 93.75% | 8 / 8 | yes | **match** |
+| `s27` | 44/48 / 44/48 | 91.67% / 91.67% | 8 / 8 | yes | **match** |
+| `s298` | 320/340 / 320/340 | 94.12% / 94.12% | 25 / 22 | yes | **match** on faults; patterns **close** (RNG) |
+| `s344` | 290/300 / 290/300 | 96.67% / 96.67% | 20 / 19 | yes | **match** on faults; patterns **close** (RNG) |
+
+So the earlier gap between the two tables (for example `s298` 198 faults against 340, `s344` 264 against 300) is the netlist, not the ATPG engine: with the same `.bench` both engines give the same fault list and coverage.
+
+### Browser runs in Microsoft Edge
+
+Driven via Playwright in Microsoft Edge (`1440x900`, dark theme forced off to light/default by Studio's OS preference, `http://127.0.0.1:8743/studio.html?mock`). Zero Studio console errors (only the expected localhost CORS rejections for `/flags` and `cloudflareinsights.com` and the harness's own `/favicon.ico` probe). Both `counter` and `s27` reached 100% coverage with matching fault counts, pattern counts, and scan chains, and both passed the in-browser **Run chain test (early)** button (`PASS test_chain.py::scan_chain_patterns`).
+
+| Studio Scan + ATPG: `counter` (Edge, 4 flops, 32/32 faults, chain test passed) | Studio Scan + ATPG: ISCAS'89 `s27` (Edge, 3 flops, 24/24 faults, chain test passed) |
+|---|---|
+| ![Studio Scan + ATPG counter in Edge](img/dft-studio-counter.png) | ![Studio Scan + ATPG s27 in Edge](img/dft-studio-s27.png) |
+
+### Bugs found during validation (no engine edits made here)
+
+1. **#194 (fixed on main, commit `fd28be1`; first run 2026-11-22 was before the fix):** the old `quaigh.wasm` (`d705372d...`; the fixed build on main is `ae9be04a...`) crashed with `RuntimeError: memory access out of bounds` inside `kissat_congruence` whenever a fault survives random simulation and reaches Kissat's SAT solver (reproduced in both `wasi.js` and `node:wasi` on Studio's `s344.bench` and Difetto's `s298.bench`/`s344.bench`).
+2. **#201 (new bug):** `dft-core.js` `cutToBench()` names internal nets `n<bit>` without calling `uniq()`. Any Verilog design with an input port named `n<number>` (like ISCAS'85 `c17.v` with `input n7`) produces a `.bench` with duplicate names (`INPUT(n7)` and `n7 = NAND(...)`), making Quaigh abort.
+3. **#202 (new bug):** `atpg.worker.js` checks `scan_en = 0` equivalence with `miter -equiv` + `sat -tempinduct` instead of `equiv_make` + `equiv_simple` + `equiv_induct`. This takes 102 s on `acc` (3 flops) and fails after 124.5 s on ISCAS'89 `s298` (14 flops, no reset pin), even though `equiv_induct` proves `s298` in 144 ms and `s344` in 127 ms.
+4. **#203 (new bug):** `web/studio/app.js` `dftToggle()` omits `drawNav()`, so ticking **Scan + ATPG (early)** in Properties adds the tab but does not add the stage to the left navigator until something else redraws it.
+
+### What is NOT validated
+
+- **Standard-cell / silicon fault coverage in Studio:** Studio runs ATPG on a simple generic-gate netlist, not on gf180mcuD standard cells or post-PnR netlists.
+- **Full LibreLane Difetto flows (`DifettoPNR`, `DifettoATPG`, `DifettoTest`):** we ran Difetto's native Yosys plugin (`scan_replace`, `sdff_cut`), `nl2bench 0.13.0`, and native `quaigh 0.0.6` directly, without LibreLane orchestration, without `BoundaryScan`, without OpenROAD placement-ordered chain stitching (`Difetto.Chain`), and without running Difetto's real `cocotb` test (`DifettoTest`).
+- **SAT-based ATPG in WebAssembly:** the Kissat pass now runs after the #194 fix (needed on `s344`: random patterns catch 262/264); it matched native on the designs here, but only these six were run.
+- **Studio's cocotb-subset chain test against real cocotb:** the chain test passed in Node (`counter`, `acc`, `s27`) and Edge (`counter`, `s27`), but was not compared against real cocotb (section 22).
+- **Larger and more complex designs:** nothing above 15 flip-flops (`s344`), no multi-clock designs, no negative-edge flops, no latches, no memories, no macros, no designs with kept async reset pins (`async2sync` converts async resets to sync logic).
+- **Browsers and hosts:** Edge only on one Windows 11 machine (`counter` and `s27` in the page; `c17`, `acc`, `s298`, `s344` in Node only). Chrome, Firefox, and Safari were not tested.
 
 ## Claims under review
 

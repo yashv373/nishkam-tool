@@ -1,0 +1,58 @@
+{
+  "port": 8743,
+  "url": "http://127.0.0.1:8743/studio.html?mock",
+  "checks": {
+    "dftToggleAddsTab": true,
+    "dftToggleUpdatesNavImmediately": false
+  },
+  "runs": [
+    {
+      "key": "counter",
+      "top": "counter",
+      "dftMs": 4599,
+      "headText": "Fault coverage 100%",
+      "helpTexts": [
+        "32 of 32 stuck-at faults are caught by 6 test patterns. Faults are counted on a simple-gate version of your design (AND, OR, XOR, NOT, MUX), not on the gf180 cells, so this is not a silicon number.",
+        "Scan chain of 4 flops: scan_in → q[0] → q[1] → q[2] → q[3] → scan_out. Equivalence with scan_en = 0 is proven (Yosys, k-induction)."
+      ],
+      "chainTestText": "Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.",
+      "chainTestMs": 4715,
+      "screenshot": "dft-studio-counter.png",
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (File not found)",
+        "Failed to load resource: the server responded with a status of 404 (File not found)",
+        "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8743' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8743' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "appConsoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (File not found)",
+        "Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "key": "s27",
+      "top": "s27",
+      "dftMs": 4447,
+      "headText": "Fault coverage 100%",
+      "helpTexts": [
+        "24 of 24 stuck-at faults are caught by 6 test patterns. Faults are counted on a simple-gate version of your design (AND, OR, XOR, NOT, MUX), not on the gf180 cells, so this is not a silicon number.",
+        "Scan chain of 3 flops: scan_in → DFF_0.Q → DFF_1.Q → DFF_2.Q → scan_out. Equivalence with scan_en = 0 is proven (Yosys, k-induction)."
+      ],
+      "chainTestText": "Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.",
+      "chainTestMs": 4889,
+      "screenshot": "dft-studio-s27.png",
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (File not found)",
+        "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8743' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8743' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "appConsoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    }
+  ]
+}

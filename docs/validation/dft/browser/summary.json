@@ -1,0 +1,158 @@
+[
+  {
+    "name": "c17 (bench)",
+    "key": "c17_bench",
+    "flops": 0,
+    "chainLength": 0,
+    "equivalenceProven": null,
+    "faultsDetected": 20,
+    "faultsTotal": 20,
+    "coverage": 100,
+    "patterns": 5,
+    "crossCheckMismatches": null,
+    "handleMs": null,
+    "quaighAtpgMs": 4.4,
+    "quaighSimMs": 2.3
+  },
+  {
+    "name": "c17 (RTL)",
+    "key": "c17",
+    "ok": false,
+    "crash": "unreachable",
+    "handleMs": 1848.3
+  },
+  {
+    "name": "counter",
+    "key": "counter",
+    "ok": true,
+    "flops": 4,
+    "chainLength": 4,
+    "chain": [
+      "q[0]",
+      "q[1]",
+      "q[2]",
+      "q[3]"
+    ],
+    "equivalenceProven": true,
+    "faultsDetected": 32,
+    "faultsTotal": 32,
+    "coverage": 100,
+    "patterns": 6,
+    "crossCheckRows": 6,
+    "crossCheckMismatches": 0,
+    "handleMs": 1412.5,
+    "quaighAtpgMs": 2.48,
+    "quaighSimMs": 1.7,
+    "benchInputs": 6,
+    "benchOutputs": 8,
+    "benchGates": 13
+  },
+  {
+    "name": "acc",
+    "key": "acc",
+    "ok": true,
+    "flops": 3,
+    "chainLength": 3,
+    "chain": [
+      "q[0]",
+      "q[1]",
+      "q[2]"
+    ],
+    "equivalenceProven": true,
+    "faultsDetected": 38,
+    "faultsTotal": 38,
+    "coverage": 100,
+    "patterns": 6,
+    "crossCheckRows": 6,
+    "crossCheckMismatches": 0,
+    "handleMs": 74087.7,
+    "quaighAtpgMs": 2.63,
+    "quaighSimMs": 1.52,
+    "benchInputs": 8,
+    "benchOutputs": 7,
+    "benchGates": 20
+  },
+  {
+    "name": "s27",
+    "key": "s27",
+    "ok": true,
+    "flops": 3,
+    "chainLength": 3,
+    "chain": [
+      "DFF_0.Q",
+      "DFF_1.Q",
+      "DFF_2.Q"
+    ],
+    "equivalenceProven": true,
+    "faultsDetected": 24,
+    "faultsTotal": 24,
+    "coverage": 100,
+    "patterns": 6,
+    "crossCheckRows": 6,
+    "crossCheckMismatches": 0,
+    "handleMs": 1398.7,
+    "quaighAtpgMs": 2.58,
+    "quaighSimMs": 1.63,
+    "benchInputs": 8,
+    "benchOutputs": 4,
+    "benchGates": 9
+  },
+  {
+    "name": "s298",
+    "key": "s298",
+    "ok": false,
+    "error": {
+      "errors": 1,
+      "messages": [
+        {
+          "severity": "error",
+          "file": "",
+          "line": 0,
+          "text": "Scan insertion changed the logic: equivalence with scan_en=0 was not proven. Report this design."
+        }
+      ],
+      "equivalence": {
+        "checked": true,
+        "proven": false,
+        "method": "miter + k-induction (sat -tempinduct)"
+      }
+    }
+  },
+  {
+    "name": "s344",
+    "key": "s344",
+    "ok": true,
+    "flops": 15,
+    "chainLength": 15,
+    "chain": [
+      "ACVQN0",
+      "ACVQN1",
+      "ACVQN2",
+      "ACVQN3",
+      "AX0",
+      "AX1",
+      "AX2",
+      "AX3",
+      "CNTVCO0",
+      "CT1",
+      "CT2",
+      "DFF_7.Q",
+      "DFF_8.Q",
+      "DFF_9.Q",
+      "DFF_10.Q"
+    ],
+    "equivalenceProven": true,
+    "faultsDetected": 264,
+    "faultsTotal": 264,
+    "coverage": 100,
+    "patterns": 17,
+    "crossCheckRows": 17,
+    "crossCheckMismatches": 0,
+    "handleMs": 34561.4,
+    "quaighAtpgMs": 19.25,
+    "quaighSimMs": 6.74,
+    "benchInputs": 25,
+    "benchOutputs": 26,
+    "benchGates": 117
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "key": "c17_bench",
+    "faultsDetected": 20,
+    "faultsTotal": 20,
+    "coverage": 100.0,
+    "patterns": 5,
+    "atpgMs": 4.81,
+    "simMs": 3.9,
+    "atpgRunsMs": [
+      4.78,
+      5.6,
+      4.81
+    ],
+    "simRunsMs": [
+      3.9,
+      5.62,
+      3.69
+    ],
+    "crossSimWasmTvExactAuMatch": true,
+    "rawTvByteIdentical": false
+  },
+  {
+    "key": "counter",
+    "faultsDetected": 32,
+    "faultsTotal": 32,
+    "coverage": 100.0,
+    "patterns": 6,
+    "atpgMs": 4.4,
+    "simMs": 3.91,
+    "atpgRunsMs": [
+      4.59,
+      3.53,
+      4.4
+    ],
+    "simRunsMs": [
+      4.09,
+      3.91,
+      3.84
+    ],
+    "crossSimWasmTvExactAuMatch": true,
+    "rawTvByteIdentical": false
+  },
+  {
+    "key": "acc",
+    "faultsDetected": 38,
+    "faultsTotal": 38,
+    "coverage": 100.0,
+    "patterns": 6,
+    "atpgMs": 3.6,
+    "simMs": 3.57,
+    "atpgRunsMs": [
+      4.78,
+      3.17,
+      3.6
+    ],
+    "simRunsMs": [
+      3.57,
+      3.69,
+      2.96
+    ],
+    "crossSimWasmTvExactAuMatch": true,
+    "rawTvByteIdentical": false
+  },
+  {
+    "key": "s27",
+    "faultsDetected": 24,
+    "faultsTotal": 24,
+    "coverage": 100.0,
+    "patterns": 6,
+    "atpgMs": 3.96,
+    "simMs": 3.28,
+    "atpgRunsMs": [
+      4.87,
+      3.96,
+      3.31
+    ],
+    "simRunsMs": [
+      3.93,
+      3.09,
+      3.28
+    ],
+    "crossSimWasmTvExactAuMatch": true,
+    "rawTvByteIdentical": false
+  },
+  {
+    "key": "s298",
+    "faultsDetected": 198,
+    "faultsTotal": 198,
+    "coverage": 100.0,
+    "patterns": 20,
+    "atpgMs": 6.43,
+    "simMs": 4.86,
+    "atpgRunsMs": [
+      6.51,
+      6.43,
+      5.51
+    ],
+    "simRunsMs": [
+      4.86,
+      4.89,
+      4.8
+    ],
+    "crossSimWasmTvExactAuMatch": true,
+    "rawTvByteIdentical": false
+  },
+  {
+    "key": "s344",
+    "faultsDetected": 264,
+    "faultsTotal": 264,
+    "coverage": 100.0,
+    "patterns": 15,
+    "atpgMs": 6.65,
+    "simMs": 4.17,
+    "atpgRunsMs": [
+      6.65,
+      6.1,
+      6.84
+    ],
+    "simRunsMs": [
+      3.81,
+      5.02,
+      4.17
+    ],
+    "crossSimWasmTvExactAuMatch": true,
+    "rawTvByteIdentical": false
+  }
+]

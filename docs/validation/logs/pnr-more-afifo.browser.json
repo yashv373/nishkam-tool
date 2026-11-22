@@ -1,0 +1,53 @@
+{
+ "design": "afifo",
+ "top": "afifo32",
+ "synthCells": 2893,
+ "synthArea": 125365.6768,
+ "die": [
+  559.44,
+  559.44
+ ],
+ "clocks": [
+  [
+   "wclk",
+   10
+  ],
+  [
+   "rclk",
+   14
+  ]
+ ],
+ "T": {
+  "synth": 83.7,
+  "place": 23.2,
+  "cts": 23.5,
+  "route": 347.8,
+  "sta": 25.1
+ },
+ "place": 5227,
+ "cts": {
+  "clkbufs": 275,
+  "sinks": 50,
+  "latency_ns": 0.87,
+  "skew_ns": 0.01,
+  "setup_skew_ns": 0.01,
+  "hold_skew_ns": null,
+  "repair": null,
+  "ms": 22257
+ },
+ "route": {
+  "wire": 207377,
+  "vias": 23707,
+  "drc": [
+   609,
+   67,
+   23,
+   0
+  ],
+  "violations": 0
+ },
+ "preSetup": -26.4385,
+ "preHold": 0.5372,
+ "postSetup": -0.8171,
+ "postHold": -1.9463
+}

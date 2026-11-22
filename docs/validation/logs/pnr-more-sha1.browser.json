@@ -1,0 +1,52 @@
+{
+ "design": "sha1",
+ "top": "sha1",
+ "synthCells": 6838,
+ "synthArea": 226092.4288,
+ "die": [
+  750.96,
+  750.96
+ ],
+ "clocks": [
+  [
+   "clk",
+   20
+  ]
+ ],
+ "T": {
+  "synth": 287.8,
+  "place": 33.1,
+  "cts": 32.9,
+  "route": 1039,
+  "sta": 25.1
+ },
+ "place": 11207,
+ "cts": {
+  "clkbufs": 452,
+  "sinks": 8,
+  "latency_ns": 5.62,
+  "skew_ns": 0.46,
+  "setup_skew_ns": -0.43,
+  "hold_skew_ns": null,
+  "repair": null,
+  "ms": 31565
+ },
+ "route": {
+  "wire": 548654,
+  "vias": 60475,
+  "drc": [
+   3214,
+   762,
+   610,
+   5,
+   1,
+   1,
+   0
+  ],
+  "violations": 0
+ },
+ "preSetup": -64.4807,
+ "preHold": 0.756,
+ "postSetup": -3.9329,
+ "postHold": -1.8557
+}

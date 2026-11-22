@@ -1,0 +1,6 @@
+shreg4: browser proven (equiv, 1 points) | native, our models: proven (equiv, 1 points) | native, PDK liberty: proven (equiv, 1 points) | EQY: proven
+counter: browser proven (equiv, 4 points) | native, our models: proven (equiv, 4 points) | native, PDK liberty: proven (equiv, 4 points) | EQY: proven
+tiny8: browser timeout (stopped by the shell) | native, our models: bounded | native, PDK liberty: bounded | EQY: no result
+counter-bug: browser differs (miter, 4 points, first q cycle 2) | native, our models: differs (cycle 2, q) | native, PDK liberty: differs (cycle 2, q) | EQY: not proven
+tiny8-bug: browser differs (miter, 16 points, first out cycle 39) | native, our models: differs (cycle 39, out) | native, PDK liberty: differs (cycle 39, pc) | EQY: not proven
+# tiny8: native steps stopped at 420 s, browser at 1000 s; 'bounded'/'no result' there means NO verdict

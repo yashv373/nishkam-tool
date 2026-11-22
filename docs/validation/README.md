@@ -25,6 +25,9 @@ Two place-and-route flows exist in Studio:
 | RTL grader | Yosys miter + k-induction | native Yosys 0.64 | 5 references proven, 19 wrong designs fail, same in both; a design differing only after cycle 45 passes as "first 40 cycles" (section 10) | CDC problems, x-handling, unreachable-state fallback |
 | OpenCDC CDC check, early (section 20) | OpenCDC 4101730 (WebAssembly, 5.2 MB) | native OpenCDC 4101730 | same output on all 13 cases; agrees with our CDC grader on 8 of 13 | grader integration; the 5 differences; in-browser click-through |
 | No-arithmetic rule, adder problems (section 21) | Yosys 0.68.1207 (WebAssembly) | none (Node run only) | all 20 adder checks as expected; `+` and `-` rejected on all 4 problems | network depth and cell count; native Yosys |
+| Gate-level simulation, early (section 23, Node + one Edge page run) | Icarus 14.0 (devel) WebAssembly + stripped gf180 models | native Icarus 14.0 (devel) + the PDK's own models | all signals, all time steps identical on 3 designs and 1 seeded fault | timing models, multi-clock, latches |
+| Equivalence check, early (section 24) | Yosys 0.68.1207 WebAssembly | native Yosys 0.64 (two model sources) and EQY | same verdicts on 4 cases; tiny8 (236 cells) gives no verdict in either (issue #200) | anything above 13 cells proven; more fault kinds |
+| OpenSTA + OpenROAD on sha1 (6.8k cells) and a two-clock FIFO (2.9k cells) (section 25) | OpenSTA defec0b, OpenROAD 6f3f28c | native sta 3.1.0, native OpenROAD 6f3f28c | 0 of 47,660 STA lines differ; both route to 0 violations; placement differs (50 to 60% of cells elsewhere on the two big designs), HPWL +0.1 to +0.3% | native DRC/LVS, why placement differs |
 
 **Scope.** Validated: single-clock digital designs on gf180mcuD (7-track cells), up to 48 flip-flops, 50% density, one corner (tt, 25 C, 5.00 V; multi-corner STA is in section 15), plus 13 small analog decks on gf180mcuD (sections 18 and 18B, incl. ss/ff on the 5T OTA and a -40 to 125 C sweep). LVS was compared with native Netgen up to 3,100 devices and 1,537 nets (old flow, tiny8). The OpenROAD-flow tiny8 layout (3,150 devices, 1,559 nets, with tap cells) has an LVS match in our browser Netgen only; it was not compared with native Netgen. Most runs were made in Node with the same WebAssembly files the page loads; where a real browser page was used, the section says so (section 8 browser run, a few checks in 12 and 13, and all 8 Lab decks in Edge in section 18B).
 
@@ -1165,6 +1168,173 @@ The "rule off" rows check that the function matches, with the structural rule sw
 Studio can run `test_*.py` files with a small cocotb-compatible subset: our own scheduler in Pyodide (`web/vendor/pyodide/314.0.8/`) drives Icarus (`web/vendor/icarus/a275a9a/`) through a generated Verilog harness. It is not cocotb. No claim is made that it behaves like real cocotb. Supported so far: `cocotb.test`, `Timer`, `RisingEdge`, `FallingEdge`, `ClockCycles`, `Clock` (via `start_soon`), `dut.x.value` read and write, `assert`. Writes take effect at once (real cocotb applies them in a later phase). Values with x or z read as `None`.
 
 Not validated: no side-by-side run against real cocotb with Icarus in the gf180 container has been done yet. That comparison (same tests, same pass/fail and failure messages, screenshots, numbers table) will be added here before any validation claim is made. Only the built-in selftest (`node web/studio/engines/cocotb.selftest.mjs`: one passing, one failing test) has run.
+
+## 23. Gate-level simulation in Studio (early, issue #188)
+
+**Claimed:** for three small designs and one seeded-broken netlist, the browser gives the same simulation values as native Icarus on the same netlist, signal by signal and time step by time step. Nothing about timing is claimed.
+
+**What is checked.** The Studio stage "Gate-level simulation (early)" runs the learner's testbench twice in Icarus: once on the RTL and once on the netlist from Synthesis with the gf180 cell models (zero delay), then compares the two waveforms. Here the same netlist and the same testbench are also run by native Icarus with the PDK's own models, and the four waveforms are compared value by value (`docs/validation/gls-compare.mjs`).
+
+**Designs and testbenches** (all in `gls-compare.mjs`, so the numbers can be repeated):
+| Design | What it is | Cells after Synthesis | Testbench |
+|---|---|---|---|
+| shreg4 | 4-bit shift register, async reset | 4 | reset, 32 data bits, a second reset pulse, 8 more bits |
+| counter | 4-bit counter, sync reset | 13 | reset, count, reset again, count |
+| counter-bug | the counter netlist with its first `xor2` changed to `xnor2` by hand | 13 | same testbench (negative control) |
+| tiny8 | the `squeeze-tiny8` CPU, 48 flip-flops | 236 | a 7-instruction loop fed from a small ROM by `pc`, reset in the middle |
+
+**How our browser flow was run.** The same WebAssembly files the page loads, run in Node: Yosys `@yowasp/yosys` 0.68.1207 for Synthesis, Icarus Verilog "14.0 (devel)" (`web/vendor/icarus/a275a9a/`, from verisim a275a9a, the exact Icarus commit is not recorded in `SOURCE.md`), and the stripped gf180 models `web/vendor/gf180mcu/sim-7b70722/gf180mcu_fd_sc_mcu7t5v0.sim.v` (from open_pdks 7b70722; `SOURCE.md` there says what was removed). The stage code is `web/studio/engines/gls-core.js` (`glsRun`). Command, from a folder with `@yowasp/yosys@0.68.1207` in `node_modules`:
+```
+node docs/validation/gls-compare.mjs build <outdir>
+```
+**How the traditional flow was run.** Image `hpretl/iic-osic-tools:chipathon26`, Icarus Verilog 14.0 (devel) (s20251012-145-g9b0d46b4-dirty), the PDK's own models `gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/verilog/gf180mcu_fd_sc_mcu7t5v0.v` and `primitives.v` (full files, not stripped), same netlist and testbench files copied from the browser run. The container `gf180` would not start on 2026-11-21 (port 8080 was in use on the PC), so a second container `gf180v` was created from the same image with the same mount and no ports; the tool versions are the same.
+```
+iverilog -g2012 -DFUNCTIONAL -o gate.vvp tb.v netlist.v primitives.v gf180mcu_fd_sc_mcu7t5v0.v && vvp -n gate.vvp
+```
+`-DFUNCTIONAL` removes the timing blocks of the PDK models (it is the zero-delay setting, the same as our stripped file) and no power pins are defined. Script: `docs/validation/gls-compare.sh`. Then `node docs/validation/gls-compare.mjs compare <outdir>` reads the VCD files with our own parser (`parseVcd` and `diffVcd`) and lists every signal that is in both files.
+
+**Numbers.**
+
+| Design | Run | Signals compared (top level only) | Value changes in the browser file | Signals that differ | Signals in only one file |
+|---|---|---|---|---|---|
+| shreg4 | RTL | 11 (11) | 379 | 0 | 0 |
+| shreg4 | gates | 65 (10) | 1811 | 0 | 0 |
+| counter | RTL | 6 (6) | 208 | 0 | 0 |
+| counter | gates | 137 (15) | 2496 | 0 | 0 |
+| counter-bug | RTL | 6 (6) | 208 | 0 | 0 |
+| counter-bug | gates | 137 (15) | 2970 | 0 | 0 |
+| tiny8 | RTL | 22 (22) | 654 | 0 | 0 |
+| tiny8 | gates | 2960 (198) | 31229 | 0 | 0 |
+
+Verdict: **match** on all 8 pairs of files. "Signals compared" counts the testbench and design signals and also the signals inside every cell model; all of them agree at every time step. The negative control: the page code reports the seeded fault in the counter (`q` is `1001` where the RTL has `0001` from time 15), and native Icarus gives exactly the same wrong values (0 differences between the two gate runs).
+
+What the Studio page itself shows for these runs (RTL against gates, in the browser): counter 0 of 6 signals differ; shreg4 2 of 10 (`dout`) and tiny8 6 of 10 (`instr`, `pc`, `out`) differ at time 0 only. At time 0 the RTL signals are still unknown (x) and the gates already show 0, most likely because the testbench starts with the reset low and there is no falling edge to trigger the reset in the RTL. Native Icarus shows the same x at time 0 in the RTL file, so this is the simulator's rule and not a browser difference; the page's hint text for this case says the signal is unknown until reset.
+
+**In a page.** Studio in Edge (Playwright, `msedge`, the page served from the repo's `web/`, `?mock`), example design `counter`, stage "Gate-level simulation (early)" ticked, Run: the stage passed, "RTL and gates match on all 8 shared signals", RTL run 55 ms, gate run 358 ms, no console errors. Screenshot:
+
+![Studio GLS tab, counter, Edge](img/gls-counter.png)
+
+**What is NOT validated.**
+- Timing: the models used are zero delay on both sides. The PDK models with their `specify` blocks (real delays, setup and hold checks, `notifier`) were not run. Setup and hold violations are not modelled in the page.
+- Only 3 designs, all with simple clocks and one async or one sync reset; no latches, no multi-clock design, no X-propagation test beyond time 0, no `$random` testbench.
+- Different Icarus builds on the two sides (14.0 devel, the WebAssembly one has no recorded commit). The values were the same, but a corner case of Icarus is not excluded.
+- The stage's hint texts and the "Show logic" cone view are not part of this comparison.
+- The page text of the stage still says "Not validated against a native flow yet"; it should change once this section is accepted (not changed here).
+- One Edge run on the `counter` example; the other designs were not clicked through in a page.
+
+## 24. Equivalence check (LEC) in Studio (early, issue #189)
+
+**Claimed:** on two small designs the browser proves the synthesized netlist equal to the RTL, and on two netlists with one gate changed it finds the difference. Native Yosys (two ways of reading the cell functions) and EQY give the same verdicts on all four. On the 48-flip-flop CPU (tiny8) the browser stage gives no verdict at all in 1000 seconds; this is a recorded limit (issue #200), not a pass.
+
+**What is checked.** Studio's stage "Equivalence check (early)" (`web/studio/engines/lec-core.js`, `lecRun`) reads the RTL and the Synthesis netlist with the gf180 cell models, then runs, in this order: (1) Yosys `equiv_make / equiv_simple / equiv_induct` (pairs registers and outputs by name); if something is not proven, (2) a miter with `sat -tempinduct` (reset held on cycle 1); if that does not finish a proof, (3) a bounded `sat -seq 40` search, which gives a counterexample or the weaker verdict "bounded". The verdicts are "proven", "differs" or "bounded".
+
+**Designs.**
+| Case | What it is | Cells (Yosys) |
+|---|---|---|
+| shreg4 | 4-bit shift register, async reset | 4 |
+| counter | 4-bit counter, sync reset | 13 |
+| counter-bug | counter netlist with its first `xor2` changed to `xnor2` | 13 |
+| tiny8 | the `squeeze-tiny8` CPU | 236 |
+| tiny8-bug | tiny8 netlist with its first `nand2` changed to `nor2` | 236 |
+
+The changed gates are edits of the netlist text (`lec-compare.mjs`). A changed gate could be hidden by other logic; both changes here are visible at the outputs, as the results show.
+
+**How our browser flow was run.** The Studio code (`lec-core.js`, `lecRun`) with Yosys `@yowasp/yosys` 0.68.1207 in WebAssembly, under Node, one process per case. The cell models are `web/vendor/gf180mcu/sim-7b70722/gf180mcu_fd_sc_mcu7t5v0.yosys.v` (the PDK's functional models with the four UDP primitives rewritten as ordinary modules; `SOURCE.md` there). Script: `node docs/validation/lec-compare.mjs build <outdir> [case]`; it also writes, for each case, the exact Yosys scripts the code uses.
+
+**How the traditional flow was run.** Image `hpretl/iic-osic-tools:chipathon26`, native Yosys 0.64 (git 6d2c445ae). Three ways, all in `docs/validation/lec-compare.sh`:
+1. The same scripts as the page (equiv, miter with induction, bounded miter), same netlist, same models file. This isolates the Yosys version (0.64 against 0.68.1207).
+2. The same scripts, but the cell functions come from the PDK's own liberty file (`read_liberty -overwrite -ignore_miss_func -ignore_miss_dir -setattr liberty_cell gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib`) instead of our models file. This is independent of our model rewrite.
+3. EQY (`eqy`, SBY 0.64) with RTL as gold and netlist plus liberty as gate, strategy `sby`, depth 5, engine `smtbmc yices`.
+The container `gf180` would not start on 2026-11-21 (port 8080 in use), so a second container `gf180v` from the same image was used. EQY did not work as installed: its three plug-in files (`eqy_combine.so`, `eqy_partition.so`, `eqy_recode.so`) are in `/foss/tools/yosys/share/yosys/plugins/` but EQY looks in `/foss/tools/bin/`; they were linked there (as root, in `gf180v` only). The default engine `bitwuzla` in our first EQY file is not installed in the image, so `yices` was used. Both facts are about the container, not about Studio.
+
+**Numbers.** One run each.
+
+| Case | Browser stage | Native Yosys 0.64, same scripts and models | Native Yosys 0.64, PDK liberty | EQY | Result |
+|---|---|---|---|---|---|
+| shreg4 | proven (equiv, 1 point, 0.3 s) | proven (equiv, 1 point) | proven (equiv, 1 point) | PASS | match |
+| counter | proven (equiv, 4 points, 0.2 s) | proven (equiv, 4 points) | proven (equiv, 4 points) | PASS | match |
+| counter-bug | differs at cycle 2, output `q` (1.5 s) | differs at cycle 2, `q` | differs at cycle 2, `q` | FAIL (partition `counter.q`) | match |
+| tiny8-bug | differs at cycle 39, output `out` (77 s) | differs at cycle 39, `out` | differs at cycle 39, first listed output `pc` | FAIL (partition `tiny8.out`) | match on the verdict and the cycle; the liberty variant lists `pc` first instead of `out` at the same cycle |
+| tiny8 | no verdict after 1000 s (stopped) | no verdict: induction and bounded search each stopped after 420 s | no verdict, same stops | ended with an error, not analysed | see below |
+
+For tiny8 the first step (equiv) pairs only the 16 output bits (`pc`, `out`) and proves none of them, because the register file (`r0` to `r3`) is not paired by name after synthesis; the induction step that follows then does not finish. Native Yosys behaves the same way on the same script. Reported as issue #200 (the page has no time limit and shows nothing while it runs).
+
+![Browser against native verdicts](img/term-lec.png)
+
+**In a page.** Studio in Edge (Playwright `msedge`, page from the repo's `web/`, `?mock`), example `counter`, stage "Equivalence check (early)" ticked, Run: "Proven: the netlist does the same as your RTL", 4 points matched by name (1.6 s), no console errors. The same page with the cell model of `xnor2` replaced by an OR (intercepted in the browser, so the netlist is untouched but the model is wrong): "The netlist differs from your RTL on 1 output", difference found at cycle 2 (4.6 s), no console errors.
+
+![Studio LEC tab, counter, Edge](img/lec-counter.png)
+![Studio LEC tab, counter with a wrong cell model, Edge](img/lec-counter-seeded.png)
+
+**What is NOT validated.**
+- Larger designs: tiny8 (236 cells) does not finish; only designs of up to 13 cells have a proof in the browser. There is no time limit in the stage (issue #200).
+- Only two kinds of seeded fault (an xor changed to an xnor, a nand changed to a nor). Not tested: a fault only reachable after a long sequence, a flip-flop with the wrong reset, a clock-enable or latch fault, a wrong reset polarity.
+- The "bounded" verdict was not produced by any case here.
+- The model rewrite for Yosys (`gf180mcu_fd_sc_mcu7t5v0.yosys.v`) is not compared flop by flop against the PDK's own Icarus models; the liberty run above (same verdicts) is a partial check of it for the two flops used (`dffq`, `dffrnq`) only.
+- Different Yosys versions on the two sides (0.68.1207 and 0.64); same verdicts here.
+- One Edge run per verdict (counter); the other cases were not clicked through in a page. Counterexample waveforms and the "Show logic" view are not compared.
+- The page text still says "Not validated against a native flow yet"; it should change once this section is accepted (not changed here).
+
+## 25. OpenSTA and OpenROAD on two bigger open designs, one with two clocks (issue #192; extends sections 4 and 8.x)
+
+**Claimed:** on two bigger open designs the browser OpenSTA prints exactly the same text as native `sta` (0 differing lines in 4 reports, 47,660 lines in all), and the browser OpenROAD flow ends with 0 routing violations like native OpenROAD built from the same commit. Placement is NOT the same as native on these designs (see below), and that is recorded as a difference.
+
+**Designs** (open source, cloned 2026-11-21, not changed):
+| Design | Source and licence | Clocks | Cells after Synthesis | Die used |
+|---|---|---|---|---|
+| afifo | `dpretet/async_fifo` (MIT), wrapper `afifo32` sets DSIZE 32 and ASIZE 5 (32 bits x 32 words, 1024 memory flip-flops), wrapper text in `pnr-more.mjs` | two, `wclk` 10 ns and `rclk` 14 ns, set as asynchronous to each other | 2,893 | 559.44 x 559.44 um |
+| sha1 | `secworks/sha1` (BSD-2-Clause) | one, `clk` 20 ns | 6,838 (above the 1 to 5 thousand asked for; kept because it was already run) | 750.96 x 750.96 um |
+| afifo, small (extra) | the same FIFO with its default 8 x 16 size | two | 465 | 221.76 x 221.76 um |
+
+The die is the Synthesis area divided by 0.4, rounded to the grid; density 50%, as in section 8. Input and output delay are 20% of the first clock's period, load 0.05 pF. These designs only test the tools: sha1 misses its 20 ns clock by far (pre-route setup slack -64 ns) and nothing here says a design is good.
+
+**Our flow.** `node docs/validation/pnr-more.mjs run <afifo|sha1> <outdir>`, run from a folder with `@yowasp/yosys@0.68.1207`: the same workers as the page (Yosys 0.68.1207 synthesis, OpenROAD 6f3f28c place, clock tree and TritonRoute from `web/vendor/openroad-pnr/6f3f28c/`, OpenSTA defec0b from `web/vendor/opensta/defec0b/`), no timing repair, one corner (tt, 25 C, 5 V). `NODE_OPTIONS=--max-old-space-size=14000` was needed (the default heap ran out on sha1; no page was tried on these two sizes). STA is run twice: before layout on the Synthesis netlist, and after routing on the clock-tree netlist with the OpenRCX SPEF. The second clock goes through the worker's `extraSdc` option.
+
+**Traditional flow.** Image `or-native-61:6f3f28c` (OpenROAD 26Q4-1108-g6f3f28cc85, built as in section 8.x), `openroad -threads 1 -exit` on the browser's own `place.tcl`, `cts.tcl`, `route.tcl` and the same Synthesis netlist, each step reading its own native output (`docs/validation/pnr-more.sh`). STA: native `sta` 3.1.0 in container `gf180v` (the `gf180` container would not start, port 8080 in use) on the same Tcl, the Synthesis netlist (before layout), and the browser's clock-tree netlist and SPEF (after routing), so only the timer differs.
+
+**Numbers.**
+
+| Quantity | afifo (2 clocks) browser | afifo native | sha1 browser | sha1 native | Result |
+|---|---|---|---|---|---|
+| STA before layout, lines printed / differing | 6,438 / 0 | same | 10,403 / 0 | same | match |
+| STA after routing, lines printed / differing | 10,816 / 0 | same | 20,003 / 0 | same | match |
+| Instances after placement (with tap cells) | 5,227 | 5,228 | 11,207 | 11,212 | close (a counting difference, +1 and +5) |
+| HPWL after detailed placement (um) | 147,192.5 | 147,382.8 | 413,930.3 | 415,068.3 | close: native +0.13% and +0.27% |
+| Cells at the same spot as native, after placement | 2,639 of 5,227 (50%) | | 4,439 of 11,207 (40%) | | differs |
+| Clock buffers in the routed DEF | 275 | 261 | 452 | 434 | differs (+5%, +4%) |
+| Routed wire (um) | 207,377 | 207,921 | 548,655 | 546,808 | close (-0.3%, +0.3%) |
+| Vias | 23,707 | 23,834 | 60,475 | 60,688 | close (-0.5%, -0.4%) |
+| TritonRoute violations per iteration | 609 / 67 / 23 / 0 | 638 / 112 / 58 / 0 | 3214 / 762 / 610 / 5 / 1 / 1 / 0 | 3127 / 677 / 607 / 11 / 0 | final 0 on both |
+| Route time (s) | 287.6 | not timed | 1,039 | not timed | |
+
+The small FIFO (465 cells) gave the same picture: 0 of 4,630 and 0 of 7,709 STA lines differ; HPWL 16,880.4 against 16,896.6 um; 533 of 842 cells at the same spot; wire 24,466 against 24,389 um; final violations 0 both (`logs/pnr-more-afifo-small.txt`).
+
+Clock tree per clock (afifo, from the CTS report of each side; `logs/pnr-more-afifo.txt`). The one latency and skew number the page prints is the first clock block of the report, so it changes with the order of the blocks; that is why one run of this section showed 0.87 ns / 0.01 ns and another 4.16 ns / 0.53 ns with the same trees. Each clock has its own block; skew is never taken across the two asynchronous clocks.
+
+| Clock | Browser latency (ns) | Native latency (ns) | Browser skew (ns) | Native skew (ns) | Result |
+|---|---|---|---|---|---|
+| `rclk` (14 ns) | 0.87 to 0.88 | 0.88 | 0.01 | 0.00 | match (rounding) |
+| `wclk` (10 ns) | 4.16 to 4.69 | 4.09 to 4.63 | 0.53 | 0.53 | close: latency +1.6% (the two sides place differently) |
+
+Clock names: the clock-tree SDC and the native OpenROAD Tcl use the real port names (`wclk`, `rclk`) in `create_clock`, `-clock` and `set_clock_groups`. Studio's STA worker (`opensta.worker.js`, `sdc()`) always names its first clock `clk`, so in the STA reports the clock on port `wclk` is called `clk` (`create_clock -name clk ... [get_ports wclk]`) and the group is `{clk}` against `{rclk}`. Browser and native `sta` read the identical Tcl, so the names agree between them, and neither prints a "clock not found" warning. The worker was not changed. sha1 has one clock on a port already named `clk`, so nothing changes there and it was not re-run.
+
+Placement control: native OpenROAD on the small FIFO with `-threads 8` places all 842 cells exactly where `-threads 1` does, so the 37% to 60% of cells that sit elsewhere (37% small FIFO, 50% afifo, 60% sha1) in the browser are a real browser against native difference, not run-to-run noise. On tiny8 (section 8.x) every cell was at the same spot; why bigger designs differ was not found (floating-point order in global placement is a guess, not tested). Because the clock tree is built on each side's own placement, its buffer count differs too. Cell-position and wire numbers come from the DEF files (`def-stats.mjs`).
+
+STA with two clocks: both timers print identical reports, including the paths that cross from `wclk` to `rclk` when the clocks are not declared asynchronous. A first afifo run had a typo in the clock group name (so the clocks were not asynchronous, pre-route setup -26 ns); it matched native in the same way and was repeated with the group right. The corrected run is the one above.
+
+![Terminal: afifo compare](img/term-pnr-more.png)
+
+**In a page.** Studio in Edge (Playwright `msedge`, `?mock`), example `counter`, Run to "Pre-PnR STA": passed, setup WS 30.6047 ns, hold WS 1.2303 ns, no console errors (`img/sta-counter-page.png`). The two big designs were not run in a page.
+
+![Studio Pre-PnR STA, Edge](img/sta-counter-page.png)
+
+**What is NOT validated.**
+- Placement and clock-tree results are not bit-identical to native on these designs, and the reason is unknown.
+- Native DRC, LVS and extraction of the two designs, and Magic in the browser on them: not run. Routing "0 violations" is TritonRoute's own count.
+- One corner, no multi-corner, no timing repair, one run per side (route and place times not compared; the machine was loaded by other jobs).
+- sha1 has 6.8 thousand cells, above the range asked for; no design between 1 and 5 thousand cells with one clock was run besides the two-clock FIFO (2.9 thousand).
+- The clock-group handling of Studio itself (the page builds one-clock SDC only; the second clock was added through an extra option by the script, not by the page).
+- No page run of the two big designs, no other browser.
 
 ## Claims under review
 

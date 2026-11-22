@@ -1,0 +1,25 @@
+# node docs/validation/gls-compare.mjs compare <outdir>   (browser VCD vs native Icarus VCD, 2026-11-21)
+shreg4 rtl: signals compared 11 (top-level 11), value changes 379, differ 0, only-ours 0, only-native 0
+shreg4 gate: signals compared 65 (top-level 10), value changes 1811, differ 0, only-ours 0, only-native 0
+counter rtl: signals compared 6 (top-level 6), value changes 208, differ 0, only-ours 0, only-native 0
+counter gate: signals compared 137 (top-level 15), value changes 2496, differ 0, only-ours 0, only-native 0
+counter-bug rtl: signals compared 6 (top-level 6), value changes 208, differ 0, only-ours 0, only-native 0
+counter-bug gate: signals compared 137 (top-level 15), value changes 2970, differ 0, only-ours 0, only-native 0
+tiny8 rtl: signals compared 22 (top-level 22), value changes 654, differ 0, only-ours 0, only-native 0
+tiny8 gate: signals compared 2960 (top-level 198), value changes 31229, differ 0, only-ours 0, only-native 0
+
+# node docs/validation/gls-compare.mjs rtlgate <outdir>   (browser RTL run vs browser gate run)
+shreg4 compared 10 differ 2
+   tb.dout first at 0 rtl x gate 0 differs at 1 times, ends equal: true
+   tb.dut.dout first at 0 rtl x gate 0 differs at 1 times, ends equal: true
+counter compared 6 differ 0
+counter-bug compared 6 differ 2
+   tb.dut.q first at 15 rtl 0001 gate 1001 differs at 15 times, ends equal: true
+   tb.q first at 15 rtl 0001 gate 1001 differs at 15 times, ends equal: true
+tiny8 compared 10 differ 6
+   tb.dut.instr first at 0 rtl xxxxxxxxxxxxxxxx gate 0001000000000110 differs at 1 times, ends equal: true
+   tb.dut.out first at 0 rtl xxxxxxxx gate 00000000 differs at 1 times, ends equal: true
+   tb.dut.pc first at 0 rtl xxxxxxxx gate 00000000 differs at 1 times, ends equal: true
+   tb.instr first at 0 rtl xxxxxxxxxxxxxxxx gate 0001000000000110 differs at 1 times, ends equal: true
+   tb.out first at 0 rtl xxxxxxxx gate 00000000 differs at 1 times, ends equal: true
+   tb.pc first at 0 rtl xxxxxxxx gate 00000000 differs at 1 times, ends equal: true

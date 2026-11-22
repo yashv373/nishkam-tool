@@ -1,0 +1,10 @@
+design sha1: 6838 cells after synthesis, die 750.96 x 750.96 um, clocks clk=20ns
+instances after place (with tap cells): browser 11207, native 11212
+HPWL after detailed placement (um): browser 413930.3, native 415068.3
+placement: 4439 of 11207 cells at the same spot and orientation (native has 11212)
+after CTS: 4415 of 11624 cells at the same spot and orientation (native has 11633)
+CTS browser: {"clkbufs":452,"sinks":8,"latency_ns":5.62,"skew_ns":0.46,"setup_skew_ns":-0.43,"hold_skew_ns":null,"repair":null,"ms":31565}
+route browser: {"wire":548654,"vias":60475,"drc":[3214,762,610,5,1,1,0],"violations":0} {"wireUm":548655,"vias":60475,"filler":16920,"tap/endcap":3790,"logic":6908,"clkbuf":452,"buf":474}
+route native: {"wireUm":546808,"vias":60688,"filler":16713,"tap/endcap":3790,"logic":6906,"clkbuf":434,"buf":503}  (violations per iteration: 3127 / 677 / 607 / 11 / 0)
+STA pre-route: 10403 lines browser, 10403 native, 0 differ
+STA post-route: 20003 lines browser, 20003 native, 0 differ

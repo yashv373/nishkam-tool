@@ -503,7 +503,7 @@ No browser console errors were seen after the run started (console was read only
 
 Built the same way as above from OpenROAD master 6f3f28c (2026-10-24, emsdk 3.1.74, patches in `tools/openroad-pnr/openroad-6f3f28c-wasm.patch`, recipe in `web/vendor/openroad-pnr/6f3f28c/SOURCE.md`). Browser clock tree and place and route now both use this one binary (it contains TritonCTS). Run with `node web/studio/engines/pnr-flow.selftest.mjs tiny8` (the old build: `OR_PNR_VER=61932e8 OR_CTS_DIR=<openroad-cts/61932e8>`).
 
-**Native reference built from the same commit.** Docker image `or-native-61:6f3f28c`: OpenROAD source at 6f3f28cc85, `cmake /src -DCMAKE_BUILD_TYPE=Release -DBUILD_GUI=OFF -DCMAKE_PREFIX_PATH=/opt/or-deps $(cat /src/deps-prefixes.sh)`, then `make -j6 openroad` (script `dobuild.sh` on the test PC, `C:\Users\Asus\eda\designs\or-native-61\dobuild.sh`); dependencies under /opt/or-deps; binary `/build/bin/openroad`, version 26Q4-1108-g6f3f28cc85. It has no PDK: the same gf180 LEF, liberty and tech files as the browser are mounted. Run: `docker run --rm --entrypoint bash -v <dir>:/w or-native-61:6f3f28c -c 'cd /w; /build/bin/openroad -exit place.tcl; ...'` with the Tcl written by `web/studio/engines/pnr-native.mjs` (`/w/` paths unchanged). Logs: `logs/or-native-6f3f28c/`. Same synthesized netlist, same Tcl as the browser scripts, die 135.52 x 133.28 um, 50% density, 24 ns clock, one run each. This native run used `openroad -exit` without `-threads 1`, and "wasm" here means the Node run, not a page. Instance counts here include tap cells (407), unlike table A (305). The last column is from earlier runs with a different input and is not the same run as table A, so do not compare it with table A.
+**Native reference built from the same commit.** Docker image `or-native-61:6f3f28c`: OpenROAD source at 6f3f28cc85, `cmake /src -DCMAKE_BUILD_TYPE=Release -DBUILD_GUI=OFF -DCMAKE_PREFIX_PATH=/opt/or-deps $(cat /src/deps-prefixes.sh)`, then `make -j6 openroad` (script `dobuild.sh` at `~/eda/designs/or-native-61/dobuild.sh` on the test PC); dependencies under /opt/or-deps; binary `/build/bin/openroad`, version 26Q4-1108-g6f3f28cc85. It has no PDK: the same gf180 LEF, liberty and tech files as the browser are mounted. Run: `docker run --rm --entrypoint bash -v <dir>:/w or-native-61:6f3f28c -c 'cd /w; /build/bin/openroad -exit place.tcl; ...'` with the Tcl written by `web/studio/engines/pnr-native.mjs` (`/w/` paths unchanged). Logs: `logs/or-native-6f3f28c/`. Same synthesized netlist, same Tcl as the browser scripts, die 135.52 x 133.28 um, 50% density, 24 ns clock, one run each. This native run used `openroad -exit` without `-threads 1`, and "wasm" here means the Node run, not a page. Instance counts here include tap cells (407), unlike table A (305). The last column is from earlier runs with a different input and is not the same run as table A, so do not compare it with table A.
 
 | Step (tiny8) | Native 6f3f28c | Wasm 6f3f28c (default) | Result | Earlier: native 61932e8 / wasm 61932e8 |
 |---|---|---|---|---|
@@ -1540,7 +1540,7 @@ with `FP_SIZING: "absolute"`, `DIE_AREA: [0, 0, W, H]`, `CLOCK_PERIOD: 20`, `PL_
 
 | Metric | Browser (Studio recipe) | Browser (LibreLane Classic recipe) | Native LibreLane 3.0.2 | Verdict & reason |
 |---|---|---|---|---|
-| Yosys synth cells / area | 222 / 3,093.0 µm² | 222 / 3,093.0 µm² | 471 final stdcells (incl. port/repair bufs + taps/decaps) / 4,460.5 µm² | **differs** (Yosys 0.68 vs 0.64; LibreLane Classic adds 34 `repair_design` buffers + 8 clock cells -> 264 logic cells, 3,415.8 µm²) |
+| Yosys synth cells / area | 222 / 3,093.0 µm² | 222 / 3,093.0 µm² | 471 final stdcells (incl. port/repair bufs + taps/decaps) / 4,460.5 µm² | **differs** (native synth count not recorded, so this compares post-synth with post-PnR cells; the browser Classic recipe adds 34 `repair_design` buffers and 8 clock cells, giving 264 logic cells / 3,415.8 µm²; Yosys 0.68 vs 0.64 may also differ) |
 | Routed wirelength | 7,181 µm | 6,922 µm | 8,581 µm | **differs** (-16.3% / -19.3%; fewer cells from Yosys 0.68 and single-corner `repair_design`, same effect as Section 26) |
 | Vias | 2,017 | 1,972 | 2,421 | **differs** (-16.7% / -18.5%; tracks cell and net count) |
 | TritonRoute DRC | 0 | 0 | 0 | **match** |
@@ -1560,7 +1560,7 @@ with `FP_SIZING: "absolute"`, `DIE_AREA: [0, 0, W, H]`, `CLOCK_PERIOD: 20`, `PL_
 | Design (die, period) | Synth cells / area | GLS / LEC | Wire / Vias | TritonRoute / Magic DRC | LVS | Post-route setup / hold (`nom_tt_025C_1v80`) | Native LibreLane (`counter10`) |
 |---|---|---|---|---|---|---|---|
 | `counter10` (`80×80`, 20 ns) | 31 / 462.9 µm² | 0 mismatch / proven | 884 µm / 296 | 0 / 0 | Match (`506/506`, `258/258`) | 14.902 / 0.385 ns (9 corners: `ss 13.694 < tt 14.902 < ff 15.269`) | 985 µm / 355 vias, DRC 0, LVS 0, setup 14.571 / hold 0.338 ns |
-| `shreg4` (`60×60`, 20 ns) | 4 / 105.1 µm² | 0 mismatch / proven | 187 µm / 62 | 0 / 0 | Match (`140/140`, `75/75`) | 15.057 / 0.257 ns (9 corners monotonic) | not run |
+| `shreg4` (`60×60`, 20 ns) | 4 / 105.1 µm² | 0 mismatch / proven | 187 µm / 62 | 0 / 0 | Match (`140/140`, `75/75`) | 15.057 / 0.257 ns (9 corners run; per-corner numbers not listed) | not run |
 | `adder2` (`65×65`, comb) | 38 / 347.8 µm² | n/a / proven | 810 µm / 359 | 0 / 0 | Match (`388/388`, `212/212`) | pre-STA 10.195 / 7.959 ns (no clock) | not run |
 
 **In-browser run (Microsoft Edge 1440×900 & 1280×800, Playwright on `studio.html?mock`):** `#top` stays single-line with 0 horizontal overflow (`#pdk` width 132 px); switching to `sky130A` disables `graywolf + qrouter` and updates Reports/Timing copy; `counter` (`80×80`, 20 ns) passed all 13 stages (`DRC 0`, `LVS MATCH 212/212`, `VPWR` worst IR drop 0.020 mV), KLayout 3D loaded 11 layers, Cell delay lookup loaded `tt_025C_1v80`/`ss_100C_1v60`/`ff_n40C_1v95`, with 0 Studio console or page errors.
@@ -1568,6 +1568,7 @@ with `FP_SIZING: "absolute"`, `DIE_AREA: [0, 0, W, H]`, `CLOCK_PERIOD: 20`, `PL_
 ### What is NOT validated (`sky130A`)
 
 - Designs larger than `tiny8` (~220–470 cells), macros, SRAMs, multi-clock designs, and negative-edge flops.
+- Evidence scope: GLS is shown for `counter10` and `shreg4` only (not `tiny8`); pre-PnR STA is shown for `adder2` only; the Classic recipe ran with `MC=0`, so it has no 9-corner numbers; PDNSim IR drop and power have no native number to compare with.
 - Native OpenSTA on the browser's exact routed netlist + SPEF (only end-to-end flow comparison was done here).
 - KLayout GDS streamout in the browser (Studio streams GDS through Magic; `sky130A_mr.drc` flagged 3 `nsdm.1`/`psdm.1` implant-edge items on browser `tiny8.gds`).
 - Analog SPICE simulation for `sky130A` in Analog Lab (Analog Lab remains `gf180mcuD` for now).
@@ -1641,7 +1642,7 @@ klayout -b -r /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/drc/ihp-sg13g2.drc \
 | Design (die, period) | Synth cells / area | GLS / LEC | Wire / Vias | TritonRoute / Magic / KLayout DRC | LVS | Post-route setup / hold (`nom_typ_1p20V_25C`) | Native LibreLane (`counter10`) |
 |---|---|---|---|---|---|---|---|
 | `counter10` (`100×100`, 20 ns) | 30 / 727.6 µm² | 0 mismatch / proven | 1,330 µm / 299 | 0 / 0 / **0** | Match (`586/586`, `298/298`) | 15.020 / 0.175 ns (3 corners: `slow 14.530 < typ 15.020 < fast 15.312`) | 1,473 µm / 363 vias, DRC 0, LVS 0, setup 14.564 / hold 0.425 ns |
-| `shreg4` (`80×80`, 20 ns) | 4 / 196.0 µm² | 0 mismatch / proven | 217 µm / 55 | 0 / 0 / **0** | Match (`156/156`, `83/83`) | 15.419 / 0.087 ns (3 corners monotonic) | not run |
+| `shreg4` (`80×80`, 20 ns) | 4 / 196.0 µm² | 0 mismatch / proven | 217 µm / 55 | 0 / 0 / **0** | Match (`156/156`, `83/83`) | 15.419 / 0.087 ns (3 corners run; per-corner numbers not listed) | not run |
 | `adder2` (`80×80`, comb) | 35 / 375.6 µm² | n/a / proven | 1,075 µm / 313 | 0 / 0 / not run | Match (`376/376`, `206/206`) | pre-STA 10.959 / 7.936 ns (no clock) | not run |
 
 **In-browser run (Microsoft Edge 1440×900, Playwright on `studio.html?mock`):** switching from `sky130A` to `ihp-sg13g2` cleared prior results cleanly, kept `graywolf + qrouter` disabled, and ran `counter` (`100×100`, 20 ns) through all 13 stages to green `passed` (`DRC 0`, `LVS MATCH 252/252`, `VDD` 1.2 V worst IR drop 0.176 mV), KLayout 3D loaded 13 layers (`Metal1`–`Metal5` + `TopMetal1`–`2`), Cell delay lookup loaded `typ_1p20V_25C`/`slow_1p08V_125C`/`fast_1p32V_m40C`, with 0 Studio console or page errors.
@@ -1651,3 +1652,4 @@ klayout -b -r /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/drc/ihp-sg13g2.drc \
 - **Analog SPICE simulation (explicitly unsupported):** IHP SG13G2's transistor, resistor, and varactor models (`psp103va`, `r3_cmc`, `mosvar`) require OpenVAF/OSDI compiled shared libraries (`*.osdi`), which fail in `ngspice-46.wasm` (`dynamic linking not enabled`). `ihp-sg13g2` in Nishkam is digital-only until OSDI can be statically linked or dynamically loaded in WebAssembly.
 - **Density & antenna KLayout decks (`density.drc`, `antenna.drc`):** only `ihp-sg13g2.drc` (`main`, `no_recommended=true`) was run on the browser GDS; metal fill generation (`filler.py`) and seal-ring rules were not run.
 - Designs larger than `tiny8`, macros, SRAMs, multi-clock designs, native OpenSTA on identical SPEF/netlist, and browsers other than Microsoft Edge.
+- Evidence scope: GLS is shown for `counter10` and `shreg4` only; the Classic recipe ran with `MC=0` (no 3-corner numbers); PDNSim IR drop and power have no native number to compare with; the 4-bit `counter` Edge run has no native reference.

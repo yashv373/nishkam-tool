@@ -1,0 +1,5 @@
+swap: D nets of f2 and f4 exchanged (f2.D f4/D, f4.D f2/D)
+browser netgen sr8-good: match true devices 224,224 nets 109,109
+browser netgen sr8-swap: match false devices 224,224 nets 109,109
+browser netgen sr8-short: match false devices 224,224 nets 109,109
+browser netgen sr8-short1: match true devices 224,224 nets 109,109

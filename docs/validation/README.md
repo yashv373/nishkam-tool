@@ -13,9 +13,9 @@ Two place-and-route flows exist in Studio:
 | Stage | Browser engine (WebAssembly) | Compared with | Result | Not validated |
 |---|---|---|---|---|
 | Clock tree (section 1) | OpenROAD TritonCTS 61932e8 | native OpenROAD, same commit | identical output DEF on tiny8 (553 of 553 cells); the current default 6f3f28c also puts every cell at the same spot as native 6f3f28c (section 8.x) | other designs, multi-clock |
-| LVS (section 2) | Netgen 3cb047b (v1.5.324) | native Netgen 1.5.318 | same verdict and counts on 3 designs | many kinds of mismatch (one broken layout only) |
+| LVS (section 2) | Netgen 3cb047b (v1.5.324) | native Netgen 1.5.318 | same verdict and counts on 3 designs; swapped-net and rail-fault controls give the same failing report as native (section 2.1) | many kinds of mismatch; a real drawn short |
 | Magic DRC, extraction, GDS (section 5) | Magic bed8d4f | native Magic 8.3.636 | same DRC count and rule texts, same SPICE, GDS XOR area 0 | DRC tile positions |
-| Timing and power (section 4) | OpenSTA defec0b (3.1.0) | native `sta` 3.1.0 | full report text identical on 2 designs; with OpenRCX SPEF on tiny8, all 9 corners identical (sections 14, 15) | Magic SPEF, other designs with SPEF |
+| Timing and power (section 4) | OpenSTA defec0b (3.1.0) | native `sta` 3.1.0 | full report text identical on 2 designs; with OpenRCX SPEF on tiny8, all 9 corners identical (sections 14, 15); with Magic SPEF on tiny8 and with a virtual clock on adder2, full text identical (section 4.1) | other designs with SPEF; the 32 register-bit nets our SPEF writer misnames (section 4.1) |
 | OpenROAD place and route (section 8) | OpenROAD 61932e8 | native OpenROAD, same commit, 1 thread | same netlist; on tiny8 HPWL +1.2%, wire +0.1%, vias -0.6%, but 127 of 305 cells (41.6%) sit elsewhere and the router's first-iteration violations differ (33 against 50); both end at 0 violations; not bit-identical | large or hard designs; why cells move |
 | OpenROAD 6f3f28c, the current default (section 8.x, run in Node) | OpenROAD 6f3f28c | native OpenROAD built from 6f3f28c (not run with `-threads 1`) | placement and clock tree: every cell at the same spot, HPWL equal; routed wire +0.4%, vias -0.05%; both end at 0 violations | native DRC/LVS/timing on the native route; other designs; in-page run |
 | OpenROAD flow vs LibreLane (section 8B) | Studio recipe | LibreLane 3.0.2 | similar quality, not the same steps; numbers given as percentages | why LibreLane's wire is 29% longer |
@@ -174,15 +174,34 @@ An open-net control (one pin moved to a new net, same device count) is now in `l
 | tiny8, OpenROAD flow (6f3f28c, Node) | 3148 / 1558, match | 3148 / 1558, match uniquely | match |
 | tiny8, route made by NATIVE OpenROAD 6f3f28c (section 8.x, `-threads 1`), Magic 8.3.636 extraction | 3148 / 1558, match | 3148 / 1558, match uniquely | match |
 
-The OpenROAD-flow tiny8 now counts 3148 devices / 1558 nets (the 3150 / 1559 quoted elsewhere came from the older 61932e8 build). The browser Netgen result in the last row was obtained by feeding the same files to browser Netgen; the extraction itself was native Magic. The same Netgen version difference (1.5.318 native, 1.5.324 browser) applies. Still not tested: a swapped net, a power-to-ground short.
+The OpenROAD-flow tiny8 now counts 3148 devices / 1558 nets (the 3150 / 1559 quoted elsewhere came from the older 61932e8 build). The browser Netgen result in the last row was obtained by feeding the same files to browser Netgen; the extraction itself was native Magic. The same Netgen version difference (1.5.318 native, 1.5.324 browser) applies. Still not tested (see 2.1 for the swapped net and ground-on-VDD cases): a power-to-ground short.
 
-**Not validated:** native Magic extraction of the rmult20 GDS (only Netgen was run natively, on the browser's SPICE); a swapped net and a power-to-ground short are not tested; see section 9, so native and browser may differ on other mismatch reports. This section's flow has no well-tap cells and LVS assumes wells are tied to power. The OpenROAD flow (section 8) adds tap cells and its LVS includes them (compared with native Netgen on 2026-11-10, table above).
+**Not validated:** native Magic extraction of the rmult20 GDS (only Netgen was run natively, on the browser's SPICE); a swapped net and a cell-ground-on-VDD fault are in section 2.1, a real drawn power-to-ground short is not tested (section 9), so native and browser may differ on other mismatch reports. This section's flow has no well-tap cells and LVS assumes wells are tied to power. The OpenROAD flow (section 8) adds tap cells and its LVS includes them (compared with native Netgen on 2026-11-10, table above).
 
 Log excerpts (rendered from the stored logs). Browser Netgen, then native Netgen on the same files:
 
 ![browser netgen](img/term-lvs-browser.png)
 
 ![native netgen](img/term-lvs-native.png)
+
+### 2.1 LVS negative controls: swapped net and cell ground on VDD (sr8, 2026-11-23, issue #212)
+
+No screenshots: Node and command-line runs. Section 2 says only a missing device and an open net were tested; this adds two more kinds of fault.
+
+- **Setup.** `docs/validation/lvs-controls.mjs` builds sr8 (8 flip-flops) with the old browser flow and Magic, then writes four versions of the layout SPICE: `good`; `swap` (the D nets of flip-flops f2 and f4 exchanged, so the shift chain is no longer a chain); `short` (the VSS pin of every flip-flop wired to VDD, the VSS rail left connected to no cell); `short1` (the same for f3 only). Browser Netgen (3cb047b, v1.5.324) compares each against the netlist. `docs/validation/lvs-controls.sh` then runs native Netgen 1.5.318 (container `gf180`, `netgen -batch source run.tcl`, PDK setup file `gf180mcuD_setup.tcl`) on the same files.
+- **Command.** `bash docs/validation/lvs-controls.sh`. Logs: `logs/lvs-controls/` (`native-<case>.log`, native `out.txt` as `native-<case>.out.txt`, browser report as `browser-<case>.txt`).
+- **A control must first fail natively.** Native Netgen result: `good` matches uniquely; `swap` "Netlists do not match"; `short` "Top level cell failed pin matching"; `short1` still "Circuits match uniquely", so `short1` is not a control and is listed here only as a result (see "Not validated").
+
+| Case | Browser verdict | Native verdict | Browser report against native `out.txt` | Result |
+|---|---|---|---|---|
+| good | match, 224/224 devices, 109/109 nets | match uniquely, same counts | identical (56 lines) | match |
+| swap (control) | mismatch, 224/224 devices, 109/109 nets; 3 net classes listed (f3/D, f4/D, f5/D against q4, q3, q2) | "Netlists do not match", same counts and same 3 net classes | identical (79 lines) | match |
+| short (control) | mismatch; pins VSS/VDD flagged `**Mismatch**`; 2 net classes listed | "Top level cell failed pin matching", same pins flagged and same classes | identical (69 lines) | match |
+| short1 (NOT a control) | match | match uniquely | identical | match (both pass) |
+
+The browser report text is byte for byte the text native Netgen writes to `out.txt` in all four cases (`cmp` in the script), so verdict, counts and mismatch lines all agree.
+
+**Not validated (this subsection).** One small design (sr8, 224 devices); one swap (two flip-flop D pins) and one rail fault (all flip-flops); the shorts are made by rewiring cell VSS pins in the SPICE, not by a real metal short drawn in the layout and extracted by Magic (a real short would merge the VDD and VSS nets and Netgen would then see fewer nets; that case is not tested); a single flip-flop's VSS pin on VDD (`short1`) is accepted by both Netgen builds, a blind spot of this comparison and probably of LVS with these cell pin lists, not investigated; the Netgen versions still differ (1.5.318 native, 1.5.324 browser plus one fix); no screenshots.
 
 ## 3. qrouter fix: fewer Magic DRC errors (old flow)
 
@@ -236,6 +255,42 @@ Only the licence banner differs.
 Log excerpt (rendered from `logs/opensta.txt`):
 
 ![opensta log excerpt](img/term-opensta.png)
+
+### 4.1 Magic SPEF on tiny8, and combinational timing on adder2 (2026-11-23, issue #212)
+
+No screenshots: both runs are Node and command-line runs; the stored logs are the evidence.
+
+**A. Magic's SPEF (tiny8).**
+
+- **Setup.** `docs/validation/sta-magic-spef.mjs` runs tiny8 through the old browser flow (Yosys, graywolf, TritonCTS, qrouter, Magic flatten + extract + extresist, `spef.js`). It writes the netlist after the clock tree (`tiny8_cts.v`) and Magic's SPEF (278 nets). Browser OpenSTA (defec0b, 3.1.0) then runs the same Tcl twice: without and with the SPEF. `docs/validation/sta-magic-spef.sh` runs native `sta` 3.1.0 (container `gf180`, `/foss/tools/openroad/bin/sta`) on the very same files and diffs the full text.
+- **Commands.** `bash docs/validation/sta-magic-spef.sh` (from the repo root, with `@yowasp/yosys` in `node_modules`). Inside the container: `cd /foss/designs/nishkam_magicspef/<nospef|spef> && sta -no_init -exit run.tcl`. Tcl is the one our Studio engine builds (`script()` in `opensta.worker.js`): clock `clk` 24 ns, propagated, uncertainty 0.1, in/out delay 4.8, load 0, liberty `tt_025C_5v00`, corner `nom_tt_025C_5v00`; plus two lines that print the number of drivers and run `report_parasitic_annotation`.
+- **Guard against a silently ignored SPEF.** Both tools print `report_parasitic_annotation`. Without the SPEF: 281 drivers, 281 unannotated, 0 partly annotated. With the SPEF: 35 unannotated and 84 partly annotated, so 162 of 281 drivers are fully annotated (both tools, same numbers). The setup slack also moves (table), so the SPEF is really used.
+- **Logs.** `logs/sta-magic-spef/` (`native-*.txt`, `browser-*.txt`, `run-*.tcl`, `tiny8.magic.spef`).
+
+| What | Browser OpenSTA | Native `sta` 3.1.0 | Result |
+|---|---|---|---|
+| Full text, no SPEF (6847 lines) | - | - | identical |
+| Full text, with Magic SPEF (6893 lines) | - | - | identical, except the SPEF file name inside the warning lines (`/w/design.spef` against `tiny8.spef`) |
+| Annotation without SPEF (drivers / unannotated / partly) | 281 / 281 / 0 | 281 / 281 / 0 | match |
+| Annotation with SPEF | 281 / 35 / 84 | 281 / 35 / 84 | match |
+| Worst setup slack, no SPEF -> with SPEF | 13.8406 -> 12.7042 ns | 13.8406 -> 12.7042 ns | match (SPEF costs 1.1364 ns) |
+| Worst hold slack, no SPEF -> with SPEF | 0.7902 -> 0.8376 ns | 0.7902 -> 0.8376 ns | match |
+| Total power, no SPEF -> with SPEF | 3.63 -> 4.02 mW | 3.63 -> 4.02 mW | match |
+| Paths printed (`Startpoint`) | 196 / 196 | 196 / 196 | match |
+
+**Finding (not an engine difference).** Both tools print 32 warnings `net r0\[0\] not found` (the register-bit nets r0..r3, 8 bits each): the netlist names them as Verilog escaped names `\r0[0]\ `, our SPEF writes `r0\[0\]`. So those 32 nets get no parasitics in both tools; this is why 35 drivers stay unannotated. It is a name-escaping problem in our SPEF writer (`spef.js`), not in Magic or OpenSTA, and it makes the SPEF timing here a little optimistic. It is not fixed in this issue.
+
+**B. Combinational timing (adder2).** `docs/validation/sta-comb.mjs` + `sta-comb.sh`, `bash docs/validation/sta-comb.sh`. adder2 (8-bit add + XOR, no clock port) is synthesised by the browser Yosys; both tools read that netlist and the same Tcl: `create_clock -name vclk -period 10` (no port, a virtual clock), `set_input_delay 2 -clock vclk [all_inputs]`, `set_output_delay 2 -clock vclk [all_outputs]`, `set_load 0.05`, then `report_checks` max and min (`full_clock_expanded`, 50 paths per group), wns/tns/worst slack, `check_setup -verbose`, `report_power`. The liberty is the same file: md5 `5ffc99a0...` in the browser and in the container (`gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib`). Logs: `logs/sta-comb/`.
+
+| What | Browser OpenSTA | Native `sta` 3.1.0 | Result |
+|---|---|---|---|
+| Full text (924 lines, 34 paths) | - | - | identical |
+| Worst setup slack | 1.9991 ns | 1.9991 ns | match |
+| Worst hold slack | 4.5146 ns | 4.5146 ns | match |
+| wns / tns | 0 / 0 | 0 / 0 | match |
+| Total power | 0.460 mW | 0.460 mW | match |
+
+**Not validated (this subsection).** One design each (tiny8 for SPEF, adder2 for the virtual clock); one corner (nom tt 25C 5V); `set_max_delay` / false paths / multicycle are not tried; the SPEF here has 32 nets missing for the naming reason above, so a SPEF with every net annotated is not compared; Magic's SPEF values themselves are not checked against a second extractor in this subsection (section 19 compares Magic with KLayout-PEX); the OpenROAD-flow route is not used (this SPEF comes from the old flow).
 
 ## 5. Magic: DRC, extraction and GDS match native Magic
 
@@ -591,9 +646,9 @@ Default 24 ns run (nothing violates, so repair does nothing): setup/hold 11.709 
 Things we know are open. None is claimed as validated.
 
 1. **Cell-position difference in table A (127 of 305 cells).** Not yet traced: which command first diverges (`global_placement` or `detailed_placement`), the cause (for example 32-bit against 64-bit arithmetic or ordering), and the mean and maximum cell move in microns. Next: dump the placement after each command in both builds and compare.
-2. **SPEF timing.** Section 4 compares OpenSTA without wire parasitics; sections 14 and 15 add OpenRCX SPEF (identical on 9 corners). Still open: Magic's SPEF. Next: feed tiny8's Magic SPEF to both browser and native `sta` and diff the reports.
-3. **Combinational timing.** adder2 has no clock, so no timing is compared. Next: add a virtual clock or `set_max_delay` to `pnr-timing-same-tool.mjs`.
-4. **LVS negative controls.** Only one broken layout (a missing device) is tested. An open net is now tested (section 2). Next: add a swapped net and a power-to-ground short and compare browser and native diagnostics.
+2. **SPEF timing.** Section 4 compares OpenSTA without wire parasitics; sections 14 and 15 add OpenRCX SPEF (identical on 9 corners). Magic's SPEF: done 2026-11-23 (#212), full report text identical, annotated nets counted on both sides, section 4.1. New open point found there: our SPEF writer misnames the 32 register-bit nets (`r0\[0\]` against `\r0[0]\ `).
+3. **Combinational timing.** Done 2026-11-23 (#212): adder2 with a virtual clock, full report text identical to native `sta`, section 4.1. `set_max_delay` and false paths are still not compared.
+4. **LVS negative controls.** Open net: section 2. Swapped net and rail fault (cell VSS pins on VDD): done 2026-11-23 (#212), both fail in native Netgen and the browser report is identical to native, section 2.1. Still open: a real drawn power-to-ground short extracted by Magic, and why one flip-flop with its VSS pin on VDD passes in both.
 5. **Side-by-side layout picture** of WebAssembly against native OpenROAD for table A, and a browser run at the 135.52 x 133.28 um die, so the page, Node and native can share one die.
 6. **Reproducibility.** `drc-count.mjs` needs a hand edit to compare the two qrouter builds (section 3); it should take the qrouter folder as an argument. The LibreLane runs in sections 7 and 8 are on the test PC only.
 7. **RTL grader.** Now covered in section 10. Not covered there: the five CDC problems (rule and bounded checks, `web/cdc.test.mjs`, never claimed as proven) and the Studio flow problem.

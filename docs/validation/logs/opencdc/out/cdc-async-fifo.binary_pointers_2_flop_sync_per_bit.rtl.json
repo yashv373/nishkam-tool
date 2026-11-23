@@ -1,0 +1,303 @@
+{
+  "analysis_status": "complete",
+  "finding_count": 10,
+  "coverage": {
+    "total": 10,
+    "errors": 4,
+    "warnings": 4,
+    "verified_safe": 0,
+    "verified_unsafe": 2,
+    "waived": 0,
+    "suppressed": 0
+  },
+  "signoff": {
+    "status": "FAIL",
+    "reason": "4 unsuppressed error(s) found"
+  },
+  "findings": [
+    {
+      "rule_id": "CDC001",
+      "rule_name": "unsynchronized_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "async_fifo.wbin",
+      "source_domain": "wclk",
+      "dest": "async_fifo.wq1",
+      "dest_domain": "rclk",
+      "bus_width": 3,
+      "reason": "Register 'async_fifo.wbin' in domain 'wclk' drives register 'async_fifo.wq1' in domain 'rclk' without synchronization. No 2FF/3FF synchronizer chain detected on destination side.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "async_fifo",
+      "dest_module_path": "async_fifo",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "verified_unsafe",
+      "safety_provenance": "No synchronizer chain detected on destination side",
+      "evidence_chain": [
+        {
+          "step_type": "clock_domains",
+          "description": "Clock domains: 'wclk' -> 'rclk'",
+          "result": "identified"
+        },
+        {
+          "step_type": "bus_width",
+          "description": "Bus width: 3",
+          "result": "measured"
+        }
+      ],
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 10
+    },
+    {
+      "rule_id": "CDC002",
+      "rule_name": "multi_bit_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "async_fifo.wbin",
+      "source_domain": "wclk",
+      "dest": "async_fifo.wq1",
+      "dest_domain": "rclk",
+      "bus_width": 3,
+      "reason": "Multi-bit bus 'async_fifo.wbin' (width=3) crosses from domain 'wclk' to domain 'rclk' without gray-code encoding or handshake protocol.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "async_fifo",
+      "dest_module_path": "async_fifo",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 10
+    },
+    {
+      "rule_id": "CDC007",
+      "rule_name": "missing_reset",
+      "severity": "info",
+      "waived": false,
+      "source": "async_fifo.wbin",
+      "source_domain": "wclk",
+      "dest": "async_fifo.wq1",
+      "dest_domain": "rclk",
+      "bus_width": 3,
+      "reason": "CDC crossing between registers 'async_fifo.wbin' and 'async_fifo.wq1': neither register has a reset signal.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "async_fifo",
+      "dest_module_path": "async_fifo",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 10
+    },
+    {
+      "rule_id": "CDC013",
+      "rule_name": "unknown_propagation",
+      "severity": "warning",
+      "waived": false,
+      "source": "async_fifo.rq2",
+      "source_domain": "async_fifo.wclk",
+      "dest": "",
+      "dest_domain": "",
+      "bus_width": 3,
+      "reason": "Register 'async_fifo.rq2' has uncertain value due to propagated from 'async_fifo.rq1'.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "candidate",
+      "safety_provenance": "Value uncertainty propagation",
+      "evidence_chain": [
+        {
+          "step_type": "source",
+          "description": "Source: propagated from 'async_fifo.rq1'",
+          "result": "identified"
+        },
+        {
+          "step_type": "propagation",
+          "description": "Propagated within domain 'async_fifo.wclk'",
+          "result": "propagated"
+        }
+      ],
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 10
+    },
+    {
+      "rule_id": "CDC013",
+      "rule_name": "unknown_propagation",
+      "severity": "warning",
+      "waived": false,
+      "source": "async_fifo.wfull_r",
+      "source_domain": "async_fifo.wclk",
+      "dest": "",
+      "dest_domain": "",
+      "bus_width": 1,
+      "reason": "Register 'async_fifo.wfull_r' has uncertain value due to propagated from 'async_fifo.rq2'.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "candidate",
+      "safety_provenance": "Value uncertainty propagation",
+      "evidence_chain": [
+        {
+          "step_type": "source",
+          "description": "Source: propagated from 'async_fifo.rq2'",
+          "result": "identified"
+        },
+        {
+          "step_type": "propagation",
+          "description": "Propagated within domain 'async_fifo.wclk'",
+          "result": "propagated"
+        }
+      ],
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 10
+    },
+    {
+      "rule_id": "CDC001",
+      "rule_name": "unsynchronized_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "async_fifo.rbin",
+      "source_domain": "rclk",
+      "dest": "async_fifo.rq1",
+      "dest_domain": "wclk",
+      "bus_width": 3,
+      "reason": "Register 'async_fifo.rbin' in domain 'rclk' drives register 'async_fifo.rq1' in domain 'wclk' without synchronization. No 2FF/3FF synchronizer chain detected on destination side.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "async_fifo",
+      "dest_module_path": "async_fifo",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "verified_unsafe",
+      "safety_provenance": "No synchronizer chain detected on destination side",
+      "evidence_chain": [
+        {
+          "step_type": "clock_domains",
+          "description": "Clock domains: 'rclk' -> 'wclk'",
+          "result": "identified"
+        },
+        {
+          "step_type": "bus_width",
+          "description": "Bus width: 3",
+          "result": "measured"
+        }
+      ],
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 18
+    },
+    {
+      "rule_id": "CDC002",
+      "rule_name": "multi_bit_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "async_fifo.rbin",
+      "source_domain": "rclk",
+      "dest": "async_fifo.rq1",
+      "dest_domain": "wclk",
+      "bus_width": 3,
+      "reason": "Multi-bit bus 'async_fifo.rbin' (width=3) crosses from domain 'rclk' to domain 'wclk' without gray-code encoding or handshake protocol.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "async_fifo",
+      "dest_module_path": "async_fifo",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 18
+    },
+    {
+      "rule_id": "CDC007",
+      "rule_name": "missing_reset",
+      "severity": "info",
+      "waived": false,
+      "source": "async_fifo.rbin",
+      "source_domain": "rclk",
+      "dest": "async_fifo.rq1",
+      "dest_domain": "wclk",
+      "bus_width": 3,
+      "reason": "CDC crossing between registers 'async_fifo.rbin' and 'async_fifo.rq1': neither register has a reset signal.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "async_fifo",
+      "dest_module_path": "async_fifo",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 18
+    },
+    {
+      "rule_id": "CDC013",
+      "rule_name": "unknown_propagation",
+      "severity": "warning",
+      "waived": false,
+      "source": "async_fifo.rempty_r",
+      "source_domain": "async_fifo.rclk",
+      "dest": "",
+      "dest_domain": "",
+      "bus_width": 1,
+      "reason": "Register 'async_fifo.rempty_r' has uncertain value due to propagated from 'async_fifo.wq2'.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "candidate",
+      "safety_provenance": "Value uncertainty propagation",
+      "evidence_chain": [
+        {
+          "step_type": "source",
+          "description": "Source: propagated from 'async_fifo.wq2'",
+          "result": "identified"
+        },
+        {
+          "step_type": "propagation",
+          "description": "Propagated within domain 'async_fifo.rclk'",
+          "result": "propagated"
+        }
+      ],
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 18
+    },
+    {
+      "rule_id": "CDC013",
+      "rule_name": "unknown_propagation",
+      "severity": "warning",
+      "waived": false,
+      "source": "async_fifo.wq2",
+      "source_domain": "async_fifo.rclk",
+      "dest": "",
+      "dest_domain": "",
+      "bus_width": 3,
+      "reason": "Register 'async_fifo.wq2' has uncertain value due to propagated from 'async_fifo.wq1'.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "candidate",
+      "safety_provenance": "Value uncertainty propagation",
+      "evidence_chain": [
+        {
+          "step_type": "source",
+          "description": "Source: propagated from 'async_fifo.wq1'",
+          "result": "identified"
+        },
+        {
+          "step_type": "propagation",
+          "description": "Propagated within domain 'async_fifo.rclk'",
+          "result": "propagated"
+        }
+      ],
+      "file": "cases/cdc-async-fifo/binary_pointers_2_flop_sync_per_bit.v",
+      "line": 18
+    }
+  ]
+}

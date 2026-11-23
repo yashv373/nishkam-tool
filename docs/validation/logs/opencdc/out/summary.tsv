@@ -1,0 +1,13 @@
+cdc-async-fifo/binary_pointers_2_flop_sync_per_bit	CDC001×2 CDC002×2 CDC007×2 CDC013×4 	CDC001×2 CDC002×2 CDC007×2 
+cdc-async-fifo/Gray_flags_one_cycle_later	CDC001×2 CDC002×2 CDC007×2 CDC013×6 	CDC001×4 CDC002×4 CDC007×4 
+cdc-async-fifo/pointers_cross_with_one_flop	CDC001×2 CDC002×2 CDC007×2 CDC013×4 	CDC001×4 CDC002×4 CDC007×4 
+cdc-async-fifo/reference_Gray_pointers	CDC001×2 CDC002×2 CDC007×2 CDC013×4 	CDC001×4 CDC002×4 CDC007×4 
+cdc-pulse-sync/1_flop	CDC001×1 CDC007×1 	CDC001×1 CDC007×1 
+cdc-pulse-sync/reference_toggle_2_flops_edge	CDC001×1 CDC007×1 	CDC001×1 CDC007×1 
+cdc-sync2/1_flop	CDC001×1 CDC007×1 	CDC001×1 CDC007×1 
+cdc-sync2/3_flops	CDC001×1 CDC007×1 	CDC001×1 CDC007×1 
+cdc-sync2/d_also_used_elsewhere	CDC001×2 CDC007×2 	CDC001×1 CDC007×1 
+cdc-sync2/inverted_output_wrong_value	CDC001×1 CDC007×1 	CDC001×1 CDC007×1 
+cdc-sync2/logic_between_the_flops	CDC001×1 CDC007×1 	CDC001×1 CDC007×1 
+cdc-sync2/q_d_bypass_with_kept_dummy_chain_83_P26	CDC001×1 CDC007×1 	CDC001×1 CDC007×1 
+cdc-sync2/reference_2_flops	CDC001×1 CDC007×1 	CDC001×1 CDC007×1 

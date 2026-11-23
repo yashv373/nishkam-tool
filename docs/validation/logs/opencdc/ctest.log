@@ -1,0 +1,1158 @@
+Internal ctest changing into directory: /foss/designs/opencdc/src/build
+Test project /foss/designs/opencdc/src/build
+        Start   1: CliTest.NoArgsPrintsUsage
+  1/576 Test   #1: CliTest.NoArgsPrintsUsage .............................................   Passed    0.08 sec
+        Start   2: CliTest.HelpExitsZero
+  2/576 Test   #2: CliTest.HelpExitsZero .................................................   Passed    0.08 sec
+        Start   3: CliTest.CheckWithoutTopFails
+  3/576 Test   #3: CliTest.CheckWithoutTopFails ..........................................   Passed    0.08 sec
+        Start   4: CliTest.CheckWithoutFilesFails
+  4/576 Test   #4: CliTest.CheckWithoutFilesFails ........................................   Passed    0.09 sec
+        Start   5: CliTest.SignoffClean2ffExitsZero
+  5/576 Test   #5: CliTest.SignoffClean2ffExitsZero ......................................   Passed    0.20 sec
+        Start   6: CliTest.SignoffUnsyncExitsOne
+  6/576 Test   #6: CliTest.SignoffUnsyncExitsOne .........................................   Passed    0.15 sec
+        Start   7: CliTest.LspHelpExitsZero
+  7/576 Test   #7: CliTest.LspHelpExitsZero ..............................................   Passed    0.08 sec
+        Start   8: CliTest.MissingOptionValueIsInputError
+  8/576 Test   #8: CliTest.MissingOptionValueIsInputError ................................   Passed    0.08 sec
+        Start   9: CliTest.LspUnknownOptionIsInputError
+  9/576 Test   #9: CliTest.LspUnknownOptionIsInputError ..................................   Passed    0.07 sec
+        Start  10: CliTest.CompareMissingBaselineIsInputError
+ 10/576 Test  #10: CliTest.CompareMissingBaselineIsInputError ............................   Passed    0.14 sec
+        Start  11: CliTest.FalsePathWithExtraColonsAccepted
+ 11/576 Test  #11: CliTest.FalsePathWithExtraColonsAccepted ..............................   Passed    0.15 sec
+        Start  12: GraphTest.AddRegister
+ 12/576 Test  #12: GraphTest.AddRegister .................................................   Passed    0.06 sec
+        Start  13: GraphTest.ShortNameIsLeaf
+ 13/576 Test  #13: GraphTest.ShortNameIsLeaf .............................................   Passed    0.06 sec
+        Start  14: GraphTest.ShortNameWithoutDot
+ 14/576 Test  #14: GraphTest.ShortNameWithoutDot .........................................   Passed    0.07 sec
+        Start  15: GraphTest.AddPort
+ 15/576 Test  #15: GraphTest.AddPort .....................................................   Passed    0.07 sec
+        Start  16: GraphTest.AddEdge
+ 16/576 Test  #16: GraphTest.AddEdge .....................................................   Passed    0.08 sec
+        Start  17: GraphTest.SuccessorsAndPredecessors
+ 17/576 Test  #17: GraphTest.SuccessorsAndPredecessors ...................................   Passed    0.09 sec
+        Start  18: GraphTest.FindByName
+ 18/576 Test  #18: GraphTest.FindByName ..................................................   Passed    0.08 sec
+        Start  19: GraphTest.MultipleDomains
+ 19/576 Test  #19: GraphTest.MultipleDomains .............................................   Passed    0.08 sec
+        Start  20: GraphTest.AddNet
+ 20/576 Test  #20: GraphTest.AddNet ......................................................   Passed    0.10 sec
+        Start  21: GraphTest.RegisterPredecessorsThroughNet
+ 21/576 Test  #21: GraphTest.RegisterPredecessorsThroughNet ..............................   Passed    0.09 sec
+        Start  22: GraphTest.RegisterSuccessorsThroughNet
+ 22/576 Test  #22: GraphTest.RegisterSuccessorsThroughNet ................................   Passed    0.09 sec
+        Start  23: GraphTest.RegisterSuccessorsThroughCombinational
+ 23/576 Test  #23: GraphTest.RegisterSuccessorsThroughCombinational ......................   Passed    0.09 sec
+        Start  24: GraphTest.FindRegisterPaths
+ 24/576 Test  #24: GraphTest.FindRegisterPaths ...........................................   Passed    0.08 sec
+        Start  25: GraphTest.FindRegisterPathsMultiple
+ 25/576 Test  #25: GraphTest.FindRegisterPathsMultiple ...................................   Passed    0.08 sec
+        Start  26: GraphTest.ValidateAcceptsWellFormedGraph
+ 26/576 Test  #26: GraphTest.ValidateAcceptsWellFormedGraph ..............................   Passed    0.08 sec
+        Start  27: GraphTest.RegisterPathLimitBoundsFanout
+ 27/576 Test  #27: GraphTest.RegisterPathLimitBoundsFanout ...............................   Passed    0.08 sec
+        Start  28: CellLibraryTest.GlobMatchBasics
+ 28/576 Test  #28: CellLibraryTest.GlobMatchBasics .......................................   Passed    0.07 sec
+        Start  29: CellLibraryTest.KindNamesRoundTrip
+ 29/576 Test  #29: CellLibraryTest.KindNamesRoundTrip ....................................   Passed    0.08 sec
+        Start  30: CellLibraryTest.DefaultsClassify
+ 30/576 Test  #30: CellLibraryTest.DefaultsClassify ......................................   Passed    0.08 sec
+        Start  31: CellLibraryTest.DefaultsClassifyLowPowerCells
+ 31/576 Test  #31: CellLibraryTest.DefaultsClassifyLowPowerCells .........................   Passed    0.08 sec
+        Start  32: CellLibraryTest.SpecificPatternShadowsDefault
+ 32/576 Test  #32: CellLibraryTest.SpecificPatternShadowsDefault .........................   Passed    0.07 sec
+        Start  33: CellLibraryTest.LongestMatchWinsRegardlessOfOrder
+ 33/576 Test  #33: CellLibraryTest.LongestMatchWinsRegardlessOfOrder .....................   Passed    0.07 sec
+        Start  34: CellLibraryTest.LoadFromYaml
+ 34/576 Test  #34: CellLibraryTest.LoadFromYaml ..........................................   Passed    0.08 sec
+        Start  35: CellLibraryTest.LoadFromYamlLowPowerKinds
+ 35/576 Test  #35: CellLibraryTest.LoadFromYamlLowPowerKinds .............................   Passed    0.07 sec
+        Start  36: CellLibraryTest.LoadFromYamlErrors
+ 36/576 Test  #36: CellLibraryTest.LoadFromYamlErrors ....................................   Passed    0.11 sec
+        Start  37: CellLibraryTest.ClassifiesYosysGenericCells
+ 37/576 Test  #37: CellLibraryTest.ClassifiesYosysGenericCells ...........................   Passed    0.07 sec
+        Start  38: CellLibraryTest.ClassifiesYosysSyncResetEnableFamilies
+ 38/576 Test  #38: CellLibraryTest.ClassifiesYosysSyncResetEnableFamilies ................   Passed    0.07 sec
+        Start  39: LibertyTest.LoadsFixtureLibrary
+ 39/576 Test  #39: LibertyTest.LoadsFixtureLibrary .......................................   Passed    0.09 sec
+        Start  40: LibertyTest.AsyncClearFlopMapsToFfReset
+ 40/576 Test  #40: LibertyTest.AsyncClearFlopMapsToFfReset ...............................   Passed    0.09 sec
+        Start  41: LibertyTest.ActiveHighClearIsNotNegated
+ 41/576 Test  #41: LibertyTest.ActiveHighClearIsNotNegated ...............................   Passed    0.07 sec
+        Start  42: LibertyTest.LatchGroupMapsToLatch
+ 42/576 Test  #42: LibertyTest.LatchGroupMapsToLatch .....................................   Passed    0.07 sec
+        Start  43: LibertyTest.CombFunctionsGiveLogicTypeHints
+ 43/576 Test  #43: LibertyTest.CombFunctionsGiveLogicTypeHints ...........................   Passed    0.07 sec
+        Start  44: LibertyTest.LibertyDefsShadowHeuristicDefaults
+ 44/576 Test  #44: LibertyTest.LibertyDefsShadowHeuristicDefaults ........................   Passed    0.08 sec
+        Start  45: LibertyTest.ExplicitCellMapCanStillOverrideLiberty
+ 45/576 Test  #45: LibertyTest.ExplicitCellMapCanStillOverrideLiberty ....................   Passed    0.07 sec
+        Start  46: LibertyTest.MalformedInputFails
+ 46/576 Test  #46: LibertyTest.MalformedInputFails .......................................   Passed    0.07 sec
+        Start  47: LibertyTest.UnterminatedStringFails
+ 47/576 Test  #47: LibertyTest.UnterminatedStringFails ...................................   Passed    0.07 sec
+        Start  48: LibertyTest.TopLevelCellWithoutLibraryWrapper
+ 48/576 Test  #48: LibertyTest.TopLevelCellWithoutLibraryWrapper .........................   Passed    0.07 sec
+        Start  49: LibertyTest.LowPowerCells
+ 49/576 Test  #49: LibertyTest.LowPowerCells .............................................   Passed    0.07 sec
+        Start  50: NetlistLexerTest.TokenizesBasicNetlist
+ 50/576 Test  #50: NetlistLexerTest.TokenizesBasicNetlist ................................   Passed    0.07 sec
+        Start  51: NetlistLexerTest.HandlesEscapedIdentifiers
+ 51/576 Test  #51: NetlistLexerTest.HandlesEscapedIdentifiers ............................   Passed    0.07 sec
+        Start  52: NetlistLexerTest.SkipsCommentsAndAttributes
+ 52/576 Test  #52: NetlistLexerTest.SkipsCommentsAndAttributes ...........................   Passed    0.07 sec
+        Start  53: NetlistLexerTest.LexesSizedLiterals
+ 53/576 Test  #53: NetlistLexerTest.LexesSizedLiterals ...................................   Passed    0.07 sec
+        Start  54: NetlistParserTest.ParsesSimpleModule
+ 54/576 Test  #54: NetlistParserTest.ParsesSimpleModule ..................................   Passed    0.08 sec
+        Start  55: NetlistParserTest.ParsesAnsiPorts
+ 55/576 Test  #55: NetlistParserTest.ParsesAnsiPorts .....................................   Passed    0.07 sec
+        Start  56: NetlistParserTest.ParsesNonAnsiPortsWithBodyDecls
+ 56/576 Test  #56: NetlistParserTest.ParsesNonAnsiPortsWithBodyDecls .....................   Passed    0.07 sec
+        Start  57: NetlistParserTest.ParsesNetsAssignsAndGatePrimitives
+ 57/576 Test  #57: NetlistParserTest.ParsesNetsAssignsAndGatePrimitives ..................   Passed    0.07 sec
+        Start  58: NetlistParserTest.ParsesMultiInstanceStatement
+ 58/576 Test  #58: NetlistParserTest.ParsesMultiInstanceStatement ........................   Passed    0.08 sec
+        Start  59: NetlistParserTest.ParsesBitSelectAndConstant
+ 59/576 Test  #59: NetlistParserTest.ParsesBitSelectAndConstant ..........................   Passed    0.08 sec
+        Start  60: NetlistParserTest.SkipsSpecifyAndDirectives
+ 60/576 Test  #60: NetlistParserTest.SkipsSpecifyAndDirectives ...........................   Passed    0.07 sec
+        Start  61: NetlistParserTest.ErrorsOnMissingTop
+ 61/576 Test  #61: NetlistParserTest.ErrorsOnMissingTop ..................................   Passed    0.07 sec
+        Start  62: NetlistParserTest.AutoSelectsSingleModule
+ 62/576 Test  #62: NetlistParserTest.AutoSelectsSingleModule .............................   Passed    0.07 sec
+        Start  63: NetlistParserTest.ErrorsOnBehavioralBlock
+ 63/576 Test  #63: NetlistParserTest.ErrorsOnBehavioralBlock .............................   Passed    0.07 sec
+        Start  64: NetlistFrontendTest.DetectsNetlistInput
+ 64/576 Test  #64: NetlistFrontendTest.DetectsNetlistInput ...............................   Passed    0.09 sec
+        Start  65: NetlistFrontendTest.DetectsRtlInput
+ 65/576 Test  #65: NetlistFrontendTest.DetectsRtlInput ...................................   Passed    0.08 sec
+        Start  66: NetlistFrontendTest.UnsyncCrossingReportsCdc001Error
+ 66/576 Test  #66: NetlistFrontendTest.UnsyncCrossingReportsCdc001Error ..................   Passed    0.09 sec
+        Start  67: NetlistFrontendTest.LowPowerIsolationDowngradesCdc001Only
+ 67/576 Test  #67: NetlistFrontendTest.LowPowerIsolationDowngradesCdc001Only .............   Passed    0.09 sec
+        Start  68: NetlistFrontendTest.TwoFfsyncIsStructurallySafe
+ 68/576 Test  #68: NetlistFrontendTest.TwoFfsyncIsStructurallySafe .......................   Passed    0.09 sec
+        Start  69: NetlistFrontendTest.GatedClockCrossingReportsCdc004
+ 69/576 Test  #69: NetlistFrontendTest.GatedClockCrossingReportsCdc004 ...................   Passed    0.09 sec
+        Start  70: NetlistFrontendTest.BitBlastedBusHasNoCrossBitCrossings
+ 70/576 Test  #70: NetlistFrontendTest.BitBlastedBusHasNoCrossBitCrossings ...............   Passed    0.12 sec
+        Start  71: NetlistFrontendTest.AutoDetectionEndToEnd
+ 71/576 Test  #71: NetlistFrontendTest.AutoDetectionEndToEnd .............................   Passed    0.09 sec
+        Start  72: NetlistFrontendTest.CellMapClassifiesResetPolarity
+ 72/576 Test  #72: NetlistFrontendTest.CellMapClassifiesResetPolarity ....................   Passed    0.11 sec
+        Start  73: NetlistFrontendTest.BusRegroupMergesBitFlopsIntoWideRegister
+ 73/576 Test  #73: NetlistFrontendTest.BusRegroupMergesBitFlopsIntoWideRegister ..........   Passed    0.09 sec
+        Start  74: NetlistFrontendTest.GrayRecoverySuppressesCdc002LikeRtlAnalysis
+ 74/576 Test  #74: NetlistFrontendTest.GrayRecoverySuppressesCdc002LikeRtlAnalysis .......   Passed    0.10 sec
+        Start  75: NetlistFrontendTest.NameMapRenamesNetlistRegistersToRtlNames
+ 75/576 Test  #75: NetlistFrontendTest.NameMapRenamesNetlistRegistersToRtlNames ..........   Passed    0.11 sec
+        Start  76: NetlistFrontendTest.HierarchicalInstancesFlattenIntoPrefixedNames
+ 76/576 Test  #76: NetlistFrontendTest.HierarchicalInstancesFlattenIntoPrefixedNames .....   Passed    0.10 sec
+        Start  77: NetlistFrontendTest.RecursiveModuleInstantiationIsRejected
+ 77/576 Test  #77: NetlistFrontendTest.RecursiveModuleInstantiationIsRejected ............   Passed    0.08 sec
+        Start  78: NetlistFrontendTest.XorCellClassifiesAsXorNotOr
+ 78/576 Test  #78: NetlistFrontendTest.XorCellClassifiesAsXorNotOr .......................   Passed    0.08 sec
+        Start  79: NetlistFrontendTest.MuxedClockResolvesToDefaultPathRoot
+ 79/576 Test  #79: NetlistFrontendTest.MuxedClockResolvesToDefaultPathRoot ...............   Passed    0.10 sec
+        Start  80: NetlistFrontendTest.UnknownCellTreatedAsOpaqueNotSafe
+ 80/576 Test  #80: NetlistFrontendTest.UnknownCellTreatedAsOpaqueNotSafe .................   Passed    0.15 sec
+        Start  81: NetlistFrontendTest.UnknownSequentialLikeCellForcesIncompleteStatus
+ 81/576 Test  #81: NetlistFrontendTest.UnknownSequentialLikeCellForcesIncompleteStatus ...   Passed    0.11 sec
+        Start  82: NetlistFrontendTest.MappedYosysSyncResetEnableCellsAreNotUnmapped
+ 82/576 Test  #82: NetlistFrontendTest.MappedYosysSyncResetEnableCellsAreNotUnmapped .....   Passed    0.10 sec
+        Start  83: CompactTest.CollapsesDataBufferChainPreservingConnectivity
+ 83/576 Test  #83: CompactTest.CollapsesDataBufferChainPreservingConnectivity ............   Passed    0.07 sec
+        Start  84: CompactTest.PreservesClockBufferAndResetStructure
+ 84/576 Test  #84: CompactTest.PreservesClockBufferAndResetStructure .....................   Passed    0.07 sec
+        Start  85: CompactTest.NoOpOnEmptyAndFullyProtectedGraph
+ 85/576 Test  #85: CompactTest.NoOpOnEmptyAndFullyProtectedGraph .........................   Passed    0.08 sec
+        Start  86: DomainTest.SingleDomain
+ 86/576 Test  #86: DomainTest.SingleDomain ...............................................   Passed    0.07 sec
+        Start  87: DomainTest.MultipleDomains
+ 87/576 Test  #87: DomainTest.MultipleDomains ............................................   Passed    0.07 sec
+        Start  88: DomainTest.UnknownClockEmitsWarning
+ 88/576 Test  #88: DomainTest.UnknownClockEmitsWarning ...................................   Passed    0.07 sec
+        Start  89: DomainTest.SameDomainCheck
+ 89/576 Test  #89: DomainTest.SameDomainCheck ............................................   Passed    0.07 sec
+        Start  90: DomainTest.FindDomainForRegister
+ 90/576 Test  #90: DomainTest.FindDomainForRegister ......................................   Passed    0.07 sec
+        Start  91: DomainTest.ThreeDomains
+ 91/576 Test  #91: DomainTest.ThreeDomains ...............................................   Passed    0.07 sec
+        Start  92: CrossingTest.NoCrossingSameDomain
+ 92/576 Test  #92: CrossingTest.NoCrossingSameDomain .....................................   Passed    0.07 sec
+        Start  93: CrossingTest.SingleCrossingDetected
+ 93/576 Test  #93: CrossingTest.SingleCrossingDetected ...................................   Passed    0.07 sec
+        Start  94: CrossingTest.CrossingPathRecorded
+ 94/576 Test  #94: CrossingTest.CrossingPathRecorded .....................................   Passed    0.08 sec
+        Start  95: CrossingTest.FindingHasRequiredFields
+ 95/576 Test  #95: CrossingTest.FindingHasRequiredFields .................................   Passed    0.07 sec
+        Start  96: CrossingTest.SyncChainDowngradesCdc001
+ 96/576 Test  #96: CrossingTest.SyncChainDowngradesCdc001 ................................   Passed    0.07 sec
+        Start  97: CrossingTest.UnsyncedCrossingIsError
+ 97/576 Test  #97: CrossingTest.UnsyncedCrossingIsError ..................................   Passed    0.08 sec
+        Start  98: CrossingTest.UncertaintyPropagatesSameDomainClosure
+ 98/576 Test  #98: CrossingTest.UncertaintyPropagatesSameDomainClosure ...................   Passed    0.08 sec
+        Start  99: CrossingTest.TwoCrossingsDetected
+ 99/576 Test  #99: CrossingTest.TwoCrossingsDetected .....................................   Passed    0.08 sec
+        Start 100: CrossingTest.HandshakeRegDetected
+100/576 Test #100: CrossingTest.HandshakeRegDetected .....................................   Passed    0.09 sec
+        Start 101: CrossingTest.HandshakeInstanceDetected
+101/576 Test #101: CrossingTest.HandshakeInstanceDetected ................................   Passed    0.06 sec
+        Start 102: CrossingTest.MultiBitCrossingNotHandshake
+102/576 Test #102: CrossingTest.MultiBitCrossingNotHandshake .............................   Passed    0.07 sec
+        Start 103: CrossingTest.MuxedClockDetected
+103/576 Test #103: CrossingTest.MuxedClockDetected .......................................   Passed    0.07 sec
+        Start 104: CrossingTest.FalsePathSuppressesCrossing
+104/576 Test #104: CrossingTest.FalsePathSuppressesCrossing ..............................   Passed    0.07 sec
+        Start 105: CrossingTest.FalsePathSuppressedFindingHasAuditTrail
+105/576 Test #105: CrossingTest.FalsePathSuppressedFindingHasAuditTrail ..................   Passed    0.07 sec
+        Start 106: CrossingTest.FalsePathPartialMatch
+106/576 Test #106: CrossingTest.FalsePathPartialMatch ....................................   Passed    0.07 sec
+        Start 107: CrossingTest.SuppressResetCrossings
+107/576 Test #107: CrossingTest.SuppressResetCrossings ...................................   Passed    0.08 sec
+        Start 108: CrossingTest.MulticyclePathAnnotatesCrossing
+108/576 Test #108: CrossingTest.MulticyclePathAnnotatesCrossing ..........................   Passed    0.07 sec
+        Start 109: CrossingTest.MulticycleSuppressionDefault
+109/576 Test #109: CrossingTest.MulticycleSuppressionDefault .............................   Passed    0.07 sec
+        Start 110: CrossingTest.MulticycleSuppressionOff
+110/576 Test #110: CrossingTest.MulticycleSuppressionOff .................................   Passed    0.07 sec
+        Start 111: CrossingTest.MulticyclePartialMatchDoesNotSuppress
+111/576 Test #111: CrossingTest.MulticyclePartialMatchDoesNotSuppress ....................   Passed    0.06 sec
+        Start 112: CrossingTest.SafetyStatusPopulatedOnUnsyncedCdc001
+112/576 Test #112: CrossingTest.SafetyStatusPopulatedOnUnsyncedCdc001 ....................   Passed    0.07 sec
+        Start 113: CrossingTest.SafetyStatusVerifiedSafeWithSyncChain
+113/576 Test #113: CrossingTest.SafetyStatusVerifiedSafeWithSyncChain ....................   Passed    0.07 sec
+        Start 114: CrossingTest.BlackboxSuppressedCrossing
+114/576 Test #114: CrossingTest.BlackboxSuppressedCrossing ...............................   Passed    0.07 sec
+        Start 115: CrossingTest.BlackboxNoSuppressionWhenNotSafe
+115/576 Test #115: CrossingTest.BlackboxNoSuppressionWhenNotSafe .........................   Passed    0.07 sec
+        Start 116: CrossingTest.NoBlackboxRegistryNoSuppression
+116/576 Test #116: CrossingTest.NoBlackboxRegistryNoSuppression ..........................   Passed    0.07 sec
+        Start 117: CrossingTest.BlackboxMatchesModuleTypeNotInstanceName
+117/576 Test #117: CrossingTest.BlackboxMatchesModuleTypeNotInstanceName .................   Passed    0.07 sec
+        Start 118: CrossingTest.IntermediateGatedClockReportsCdc004WithoutCrash
+118/576 Test #118: CrossingTest.IntermediateGatedClockReportsCdc004WithoutCrash ..........   Passed    0.07 sec
+        Start 119: CrossingTest.MinSyncStagesKeepsShortChainAsError
+119/576 Test #119: CrossingTest.MinSyncStagesKeepsShortChainAsError ......................   Passed    0.07 sec
+        Start 120: CrossingTest.ChainWarningsAreNotVerifiedSafe
+120/576 Test #120: CrossingTest.ChainWarningsAreNotVerifiedSafe ..........................   Passed    0.07 sec
+        Start 121: CrossingTest.BlackboxDoesNotMatchDatapathNamedLikePrimitive
+121/576 Test #121: CrossingTest.BlackboxDoesNotMatchDatapathNamedLikePrimitive ...........   Passed    0.07 sec
+        Start 122: SyncTest.Detect2FFChain
+122/576 Test #122: SyncTest.Detect2FFChain ...............................................   Passed    0.07 sec
+        Start 123: SyncTest.Detect3FFChain
+123/576 Test #123: SyncTest.Detect3FFChain ...............................................   Passed    0.08 sec
+        Start 124: SyncTest.RejectChainWithDifferentClocks
+124/576 Test #124: SyncTest.RejectChainWithDifferentClocks ...............................   Passed    0.08 sec
+        Start 125: SyncTest.NoChainReturnsNone
+125/576 Test #125: SyncTest.NoChainReturnsNone ...........................................   Passed    0.08 sec
+        Start 126: SyncTest.MatchFindsChains
+126/576 Test #126: SyncTest.MatchFindsChains .............................................   Passed    0.08 sec
+        Start 127: SyncTest.TwoFFNotMisclassifiedAsThreeFFByConsumer
+127/576 Test #127: SyncTest.TwoFFNotMisclassifiedAsThreeFFByConsumer .....................   Passed    0.07 sec
+        Start 128: SyncTest.PackedVectorTwoFFRecognized
+128/576 Test #128: SyncTest.PackedVectorTwoFFRecognized ..................................   Passed    0.07 sec
+        Start 129: SyncTest.PackedVectorThreeFFRecognized
+129/576 Test #129: SyncTest.PackedVectorThreeFFRecognized ................................   Passed    0.07 sec
+        Start 130: SyncTest.WideNodeWithoutTagNotRecognized
+130/576 Test #130: SyncTest.WideNodeWithoutTagNotRecognized ..............................   Passed    0.06 sec
+        Start 131: SyncTest.PackedVectorRequiresCrossDomainPred
+131/576 Test #131: SyncTest.PackedVectorRequiresCrossDomainPred ..........................   Passed    0.07 sec
+        Start 132: SyncTest.PackedVectorStrictRejectsSameDomainPred
+132/576 Test #132: SyncTest.PackedVectorStrictRejectsSameDomainPred ......................   Passed    0.07 sec
+        Start 133: SyncTest.PackedChainMatchReportsVectorDepth
+133/576 Test #133: SyncTest.PackedChainMatchReportsVectorDepth ...........................   Passed    0.07 sec
+        Start 134: SyncComprehensiveTest.HasChainWarningsReturnsTrueWhenWarningsExist
+134/576 Test #134: SyncComprehensiveTest.HasChainWarningsReturnsTrueWhenWarningsExist ....   Passed    0.07 sec
+        Start 135: SyncComprehensiveTest.HasChainWarningsNonStrictAllowsSameDomainPred
+135/576 Test #135: SyncComprehensiveTest.HasChainWarningsNonStrictAllowsSameDomainPred ...   Passed    0.06 sec
+        Start 136: SyncComprehensiveTest.HasChainWarningsStrictRejectsSameDomainPred
+136/576 Test #136: SyncComprehensiveTest.HasChainWarningsStrictRejectsSameDomainPred .....   Passed    0.06 sec
+        Start 137: SyncComprehensiveTest.AsyncResetMetastabilityWarning
+137/576 Test #137: SyncComprehensiveTest.AsyncResetMetastabilityWarning ..................   Passed    0.07 sec
+        Start 138: SyncComprehensiveTest.SyncAfterAsyncWarning
+138/576 Test #138: SyncComprehensiveTest.SyncAfterAsyncWarning ...........................   Passed    0.07 sec
+        Start 139: SyncComprehensiveTest.ThreeStageResetValidation
+139/576 Test #139: SyncComprehensiveTest.ThreeStageResetValidation .......................   Passed    0.07 sec
+        Start 140: SyncComprehensiveTest.MatchDeduplicatesSameChain
+140/576 Test #140: SyncComprehensiveTest.MatchDeduplicatesSameChain ......................   Passed    0.07 sec
+        Start 141: SyncComprehensiveTest.DepthFiveReturnsNStage
+141/576 Test #141: SyncComprehensiveTest.DepthFiveReturnsNStage ..........................   Passed    0.07 sec
+        Start 142: SyncComprehensiveTest.DepthSevenReturnsNStage
+142/576 Test #142: SyncComprehensiveTest.DepthSevenReturnsNStage .........................   Passed    0.06 sec
+        Start 143: SyncComprehensiveTest.DepthFiveThroughMatchReturnsNStage
+143/576 Test #143: SyncComprehensiveTest.DepthFiveThroughMatchReturnsNStage ..............   Passed    0.07 sec
+        Start 144: SyncAdversarialTest.MultiBitBusRejectsSyncDetection
+144/576 Test #144: SyncAdversarialTest.MultiBitBusRejectsSyncDetection ...................   Passed    0.06 sec
+        Start 145: SyncAdversarialTest.SyncRequiresSameClockOnAllStages
+145/576 Test #145: SyncAdversarialTest.SyncRequiresSameClockOnAllStages ..................   Passed    0.07 sec
+        Start 146: SyncAdversarialTest.FourFFChainReportedAsFourFF
+146/576 Test #146: SyncAdversarialTest.FourFFChainReportedAsFourFF .......................   Passed    0.07 sec
+        Start 147: SyncAdversarialTest.FiveFFChainReportedAsNStage
+147/576 Test #147: SyncAdversarialTest.FiveFFChainReportedAsNStage .......................   Passed    0.07 sec
+        Start 148: SyncAdversarialTest.StrictModeRejectsSameDomainPred
+148/576 Test #148: SyncAdversarialTest.StrictModeRejectsSameDomainPred ...................   Passed    0.06 sec
+        Start 149: SyncAdversarialTest.NonStrictModeAllowsSameDomainPred
+149/576 Test #149: SyncAdversarialTest.NonStrictModeAllowsSameDomainPred .................   Passed    0.06 sec
+        Start 150: SyncAdversarialTest.SingleBitWithWidthOnePasses
+150/576 Test #150: SyncAdversarialTest.SingleBitWithWidthOnePasses .......................   Passed    0.07 sec
+        Start 151: SyncAdversarialTest.MissingMiddleStageBreaksChain
+151/576 Test #151: SyncAdversarialTest.MissingMiddleStageBreaksChain .....................   Passed    0.09 sec
+        Start 152: SyncAdversarialTest.MismatchedResetPolarityWarning
+152/576 Test #152: SyncAdversarialTest.MismatchedResetPolarityWarning ....................   Passed    0.08 sec
+        Start 153: SyncAdversarialTest.StrictModeWarningsMatchChain
+153/576 Test #153: SyncAdversarialTest.StrictModeWarningsMatchChain ......................   Passed    0.08 sec
+        Start 154: SyncAdversarialTest.CombBetweenSyncStagesBreaksChainDetection
+154/576 Test #154: SyncAdversarialTest.CombBetweenSyncStagesBreaksChainDetection .........   Passed    0.07 sec
+        Start 155: SyncAdversarialTest.FanoutOnStage2TriggersWarning
+155/576 Test #155: SyncAdversarialTest.FanoutOnStage2TriggersWarning .....................   Passed    0.07 sec
+        Start 156: SyncAdversarialTest.DifferentAsyncResetSignalsWarning
+156/576 Test #156: SyncAdversarialTest.DifferentAsyncResetSignalsWarning .................   Passed    0.07 sec
+        Start 157: ReconvergenceTest.NoReconvergenceSinglePath
+157/576 Test #157: ReconvergenceTest.NoReconvergenceSinglePath ...........................   Passed    0.07 sec
+        Start 158: ReconvergenceTest.ReconvergenceDetected
+158/576 Test #158: ReconvergenceTest.ReconvergenceDetected ...............................   Passed    0.07 sec
+        Start 159: ReconvergenceTest.SafeSingleBitNoHazard
+159/576 Test #159: ReconvergenceTest.SafeSingleBitNoHazard ...............................   Passed    0.06 sec
+        Start 160: ReconvergenceTest.SyncedPathsNotReconvergent
+160/576 Test #160: ReconvergenceTest.SyncedPathsNotReconvergent ..........................   Passed    0.07 sec
+        Start 161: ReconvergenceTest.OnlyCDC001CrossingsFeedReconvergence
+161/576 Test #161: ReconvergenceTest.OnlyCDC001CrossingsFeedReconvergence ................   Passed    0.07 sec
+        Start 162: ReconvergenceTest.SyncedMultiBitStillReconvergent
+162/576 Test #162: ReconvergenceTest.SyncedMultiBitStillReconvergent .....................   Passed    0.07 sec
+        Start 163: Cdc006Test.NoFinding_NoSyncChain
+163/576 Test #163: Cdc006Test.NoFinding_NoSyncChain ......................................   Passed    0.07 sec
+        Start 164: Cdc006Test.NoFinding_DirectRegisterFeed
+164/576 Test #164: Cdc006Test.NoFinding_DirectRegisterFeed ...............................   Passed    0.07 sec
+        Start 165: Cdc006Test.Finding_CombinationalBetweenStages
+165/576 Test #165: Cdc006Test.Finding_CombinationalBetweenStages .........................   Passed    0.07 sec
+        Start 166: Cdc006Test.NoFinding_SyncChainHasSinglePred
+166/576 Test #166: Cdc006Test.NoFinding_SyncChainHasSinglePred ...........................   Passed    0.07 sec
+        Start 167: Cdc006Test.NoFinding_MultiPredNotSyncStage
+167/576 Test #167: Cdc006Test.NoFinding_MultiPredNotSyncStage ............................   Passed    0.07 sec
+        Start 168: Cdc006Test.BypassPathAroundSyncDetected
+168/576 Test #168: Cdc006Test.BypassPathAroundSyncDetected ...............................   Passed    0.06 sec
+        Start 169: Cdc006Test.CombinationalBetweenStage2AndStage3
+169/576 Test #169: Cdc006Test.CombinationalBetweenStage2AndStage3 ........................   Passed    0.06 sec
+        Start 170: Cdc007AdversarialTest.SrcHasResetDstNoResetInfoCdc007
+170/576 Test #170: Cdc007AdversarialTest.SrcHasResetDstNoResetInfoCdc007 .................   Passed    0.08 sec
+        Start 171: Cdc007AdversarialTest.SrcNoResetDstHasResetInfoCdc007
+171/576 Test #171: Cdc007AdversarialTest.SrcNoResetDstHasResetInfoCdc007 .................   Passed    0.07 sec
+        Start 172: Cdc007AdversarialTest.BothNoResetTriggersCdc007
+172/576 Test #172: Cdc007AdversarialTest.BothNoResetTriggersCdc007 .......................   Passed    0.07 sec
+        Start 173: Cdc007AdversarialTest.BothHaveResetNoCdc007
+173/576 Test #173: Cdc007AdversarialTest.BothHaveResetNoCdc007 ...........................   Passed    0.07 sec
+        Start 174: Cdc007AdversarialTest.StrictModeBothUnresetIsWarning
+174/576 Test #174: Cdc007AdversarialTest.StrictModeBothUnresetIsWarning ..................   Passed    0.07 sec
+        Start 175: Cdc007AdversarialTest.DefaultModeBothUnresetIsInfo
+175/576 Test #175: Cdc007AdversarialTest.DefaultModeBothUnresetIsInfo ....................   Passed    0.07 sec
+        Start 176: Cdc007AdversarialTest.StrictModeMixedResetStaysInfo
+176/576 Test #176: Cdc007AdversarialTest.StrictModeMixedResetStaysInfo ...................   Passed    0.07 sec
+        Start 177: NamingAdversarialTest.GrayByNameDoesNotBypassCdc002
+177/576 Test #177: NamingAdversarialTest.GrayByNameDoesNotBypassCdc002 ...................   Passed    0.07 sec
+        Start 178: NamingAdversarialTest.HandshakeByNameDoesNotBypassCdc002
+178/576 Test #178: NamingAdversarialTest.HandshakeByNameDoesNotBypassCdc002 ..............   Passed    0.07 sec
+        Start 179: NamingAdversarialTest.FifoPtrByNameDoesNotBypassSafeCheck
+179/576 Test #179: NamingAdversarialTest.FifoPtrByNameDoesNotBypassSafeCheck .............   Passed    0.07 sec
+        Start 180: NamingAdversarialTest.SyncByNameDoesNotBypassSyncDetection
+180/576 Test #180: NamingAdversarialTest.SyncByNameDoesNotBypassSyncDetection ............   Passed    0.07 sec
+        Start 181: NamingAdversarialTest.FrontendNameTaggingDoesNotBypassSafety
+181/576 Test #181: NamingAdversarialTest.FrontendNameTaggingDoesNotBypassSafety ..........   Passed    0.07 sec
+        Start 182: NamingAdversarialTest.HandshakeWithoutFeedbackPathNotSafe
+182/576 Test #182: NamingAdversarialTest.HandshakeWithoutFeedbackPathNotSafe .............   Passed    0.07 sec
+        Start 183: NamingAdversarialTest.HandshakeWithFeedbackPathIsSafe
+183/576 Test #183: NamingAdversarialTest.HandshakeWithFeedbackPathIsSafe .................   Passed    0.07 sec
+        Start 184: NamingAdversarialTest.StructuralProofIgnoresNameSeededHandshake
+184/576 Test #184: NamingAdversarialTest.StructuralProofIgnoresNameSeededHandshake .......   Passed    0.07 sec
+        Start 185: RuleEngineTest.DefaultRulesLoaded
+185/576 Test #185: RuleEngineTest.DefaultRulesLoaded .....................................   Passed    0.07 sec
+        Start 186: RuleEngineTest.FindRule
+186/576 Test #186: RuleEngineTest.FindRule ...............................................   Passed    0.07 sec
+        Start 187: RuleEngineTest.FindNonexistentReturnsNullopt
+187/576 Test #187: RuleEngineTest.FindNonexistentReturnsNullopt ..........................   Passed    0.06 sec
+        Start 188: RuleEngineTest.DisableRuleFiltersFindings
+188/576 Test #188: RuleEngineTest.DisableRuleFiltersFindings .............................   Passed    0.06 sec
+        Start 189: RuleEngineTest.EnableDisabledRuleRestoresFindings
+189/576 Test #189: RuleEngineTest.EnableDisabledRuleRestoresFindings .....................   Passed    0.06 sec
+        Start 190: RuleEngineTest.SeverityOverrideApplied
+190/576 Test #190: RuleEngineTest.SeverityOverrideApplied ................................   Passed    0.07 sec
+        Start 191: RuleEngineTest.UnknownRuleFindingPassesThrough
+191/576 Test #191: RuleEngineTest.UnknownRuleFindingPassesThrough ........................   Passed    0.06 sec
+        Start 192: RuleEngineTest.MultipleFindingsMixedRules
+192/576 Test #192: RuleEngineTest.MultipleFindingsMixedRules .............................   Passed    0.07 sec
+        Start 193: RuleEngineTest.IsEnabledDefault
+193/576 Test #193: RuleEngineTest.IsEnabledDefault .......................................   Passed    0.06 sec
+        Start 194: RuleEngineTest.IsEnabledAfterDisable
+194/576 Test #194: RuleEngineTest.IsEnabledAfterDisable ..................................   Passed    0.06 sec
+        Start 195: RuleEngineTest.SeverityNotOverriddenByDefault
+195/576 Test #195: RuleEngineTest.SeverityNotOverriddenByDefault .........................   Passed    0.07 sec
+        Start 196: RuleEngineTest.SeverityOverriddenOnlyWhenExplicit
+196/576 Test #196: RuleEngineTest.SeverityOverriddenOnlyWhenExplicit .....................   Passed    0.06 sec
+        Start 197: WaiverTest.ExactMatch
+197/576 Test #197: WaiverTest.ExactMatch .................................................   Passed    0.07 sec
+        Start 198: WaiverTest.NoMatchDifferentRule
+198/576 Test #198: WaiverTest.NoMatchDifferentRule .......................................   Passed    0.09 sec
+        Start 199: WaiverTest.NoMatchDifferentDomains
+199/576 Test #199: WaiverTest.NoMatchDifferentDomains ....................................   Passed    0.09 sec
+        Start 200: WaiverTest.ExpiredWaiverSkipped
+200/576 Test #200: WaiverTest.ExpiredWaiverSkipped .......................................   Passed    0.07 sec
+        Start 201: WaiverTest.CaseInsensitiveMatch
+201/576 Test #201: WaiverTest.CaseInsensitiveMatch .......................................   Passed    0.08 sec
+        Start 202: WaiverTest.MultipleWaivers
+202/576 Test #202: WaiverTest.MultipleWaivers ............................................   Passed    0.09 sec
+        Start 203: WaiverTest.LoadFromFile
+203/576 Test #203: WaiverTest.LoadFromFile ...............................................   Passed    0.07 sec
+        Start 204: WaiverTest.MalformedDateDoesNotCrash
+204/576 Test #204: WaiverTest.MalformedDateDoesNotCrash ..................................   Passed    0.07 sec
+        Start 205: WaiverTest.EmptyRuleIdWaiverDoesNotMatchEverything
+205/576 Test #205: WaiverTest.EmptyRuleIdWaiverDoesNotMatchEverything ....................   Passed    0.06 sec
+        Start 206: WaiverTest.EmptyWaiverFieldStillActsAsWildcard
+206/576 Test #206: WaiverTest.EmptyWaiverFieldStillActsAsWildcard ........................   Passed    0.06 sec
+        Start 207: WaiverTest.SpecificWaiverDoesNotMatchEmptyFindingField
+207/576 Test #207: WaiverTest.SpecificWaiverDoesNotMatchEmptyFindingField ................   Passed    0.06 sec
+        Start 208: WaiverTest.LoadFromFileRejectsMissingRuleId
+208/576 Test #208: WaiverTest.LoadFromFileRejectsMissingRuleId ...........................   Passed    0.06 sec
+        Start 209: WaiverTest.AddWaiverRejectsEmptyRuleId
+209/576 Test #209: WaiverTest.AddWaiverRejectsEmptyRuleId ................................   Passed    0.07 sec
+        Start 210: WaiverTest.LoadFromFileEmptyFileFails
+210/576 Test #210: WaiverTest.LoadFromFileEmptyFileFails .................................   Passed    0.07 sec
+        Start 211: WaiverTest.StarRuleIdWaivesAllRules
+211/576 Test #211: WaiverTest.StarRuleIdWaivesAllRules ...................................   Passed    0.07 sec
+        Start 212: WaiverTest.ExpiryDateIsValidThroughEndOfDay
+212/576 Test #212: WaiverTest.ExpiryDateIsValidThroughEndOfDay ...........................   Passed    0.07 sec
+        Start 213: WaiverRegexTest.SubstringMatch
+213/576 Test #213: WaiverRegexTest.SubstringMatch ........................................   Passed    0.06 sec
+        Start 214: WaiverRegexTest.SubstringMatchNoOvermatch
+214/576 Test #214: WaiverRegexTest.SubstringMatchNoOvermatch .............................   Passed    0.06 sec
+        Start 215: WaiverRegexTest.WildcardMatchSingle
+215/576 Test #215: WaiverRegexTest.WildcardMatchSingle ...................................   Passed    0.06 sec
+        Start 216: WaiverRegexTest.WildcardMatchMultiple
+216/576 Test #216: WaiverRegexTest.WildcardMatchMultiple .................................   Passed    0.08 sec
+        Start 217: WaiverRegexTest.WildcardQuestionMark
+217/576 Test #217: WaiverRegexTest.WildcardQuestionMark ..................................   Passed    0.06 sec
+        Start 218: WaiverRegexTest.RegexMatch
+218/576 Test #218: WaiverRegexTest.RegexMatch ............................................   Passed    0.06 sec
+        Start 219: WaiverRegexTest.RegexNoMatch
+219/576 Test #219: WaiverRegexTest.RegexNoMatch ..........................................   Passed    0.07 sec
+        Start 220: WaiverRegexTest.LoadFromFileWithWildcard
+220/576 Test #220: WaiverRegexTest.LoadFromFileWithWildcard ..............................   Passed    0.08 sec
+        Start 221: WaiverRegexTest.LoadFromFileWithRegex
+221/576 Test #221: WaiverRegexTest.LoadFromFileWithRegex .................................   Passed    0.09 sec
+        Start 222: WaiverRegexTest.ApplyWildcardWaivers
+222/576 Test #222: WaiverRegexTest.ApplyWildcardWaivers ..................................   Passed    0.06 sec
+        Start 223: WaiverRegexTest.CaseInsensitiveMatching
+223/576 Test #223: WaiverRegexTest.CaseInsensitiveMatching ...............................   Passed    0.07 sec
+        Start 224: WaiverRegexTest.InvalidRegexIsNotUsedAsSubstring
+224/576 Test #224: WaiverRegexTest.InvalidRegexIsNotUsedAsSubstring ......................   Passed    0.12 sec
+        Start 225: WaiverRegexTest.NestedQuantifierRejected
+225/576 Test #225: WaiverRegexTest.NestedQuantifierRejected ..............................   Passed    0.08 sec
+        Start 226: WaiverRegexTest.AlternationOverlapRejected
+226/576 Test #226: WaiverRegexTest.AlternationOverlapRejected ............................   Passed    0.07 sec
+        Start 227: WaiverRegexTest.NonCapturingGroupAccepted
+227/576 Test #227: WaiverRegexTest.NonCapturingGroupAccepted .............................   Passed    0.08 sec
+        Start 228: WaiverRegexTest.OverlongPatternRejected
+228/576 Test #228: WaiverRegexTest.OverlongPatternRejected ...............................   Passed    0.07 sec
+        Start 229: WaiverRegexTest.LegitDotsStarPatternAccepted
+229/576 Test #229: WaiverRegexTest.LegitDotsStarPatternAccepted ..........................   Passed    0.07 sec
+        Start 230: ReportTest.JsonEnvelopeFormat
+230/576 Test #230: ReportTest.JsonEnvelopeFormat .........................................   Passed    0.06 sec
+        Start 231: ReportTest.JsonMultipleFindings
+231/576 Test #231: ReportTest.JsonMultipleFindings .......................................   Passed    0.07 sec
+        Start 232: ReportTest.TextFormat
+232/576 Test #232: ReportTest.TextFormat .................................................   Passed    0.08 sec
+        Start 233: ReportTest.TextWaivedFindingMarked
+233/576 Test #233: ReportTest.TextWaivedFindingMarked ....................................   Passed    0.07 sec
+        Start 234: ReportTest.SummaryLine
+234/576 Test #234: ReportTest.SummaryLine ................................................   Passed    0.07 sec
+        Start 235: ReportTest.SummaryEmptyFindings
+235/576 Test #235: ReportTest.SummaryEmptyFindings .......................................   Passed    0.07 sec
+        Start 236: ReportTest.HasUnsuppressedErrorsTrue
+236/576 Test #236: ReportTest.HasUnsuppressedErrorsTrue ..................................   Passed    0.07 sec
+        Start 237: ReportTest.HasUnsuppressedErrorsAllWaived
+237/576 Test #237: ReportTest.HasUnsuppressedErrorsAllWaived .............................   Passed    0.08 sec
+        Start 238: ReportTest.HasUnsuppressedErrorsOnlyWarnings
+238/576 Test #238: ReportTest.HasUnsuppressedErrorsOnlyWarnings ..........................   Passed    0.08 sec
+        Start 239: ReportTest.HasUnsuppressedErrorsFalsePathSuppressed
+239/576 Test #239: ReportTest.HasUnsuppressedErrorsFalsePathSuppressed ...................   Passed    0.07 sec
+        Start 240: ReportTest.HasUnsuppressedErrorsMulticycleSuppressed
+240/576 Test #240: ReportTest.HasUnsuppressedErrorsMulticycleSuppressed ..................   Passed    0.07 sec
+        Start 241: ReportTest.EscapeSpecialChars
+241/576 Test #241: ReportTest.EscapeSpecialChars .........................................   Passed    0.10 sec
+        Start 242: ReportTest.SummaryWithWaived
+242/576 Test #242: ReportTest.SummaryWithWaived ..........................................   Passed    0.09 sec
+        Start 243: ReportTest.JsonIncludesSafetyFields
+243/576 Test #243: ReportTest.JsonIncludesSafetyFields ...................................   Passed    0.08 sec
+        Start 244: ReportTest.TextReportShowsAnalysisStatus
+244/576 Test #244: ReportTest.TextReportShowsAnalysisStatus ..............................   Passed    0.08 sec
+        Start 245: ReportTest.TextHeaderContext
+245/576 Test #245: ReportTest.TextHeaderContext ..........................................   Passed    0.09 sec
+        Start 246: ReportTest.TextSignoffSection
+246/576 Test #246: ReportTest.TextSignoffSection .........................................   Passed    0.07 sec
+        Start 247: ReportTest.TextColorOffByDefault
+247/576 Test #247: ReportTest.TextColorOffByDefault ......................................   Passed    0.07 sec
+        Start 248: ReportTest.TextColorAlwaysEmitsAnsi
+248/576 Test #248: ReportTest.TextColorAlwaysEmitsAnsi ...................................   Passed    0.07 sec
+        Start 249: ReportTest.SeverityGroupingPutsErrorsFirst
+249/576 Test #249: ReportTest.SeverityGroupingPutsErrorsFirst ............................   Passed    0.07 sec
+        Start 250: ReportTest.JsonCliOverloadIncludesCoverageAndSignoff
+250/576 Test #250: ReportTest.JsonCliOverloadIncludesCoverageAndSignoff ..................   Passed    0.07 sec
+        Start 251: ReportTest.SarifUriEncodedAndStartLineClamped
+251/576 Test #251: ReportTest.SarifUriEncodedAndStartLineClamped .........................   Passed    0.08 sec
+        Start 252: HtmlReportTest.CustomCssRemoteDirectivesStripped
+252/576 Test #252: HtmlReportTest.CustomCssRemoteDirectivesStripped ......................   Passed    0.08 sec
+        Start 253: HtmlReportTest.EmptyOutputDirThrows
+253/576 Test #253: HtmlReportTest.EmptyOutputDirThrows ...................................   Passed    0.08 sec
+        Start 254: HtmlReportTest.OptionsAndFiltersAreRendered
+254/576 Test #254: HtmlReportTest.OptionsAndFiltersAreRendered ...........................   Passed    0.08 sec
+        Start 255: HtmlReportTest.SafetyFilterIsRendered
+255/576 Test #255: HtmlReportTest.SafetyFilterIsRendered .................................   Passed    0.07 sec
+        Start 256: ConfigTest.ParseBasicConfig
+256/576 Test #256: ConfigTest.ParseBasicConfig ...........................................   Passed    0.11 sec
+        Start 257: ConfigTest.ParseEmptyConfig
+257/576 Test #257: ConfigTest.ParseEmptyConfig ...........................................   Passed    0.07 sec
+        Start 258: ConfigTest.ParseCommentsIgnored
+258/576 Test #258: ConfigTest.ParseCommentsIgnored .......................................   Passed    0.07 sec
+        Start 259: ConfigTest.NonexistentFileReturnsEmpty
+259/576 Test #259: ConfigTest.NonexistentFileReturnsEmpty ................................   Passed    0.08 sec
+        Start 260: ConfigTest.MalformedSeverityIgnored
+260/576 Test #260: ConfigTest.MalformedSeverityIgnored ...................................   Passed    0.07 sec
+        Start 261: ConfigTest.MalformedSeverityWithValidField
+261/576 Test #261: ConfigTest.MalformedSeverityWithValidField ............................   Passed    0.07 sec
+        Start 262: ConfigTest.InvalidBooleanReportsError
+262/576 Test #262: ConfigTest.InvalidBooleanReportsError .................................   Passed    0.08 sec
+        Start 263: ConfigTest.ValidSeverityAccepted
+263/576 Test #263: ConfigTest.ValidSeverityAccepted ......................................   Passed    0.07 sec
+        Start 264: ConfigTest.FalsePathsParsed
+264/576 Test #264: ConfigTest.FalsePathsParsed ...........................................   Passed    0.07 sec
+        Start 265: ConfigTest.SuppressResetCrossingsParsed
+265/576 Test #265: ConfigTest.SuppressResetCrossingsParsed ...............................   Passed    0.07 sec
+        Start 266: ConfigTest.SarifFormatAccepted
+266/576 Test #266: ConfigTest.SarifFormatAccepted ........................................   Passed    0.08 sec
+        Start 267: ConfigTest.NativeBoolFormsAccepted
+267/576 Test #267: ConfigTest.NativeBoolFormsAccepted ....................................   Passed    0.07 sec
+        Start 268: ConfigTest.AnalysisTuningKeysParsed
+268/576 Test #268: ConfigTest.AnalysisTuningKeysParsed ...................................   Passed    0.07 sec
+        Start 269: ConfigTest.InvalidDepthRejected
+269/576 Test #269: ConfigTest.InvalidDepthRejected .......................................   Passed    0.07 sec
+        Start 270: ConfigTest.ExclusiveTypoRejected
+270/576 Test #270: ConfigTest.ExclusiveTypoRejected ......................................   Passed    0.08 sec
+        Start 271: ConfigTest.UnknownTopLevelKeyRejected
+271/576 Test #271: ConfigTest.UnknownTopLevelKeyRejected .................................   Passed    0.07 sec
+        Start 272: ConfigTest.OldCompactWaiverFormatCompat
+272/576 Test #272: ConfigTest.OldCompactWaiverFormatCompat ...............................   Passed    0.07 sec
+        Start 273: ConfigTest.OldCompactFalsePathCompat
+273/576 Test #273: ConfigTest.OldCompactFalsePathCompat ..................................   Passed    0.08 sec
+        Start 274: ConfigTest.NewNestedWaiverFormat
+274/576 Test #274: ConfigTest.NewNestedWaiverFormat ......................................   Passed    0.07 sec
+        Start 275: ConfigTest.ClockGroupsNested
+275/576 Test #275: ConfigTest.ClockGroupsNested ..........................................   Passed    0.07 sec
+        Start 276: ConfigTest.AsynchronousClockGroupIsNotExclusive
+276/576 Test #276: ConfigTest.AsynchronousClockGroupIsNotExclusive .......................   Passed    0.07 sec
+        Start 277: ConfigTest.MixedNestedAndCompact
+277/576 Test #277: ConfigTest.MixedNestedAndCompact ......................................   Passed    0.07 sec
+        Start 278: ConfigTest.CompactWaiverWithQuotedComma
+278/576 Test #278: ConfigTest.CompactWaiverWithQuotedComma ...............................   Passed    0.07 sec
+        Start 279: TrendTest.BaselineRoundTripsDelimitersNewlinesAndDuplicates
+279/576 Test #279: TrendTest.BaselineRoundTripsDelimitersNewlinesAndDuplicates ...........   Passed    0.07 sec
+        Start 280: PatternRecognizerTest.DetectsGrayEncoder
+280/576 Test #280: PatternRecognizerTest.DetectsGrayEncoder ..............................   Passed    0.06 sec
+        Start 281: PatternRecognizerTest.DetectsGrayDecoder
+281/576 Test #281: PatternRecognizerTest.DetectsGrayDecoder ..............................   Passed    0.06 sec
+        Start 282: PatternRecognizerTest.DetectsGrayByFlag
+282/576 Test #282: PatternRecognizerTest.DetectsGrayByFlag ...............................   Passed    0.07 sec
+        Start 283: PatternRecognizerTest.DetectsHandshakeValid
+283/576 Test #283: PatternRecognizerTest.DetectsHandshakeValid ...........................   Passed    0.07 sec
+        Start 284: PatternRecognizerTest.DetectsHandshakeReady
+284/576 Test #284: PatternRecognizerTest.DetectsHandshakeReady ...........................   Passed    0.07 sec
+        Start 285: PatternRecognizerTest.DetectsHandshakeByFlag
+285/576 Test #285: PatternRecognizerTest.DetectsHandshakeByFlag ..........................   Passed    0.06 sec
+        Start 286: PatternRecognizerTest.DetectsAsyncFifoPtr
+286/576 Test #286: PatternRecognizerTest.DetectsAsyncFifoPtr .............................   Passed    0.06 sec
+        Start 287: PatternRecognizerTest.DetectsAsyncFifoPtrByFlag
+287/576 Test #287: PatternRecognizerTest.DetectsAsyncFifoPtrByFlag .......................   Passed    0.06 sec
+        Start 288: PatternRecognizerTest.NoFalsePositiveForRegularRegister
+288/576 Test #288: PatternRecognizerTest.NoFalsePositiveForRegularRegister ...............   Passed    0.07 sec
+        Start 289: PatternRecognizerTest.AnnotatesGraph
+289/576 Test #289: PatternRecognizerTest.AnnotatesGraph ..................................   Passed    0.07 sec
+        Start 290: PatternRecognizerTest.DetectsAsyncFifoPattern
+290/576 Test #290: PatternRecognizerTest.DetectsAsyncFifoPattern .........................   Passed    0.06 sec
+        Start 291: PatternRecognizerTest.DetectsHandshakePattern
+291/576 Test #291: PatternRecognizerTest.DetectsHandshakePattern .........................   Passed    0.07 sec
+        Start 292: PatternRecognizerTest.DetectsGrayEncodingPattern
+292/576 Test #292: PatternRecognizerTest.DetectsGrayEncodingPattern ......................   Passed    0.08 sec
+        Start 293: PatternRecognizerTest.MultiplePatternsOnSameNode
+293/576 Test #293: PatternRecognizerTest.MultiplePatternsOnSameNode ......................   Passed    0.07 sec
+        Start 294: PatternRecognizerTest.DetectsStructuralGrayEncoderOnCombNode
+294/576 Test #294: PatternRecognizerTest.DetectsStructuralGrayEncoderOnCombNode ..........   Passed    0.07 sec
+        Start 295: PatternRecognizerTest.FlaggedGraySourceIsSafeCrossingSource
+295/576 Test #295: PatternRecognizerTest.FlaggedGraySourceIsSafeCrossingSource ...........   Passed    0.07 sec
+        Start 296: PatternRecognizerTest.UnrelatedDestNotSafeForEncoderPair
+296/576 Test #296: PatternRecognizerTest.UnrelatedDestNotSafeForEncoderPair ..............   Passed    0.07 sec
+        Start 297: PatternRecognizerTest.PlainMultiBitSourceNeverSafe
+297/576 Test #297: PatternRecognizerTest.PlainMultiBitSourceNeverSafe ....................   Passed    0.06 sec
+        Start 298: PatternRecognizerTest.VerifiedFifoPairSuppressesCrossing
+298/576 Test #298: PatternRecognizerTest.VerifiedFifoPairSuppressesCrossing ..............   Passed    0.07 sec
+        Start 299: PatternRecognizerTest.AnnotatePropagatesDetectedPatterns
+299/576 Test #299: PatternRecognizerTest.AnnotatePropagatesDetectedPatterns ..............   Passed    0.07 sec
+        Start 300: PatternRecognizerTest.GrayDecoderWithEncoderPairVerified
+300/576 Test #300: PatternRecognizerTest.GrayDecoderWithEncoderPairVerified ..............   Passed    0.08 sec
+        Start 301: PatternRecognizerTest.GrayEncoderWithoutDecoderStillDetected
+301/576 Test #301: PatternRecognizerTest.GrayEncoderWithoutDecoderStillDetected ..........   Passed    0.07 sec
+        Start 302: PatternRecognizerTest.AsyncFifoWithFullEmptyDetected
+302/576 Test #302: PatternRecognizerTest.AsyncFifoWithFullEmptyDetected ..................   Passed    0.07 sec
+        Start 303: PatternRecognizerTest.AsyncFifoWithMemoryDetected
+303/576 Test #303: PatternRecognizerTest.AsyncFifoWithMemoryDetected .....................   Passed    0.07 sec
+        Start 304: PatternRecognizerTest.HandshakeWithStabilityCheck
+304/576 Test #304: PatternRecognizerTest.HandshakeWithStabilityCheck .....................   Passed    0.07 sec
+        Start 305: PatternRecognizerTest.HandshakeWithoutFeedbackNotVerified
+305/576 Test #305: PatternRecognizerTest.HandshakeWithoutFeedbackNotVerified .............   Passed    0.06 sec
+        Start 306: PatternRecognizerTest.MultiBitClassifiedAsRaw
+306/576 Test #306: PatternRecognizerTest.MultiBitClassifiedAsRaw .........................   Passed    0.06 sec
+        Start 307: PatternRecognizerTest.VerifiedFifoReportsAllFlags
+307/576 Test #307: PatternRecognizerTest.VerifiedFifoReportsAllFlags .....................   Passed    0.06 sec
+        Start 308: ConstraintsTest.ParseYamlClocks
+308/576 Test #308: ConstraintsTest.ParseYamlClocks .......................................   Passed    0.07 sec
+        Start 309: ConstraintsTest.ParseYamlFalsePaths
+309/576 Test #309: ConstraintsTest.ParseYamlFalsePaths ...................................   Passed    0.07 sec
+        Start 310: ConstraintsTest.ParseYamlFalsePathsCompactCompat
+310/576 Test #310: ConstraintsTest.ParseYamlFalsePathsCompactCompat ......................   Passed    0.07 sec
+        Start 311: ConstraintsTest.ParseYamlClockGroups
+311/576 Test #311: ConstraintsTest.ParseYamlClockGroups ..................................   Passed    0.07 sec
+        Start 312: ConstraintsTest.ParseYamlClockGroupsCompactCompat
+312/576 Test #312: ConstraintsTest.ParseYamlClockGroupsCompactCompat .....................   Passed    0.10 sec
+        Start 313: ConstraintsTest.IsFalsePath
+313/576 Test #313: ConstraintsTest.IsFalsePath ...........................................   Passed    0.07 sec
+        Start 314: ConstraintsTest.IsAsynchronous
+314/576 Test #314: ConstraintsTest.IsAsynchronous ........................................   Passed    0.07 sec
+        Start 315: ConstraintsTest.IsFalsePathEmptyClocksRequiresReg
+315/576 Test #315: ConstraintsTest.IsFalsePathEmptyClocksRequiresReg .....................   Passed    0.07 sec
+        Start 316: ConstraintsTest.IsFalsePathBothEmptyMatchesNothing
+316/576 Test #316: ConstraintsTest.IsFalsePathBothEmptyMatchesNothing ....................   Passed    0.07 sec
+        Start 317: ConstraintsTest.IsFalsePathClockBased
+317/576 Test #317: ConstraintsTest.IsFalsePathClockBased .................................   Passed    0.06 sec
+        Start 318: ConstraintsTest.IsFalsePathClockWithRegRefines
+318/576 Test #318: ConstraintsTest.IsFalsePathClockWithRegRefines ........................   Passed    0.06 sec
+        Start 319: ConstraintsTest.WildcardFalsePathMatches
+319/576 Test #319: ConstraintsTest.WildcardFalsePathMatches ..............................   Passed    0.06 sec
+        Start 320: ConstraintsTest.QuestionMarkWildcard
+320/576 Test #320: ConstraintsTest.QuestionMarkWildcard ..................................   Passed    0.07 sec
+        Start 321: ConstraintsTest.PatternMatchesExact
+321/576 Test #321: ConstraintsTest.PatternMatchesExact ...................................   Passed    0.06 sec
+        Start 322: ConstraintsTest.PatternMatchesWildcard
+322/576 Test #322: ConstraintsTest.PatternMatchesWildcard ................................   Passed    0.07 sec
+        Start 323: ConstraintsTest.PatternMatchesSegment
+323/576 Test #323: ConstraintsTest.PatternMatchesSegment .................................   Passed    0.07 sec
+        Start 324: ConstraintsTest.PatternMatchesSubstring
+324/576 Test #324: ConstraintsTest.PatternMatchesSubstring ...............................   Passed    0.07 sec
+        Start 325: ConstraintsTest.PathMatchContextClockOnly
+325/576 Test #325: ConstraintsTest.PathMatchContextClockOnly .............................   Passed    0.07 sec
+        Start 326: ConstraintsTest.PathMatchContextClockAndReg
+326/576 Test #326: ConstraintsTest.PathMatchContextClockAndReg ...........................   Passed    0.07 sec
+        Start 327: ConstraintsTest.PathMatchContextCell
+327/576 Test #327: ConstraintsTest.PathMatchContextCell ..................................   Passed    0.07 sec
+        Start 328: ConstraintsTest.PathMatchContextCellWildcard
+328/576 Test #328: ConstraintsTest.PathMatchContextCellWildcard ..........................   Passed    0.06 sec
+        Start 329: ConstraintsTest.PathMatchContextPin
+329/576 Test #329: ConstraintsTest.PathMatchContextPin ...................................   Passed    0.07 sec
+        Start 330: ConstraintsTest.PathMatchContextThrough
+330/576 Test #330: ConstraintsTest.PathMatchContextThrough ...............................   Passed    0.07 sec
+        Start 331: ConstraintsTest.PathMatchContextThroughWildcard
+331/576 Test #331: ConstraintsTest.PathMatchContextThroughWildcard .......................   Passed    0.06 sec
+        Start 332: ConstraintsTest.PathMatchContextMultipleThrough
+332/576 Test #332: ConstraintsTest.PathMatchContextMultipleThrough .......................   Passed    0.07 sec
+        Start 333: ConstraintsTest.PathMatchContextEmptyMatchesNothing
+333/576 Test #333: ConstraintsTest.PathMatchContextEmptyMatchesNothing ...................   Passed    0.06 sec
+        Start 334: SdcReaderTest.ParseCreateClock
+334/576 Test #334: SdcReaderTest.ParseCreateClock ........................................   Passed    0.06 sec
+        Start 335: SdcReaderTest.ParseGeneratedClock
+335/576 Test #335: SdcReaderTest.ParseGeneratedClock .....................................   Passed    0.07 sec
+        Start 336: SdcReaderTest.ParseFalsePath
+336/576 Test #336: SdcReaderTest.ParseFalsePath ..........................................   Passed    0.07 sec
+        Start 337: SdcReaderTest.ParseClockGroups
+337/576 Test #337: SdcReaderTest.ParseClockGroups ........................................   Passed    0.06 sec
+        Start 338: SdcReaderTest.ParseMultiCyclePath
+338/576 Test #338: SdcReaderTest.ParseMultiCyclePath .....................................   Passed    0.07 sec
+        Start 339: SdcReaderTest.CalculateFrequency
+339/576 Test #339: SdcReaderTest.CalculateFrequency ......................................   Passed    0.06 sec
+        Start 340: SdcReaderTest.CommentsIgnored
+340/576 Test #340: SdcReaderTest.CommentsIgnored .........................................   Passed    0.07 sec
+        Start 341: SdcReaderTest.LineContinuation
+341/576 Test #341: SdcReaderTest.LineContinuation ........................................   Passed    0.06 sec
+        Start 342: SdcReaderTest.WildcardFalsePath
+342/576 Test #342: SdcReaderTest.WildcardFalsePath .......................................   Passed    0.06 sec
+        Start 343: SdcReaderTest.WildcardClockGroups
+343/576 Test #343: SdcReaderTest.WildcardClockGroups .....................................   Passed    0.06 sec
+        Start 344: SdcReaderTest.ParseFalsePathGetCells
+344/576 Test #344: SdcReaderTest.ParseFalsePathGetCells ..................................   Passed    0.06 sec
+        Start 345: SdcReaderTest.ParseFalsePathGetPins
+345/576 Test #345: SdcReaderTest.ParseFalsePathGetPins ...................................   Passed    0.07 sec
+        Start 346: SdcReaderTest.ParseFalsePathThroughPin
+346/576 Test #346: SdcReaderTest.ParseFalsePathThroughPin ................................   Passed    0.07 sec
+        Start 347: SdcReaderTest.ParseFalsePathMultipleThrough
+347/576 Test #347: SdcReaderTest.ParseFalsePathMultipleThrough ...........................   Passed    0.07 sec
+        Start 348: RelationshipTest.IntegerFrequencyRatioIsNotSynchronous
+348/576 Test #348: RelationshipTest.IntegerFrequencyRatioIsNotSynchronous ................   Passed    0.07 sec
+        Start 349: RelationshipTest.GeneratedClockIsGenerated
+349/576 Test #349: RelationshipTest.GeneratedClockIsGenerated ............................   Passed    0.06 sec
+        Start 350: ThreadPoolTest.BasicSubmitAndResult
+350/576 Test #350: ThreadPoolTest.BasicSubmitAndResult ...................................   Passed    0.07 sec
+        Start 351: ThreadPoolTest.MultipleTasks
+351/576 Test #351: ThreadPoolTest.MultipleTasks ..........................................   Passed    0.06 sec
+        Start 352: ThreadPoolTest.ConcurrentSubmitDuringShutdown
+352/576 Test #352: ThreadPoolTest.ConcurrentSubmitDuringShutdown .........................   Passed    0.07 sec
+        Start 353: ThreadPoolTest.WorkerSurvivesException
+353/576 Test #353: ThreadPoolTest.WorkerSurvivesException ................................   Passed    0.06 sec
+        Start 354: ThreadPoolTest.ZeroThreadsUsesHardwareConcurrency
+354/576 Test #354: ThreadPoolTest.ZeroThreadsUsesHardwareConcurrency .....................   Passed    0.07 sec
+        Start 355: ThreadSafeQueueTest.PushPopSize
+355/576 Test #355: ThreadSafeQueueTest.PushPopSize .......................................   Passed    0.01 sec
+        Start 356: ThreadSafeQueueTest.WaitPopBlocksUntilPush
+356/576 Test #356: ThreadSafeQueueTest.WaitPopBlocksUntilPush ............................   Passed    0.03 sec
+        Start 357: ThreadSafeQueueTest.WaitPopShutdownUnblocks
+357/576 Test #357: ThreadSafeQueueTest.WaitPopShutdownUnblocks ...........................   Passed    0.07 sec
+        Start 358: ParallelForTest.ProcessesAllItems
+358/576 Test #358: ParallelForTest.ProcessesAllItems .....................................   Passed    0.08 sec
+        Start 359: ParallelForTest.SingleThreadFallback
+359/576 Test #359: ParallelForTest.SingleThreadFallback ..................................   Passed    0.01 sec
+        Start 360: ThreadDeterminismTest.ThreadCountDoesNotAffectFindings
+360/576 Test #360: ThreadDeterminismTest.ThreadCountDoesNotAffectFindings ................   Passed    0.09 sec
+        Start 361: ThreadDeterminismTest.ComplexTopologyIdentical
+361/576 Test #361: ThreadDeterminismTest.ComplexTopologyIdentical ........................   Passed    0.09 sec
+        Start 362: ClockResolverTest.SimpleClockPortResolution
+362/576 Test #362: ClockResolverTest.SimpleClockPortResolution ...........................   Passed    0.09 sec
+        Start 363: ClockResolverTest.GatedClockDetection
+363/576 Test #363: ClockResolverTest.GatedClockDetection .................................   Passed    0.07 sec
+        Start 364: ClockResolverTest.MuxedClockDetection
+364/576 Test #364: ClockResolverTest.MuxedClockDetection .................................   Passed    0.07 sec
+        Start 365: ClockResolverTest.NetChainResolution
+365/576 Test #365: ClockResolverTest.NetChainResolution ..................................   Passed    0.06 sec
+        Start 366: ClockResolverTest.EmptyGraphReturnsEmpty
+366/576 Test #366: ClockResolverTest.EmptyGraphReturnsEmpty ..............................   Passed    0.06 sec
+        Start 367: ClockResolverTest.CacheInvalidatesAcrossGraphs
+367/576 Test #367: ClockResolverTest.CacheInvalidatesAcrossGraphs ........................   Passed    0.07 sec
+        Start 368: ClockResolverTest.RegisterWithoutClockPortFallsBack
+368/576 Test #368: ClockResolverTest.RegisterWithoutClockPortFallsBack ...................   Passed    0.07 sec
+        Start 369: AnalyzerTest.UnsynchronizedCrossingReported
+369/576 Test #369: AnalyzerTest.UnsynchronizedCrossingReported ...........................   Passed    0.14 sec
+        Start 370: AnalyzerTest.Clean2ffSynchronizerHasNoError
+370/576 Test #370: AnalyzerTest.Clean2ffSynchronizerHasNoError ...........................   Passed    0.15 sec
+        Start 371: AnalyzerTest.ConfigOnlyFalsePathSuppressesCrossing
+371/576 Test #371: AnalyzerTest.ConfigOnlyFalsePathSuppressesCrossing ....................   Passed    0.16 sec
+        Start 372: AnalyzerTest.CliFalsePathSuppressesCrossing
+372/576 Test #372: AnalyzerTest.CliFalsePathSuppressesCrossing ...........................   Passed    0.14 sec
+        Start 373: AnalyzerTest.UnknownRuleIsInputError
+373/576 Test #373: AnalyzerTest.UnknownRuleIsInputError ..................................   Passed    0.14 sec
+        Start 374: AnalyzerTest.InvalidSeverityOverrideIsInputError
+374/576 Test #374: AnalyzerTest.InvalidSeverityOverrideIsInputError ......................   Passed    0.14 sec
+        Start 375: AnalyzerTest.MissingTopModuleIsInputError
+375/576 Test #375: AnalyzerTest.MissingTopModuleIsInputError .............................   Passed    0.14 sec
+        Start 376: AnalyzerTest.MissingResetAdversarialFixture
+376/576 Test #376: AnalyzerTest.MissingResetAdversarialFixture ...........................   Passed    0.15 sec
+        Start 377: AnalyzerTest.NonexistentFileReportsError
+377/576 Test #377: AnalyzerTest.NonexistentFileReportsError ..............................   Passed    0.08 sec
+        Start 378: AnalyzerTest.IncrementalDirtyReanalyzesGraph
+378/576 Test #378: AnalyzerTest.IncrementalDirtyReanalyzesGraph ..........................   Passed    0.15 sec
+        Start 379: AnalyzerTest.InvalidIncdirReportsError
+379/576 Test #379: AnalyzerTest.InvalidIncdirReportsError ................................   Passed    0.08 sec
+        Start 380: AnalyzerTest.InvalidDefineReportsError
+380/576 Test #380: AnalyzerTest.InvalidDefineReportsError ................................   Passed    0.08 sec
+        Start 381: AnalyzerTest.FunctionBoundaryGraySuppressesCdc002
+381/576 Test #381: AnalyzerTest.FunctionBoundaryGraySuppressesCdc002 .....................   Passed    0.15 sec
+        Start 382: AnalyzerTest.IncrementalNoChangesKeepsFindings
+382/576 Test #382: AnalyzerTest.IncrementalNoChangesKeepsFindings ........................   Passed    0.14 sec
+        Start 383: AnalyzerTest.DefineAndIncdirEnableCrossing
+383/576 Test #383: AnalyzerTest.DefineAndIncdirEnableCrossing ............................   Passed    0.23 sec
+        Start 384: AnalyzerTest.AsicSignoffProfileAppliesCdc007ErrorOverride
+384/576 Test #384: AnalyzerTest.AsicSignoffProfileAppliesCdc007ErrorOverride .............   Passed    0.19 sec
+        Start 385: AnalyzerTest.AnalysisStatusCompleteOnSuccess
+385/576 Test #385: AnalyzerTest.AnalysisStatusCompleteOnSuccess ..........................   Passed    0.17 sec
+        Start 386: AnalysisStatusTest.CleanDesignReportsComplete
+386/576 Test #386: AnalysisStatusTest.CleanDesignReportsComplete .........................   Passed    0.14 sec
+        Start 387: AnalysisStatusTest.TruncatedDesignReportsIncomplete
+387/576 Test #387: AnalysisStatusTest.TruncatedDesignReportsIncomplete ...................   Passed    0.14 sec
+        Start 388: AnalysisStatusTest.TextReportShowsTruncationWarning
+388/576 Test #388: AnalysisStatusTest.TextReportShowsTruncationWarning ...................   Passed    0.15 sec
+        Start 389: AnalysisStatusTest.DefaultAnalysisStatusIsComplete
+389/576 Test #389: AnalysisStatusTest.DefaultAnalysisStatusIsComplete ....................   Passed    0.15 sec
+        Start 390: AnalysisStatusTest.FailedDesignReportsFailed
+390/576 Test #390: AnalysisStatusTest.FailedDesignReportsFailed ..........................   Passed    0.09 sec
+        Start 391: Fix1_SynchronizerPattern.TwoFFDetectedNotThreeFF
+391/576 Test #391: Fix1_SynchronizerPattern.TwoFFDetectedNotThreeFF ......................   Passed    0.07 sec
+        Start 392: Fix1_SynchronizerPattern.ThreeFFDetectedCorrectly
+392/576 Test #392: Fix1_SynchronizerPattern.ThreeFFDetectedCorrectly .....................   Passed    0.07 sec
+        Start 393: Fix8_ClockGroupDedup.NoDuplicateFalsePaths
+393/576 Test #393: Fix8_ClockGroupDedup.NoDuplicateFalsePaths ............................   Passed    0.07 sec
+        Start 394: Fix9_WaiverRegex.PreCompiledRegexStoredOnAdd
+394/576 Test #394: Fix9_WaiverRegex.PreCompiledRegexStoredOnAdd ..........................   Passed    0.07 sec
+        Start 395: Fix9_WaiverRegex.InvalidRegexRejectedAtAddTime
+395/576 Test #395: Fix9_WaiverRegex.InvalidRegexRejectedAtAddTime ........................   Passed    0.08 sec
+        Start 396: Fix11_WaiverExpiry.ExpiredWaiverIsReported
+396/576 Test #396: Fix11_WaiverExpiry.ExpiredWaiverIsReported ............................   Passed    0.07 sec
+        Start 397: Fix11_WaiverExpiry.UnexpiredUnusedWaiverIsReported
+397/576 Test #397: Fix11_WaiverExpiry.UnexpiredUnusedWaiverIsReported ....................   Passed    0.07 sec
+        Start 398: Fix13_WildcardMatch.CaseInsensitiveMatch
+398/576 Test #398: Fix13_WildcardMatch.CaseInsensitiveMatch ..............................   Passed    0.07 sec
+        Start 399: Fix13_WildcardMatch.QuestionMark
+399/576 Test #399: Fix13_WildcardMatch.QuestionMark ......................................   Passed    0.07 sec
+        Start 400: Fix13_WildcardMatch.StarMatchesEmpty
+400/576 Test #400: Fix13_WildcardMatch.StarMatchesEmpty ..................................   Passed    0.07 sec
+        Start 401: Fix13_WildcardMatch.NoFalseMatchOnSubstring
+401/576 Test #401: Fix13_WildcardMatch.NoFalseMatchOnSubstring ...........................   Passed    0.07 sec
+        Start 402: Fix7_PathTraversal.FindsSimplePath
+402/576 Test #402: Fix7_PathTraversal.FindsSimplePath ....................................   Passed    0.07 sec
+        Start 403: Fix7_PathTraversal.NoCycleHang
+403/576 Test #403: Fix7_PathTraversal.NoCycleHang ........................................   Passed    0.07 sec
+        Start 404: ProfileTest.DefaultProfile
+404/576 Test #404: ProfileTest.DefaultProfile ............................................   Passed    0.07 sec
+        Start 405: ProfileTest.StrictProfile
+405/576 Test #405: ProfileTest.StrictProfile .............................................   Passed    0.06 sec
+        Start 406: ProfileTest.AsicSignoffProfile
+406/576 Test #406: ProfileTest.AsicSignoffProfile ........................................   Passed    0.07 sec
+        Start 407: ProfileTest.FpgaProfile
+407/576 Test #407: ProfileTest.FpgaProfile ...............................................   Passed    0.06 sec
+        Start 408: ProfileTest.IpDevelopmentProfile
+408/576 Test #408: ProfileTest.IpDevelopmentProfile ......................................   Passed    0.06 sec
+        Start 409: ProfileTest.SocIntegrationProfile
+409/576 Test #409: ProfileTest.SocIntegrationProfile .....................................   Passed    0.07 sec
+        Start 410: ProfileTest.NameRoundTrip
+410/576 Test #410: ProfileTest.NameRoundTrip .............................................   Passed    0.07 sec
+        Start 411: ProfileTest.ProfileFromName
+411/576 Test #411: ProfileTest.ProfileFromName ...........................................   Passed    0.07 sec
+        Start 412: ProfileTest.ApplyProfileModifiesConfig
+412/576 Test #412: ProfileTest.ApplyProfileModifiesConfig ................................   Passed    0.07 sec
+        Start 413: ProfileTest.StringOverload
+413/576 Test #413: ProfileTest.StringOverload ............................................   Passed    0.07 sec
+        Start 414: ProfileTest.ApplyProfileWiresAllFields
+414/576 Test #414: ProfileTest.ApplyProfileWiresAllFields ................................   Passed    0.06 sec
+        Start 415: ProfileTest.FpgaProfileMulticycle
+415/576 Test #415: ProfileTest.FpgaProfileMulticycle .....................................   Passed    0.06 sec
+        Start 416: ProfileTest.StrictProfileDisablesAnnotation
+416/576 Test #416: ProfileTest.StrictProfileDisablesAnnotation ...........................   Passed    0.07 sec
+        Start 417: ProfileTest.IsValidProfile
+417/576 Test #417: ProfileTest.IsValidProfile ............................................   Passed    0.07 sec
+        Start 418: ProfileTest.DefaultProfilePreservesDefaults
+418/576 Test #418: ProfileTest.DefaultProfilePreservesDefaults ...........................   Passed    0.06 sec
+        Start 419: ResetDomainTest.SameResetSamePolarityNoFinding
+419/576 Test #419: ResetDomainTest.SameResetSamePolarityNoFinding ........................   Passed    0.07 sec
+        Start 420: ResetDomainTest.SameResetDiffPolarityTriggersCdc009
+420/576 Test #420: ResetDomainTest.SameResetDiffPolarityTriggersCdc009 ...................   Passed    0.07 sec
+        Start 421: ResetDomainTest.DiffResetSamePolarityTriggersCdc009
+421/576 Test #421: ResetDomainTest.DiffResetSamePolarityTriggersCdc009 ...................   Passed    0.07 sec
+        Start 422: ResetDomainTest.AsyncResetEscalatesToError
+422/576 Test #422: ResetDomainTest.AsyncResetEscalatesToError ............................   Passed    0.07 sec
+        Start 423: ResetDomainTest.SyncResetStaysWarning
+423/576 Test #423: ResetDomainTest.SyncResetStaysWarning .................................   Passed    0.07 sec
+        Start 424: ResetDomainTest.SameClockSkippedByDefault
+424/576 Test #424: ResetDomainTest.SameClockSkippedByDefault .............................   Passed    0.07 sec
+        Start 425: ResetDomainTest.SameClockDetectedWhenEnabled
+425/576 Test #425: ResetDomainTest.SameClockDetectedWhenEnabled ..........................   Passed    0.07 sec
+        Start 426: ResetDomainTest.ResetSynchronizerSuppressesCdc009
+426/576 Test #426: ResetDomainTest.ResetSynchronizerSuppressesCdc009 .....................   Passed    0.07 sec
+        Start 427: ResetDomainTest.ExtractResetDomainsReturnsCorrectDomains
+427/576 Test #427: ResetDomainTest.ExtractResetDomainsReturnsCorrectDomains ..............   Passed    0.07 sec
+        Start 428: BlackBoxTest.BuiltInModelsLoaded
+428/576 Test #428: BlackBoxTest.BuiltInModelsLoaded ......................................   Passed    0.06 sec
+        Start 429: BlackBoxTest.XilinxModelsPresent
+429/576 Test #429: BlackBoxTest.XilinxModelsPresent ......................................   Passed    0.07 sec
+        Start 430: BlackBoxTest.IntelModelsPresent
+430/576 Test #430: BlackBoxTest.IntelModelsPresent .......................................   Passed    0.07 sec
+        Start 431: BlackBoxTest.ARMModelsPresent
+431/576 Test #431: BlackBoxTest.ARMModelsPresent .........................................   Passed    0.07 sec
+        Start 432: BlackBoxTest.UnknownModuleNotBlackBox
+432/576 Test #432: BlackBoxTest.UnknownModuleNotBlackBox .................................   Passed    0.07 sec
+        Start 433: BlackBoxTest.FindReturnsModel
+433/576 Test #433: BlackBoxTest.FindReturnsModel .........................................   Passed    0.07 sec
+        Start 434: BlackBoxTest.FindUnknownReturnsNull
+434/576 Test #434: BlackBoxTest.FindUnknownReturnsNull ...................................   Passed    0.06 sec
+        Start 435: BlackBoxTest.CustomModelAdded
+435/576 Test #435: BlackBoxTest.CustomModelAdded .........................................   Passed    0.07 sec
+        Start 436: Phase5Test.RuleEngineHasCDC011
+436/576 Test #436: Phase5Test.RuleEngineHasCDC011 ........................................   Passed    0.07 sec
+        Start 437: Phase5Test.RuleEngineHasCDC012
+437/576 Test #437: Phase5Test.RuleEngineHasCDC012 ........................................   Passed    0.07 sec
+        Start 438: Phase5Test.PulseSyncDetectedByStructure
+438/576 Test #438: Phase5Test.PulseSyncDetectedByStructure ...............................   Passed    0.07 sec
+        Start 439: Phase5Test.ToggleSyncDetectedByStructure
+439/576 Test #439: Phase5Test.ToggleSyncDetectedByStructure ..............................   Passed    0.07 sec
+        Start 440: Phase5Test.WaiverTicketParsed
+440/576 Test #440: Phase5Test.WaiverTicketParsed .........................................   Passed    0.08 sec
+        Start 441: Phase5Test.WaiverTicketTransferredToFinding
+441/576 Test #441: Phase5Test.WaiverTicketTransferredToFinding ...........................   Passed    0.07 sec
+        Start 442: Phase5Test.WaiverTicketInFileParsing
+442/576 Test #442: Phase5Test.WaiverTicketInFileParsing ..................................   Passed    0.07 sec
+        Start 443: Phase5Test.OverbroadWaiverDetected
+443/576 Test #443: Phase5Test.OverbroadWaiverDetected ....................................   Passed    0.07 sec
+        Start 444: Phase5Test.NonOverbroadWaiverNotFlagged
+444/576 Test #444: Phase5Test.NonOverbroadWaiverNotFlagged ...............................   Passed    0.07 sec
+        Start 445: CoverageTest.EmptyFindings
+445/576 Test #445: CoverageTest.EmptyFindings ............................................   Passed    0.07 sec
+        Start 446: CoverageTest.CountsBySeverity
+446/576 Test #446: CoverageTest.CountsBySeverity .........................................   Passed    0.08 sec
+        Start 447: CoverageTest.CountsBySafetyStatus
+447/576 Test #447: CoverageTest.CountsBySafetyStatus .....................................   Passed    0.07 sec
+        Start 448: CoverageTest.CountsWaivedAndSuppressed
+448/576 Test #448: CoverageTest.CountsWaivedAndSuppressed ................................   Passed    0.07 sec
+        Start 449: CoverageTest.ClockPairBreakdown
+449/576 Test #449: CoverageTest.ClockPairBreakdown .......................................   Passed    0.07 sec
+        Start 450: CoverageTest.RuleBreakdown
+450/576 Test #450: CoverageTest.RuleBreakdown ............................................   Passed    0.07 sec
+        Start 451: CoverageTest.TruncatedPath
+451/576 Test #451: CoverageTest.TruncatedPath ............................................   Passed    0.07 sec
+        Start 452: SignoffTest.CleanPass
+452/576 Test #452: SignoffTest.CleanPass .................................................   Passed    0.07 sec
+        Start 453: SignoffTest.FailOnErrors
+453/576 Test #453: SignoffTest.FailOnErrors ..............................................   Passed    0.07 sec
+        Start 454: SignoffTest.PassWithWaivers
+454/576 Test #454: SignoffTest.PassWithWaivers ...........................................   Passed    0.07 sec
+        Start 455: SignoffTest.Incomplete
+455/576 Test #455: SignoffTest.Incomplete ................................................   Passed    0.08 sec
+        Start 456: SignoffTest.ErrorStatus
+456/576 Test #456: SignoffTest.ErrorStatus ...............................................   Passed    0.09 sec
+        Start 457: SignoffTest.CoverageComputed
+457/576 Test #457: SignoffTest.CoverageComputed ..........................................   Passed    0.08 sec
+        Start 458: SignoffTest.ErrorsButSomeWaivedStillFail
+458/576 Test #458: SignoffTest.ErrorsButSomeWaivedStillFail ..............................   Passed    0.08 sec
+        Start 459: SignoffTest.AsicSignoffWarningsFail
+459/576 Test #459: SignoffTest.AsicSignoffWarningsFail ...................................   Passed    0.08 sec
+        Start 460: SignoffTest.FpgaWarningsPass
+460/576 Test #460: SignoffTest.FpgaWarningsPass ..........................................   Passed    0.07 sec
+        Start 461: SignoffTest.StrictNonCriticalWarningsPass
+461/576 Test #461: SignoffTest.StrictNonCriticalWarningsPass .............................   Passed    0.06 sec
+        Start 462: SignoffTest.AsicSignoffCriticalWarningsFail
+462/576 Test #462: SignoffTest.AsicSignoffCriticalWarningsFail ...........................   Passed    0.06 sec
+        Start 463: SignoffTest.AsicSignoffWaivedWarningsPass
+463/576 Test #463: SignoffTest.AsicSignoffWaivedWarningsPass .............................   Passed    0.07 sec
+        Start 464: SignoffTest.AsicSignoffVerifiedSafeInfoPasses
+464/576 Test #464: SignoffTest.AsicSignoffVerifiedSafeInfoPasses .........................   Passed    0.07 sec
+        Start 465: SignoffTest.AsicSignoffVerifiedSafeWarningSkipped
+465/576 Test #465: SignoffTest.AsicSignoffVerifiedSafeWarningSkipped .....................   Passed    0.07 sec
+        Start 466: SignoffTest.AsicSignoffAmbiguousWarningFails
+466/576 Test #466: SignoffTest.AsicSignoffAmbiguousWarningFails ..........................   Passed    0.07 sec
+        Start 467: SignoffTest.DefaultMethodologyNoWarningFail
+467/576 Test #467: SignoffTest.DefaultMethodologyNoWarningFail ...........................   Passed    0.06 sec
+        Start 468: GoldenCorpusTest.SameDomainNoFindings
+468/576 Test #468: GoldenCorpusTest.SameDomainNoFindings .................................   Passed    0.07 sec
+        Start 469: GoldenCorpusTest.SimpleCrossingDetected
+469/576 Test #469: GoldenCorpusTest.SimpleCrossingDetected ...............................   Passed    0.07 sec
+        Start 470: GoldenCorpusTest.SynchronizedCrossingWarning
+470/576 Test #470: GoldenCorpusTest.SynchronizedCrossingWarning ..........................   Passed    0.07 sec
+        Start 471: GoldenCorpusTest.MultiBitCrossingDetected
+471/576 Test #471: GoldenCorpusTest.MultiBitCrossingDetected .............................   Passed    0.08 sec
+        Start 472: GoldenCorpusTest.BlackboxCrossingSuppressed
+472/576 Test #472: GoldenCorpusTest.BlackboxCrossingSuppressed ...........................   Passed    0.07 sec
+        Start 473: GoldenCorpusTest.ExclusiveClockGroupSuppressed
+473/576 Test #473: GoldenCorpusTest.ExclusiveClockGroupSuppressed ........................   Passed    0.06 sec
+        Start 474: GoldenCorpusTest.CoverageAndSignoffBasic
+474/576 Test #474: GoldenCorpusTest.CoverageAndSignoffBasic ..............................   Passed    0.07 sec
+        Start 475: GoldenCorpusTest.EmptyGraphNoFindings
+475/576 Test #475: GoldenCorpusTest.EmptyGraphNoFindings .................................   Passed    0.07 sec
+        Start 476: GoldenCorpusTest.CrossingCoverageMetrics
+476/576 Test #476: GoldenCorpusTest.CrossingCoverageMetrics ..............................   Passed    0.07 sec
+        Start 477: GoldenCorpusTest.EvidenceChainPopulated
+477/576 Test #477: GoldenCorpusTest.EvidenceChainPopulated ...............................   Passed    0.07 sec
+        Start 478: CdcMutationTest.GoldenSyncNoFindings
+478/576 Test #478: CdcMutationTest.GoldenSyncNoFindings ..................................   Passed    0.06 sec
+        Start 479: CdcMutationTest.RemoveSyncStage2TriggersCdc001
+479/576 Test #479: CdcMutationTest.RemoveSyncStage2TriggersCdc001 ........................   Passed    0.06 sec
+        Start 480: CdcMutationTest.InsertCombBetweenStagesTriggersCdc006
+480/576 Test #480: CdcMutationTest.InsertCombBetweenStagesTriggersCdc006 .................   Passed    0.06 sec
+        Start 481: CdcMutationTest.MultiBitBusTriggersCdc002
+481/576 Test #481: CdcMutationTest.MultiBitBusTriggersCdc002 .............................   Passed    0.07 sec
+        Start 482: CdcMutationTest.BothNoResetTriggersCdc007
+482/576 Test #482: CdcMutationTest.BothNoResetTriggersCdc007 .............................   Passed    0.07 sec
+        Start 483: CdcMutationTest.GatedClockTriggersCdc004
+483/576 Test #483: CdcMutationTest.GatedClockTriggersCdc004 ..............................   Passed    0.07 sec
+        Start 484: CdcMutationTest.ReconvergenceTriggersCdc003
+484/576 Test #484: CdcMutationTest.ReconvergenceTriggersCdc003 ...........................   Passed    0.07 sec
+        Start 485: CdcMutationTest.SafetyStatusPopulatedOnAllFindings
+485/576 Test #485: CdcMutationTest.SafetyStatusPopulatedOnAllFindings ....................   Passed    0.07 sec
+        Start 486: CdcMutationTest.NamingDoesNotBypassCdc002
+486/576 Test #486: CdcMutationTest.NamingDoesNotBypassCdc002 .............................   Passed    0.06 sec
+        Start 487: CdcMutationTest.MuxedClockNoResetTriggersCdc005
+487/576 Test #487: CdcMutationTest.MuxedClockNoResetTriggersCdc005 .......................   Passed    0.07 sec
+        Start 488: CdcMutationTest.MultiDomainDaisyChainTriggersCdc008
+488/576 Test #488: CdcMutationTest.MultiDomainDaisyChainTriggersCdc008 ...................   Passed    0.08 sec
+        Start 489: CdcMutationTest.DaisyChainThroughSharedJoinIsNotMaskedByBacktrack
+489/576 Test #489: CdcMutationTest.DaisyChainThroughSharedJoinIsNotMaskedByBacktrack .....   Passed    0.07 sec
+        Start 490: CdcMutationTest.ResetDomainCrossingTriggersCdc009
+490/576 Test #490: CdcMutationTest.ResetDomainCrossingTriggersCdc009 .....................   Passed    0.07 sec
+        Start 491: CdcMutationTest.MixedResetTriggersCdc007Info
+491/576 Test #491: CdcMutationTest.MixedResetTriggersCdc007Info ..........................   Passed    0.07 sec
+        Start 492: CdcMutationTest.BothUnresetIsInfoNotWarning
+492/576 Test #492: CdcMutationTest.BothUnresetIsInfoNotWarning ...........................   Passed    0.07 sec
+        Start 493: CdcMutationTest.PathTruncationTriggersCdc010
+493/576 Test #493: CdcMutationTest.PathTruncationTriggersCdc010 ..........................   Passed    0.43 sec
+        Start 494: BenchmarkTest.CrossingAnalysis100Registers
+494/576 Test #494: BenchmarkTest.CrossingAnalysis100Registers ............................   Passed    0.07 sec
+        Start 495: BenchmarkTest.CrossingAnalysis1000Registers
+495/576 Test #495: BenchmarkTest.CrossingAnalysis1000Registers ...........................   Passed    0.07 sec
+        Start 496: BenchmarkTest.ParallelAnalysis1000Registers
+496/576 Test #496: BenchmarkTest.ParallelAnalysis1000Registers ...........................   Passed    0.07 sec
+        Start 497: BenchmarkTest.CoverageComputationLarge
+497/576 Test #497: BenchmarkTest.CoverageComputationLarge ................................   Passed    0.07 sec
+        Start 498: BenchmarkTest.SignoffComputationLarge
+498/576 Test #498: BenchmarkTest.SignoffComputationLarge .................................   Passed    0.07 sec
+        Start 499: FrontendTest.CdcCrossingHasTwoRegisters
+499/576 Test #499: FrontendTest.CdcCrossingHasTwoRegisters ...............................   Passed    0.12 sec
+        Start 500: FrontendTest.AsyncResetEventListRolesClassifiedCorrectly
+500/576 Test #500: FrontendTest.AsyncResetEventListRolesClassifiedCorrectly ..............   Passed    0.11 sec
+        Start 501: FrontendTest.SameDomainHasOneRegister
+501/576 Test #501: FrontendTest.SameDomainHasOneRegister .................................   Passed    0.12 sec
+        Start 502: FrontendTest.AlwaysCombIsNotRegister
+502/576 Test #502: FrontendTest.AlwaysCombIsNotRegister ..................................   Passed    0.11 sec
+        Start 503: FrontendTest.Sync2ffHasTwoRegisters
+503/576 Test #503: FrontendTest.Sync2ffHasTwoRegisters ...................................   Passed    0.12 sec
+        Start 504: FrontendTest.MissingTopModuleFails
+504/576 Test #504: FrontendTest.MissingTopModuleFails ....................................   Passed    0.10 sec
+        Start 505: FrontendTest.CdcCrossingDomainsAreCorrect
+505/576 Test #505: FrontendTest.CdcCrossingDomainsAreCorrect .............................   Passed    0.11 sec
+        Start 506: FrontendTest.SameDomainRegistersShareDomain
+506/576 Test #506: FrontendTest.SameDomainRegistersShareDomain ...........................   Passed    0.11 sec
+        Start 507: FrontendTest.MultiDomainThreeDomains
+507/576 Test #507: FrontendTest.MultiDomainThreeDomains ..................................   Passed    0.11 sec
+        Start 508: FrontendTest.Sync2ffRegistersSameDomain
+508/576 Test #508: FrontendTest.Sync2ffRegistersSameDomain ...............................   Passed    0.11 sec
+        Start 509: FrontendTest.SourceLocationsAreReal
+509/576 Test #509: FrontendTest.SourceLocationsAreReal ...................................   Passed    0.11 sec
+        Start 510: FrontendTest.ResetInfoExtracted
+510/576 Test #510: FrontendTest.ResetInfoExtracted .......................................   Passed    0.13 sec
+        Start 511: FrontendTest.CdcCrossingProducesOneFinding
+511/576 Test #511: FrontendTest.CdcCrossingProducesOneFinding ............................   Passed    0.13 sec
+        Start 512: FrontendTest.SameDomainProducesNoFindings
+512/576 Test #512: FrontendTest.SameDomainProducesNoFindings .............................   Passed    0.12 sec
+        Start 513: FrontendTest.Sync2ffNoError
+513/576 Test #513: FrontendTest.Sync2ffNoError ...........................................   Passed    0.11 sec
+        Start 514: FrontendTest.PackedShiftChainTaggedOnAst
+514/576 Test #514: FrontendTest.PackedShiftChainTaggedOnAst ..............................   Passed    0.11 sec
+        Start 515: FrontendTest.PackedSync2ffNoError
+515/576 Test #515: FrontendTest.PackedSync2ffNoError .....................................   Passed    0.12 sec
+        Start 516: FrontendTest.MultiDomainProducesMultipleFindings
+516/576 Test #516: FrontendTest.MultiDomainProducesMultipleFindings ......................   Passed    0.11 sec
+        Start 517: FrontendTest.Sync3ffNoError
+517/576 Test #517: FrontendTest.Sync3ffNoError ...........................................   Passed    0.11 sec
+        Start 518: FrontendTest.SyncMisuseDetected
+518/576 Test #518: FrontendTest.SyncMisuseDetected .......................................   Passed    0.11 sec
+        Start 519: FrontendTest.SyncMisuseExitCode
+519/576 Test #519: FrontendTest.SyncMisuseExitCode .......................................   Passed    0.12 sec
+        Start 520: FrontendTest.GatedClockNoFalseCrossing
+520/576 Test #520: FrontendTest.GatedClockNoFalseCrossing ................................   Passed    0.12 sec
+        Start 521: FrontendTest.GatedCrossingDetected
+521/576 Test #521: FrontendTest.GatedCrossingDetected ....................................   Passed    0.11 sec
+        Start 522: FrontendTest.GatedClockResolvedInVerbose
+522/576 Test #522: FrontendTest.GatedClockResolvedInVerbose ..............................   Passed    0.11 sec
+        Start 523: FrontendTest.MuxedClockNoFalseCrossing
+523/576 Test #523: FrontendTest.MuxedClockNoFalseCrossing ................................   Passed    0.11 sec
+        Start 524: FrontendTest.MuxedCrossingDetected
+524/576 Test #524: FrontendTest.MuxedCrossingDetected ....................................   Passed    0.11 sec
+        Start 525: FrontendTest.ReconvergenceHazardDetected
+525/576 Test #525: FrontendTest.ReconvergenceHazardDetected ..............................   Passed    0.11 sec
+        Start 526: FrontendTest.ReconvergenceSafeDetected
+526/576 Test #526: FrontendTest.ReconvergenceSafeDetected ................................   Passed    0.11 sec
+        Start 527: FrontendTest.WaiverSuppressesError
+527/576 Test #527: FrontendTest.WaiverSuppressesError ....................................   Passed    0.11 sec
+        Start 528: FrontendTest.DisableRuleSuppressesFinding
+528/576 Test #528: FrontendTest.DisableRuleSuppressesFinding .............................   Passed    0.11 sec
+        Start 529: FrontendTest.SeverityOverrideChangesOutput
+529/576 Test #529: FrontendTest.SeverityOverrideChangesOutput ............................   Passed    0.12 sec
+        Start 530: FrontendTest.ReportJsonEnvelopeFormat
+530/576 Test #530: FrontendTest.ReportJsonEnvelopeFormat .................................   Passed    0.11 sec
+        Start 531: FrontendTest.MultiBitCrossingDetected
+531/576 Test #531: FrontendTest.MultiBitCrossingDetected .................................   Passed    0.11 sec
+        Start 532: FrontendTest.GrayCodedCrossingNoCdc002
+532/576 Test #532: FrontendTest.GrayCodedCrossingNoCdc002 ................................   Passed    0.11 sec
+        Start 533: FrontendTest.GatedClockCrossingDetected
+533/576 Test #533: FrontendTest.GatedClockCrossingDetected ...............................   Passed    0.12 sec
+        Start 534: FrontendTest.MissingResetDetected
+534/576 Test #534: FrontendTest.MissingResetDetected .....................................   Passed    0.11 sec
+        Start 535: FrontendTest.NewRulesRegisteredInEngine
+535/576 Test #535: FrontendTest.NewRulesRegisteredInEngine ...............................   Passed    0.05 sec
+        Start 536: FrontendTest.WireCrossingDetected
+536/576 Test #536: FrontendTest.WireCrossingDetected .....................................   Passed    0.11 sec
+        Start 537: FrontendTest.CombinationalCrossingDetected
+537/576 Test #537: FrontendTest.CombinationalCrossingDetected ............................   Passed    0.12 sec
+        Start 538: FrontendTest.GatedClockStructurallyDetected
+538/576 Test #538: FrontendTest.GatedClockStructurallyDetected ...........................   Passed    0.11 sec
+        Start 539: FrontendTest.HierarchicalPortConnectionsPreserveCdcPath
+539/576 Test #539: FrontendTest.HierarchicalPortConnectionsPreserveCdcPath ...............   Passed    0.11 sec
+        Start 540: FrontendTest.GenerateBlockCrossingDetected
+540/576 Test #540: FrontendTest.GenerateBlockCrossingDetected ............................   Passed    0.13 sec
+        Start 541: FrontendTest.ComplexLvalueCrossingDetected
+541/576 Test #541: FrontendTest.ComplexLvalueCrossingDetected ............................   Passed    0.11 sec
+        Start 542: FrontendTest.PartSelectPreservesEdgeWidth
+542/576 Test #542: FrontendTest.PartSelectPreservesEdgeWidth .............................   Passed    0.10 sec
+        Start 543: FrontendTest.MultiInstanceDifferentClocksSeparateDomains
+543/576 Test #543: FrontendTest.MultiInstanceDifferentClocksSeparateDomains ..............   Passed    0.11 sec
+        Start 544: FrontendTest.MultiInstanceSameClockSharesDomain
+544/576 Test #544: FrontendTest.MultiInstanceSameClockSharesDomain .......................   Passed    0.13 sec
+        Start 545: FrontendTest.FuncCallCrossingDetected
+545/576 Test #545: FrontendTest.FuncCallCrossingDetected .................................   Passed    0.14 sec
+        Start 546: FrontendTest.TaskCallCrossingDetected
+546/576 Test #546: FrontendTest.TaskCallCrossingDetected .................................   Passed    0.14 sec
+        Start 547: FrontendTest.NestedInstanceHasModuleType
+547/576 Test #547: FrontendTest.NestedInstanceHasModuleType ..............................   Passed    0.11 sec
+        Start 548: FrontendTest.ToggleUnaryCreatesNotNode
+548/576 Test #548: FrontendTest.ToggleUnaryCreatesNotNode ................................   Passed    0.11 sec
+        Start 549: FrontendTest.GenerateLoopIterationsAreSeparateCopies
+549/576 Test #549: FrontendTest.GenerateLoopIterationsAreSeparateCopies ..................   Passed    0.12 sec
+        Start 550: StressTest.TotalFindingCount
+550/576 Test #550: StressTest.TotalFindingCount ..........................................   Passed    0.12 sec
+        Start 551: StressTest.Cdc001_UnsynchronizedCrossing
+551/576 Test #551: StressTest.Cdc001_UnsynchronizedCrossing ..............................   Passed    0.13 sec
+        Start 552: StressTest.Cdc002_MultiBitCrossing
+552/576 Test #552: StressTest.Cdc002_MultiBitCrossing ....................................   Passed    0.12 sec
+        Start 553: StressTest.Cdc003_ReconvergenceDetected
+553/576 Test #553: StressTest.Cdc003_ReconvergenceDetected ...............................   Passed    0.12 sec
+        Start 554: StressTest.Cdc004_GatedClockDetected
+554/576 Test #554: StressTest.Cdc004_GatedClockDetected ..................................   Passed    0.11 sec
+        Start 555: StressTest.Cdc005_MuxedClockDetected
+555/576 Test #555: StressTest.Cdc005_MuxedClockDetected ..................................   Passed    0.11 sec
+        Start 556: StressTest.Cdc006_NoDirectFeedFalsePositive
+556/576 Test #556: StressTest.Cdc006_NoDirectFeedFalsePositive ...........................   Passed    0.11 sec
+        Start 557: StressTest.Cdc007_MissingReset
+557/576 Test #557: StressTest.Cdc007_MissingReset ........................................   Passed    0.12 sec
+        Start 558: StressTest.Cdc008_MultiDomainDaisyChain
+558/576 Test #558: StressTest.Cdc008_MultiDomainDaisyChain ...............................   Passed    0.12 sec
+        Start 559: StressTest.GrayCounterSuppressed
+559/576 Test #559: StressTest.GrayCounterSuppressed ......................................   Passed    0.11 sec
+        Start 560: StressTest.WaiverConfigSuppresses
+560/576 Test #560: StressTest.WaiverConfigSuppresses .....................................   Passed    0.12 sec
+        Start 561: StressTest.AllClockDomainsDetected
+561/576 Test #561: StressTest.AllClockDomainsDetected ....................................   Passed    0.12 sec
+        Start 562: StressTest.AllRulesTriggered
+562/576 Test #562: StressTest.AllRulesTriggered ..........................................   Passed    0.13 sec
+        Start 563: LspTest.HandlesInitializeAndMalformedParams
+563/576 Test #563: LspTest.HandlesInitializeAndMalformedParams ...........................   Passed    0.23 sec
+        Start 564: LspTest.AnalyzesOpenDocument
+564/576 Test #564: LspTest.AnalyzesOpenDocument ..........................................   Passed    0.09 sec
+        Start 565: LspTest.HandlesDidOpenCloseLifecycle
+565/576 Test #565: LspTest.HandlesDidOpenCloseLifecycle ..................................   Passed    0.14 sec
+        Start 566: LspTest.BindsLoopbackByDefault
+566/576 Test #566: LspTest.BindsLoopbackByDefault ........................................   Passed    0.05 sec
+        Start 567: LspTest.UsesEphemeralPort
+567/576 Test #567: LspTest.UsesEphemeralPort .............................................   Passed    0.05 sec
+        Start 568: LspTest.HandlesShutdownAndExit
+568/576 Test #568: LspTest.HandlesShutdownAndExit ........................................   Passed    0.26 sec
+        Start 569: LspTest.ReturnsErrorResponseForMissingMethod
+569/576 Test #569: LspTest.ReturnsErrorResponseForMissingMethod ..........................   Passed    0.05 sec
+        Start 570: LspTest.RejectsConcurrentClient
+570/576 Test #570: LspTest.RejectsConcurrentClient .......................................   Passed    0.05 sec
+        Start 571: LspTest.CancelRequestAccepted
+571/576 Test #571: LspTest.CancelRequestAccepted .........................................   Passed    0.10 sec
+        Start 572: LspTest.AnalysisTimeoutReturnsWarning
+572/576 Test #572: LspTest.AnalysisTimeoutReturnsWarning .................................   Passed    0.09 sec
+        Start 573: LspTest.AnalysisTimeoutDisabled
+573/576 Test #573: LspTest.AnalysisTimeoutDisabled .......................................   Passed    0.10 sec
+        Start 574: LspTest.NetlistDocumentProducesCrossingDiagnostics
+574/576 Test #574: LspTest.NetlistDocumentProducesCrossingDiagnostics ....................   Passed    0.06 sec
+        Start 575: LspTest.ForcedInputTypeOverridesAutoDetection
+575/576 Test #575: LspTest.ForcedInputTypeOverridesAutoDetection .........................   Passed    0.08 sec
+        Start 576: LspTest.ParseErrorMappedToSourceLine
+576/576 Test #576: LspTest.ParseErrorMappedToSourceLine ..................................   Passed    0.05 sec
+
+100% tests passed, 0 tests failed out of 576
+
+Total Test time (real) =  56.93 sec

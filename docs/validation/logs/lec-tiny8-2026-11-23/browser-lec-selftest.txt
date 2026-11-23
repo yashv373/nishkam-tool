@@ -1,0 +1,21 @@
+PASS cell models for Yosys: all cells read, no UDP left
+  4 points, 311 ms
+PASS counter: proven (equiv flow), no unproven points
+  method miter, 994 ms
+PASS FSM (active-low reset, case): proven
+PASS async-reset flops (dffrnq model with its rewritten UDP): proven
+  first difference: {"name":"q","cycle":2,"time":3,"gold":"0001","gate":"1001"} unproven: q[3]
+PASS counter with one gate swapped is caught, with a counterexample and the output name
+PASS FSM with a gate swapped is caught
+  same-name run: equiv; renamed run: equiv (flop names in the netlist: r1)
+PASS renamed internal flop: still proven (equiv induction covers the unmatched register)
+PASS a wrong gate is caught even when a flop is renamed
+PASS matching incomplete, induction on the miter proves it: verdict proven by miter
+PASS induction inconclusive, no difference found: only the first 40 cycles, never 'proven'
+  tiny8: 11511 ms incl. synthesis
+PASS tiny8 (#200): internal registers r0..r3 are paired by name, all 48 points proven by the equiv flow in seconds
+  nand2: differs in 81857 ms
+PASS tiny8 (#200): a swapped gate is still caught
+PASS plain errors: no netlist, no top, bad netlist text
+PASS helpers: resetOf, parseEquiv, diffOutputs
+ALL OK

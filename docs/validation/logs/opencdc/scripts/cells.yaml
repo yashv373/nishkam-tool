@@ -1,0 +1,6 @@
+cells:
+  - pattern: "$_DFF_P_"
+    kind: dff
+    clock: C
+    data: D
+    output: Q

@@ -1,0 +1,168 @@
+{
+  "analysis_status": "complete",
+  "input_type": "netlist",
+  "finding_count": 6,
+  "coverage": {
+    "total": 6,
+    "errors": 4,
+    "warnings": 0,
+    "verified_safe": 0,
+    "verified_unsafe": 2,
+    "waived": 0,
+    "suppressed": 0
+  },
+  "signoff": {
+    "status": "FAIL",
+    "reason": "4 unsuppressed error(s) found"
+  },
+  "findings": [
+    {
+      "rule_id": "CDC001",
+      "rule_name": "unsynchronized_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "rbin_reg",
+      "source_domain": "rclk",
+      "dest": "rq1_reg",
+      "dest_domain": "wclk",
+      "bus_width": 3,
+      "reason": "Register 'rbin_reg' in domain 'rclk' drives register 'rq1_reg' in domain 'wclk' without synchronization. No 2FF/3FF synchronizer chain detected on destination side.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "verified_unsafe",
+      "safety_provenance": "No synchronizer chain detected on destination side",
+      "evidence_chain": [
+        {
+          "step_type": "clock_domains",
+          "description": "Clock domains: 'rclk' -> 'wclk'",
+          "result": "identified"
+        },
+        {
+          "step_type": "bus_width",
+          "description": "Bus width: 3",
+          "result": "measured"
+        }
+      ],
+      "file": "nl/cdc-async-fifo.binary_pointers_2_flop_sync_per_bit.v",
+      "line": 783
+    },
+    {
+      "rule_id": "CDC002",
+      "rule_name": "multi_bit_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "rbin_reg",
+      "source_domain": "rclk",
+      "dest": "rq1_reg",
+      "dest_domain": "wclk",
+      "bus_width": 3,
+      "reason": "Multi-bit bus 'rbin_reg' (width=3) crosses from domain 'rclk' to domain 'wclk' without gray-code encoding or handshake protocol.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "nl/cdc-async-fifo.binary_pointers_2_flop_sync_per_bit.v",
+      "line": 783
+    },
+    {
+      "rule_id": "CDC007",
+      "rule_name": "missing_reset",
+      "severity": "info",
+      "waived": false,
+      "source": "rbin_reg",
+      "source_domain": "rclk",
+      "dest": "rq1_reg",
+      "dest_domain": "wclk",
+      "bus_width": 3,
+      "reason": "CDC crossing between registers 'rbin_reg' and 'rq1_reg': neither register has a reset signal.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "nl/cdc-async-fifo.binary_pointers_2_flop_sync_per_bit.v",
+      "line": 783
+    },
+    {
+      "rule_id": "CDC001",
+      "rule_name": "unsynchronized_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "wbin_reg",
+      "source_domain": "wclk",
+      "dest": "wq1_reg",
+      "dest_domain": "rclk",
+      "bus_width": 3,
+      "reason": "Register 'wbin_reg' in domain 'wclk' drives register 'wq1_reg' in domain 'rclk' without synchronization. No 2FF/3FF synchronizer chain detected on destination side.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "verified_unsafe",
+      "safety_provenance": "No synchronizer chain detected on destination side",
+      "evidence_chain": [
+        {
+          "step_type": "clock_domains",
+          "description": "Clock domains: 'wclk' -> 'rclk'",
+          "result": "identified"
+        },
+        {
+          "step_type": "bus_width",
+          "description": "Bus width: 3",
+          "result": "measured"
+        }
+      ],
+      "file": "nl/cdc-async-fifo.binary_pointers_2_flop_sync_per_bit.v",
+      "line": 898
+    },
+    {
+      "rule_id": "CDC002",
+      "rule_name": "multi_bit_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "wbin_reg",
+      "source_domain": "wclk",
+      "dest": "wq1_reg",
+      "dest_domain": "rclk",
+      "bus_width": 3,
+      "reason": "Multi-bit bus 'wbin_reg' (width=3) crosses from domain 'wclk' to domain 'rclk' without gray-code encoding or handshake protocol.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "nl/cdc-async-fifo.binary_pointers_2_flop_sync_per_bit.v",
+      "line": 898
+    },
+    {
+      "rule_id": "CDC007",
+      "rule_name": "missing_reset",
+      "severity": "info",
+      "waived": false,
+      "source": "wbin_reg",
+      "source_domain": "wclk",
+      "dest": "wq1_reg",
+      "dest_domain": "rclk",
+      "bus_width": 3,
+      "reason": "CDC crossing between registers 'wbin_reg' and 'wq1_reg': neither register has a reset signal.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "nl/cdc-async-fifo.binary_pointers_2_flop_sync_per_bit.v",
+      "line": 898
+    }
+  ]
+}

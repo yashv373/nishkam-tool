@@ -24,10 +24,10 @@ Two place-and-route flows exist in Studio:
 | Analog Lab features (section 18C) | ngspice-46 WASM: `.step`, diode/BJT/E parts, junction parasitics (ad/as/pd/ps) | native ngspice-46, same decks | `.step` R and temperature, diode clipper, BJT stage, E source, ring5 and OTA with parasitics: same numbers on both sides (the first five come from issue comments: their decks and logs are not in the repo, so they cannot be re-run from here; for the parasitics rows only the browser script is kept); five starter circuits are examples, not compared | parasitic formula vs layout extraction, pnp/F/G/H, op table under `.step`, starter circuits, other browsers |
 | Analog simulation (sections 18 and 18B; Node and Lab page in Edge) | ngspice-46 (KLU compiled in; these runs used SPARSE, as native did) | native ngspice-46 (KLU build, SPARSE used), same models | 13 decks total (5 in section 18, Node only; 8 in section 18B, Node and Edge Lab page, incl. OTA at tt/ss/ff and a -40 to 125 C sweep): all printed numbers and 378 device probes identical; raw files agree to 2.7e-7 (section 18) and 2.0e-13 (section 18B) relative, per vector | KLU on big circuits, fs/sf corners, BJT/resistor/cap models, Monte Carlo, noise, big circuits (>80 devices), Chrome/Firefox/Safari |
 | RTL grader | Yosys miter + k-induction | native Yosys 0.64 | 12 references proven, 29 wrong designs fail, same in both (42 cases); a design differing only after cycle 45 passes as "first 40 cycles" (section 10) | CDC problems, x-handling, unreachable-state fallback |
-| OpenCDC CDC check, early (section 20) | OpenCDC 4101730 (WebAssembly, 5.2 MB) | native OpenCDC 4101730 | same output on all 13 cases (the 13-case runs and comparison script are not in the repo; the repo selftest covers 2 cases); agrees with our CDC grader on 8 of 13 | grader integration; the 5 differences; in-browser click-through |
-| No-arithmetic rule, adder problems (section 21) | Yosys 0.68.1207 (WebAssembly) | none (Node run only) | all 24 adder checks as expected (the run log is not saved in the repo); `+`, `-` and `/` rejected on all 4 problems | network depth and cell count; native Yosys |
+| OpenCDC CDC check, early (section 20) | OpenCDC 4101730 (WebAssembly, 5.2 MB) | native OpenCDC 4101730 | same output on all 13 cases (the 13-case runs, scripts and logs are archived in `logs/opencdc/`; the repo selftest covers 2 cases); agrees with our CDC grader on 8 of 13 | grader integration; the 5 differences; in-browser click-through |
+| No-arithmetic rule, adder problems (section 21) | Yosys 0.68.1207 (WebAssembly) | none (Node run only) | all 24 adder checks as expected (log `logs/grader/grader.validation-2026-11-23.txt`; all 140 checks of that run as expected); `+`, `-` and `/` rejected on all 4 problems | network depth and cell count; native Yosys |
 | Gate-level simulation, early (section 23, Node + one Edge page run) | Icarus 14.0 (devel) WebAssembly + stripped gf180 models | native Icarus 14.0 (devel) + the PDK's own models | all signals, all time steps identical on 3 designs and 1 seeded fault | timing models, multi-clock, latches |
-| Equivalence check, early (section 24) | Yosys 0.68.1207 WebAssembly | native Yosys 0.64 (two model sources) and EQY | same verdicts on 4 cases; on gf180mcuD, tiny8 (236 cells) gave no verdict in either (issue #200); #200 was fixed on main (28fda34, 2026-11-22) and tiny8 shows `proven` in sections 28 and 29, but this gf180 case was not re-run against native after the fix | anything above 13 cells proven in this section's runs (before the #200 fix); more fault kinds |
+| Equivalence check, early (section 24) | Yosys 0.68.1207 WebAssembly | native Yosys 0.64 (two model sources) and EQY | same verdicts on 4 cases; on gf180mcuD, tiny8 (236 cells) gave no verdict in either (issue #200); #200 was fixed on main (28fda34, 2026-11-22) and tiny8 shows `proven` in sections 28 and 29; the gf180 tiny8 equivalence step was re-run after the fix on 2026-11-23 and is `proven` in the browser and native (section 24, logs `logs/lec-tiny8-2026-11-23/`) | anything above 13 cells proven in this section's runs (before the #200 fix); more fault kinds |
 | OpenSTA + OpenROAD on sha1 (6.8k cells) and a two-clock FIFO (2.9k cells) (section 25, Node only, 14 GB heap) | OpenSTA defec0b, OpenROAD 6f3f28c | native sta 3.1.0, native OpenROAD 6f3f28c | 0 of 47,660 STA lines differ; both route to 0 violations; placement differs (50 to 60% of cells elsewhere on the two big designs), HPWL native +0.1 to +0.3% against browser | native DRC/LVS, why placement differs, an in-page run (the default heap ran out on sha1 in Node) |
 | Scan + ATPG, early (section 27) | Yosys 0.68.1207 + `dft-core.js` + Quaigh 0.0.6 (WASM) | native Quaigh 0.0.6 + native Difetto (`difetto.so` + `nl2bench` 0.13.0 on gf180mcuD) | on the same `.bench` (re-run with both flows' files), faults and coverage match native Quaigh on all 6 designs on both sides, simulated outputs match byte for byte, pattern counts equal or close (random fill differs) (c17 bench, counter, acc, s27, s298, s344); scan-flop counts match Difetto on all 6; 4 bugs found (#194, #201, #202, #203); #194 is fixed on main (`fd28be1`), so `s344` now runs through WASM Kissat and matches native; the other three are not fixed in this report (`c17.v` and `s298` fail full Studio `handle()`) | silicon/gf180 cell coverage in Studio, full LibreLane `DifettoPNR`/`BoundaryScan`/`DifettoTest`, SAT-ATPG path beyond these 6 small designs, multi-clock/negedge/large designs, Chrome/Firefox/Safari |
 | SkyWater `sky130A` digital flow (`sky130_fd_sc_hd`, section 28; Node + Edge) | Studio browser stack (`@yowasp/yosys` 0.68.1207, Icarus `a275a9a`, OpenROAD `6f3f28c-viz`, OpenSTA `defec0b`, Magic `bed8d4f`, Netgen `3cb047b`) + open_pdks `7b70722` | native LibreLane 3.0.2 Classic in `hpretl/iic-osic-tools:chipathon26` (`tiny8`, `counter10`) + native KLayout 0.30.8 DRC | 0 TritonRoute DRC, 0 Magic DRC, Netgen LVS match, LEC proven, GLS 0 mismatches (`shreg4`, `counter10`), 9-corner STA run (`nom/min/max` × `ss/tt/ff`), setup order ss < tt < ff shown with 3 corners printed for `tiny8` and `counter10` (the other corner numbers and the run logs are not stored in the repo); on `tiny8` `nom_tt_025C_1v80` setup slack is 12.100 ns (Studio) / 11.843 ns (LibreLane Classic) vs 12.265 ns native; native KLayout `sky130A_mr.drc` on the browser GDS: 0 on `counter10` and `tiny8` (an earlier `tiny8` layout had 3 `nsdm.1`/`psdm.1` implant flags, so it depends on the layout); Edge `counter` passes all 13 stages with KLayout 3D (11 layers) and cell delay lookup; an Edge `counter10` run with 18 stage chips passed is also shown (why 13 and 18 differ is not recorded) | large designs (>500 cells), macros, SRAM, multi-clock, native-vs-browser STA on identical SPEF/netlist, analog `sky130A` SPICE in Analog Lab, Chrome/Firefox/Safari |
@@ -666,7 +666,7 @@ Things we know are open. None is claimed as validated.
 
 **Cases.** For every problem: the reference against itself, and three or four deliberate mistakes (off-by-one, wrong reset value, missing enable, swapped condition, wrong pattern, wrong shift, and similar). Then four tricky counter cases: two that are equal only if reset is ignored or never used, one that differs only from about cycle 30 (inside the 40 cycle bound), and one that differs only from about cycle 45 (outside it). Cases c26 to c42 are the seven easy problems: each reference against itself (c26 to c32), then two mistakes for each of the problems (c33 to c42; one or two per problem). The case numbers c01 to c25 are unchanged. In the current log of `node web/grader.validation.mjs` the seven new references print first (as c01 to c07), so the log numbers after that are shifted; the table and the case folders use the numbers shown here. Native Yosys results for c26 to c42 are in `logs/grader-cases/native-results-new.txt` (same script, folder renamed). Every case is stored as files in `logs/grader-cases/cNN/` (`ref.v`, `user.v`, `prove.ys`, `bound.ys`).
 
-**Results.** Run `node web/grader.validation.mjs` (log `logs/grader.validation.txt`; the older `node web/grader.test.mjs` log is `logs/grader.test.txt`). The cycle is counted with reset as cycle 1. The solver returns some counterexample inside the 40 cycles, not the shortest one, so the cycle shown for the late-difference case (40) is where the output first differs in that run, not the earliest possible.
+**Results.** Run `node web/grader.validation.mjs`. Latest log: `logs/grader/grader.validation-2026-11-23.txt`, 140 checks, all as expected (70 proven, 57 fails, 1 "first 40 cycles" case, 12 rejections). The table below is the 42-case native comparison. Older log: `logs/grader.validation.txt` (42 checks; the older `node web/grader.test.mjs` log is `logs/grader.test.txt`). The cycle is counted with reset as cycle 1. The solver returns some counterexample inside the 40 cycles, not the shortest one, so the cycle shown for the late-difference case (40) is where the output first differs in that run, not the earliest possible.
 
 | Case | Problem | Design | Expected | Ours | Native Yosys | Match |
 |---|---|---|---|---|---|---|
@@ -720,7 +720,7 @@ Things we know are open. None is claimed as validated.
 - **The case that differs only from about cycle 45 is NOT caught.** Induction cannot prove it (the extra counter is hard for induction), the plain search cannot see past cycle 40, so the grader passes it and the banner reads "first 40 cycles" rather than "proven". Native Yosys gives the same answer. This is the stated limit of the bound, not a hidden pass, but a wrong design can pass with that banner.
 
 **What is NOT validated.**
-- Only twelve problems and 42 cases (41 expected results plus the cycle 45 case); this shows the method works on them, not on every possible design.
+- Native Yosys was compared on twelve problems and 42 cases only (41 expected results plus the cycle 45 case). The 2026-11-23 node run (`logs/grader/grader.validation-2026-11-23.txt`) covers 66 problem names and 128 case folders, with 70 expected proven, 57 expected fails and the cycle 45 case; those were not run natively. Passing the node run shows the method works on them, not on every possible design.
 - Designs that differ only after cycle 40 and that induction cannot settle will pass as "first 40 cycles". The size of that blind spot is not measured.
 - Induction can fail on states that can never happen. Then the grader falls back to the bounded search, so a correct design can end up with the weaker banner. No such correct design was found among the cases here, but it was not looked for systematically.
 - Outputs where the reference is x are skipped (`-ignore_gold_x`). A design that is wrong only where the reference is x passes. Not tested.
@@ -1169,7 +1169,7 @@ Details, from `web/vendor/opencdc/4101730/SOURCE.md`:
 
 The Studio stage is "CDC check (early)" in Properties. It is optional and off by default (`web/studio/stages.js`, `web/studio/app.js`).
 
-**How native was built and run.** Upstream 4101730 built unchanged; `ctest` passed 576 of 576 (issue #113, 2026-11-12). The 13-case runs and `RESULTS.md` are kept outside the repo in `~/eda/designs/opencdc`. The native compiler, the exact build commands and the run commands are not recorded here.
+**How native was built and run.** Upstream 4101730 built unchanged; `ctest` passed 576 of 576 (issue #113, 2026-11-12). The 13-case runs, `RESULTS.md`, the build and run scripts and the logs are archived in `logs/opencdc/` (copied 2026-11-23 from `~/eda/designs/opencdc`; source and WebAssembly trees left out, they are large). Build commands: `logs/opencdc/scripts/build.sh` (cmake Release, `BUILD_TESTING=ON`, make -j8, ctest; logs `cmake.log`, `build.log`, `ctest.log`, `build.status`). Run commands: `logs/opencdc/scripts/run.sh` (inside the `gf180` container). The native compiler version is not recorded here.
 
 **Numbers.**
 
@@ -1187,7 +1187,7 @@ The 5 cases that differ from our grader (issue #113, 2026-11-12; the numbered 13
 - The 5 differences are recorded, not fixed. No constraint removes the Gray-pointer finding, and the issue gives no further reason.
 - The input-port workaround (a flop on `clk_a` in a wrapper) is not checked against a real input constraint, so results depend on the wrapper.
 - No in-browser click-through yet. The Chrome check failed (issue #113). A live check only showed `opencdc.js` and `opencdc.wasm` served with status 200 and correct types.
-- The repo selftest (`node web/studio/engines/opencdc.selftest.mjs`) runs 2 cases only (a clean synchronizer and a one-flop crossing). The 13-case comparison script is not in the repo.
+- The repo selftest (`node web/studio/engines/opencdc.selftest.mjs`) runs 2 cases only (a clean synchronizer and a one-flop crossing). The 13-case comparison script is archived as `logs/opencdc/scripts/ours.mjs` (our side), with `table.py` for the table; it is not part of the repo test run.
 - Other designs, other browsers, timing, and screenshots: not checked.
 
 **Decision (issue #113).** OpenCDC is a Studio lint aid and is never used for grading. Reviewed by a second AI model (Gemini Argon), case by case against our grader: case 6 (port-level crossing), our grader is right; case 7 (bit-skew safety), the two tools apply different rules, so they are not comparable; cases 8, 9 and 13 (multi-bit Gray pointers, first-flop tap next to a 2-flop branch), OpenCDC is wrong. OpenCDC is better only for harness-free linting of open designs and for rules we do not have (for example unsynchronized resets).
@@ -1221,36 +1221,36 @@ If the `select` assertion fails, the grader stops with the message "Build the ca
 
 The cell list is the 15 types in the script, including `$div`, `$mod`, `$divfloor`, `$modfloor` and `$pow`. The shipped validation cases (table below, in `web/grader.validation.mjs`) test `+`, `-` alone (`a - ~b - ~cin`) and `/` alone (`a / b`). No case uses `%`, `**` or the floor variants, so those types are listed in the code but not exercised by a case.
 
-**How it was tested.** `web/grader.validation.mjs` (cases below), with `@yowasp/yosys` 0.68.1207 in Node. Native Yosys was not run for this check. The run used a scratch copy of the files at 9551747 (before the five types above were added to the list); the `-` and `/` rows were re-run on the 15-type script on 2026-11-16, Node 26.7.0. The log is not saved in `docs/validation/logs/`, and the text does not record which run printed the total of 66 checks below, so neither the 66 nor the 24 adder checks can be re-checked from this folder. Command: `node web/grader.validation.mjs <outdir>`.
+**How it was tested.** `web/grader.validation.mjs` (cases below), with `@yowasp/yosys` 0.68.1207 in Node. Native Yosys was not run for this check. The run used a scratch copy of the files at 9551747 (before the five types above were added to the list); the `-` and `/` rows were re-run on the 15-type script on 2026-11-16, Node 26.7.0. The log of the 2026-11-23 run is `logs/grader/grader.validation-2026-11-23.txt` (Node 26.7.0, `node web/grader.validation.mjs`, no argument; the output folder is the default one). Command: `node web/grader.validation.mjs [outdir]`. The table below was generated from that log.
 
-**Results.** The whole run printed 66 checks, all as expected. The 24 adder checks are below. The other 42 are the ones in section 10.
+**Results.** The 2026-11-23 run printed 140 checks, all as expected: 12 "uses `+`, `-` or `/`" rejections and 128 case folders, covering 66 problem names (the 4 adder problems below and 62 others). The 24 adder checks are below (12 rejections, 12 case folders: reference, rule-off reference and one mutant per adder). The other 116 checks are the grader cases of section 10 and the other problems.
 
 | Problem | Case | Design | Expected | Ours |
 |---|---|---|---|---|
-| adder-manchester | c13 | reference vs itself | proven | proven |
-| adder-manchester | c47 | reference equals `a+b+cin` (rule off) | proven | proven |
-| adder-manchester | (none, printed) | uses `+` | rejected | rejected (message above) |
-| adder-manchester | (none, printed) | `a - ~b - ~cin` (`-` only) | rejected | rejected (message above) |
-| adder-manchester | (none, printed) | `a / b` (`/` only) | rejected | rejected (message above) |
-| adder-manchester | c48 | chain stage 2 passes `a` instead of the carry | fails | fails (first mismatch at cycle 4) |
-| adder-brent-kung | c14 | reference vs itself | proven | proven |
-| adder-brent-kung | c49 | reference equals `a+b+cin` (rule off) | proven | proven |
-| adder-brent-kung | (none, printed) | uses `+` | rejected | rejected (message above) |
-| adder-brent-kung | (none, printed) | `a - ~b - ~cin` (`-` only) | rejected | rejected (message above) |
-| adder-brent-kung | (none, printed) | `a / b` (`/` only) | rejected | rejected (message above) |
-| adder-brent-kung | c50 | one prefix cell missing (level 5, bit 4) | fails | fails (first mismatch at cycle 5) |
-| adder-kogge-stone | c15 | reference vs itself | proven | proven |
-| adder-kogge-stone | c51 | reference equals `a+b+cin` (rule off) | proven | proven |
-| adder-kogge-stone | (none, printed) | uses `+` | rejected | rejected (message above) |
-| adder-kogge-stone | (none, printed) | `a - ~b - ~cin` (`-` only) | rejected | rejected (message above) |
-| adder-kogge-stone | (none, printed) | `a / b` (`/` only) | rejected | rejected (message above) |
-| adder-kogge-stone | c52 | one prefix cell missing (level 3, bit 7) | fails | fails (first mismatch at cycle 38) |
-| adder-han-carlson | c16 | reference vs itself | proven | proven |
-| adder-han-carlson | c53 | reference equals `a+b+cin` (rule off) | proven | proven |
-| adder-han-carlson | (none, printed) | uses `+` | rejected | rejected (message above) |
-| adder-han-carlson | (none, printed) | `a - ~b - ~cin` (`-` only) | rejected | rejected (message above) |
-| adder-han-carlson | (none, printed) | `a / b` (`/` only) | rejected | rejected (message above) |
-| adder-han-carlson | c54 | one prefix cell missing (level 3, bit 5) | fails | fails (first mismatch at cycle 9) |
+| adder-manchester | (none, printed) | uses '+': rejected by the structural check | rejected | rejected (message above) |
+| adder-manchester | (none, printed) | '-' only (a - ~b - ~cin): rejected | rejected | rejected (message above) |
+| adder-manchester | (none, printed) | '/' only (a / b): rejected | rejected | rejected (message above) |
+| adder-manchester | c121 | reference equals a+b+cin (structural rule off) | proven | proven |
+| adder-manchester | c122 | chain stage 2 passes a instead of the carry | fails | fails (first mismatch at cycle 4) |
+| adder-manchester | c26 | reference vs itself | proven | proven |
+| adder-brent-kung | (none, printed) | uses '+': rejected by the structural check | rejected | rejected (message above) |
+| adder-brent-kung | (none, printed) | '-' only (a - ~b - ~cin): rejected | rejected | rejected (message above) |
+| adder-brent-kung | (none, printed) | '/' only (a / b): rejected | rejected | rejected (message above) |
+| adder-brent-kung | c123 | reference equals a+b+cin (structural rule off) | proven | proven |
+| adder-brent-kung | c124 | one prefix cell missing (level 5, bit 4) | fails | fails (first mismatch at cycle 7) |
+| adder-brent-kung | c27 | reference vs itself | proven | proven |
+| adder-kogge-stone | (none, printed) | uses '+': rejected by the structural check | rejected | rejected (message above) |
+| adder-kogge-stone | (none, printed) | '-' only (a - ~b - ~cin): rejected | rejected | rejected (message above) |
+| adder-kogge-stone | (none, printed) | '/' only (a / b): rejected | rejected | rejected (message above) |
+| adder-kogge-stone | c125 | reference equals a+b+cin (structural rule off) | proven | proven |
+| adder-kogge-stone | c126 | one prefix cell missing (level 3, bit 7) | fails | fails (first mismatch at cycle 4) |
+| adder-kogge-stone | c28 | reference vs itself | proven | proven |
+| adder-han-carlson | (none, printed) | uses '+': rejected by the structural check | rejected | rejected (message above) |
+| adder-han-carlson | (none, printed) | '-' only (a - ~b - ~cin): rejected | rejected | rejected (message above) |
+| adder-han-carlson | (none, printed) | '/' only (a / b): rejected | rejected | rejected (message above) |
+| adder-han-carlson | c127 | reference equals a+b+cin (structural rule off) | proven | proven |
+| adder-han-carlson | c128 | one prefix cell missing (level 3, bit 5) | fails | fails (first mismatch at cycle 6) |
+| adder-han-carlson | c29 | reference vs itself | proven | proven |
 
 The "rule off" rows check that the function matches, with the structural rule switched off for that case. The "(none, printed)" rows are the rule checks; the log prints them without a case number.
 
@@ -1322,7 +1322,7 @@ What the Studio page itself shows for these runs (RTL against gates, in the brow
 
 ## 24. Equivalence check (LEC) in Studio (early, issue #189)
 
-**Claimed:** on two small designs the browser proves the synthesized netlist equal to the RTL, and on two netlists with one gate changed it finds the difference. Native Yosys (two ways of reading the cell functions) and EQY give the same verdicts on all four. On the 48-flip-flop CPU (tiny8) the browser stage gives no verdict at all in 1000 seconds; this is a recorded limit (issue #200), not a pass. **Update:** #200 was fixed on main in commit 28fda34 (2026-11-22, internal registers are now paired by name); its message reports tiny8 proven in 2.5 s, and sections 28 and 29 show `proven` for tiny8 on sky130A and ihp-sg13g2. The numbers in this section were measured before that fix and the gf180mcuD tiny8 case was not re-run, against native or in the browser.
+**Claimed:** on two small designs the browser proves the synthesized netlist equal to the RTL, and on two netlists with one gate changed it finds the difference. Native Yosys (two ways of reading the cell functions) and EQY give the same verdicts on all four. On the 48-flip-flop CPU (tiny8) the browser stage gives no verdict at all in 1000 seconds; this is a recorded limit (issue #200), not a pass. **Update:** #200 was fixed on main in commit 28fda34 (2026-11-22, internal registers are now paired by name); its message reports tiny8 proven in 2.5 s, and sections 28 and 29 show `proven` for tiny8 on sky130A and ihp-sg13g2. The numbers in the table below were measured before that fix. **Re-run 2026-11-23:** gf180mcuD tiny8 is now `proven` for the equivalence step in the browser (Node WebAssembly, 48 of 48 points, 3.2 s; `lec.selftest.mjs` PASS) and in native Yosys 0.64 (same `equiv.ys`, our models: 48 of 48, real 3.2 s; PDK liberty variant: 48 of 48). Logs in `logs/lec-tiny8-2026-11-23/`. Only the equivalence step was re-run on tiny8: the miter and bounded steps, EQY, and the tiny8-bug case after the fix were not.
 
 **What is checked.** Studio's stage "Equivalence check (early)" (`web/studio/engines/lec-core.js`, `lecRun`) reads the RTL and the Synthesis netlist with the gf180 cell models, then runs, in this order: (1) Yosys `equiv_make / equiv_simple / equiv_induct` (pairs registers and outputs by name); if something is not proven, (2) a miter with `sat -tempinduct` (reset held on cycle 1); if that does not finish a proof, (3) a bounded `sat -seq 40` search, which gives a counterexample or the weaker verdict "bounded". The verdicts are "proven", "differs" or "bounded".
 
@@ -1354,6 +1354,7 @@ The container `gf180` would not start on 2026-11-21 (port 8080 in use), so a sec
 | counter-bug | differs at cycle 2, output `q` (1.5 s) | differs at cycle 2, `q` | differs at cycle 2, `q` | FAIL (partition `counter.q`) | match |
 | tiny8-bug | differs at cycle 39, output `out` (77 s) | differs at cycle 39, `out` | differs at cycle 39, first listed output `pc` | FAIL (partition `tiny8.out`) | match on the verdict and the cycle; the liberty variant lists `pc` first instead of `out` at the same cycle |
 | tiny8 | no verdict after 1000 s (stopped) | no verdict: induction and bounded search each stopped after 420 s | no verdict, same stops | ended with an error, not analysed | see below |
+| tiny8, after #200 fix (2026-11-23, equiv step only) | proven (equiv, 48 points, 3.2 s) | proven (equiv, 48 points, 3.2 s) | proven (equiv, 48 points) | not run | match (both proven) |
 
 For tiny8 the first step (equiv) pairs only the 16 output bits (`pc`, `out`) and proves none of them, because the register file (`r0` to `r3`) is not paired by name after synthesis; the induction step that follows then does not finish. Native Yosys behaves the same way on the same script. Reported as issue #200 (the page has no time limit and shows nothing while it runs).
 
@@ -1365,7 +1366,7 @@ For tiny8 the first step (equiv) pairs only the 16 output bits (`pc`, `out`) and
 ![Studio LEC tab, counter with a wrong cell model, Edge](img/lec-counter-seeded.png)
 
 **What is NOT validated.**
-- Larger designs: before the #200 fix tiny8 (236 cells) did not finish and only designs of up to 13 cells had a proof in the browser; the gf180mcuD tiny8 proof after the fix was not re-run here. There is no time limit in the stage (issue #200).
+- Larger designs: before the #200 fix tiny8 (236 cells) did not finish and only designs of up to 13 cells had a proof in the browser. After the fix, tiny8 is proven in the equivalence step on gf180mcuD (browser and native, 2026-11-23); the miter and bounded steps on tiny8 were not re-run. There is no time limit in the stage (issue #200).
 - Only two kinds of seeded fault (an xor changed to an xnor, a nand changed to a nor). Not tested: a fault only reachable after a long sequence, a flip-flop with the wrong reset, a clock-enable or latch fault, a wrong reset polarity.
 - The "bounded" verdict was not produced by any case here.
 - The model rewrite for Yosys (`gf180mcu_fd_sc_mcu7t5v0.yosys.v`) is not compared flop by flop against the PDK's own Icarus models; the liberty run above (same verdicts) is a partial check of it for the two flops used (`dffq`, `dffrnq`) only.

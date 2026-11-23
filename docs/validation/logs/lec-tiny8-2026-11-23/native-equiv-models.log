@@ -1,0 +1,1392 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.64 (git sha1 6d2c445ae, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+
+-- Executing script file `equiv.ys' --
+
+1. Executing Verilog-2005 frontend: tiny8.v
+Parsing SystemVerilog input from `tiny8.v' to AST representation.
+Generating RTLIL representation for module `\tiny8'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \tiny8
+
+2.2. Analyzing design hierarchy..
+Top module:  \tiny8
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$tiny8.v:27$21 in module tiny8.
+Marked 1 switch rules as full_case in process $proc$tiny8.v:27$21 in module tiny8.
+Removed 1 dead cases from process $proc$tiny8.v:26$18 in module tiny8.
+Marked 1 switch rules as full_case in process $proc$tiny8.v:26$18 in module tiny8.
+Marked 2 switch rules as full_case in process $proc$tiny8.v:42$6 in module tiny8.
+Marked 1 switch rules as full_case in process $proc$tiny8.v:32$3 in module tiny8.
+Removed a total of 2 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 8 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\tiny8.$proc$tiny8.v:42$6'.
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~6 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\tiny8.$proc$tiny8.v:27$21'.
+     1/1: $1$mem2reg_rd$\rf$tiny8.v:27$2_DATA[7:0]$23
+Creating decoders for process `\tiny8.$proc$tiny8.v:26$18'.
+     1/1: $1$mem2reg_rd$\rf$tiny8.v:26$1_DATA[7:0]$20
+Creating decoders for process `\tiny8.$proc$tiny8.v:20$17'.
+Creating decoders for process `\tiny8.$proc$tiny8.v:19$16'.
+Creating decoders for process `\tiny8.$proc$tiny8.v:18$15'.
+Creating decoders for process `\tiny8.$proc$tiny8.v:17$14'.
+Creating decoders for process `\tiny8.$proc$tiny8.v:42$6'.
+     1/6: $0\pc[7:0]
+     2/6: $0\r3[7:0]
+     3/6: $0\r2[7:0]
+     4/6: $0\r1[7:0]
+     5/6: $0\r0[7:0]
+     6/6: $0\out[7:0]
+Creating decoders for process `\tiny8.$proc$tiny8.v:32$3'.
+     1/2: $1\wdata[7:0]
+     2/2: $1\we[0:0]
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\tiny8.$mem2reg_rd$\rf$tiny8.v:27$2_DATA' from process `\tiny8.$proc$tiny8.v:27$21'.
+No latch inferred for signal `\tiny8.$mem2reg_rd$\rf$tiny8.v:26$1_DATA' from process `\tiny8.$proc$tiny8.v:26$18'.
+No latch inferred for signal `\tiny8.\rf[3]' from process `\tiny8.$proc$tiny8.v:20$17'.
+No latch inferred for signal `\tiny8.\rf[2]' from process `\tiny8.$proc$tiny8.v:19$16'.
+No latch inferred for signal `\tiny8.\rf[1]' from process `\tiny8.$proc$tiny8.v:18$15'.
+No latch inferred for signal `\tiny8.\rf[0]' from process `\tiny8.$proc$tiny8.v:17$14'.
+No latch inferred for signal `\tiny8.\wdata' from process `\tiny8.$proc$tiny8.v:32$3'.
+No latch inferred for signal `\tiny8.\we' from process `\tiny8.$proc$tiny8.v:32$3'.
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\tiny8.\pc' using process `\tiny8.$proc$tiny8.v:42$6'.
+  created $adff cell `$procdff$72' with positive edge clock and positive level reset.
+Creating register for signal `\tiny8.\out' using process `\tiny8.$proc$tiny8.v:42$6'.
+  created $adff cell `$procdff$77' with positive edge clock and positive level reset.
+Creating register for signal `\tiny8.\r0' using process `\tiny8.$proc$tiny8.v:42$6'.
+  created $adff cell `$procdff$82' with positive edge clock and positive level reset.
+Creating register for signal `\tiny8.\r1' using process `\tiny8.$proc$tiny8.v:42$6'.
+  created $adff cell `$procdff$87' with positive edge clock and positive level reset.
+Creating register for signal `\tiny8.\r2' using process `\tiny8.$proc$tiny8.v:42$6'.
+  created $adff cell `$procdff$92' with positive edge clock and positive level reset.
+Creating register for signal `\tiny8.\r3' using process `\tiny8.$proc$tiny8.v:42$6'.
+  created $adff cell `$procdff$97' with positive edge clock and positive level reset.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\tiny8.$proc$tiny8.v:27$21'.
+Removing empty process `tiny8.$proc$tiny8.v:27$21'.
+Found and cleaned up 1 empty switch in `\tiny8.$proc$tiny8.v:26$18'.
+Removing empty process `tiny8.$proc$tiny8.v:26$18'.
+Removing empty process `tiny8.$proc$tiny8.v:20$17'.
+Removing empty process `tiny8.$proc$tiny8.v:19$16'.
+Removing empty process `tiny8.$proc$tiny8.v:18$15'.
+Removing empty process `tiny8.$proc$tiny8.v:17$14'.
+Found and cleaned up 3 empty switches in `\tiny8.$proc$tiny8.v:42$6'.
+Removing empty process `tiny8.$proc$tiny8.v:42$6'.
+Found and cleaned up 1 empty switch in `\tiny8.$proc$tiny8.v:32$3'.
+Removing empty process `tiny8.$proc$tiny8.v:32$3'.
+Cleaned up 6 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tiny8.
+<suppressed ~16 debug messages>
+
+4. Executing FLATTEN pass (flatten design).
+
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tiny8..
+Removed 7 unused cells and 44 unused wires.
+<suppressed ~8 debug messages>
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tiny8..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing ASYNC2SYNC pass.
+Replacing tiny8.$procdff$97 ($adff): ARST=\rst_n, D=$0\r3[7:0], Q=\r3
+Replacing tiny8.$procdff$92 ($adff): ARST=\rst_n, D=$0\r2[7:0], Q=\r2
+Replacing tiny8.$procdff$72 ($adff): ARST=\rst_n, D=$0\pc[7:0], Q=\pc
+Replacing tiny8.$procdff$87 ($adff): ARST=\rst_n, D=$0\r1[7:0], Q=\r1
+Replacing tiny8.$procdff$82 ($adff): ARST=\rst_n, D=$0\r0[7:0], Q=\r0
+Replacing tiny8.$procdff$77 ($adff): ARST=\rst_n, D=$0\out[7:0], Q=\out
+
+7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tiny8..
+
+8. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tiny8..
+Renaming module \tiny8 to \gold.
+
+10. Executing Verilog-2005 frontend: models.v
+Parsing SystemVerilog input from `models.v' to AST representation.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__udp_hn_iq_ff'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__udp_hn_iq_latch'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_latch'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__addf_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__addf_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__addf_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__addf_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__addh_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__addh_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__addh_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__addh_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and2_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and2_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and2_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and2_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and3_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and3_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and3_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and3_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and4_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and4_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and4_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__and4_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__antenna'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__antenna_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_12'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_16'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_20'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_3'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_8'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__buf_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__bufz_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__bufz_12'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__bufz_16'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__bufz_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__bufz_3'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__bufz_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__bufz_8'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__bufz_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_12'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_16'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_20'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_3'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_8'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_12'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_16'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_20'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_3'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_8'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_func'.
+models.v:541: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:541: Warning: Identifier `\MGM_CLK0' is implicitly declared.
+models.v:541: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_func'.
+models.v:568: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:568: Warning: Identifier `\MGM_P0' is implicitly declared.
+models.v:568: Warning: Identifier `\MGM_CLK0' is implicitly declared.
+models.v:568: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_func'.
+models.v:596: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:596: Warning: Identifier `\MGM_C0' is implicitly declared.
+models.v:596: Warning: Identifier `\MGM_P0' is implicitly declared.
+models.v:596: Warning: Identifier `\MGM_CLK0' is implicitly declared.
+models.v:596: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_func'.
+models.v:623: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:623: Warning: Identifier `\MGM_C0' is implicitly declared.
+models.v:623: Warning: Identifier `\MGM_CLK0' is implicitly declared.
+models.v:623: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffq_func'.
+models.v:648: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:648: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_func'.
+models.v:674: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:674: Warning: Identifier `\MGM_P0' is implicitly declared.
+models.v:674: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_func'.
+models.v:701: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:701: Warning: Identifier `\MGM_C0' is implicitly declared.
+models.v:701: Warning: Identifier `\MGM_P0' is implicitly declared.
+models.v:701: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_func'.
+models.v:727: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:727: Warning: Identifier `\MGM_C0' is implicitly declared.
+models.v:727: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlya_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlya_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlya_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlya_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__endcap'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__endcap_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fill_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fill_16'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fill_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fill_32'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fill_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fill_64'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fill_8'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fill_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_16'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_32'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_64'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_8'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__filltie'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__filltie_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__hold'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__hold_func'.
+models.v:866: Warning: Identifier `\MGM_WB_0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__icgtn_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__icgtn_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__icgtn_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__icgtn_func'.
+models.v:890: Warning: Identifier `\MGM_D0' is implicitly declared.
+models.v:891: Warning: Identifier `\IQ3' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__icgtp_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__icgtp_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__icgtp_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__icgtp_func'.
+models.v:918: Warning: Identifier `\MGM_D0' is implicitly declared.
+models.v:919: Warning: Identifier `\IQ2' is implicitly declared.
+models.v:919: Warning: Identifier `\MGM_EN0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_12'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_16'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_20'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_3'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_8'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__inv_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__invz_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__invz_12'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__invz_16'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__invz_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__invz_3'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__invz_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__invz_8'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__invz_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latq_func'.
+models.v:1035: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:1035: Warning: Identifier `\MGM_D0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_func'.
+models.v:1060: Warning: Identifier `\IQ2' is implicitly declared.
+models.v:1060: Warning: Identifier `\MGM_C0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_func'.
+models.v:1086: Warning: Identifier `\IQ2' is implicitly declared.
+models.v:1086: Warning: Identifier `\MGM_C0' is implicitly declared.
+models.v:1086: Warning: Identifier `\MGM_P0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_func'.
+models.v:1111: Warning: Identifier `\IQ2' is implicitly declared.
+models.v:1111: Warning: Identifier `\MGM_P0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__mux2_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__mux2_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__mux2_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__mux2_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__mux4_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__mux4_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__mux4_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__mux4_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand2_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand2_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand2_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand2_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand3_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand3_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand3_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand3_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand4_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand4_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand4_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nand4_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor2_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor2_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor2_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor2_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor3_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor3_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor3_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor3_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor4_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor4_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor4_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__nor4_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai211_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai211_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai211_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai211_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai21_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai21_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai21_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai21_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai221_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai221_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai221_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai221_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai222_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai222_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai222_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai222_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai22_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai22_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai22_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai22_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai31_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai31_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai31_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai31_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai32_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai32_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai32_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai32_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai33_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai33_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai33_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__oai33_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or2_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or2_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or2_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or2_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or3_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or3_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or3_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or3_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or4_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or4_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or4_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__or4_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_func'.
+models.v:1685: Warning: Identifier `\MGM_D0' is implicitly declared.
+models.v:1686: Warning: Identifier `\IQ1' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_func'.
+models.v:1723: Warning: Identifier `\MGM_D0' is implicitly declared.
+models.v:1724: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:1724: Warning: Identifier `\MGM_P0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_func'.
+models.v:1762: Warning: Identifier `\MGM_D0' is implicitly declared.
+models.v:1763: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:1763: Warning: Identifier `\MGM_C0' is implicitly declared.
+models.v:1763: Warning: Identifier `\MGM_P0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_func'.
+models.v:1800: Warning: Identifier `\MGM_D0' is implicitly declared.
+models.v:1801: Warning: Identifier `\IQ1' is implicitly declared.
+models.v:1801: Warning: Identifier `\MGM_C0' is implicitly declared.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__tieh'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__tieh_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__tiel'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__tiel_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xor2_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xor2_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xor2_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xor2_func'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xor3_1'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xor3_2'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xor3_4'.
+Generating RTLIL representation for module `\gf180mcu_fd_sc_mcu7t5v0__xor3_func'.
+Successfully finished Verilog frontend.
+
+11. Executing Verilog-2005 frontend: netlist.v
+Parsing SystemVerilog input from `netlist.v' to AST representation.
+Generating RTLIL representation for module `\tiny8'.
+Successfully finished Verilog frontend.
+
+12. Executing HIERARCHY pass (managing design hierarchy).
+
+12.1. Analyzing design hierarchy..
+Top module:  \tiny8
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__dffrnq_func
+Used module:             \gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__mux2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__mux2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__oai21_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__oai21_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nand2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__oai32_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__oai32_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__and3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__and3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__aoi21_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__xnor3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__mux4_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__mux4_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__oai31_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__oai31_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nand3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nand3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__oai22_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__oai22_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__xor2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__xor2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__and2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__and2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nor2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nor2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__xor3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__xor3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__or3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__or3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__aoi221_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nor3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nor3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__or2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__or2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__and4_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__and4_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__xnor2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nor4_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nor4_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__aoi22_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__clkinv_func
+
+12.2. Analyzing design hierarchy..
+Top module:  \tiny8
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__dffrnq_func
+Used module:             \gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__mux2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__mux2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__oai21_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__oai21_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nand2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__oai32_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__oai32_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__and3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__and3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__aoi21_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__xnor3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__mux4_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__mux4_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__oai31_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__oai31_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nand3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nand3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__oai22_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__oai22_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__xor2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__xor2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__and2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__and2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nor2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nor2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__xor3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__xor3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__or3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__or3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__aoi221_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nor3_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nor3_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__or2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__or2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__and4_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__and4_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__xnor2_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__nor4_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__nor4_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__aoi22_func
+Used module:     \gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+Used module:         \gf180mcu_fd_sc_mcu7t5v0__clkinv_func
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xor2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__xnor2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__tiel_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__tiel'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__tieh_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__tieh'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffrnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__sdffq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or4_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or4_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__or2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai33_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai33_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai33_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai33_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai32_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai32_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai31_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai31_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai22_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai22_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai222_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai222_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai222_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai222_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai221_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai221_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai221_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai221_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai21_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai21_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai211_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai211_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai211_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__oai211_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nor2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand4_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand4_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__nand2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__mux2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latrnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__latq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__invz_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_20'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__inv_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__icgtp_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__icgtp_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__icgtp_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__icgtp_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__icgtn_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__icgtn_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__icgtn_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__icgtn_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__hold_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__hold'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__filltie'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_64'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_32'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fillcap_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_64'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_32'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__fill_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__endcap'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyd_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyc_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlyb_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlya_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlya_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlya_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dlya_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffrnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__dffnq_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_20'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkinv_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_20'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__clkbuf_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__bufz_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_8'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_3'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_20'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_16'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_12'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__buf_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi22_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi222_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi221_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi21_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__aoi211_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__antenna'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and4_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and4_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and3_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and3_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and2_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__and2_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addh_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addh_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addh_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addh_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addf_func'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addf_4'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addf_2'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__addf_1'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_latch'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__udp_hn_iq_latch'.
+Removing unused module `\gf180mcu_fd_sc_mcu7t5v0__udp_hn_iq_ff'.
+Removed 246 unused modules.
+Mapping positional arguments of cell gf180mcu_fd_sc_mcu7t5v0__dffrnq_func.MGM_UDP (gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff).
+
+13. Executing PROC pass (convert processes to netlists).
+
+13.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+13.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$models.v:12$112 in module gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.
+Removed a total of 0 dead cases.
+
+13.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 0 assignments to connections.
+
+13.4. Executing PROC_INIT pass (extract init attributes).
+
+13.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \C in `\gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.$proc$models.v:12$112'.
+Found async reset \P in `\gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.$proc$models.v:12$112'.
+
+13.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+13.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.$proc$models.v:12$112'.
+     1/1: $0\Q[0:0]
+
+13.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+13.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.\Q' using process `\gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.$proc$models.v:12$112'.
+Warning: Complex async reset for dff `\Q'.
+  created $dffsr cell `$procdff$476' with positive edge clock and multiple level-sensitive resets.
+
+13.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+13.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.$proc$models.v:12$112'.
+Cleaned up 0 empty switches.
+
+13.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai22_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor3_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand3_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor2_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi22_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi22_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand2_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai32_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai21_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nand2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi221_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux4_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xnor2_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi221_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi21_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or3_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__aoi21_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux4_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux2_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai21_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai32_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__mux2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and4_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai31_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__clkinv_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and4_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and3_func.
+Optimizing module tiny8.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__xor3_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and2_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor4_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai31_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__and2_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__oai22_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor4_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor3_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffrnq_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__or2_func.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor3_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.
+<suppressed ~3 debug messages>
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__dffrnq_1.
+Optimizing module gf180mcu_fd_sc_mcu7t5v0__nor2_func.
+
+14. Executing FLATTEN pass (flatten design).
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__oai22_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__xnor2_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nor2_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__xor2_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__or2_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__xnor3_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__xor3_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nand3_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__xor2_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__aoi22_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__xnor3_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nand3_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__aoi22_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nand2_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__oai32_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__oai21_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nand2_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__aoi221_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__mux4_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__xnor2_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__aoi221_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__aoi21_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__clkinv_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__or3_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__aoi21_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__mux4_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__mux2_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__oai21_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__oai32_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__mux2_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__and4_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__oai31_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__clkinv_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__and4_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__and3_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__xor3_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__and3_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__and2_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nor4_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__oai31_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__and2_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__oai22_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nor4_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nor3_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__or3_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__dffrnq_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__or2_func.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nor3_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__udp_n_iq_ff.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__dffrnq_1.
+Deleting now unused module gf180mcu_fd_sc_mcu7t5v0__nor2_func.
+<suppressed ~262 debug messages>
+
+15. Executing MEMORY pass.
+
+15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tiny8..
+Removed 0 unused cells and 1518 unused wires.
+<suppressed ~145 debug messages>
+
+15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tiny8..
+
+15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+15.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+16. Executing ASYNC2SYNC pass.
+Replacing tiny8.$flatten\_423_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_423_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_423_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_423_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_423_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_422_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_422_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_422_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_422_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_422_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_421_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_421_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_421_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_421_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_421_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_420_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_420_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_420_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_420_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_420_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_419_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_419_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_419_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_419_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_419_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_418_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_418_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_418_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_418_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_418_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_417_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_417_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_417_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_417_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_417_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_416_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_416_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_416_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_416_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_416_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_415_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_415_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_415_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_415_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_415_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_414_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_414_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_414_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_414_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_414_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_413_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_413_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_413_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_413_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_413_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_412_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_412_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_412_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_412_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_412_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_411_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_411_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_411_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_411_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_411_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_410_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_410_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_410_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_410_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_410_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_409_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_409_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_409_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_409_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_409_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_408_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_408_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_408_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_408_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_408_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_407_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_407_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_407_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_407_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_407_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_406_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_406_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_406_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_406_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_406_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_405_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_405_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_405_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_405_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_405_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_404_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_404_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_404_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_404_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_404_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_403_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_403_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_403_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_403_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_403_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_402_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_402_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_402_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_402_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_402_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_401_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_401_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_401_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_401_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_401_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_400_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_400_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_400_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_400_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_400_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_399_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_399_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_399_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_399_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_399_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_398_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_398_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_398_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_398_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_398_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_397_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_397_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_397_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_397_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_397_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_396_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_396_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_396_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_396_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_396_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_395_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_395_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_395_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_395_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_395_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_394_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_394_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_394_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_394_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_394_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_393_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_393_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_393_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_393_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_393_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_392_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_392_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_392_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_392_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_392_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_391_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_391_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_391_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_391_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_391_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_390_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_390_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_390_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_390_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_390_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_389_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_389_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_389_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_389_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_389_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_388_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_388_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_388_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_388_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_388_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_387_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_387_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_387_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_387_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_387_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_386_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_386_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_386_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_386_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_386_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_385_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_385_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_385_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_385_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_385_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_384_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_384_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_384_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_384_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_384_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_383_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_383_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_383_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_383_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_383_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_382_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_382_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_382_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_382_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_382_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_381_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_381_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_381_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_381_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_381_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_380_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_380_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_380_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_380_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_380_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_379_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_379_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_379_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_379_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_379_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_378_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_378_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_378_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_378_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_378_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_377_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_377_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_377_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_377_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_377_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+Replacing tiny8.$flatten\_376_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$procdff$476 ($dffsr): SET=$flatten\_376_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$471, CLR=$flatten\_376_.\gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.\MGM_UDP.$auto$rtlil.cc:3390:Mux$475, D=\_376_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.D, Q=\_376_.gf180mcu_fd_sc_mcu7t5v0__dffrnq_inst.MGM_UDP.Q
+
+17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tiny8..
+Renaming module \tiny8 to \gate.
+
+18. Executing EQUIV_MAKE pass (creating equiv checking module).
+Presumably equivalent wires: r3[7]_gold (\r3[7]_gold), r3[7]_gate (\_204_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r3[7]
+Presumably equivalent wires: r3[6]_gold (\r3[6]_gold), r3[6]_gate (\_219_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r3[6]
+Presumably equivalent wires: r3[5]_gold (\r3[5]_gold), r3[5]_gate (\_225_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r3[5]
+Presumably equivalent wires: r3[4]_gold (\r3[4]_gold), r3[4]_gate (\_217_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r3[4]
+Presumably equivalent wires: r3[3]_gold (\r3[3]_gold), r3[3]_gate (\_213_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r3[3]
+Presumably equivalent wires: r3[2]_gold (\r3[2]_gold), r3[2]_gate (\_222_.gf180mcu_fd_sc_mcu7t5v0__mux4_inst.I3_gate) -> r3[2]
+Presumably equivalent wires: r3[1]_gold (\r3[1]_gold), r3[1]_gate (\_223_.gf180mcu_fd_sc_mcu7t5v0__mux4_inst.I3_gate) -> r3[1]
+Presumably equivalent wires: r3[0]_gold (\r3[0]_gold), r3[0]_gate (\_209_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r3[0]
+Presumably equivalent wires: r2[7]_gold (\r2[7]_gold), r2[7]_gate (\_207_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r2[7]
+Presumably equivalent wires: r2[6]_gold (\r2[6]_gold), r2[6]_gate (\_219_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r2[6]
+Presumably equivalent wires: r2[5]_gold (\r2[5]_gold), r2[5]_gate (\_226_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r2[5]
+Presumably equivalent wires: r2[4]_gold (\r2[4]_gold), r2[4]_gate (\_216_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r2[4]
+Presumably equivalent wires: r2[3]_gold (\r2[3]_gold), r2[3]_gate (\_214_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r2[3]
+Presumably equivalent wires: r2[2]_gold (\r2[2]_gold), r2[2]_gate (\_222_.gf180mcu_fd_sc_mcu7t5v0__mux4_inst.I1_gate) -> r2[2]
+Presumably equivalent wires: r2[1]_gold (\r2[1]_gold), r2[1]_gate (\_223_.gf180mcu_fd_sc_mcu7t5v0__mux4_inst.I1_gate) -> r2[1]
+Presumably equivalent wires: r2[0]_gold (\r2[0]_gold), r2[0]_gate (\_210_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A3_gate) -> r2[0]
+Presumably equivalent wires: r1[7]_gold (\r1[7]_gold), r1[7]_gate (\_207_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r1[7]
+Presumably equivalent wires: r1[6]_gold (\r1[6]_gold), r1[6]_gate (\_220_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r1[6]
+Presumably equivalent wires: r1[5]_gold (\r1[5]_gold), r1[5]_gate (\_225_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r1[5]
+Presumably equivalent wires: r1[4]_gold (\r1[4]_gold), r1[4]_gate (\_217_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r1[4]
+Presumably equivalent wires: r1[3]_gold (\r1[3]_gold), r1[3]_gate (\_214_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r1[3]
+Presumably equivalent wires: r1[2]_gold (\r1[2]_gold), r1[2]_gate (\_222_.gf180mcu_fd_sc_mcu7t5v0__mux4_inst.I2_gate) -> r1[2]
+Presumably equivalent wires: r1[1]_gold (\r1[1]_gold), r1[1]_gate (\_223_.gf180mcu_fd_sc_mcu7t5v0__mux4_inst.I2_gate) -> r1[1]
+Presumably equivalent wires: r1[0]_gold (\r1[0]_gold), r1[0]_gate (\_211_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A3_gate) -> r1[0]
+Presumably equivalent wires: r0[7]_gold (\r0[7]_gold), r0[7]_gate (\_204_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r0[7]
+Presumably equivalent wires: r0[6]_gold (\r0[6]_gold), r0[6]_gate (\_220_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r0[6]
+Presumably equivalent wires: r0[5]_gold (\r0[5]_gold), r0[5]_gate (\_226_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r0[5]
+Presumably equivalent wires: r0[4]_gold (\r0[4]_gold), r0[4]_gate (\_216_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.A1_gate) -> r0[4]
+Presumably equivalent wires: r0[3]_gold (\r0[3]_gold), r0[3]_gate (\_213_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r0[3]
+Presumably equivalent wires: r0[2]_gold (\r0[2]_gold), r0[2]_gate (\_222_.gf180mcu_fd_sc_mcu7t5v0__mux4_inst.I0_gate) -> r0[2]
+Presumably equivalent wires: r0[1]_gold (\r0[1]_gold), r0[1]_gate (\_223_.gf180mcu_fd_sc_mcu7t5v0__mux4_inst.I0_gate) -> r0[1]
+Presumably equivalent wires: r0[0]_gold (\r0[0]_gold), r0[0]_gate (\_209_.gf180mcu_fd_sc_mcu7t5v0__aoi22_inst.B2_gate) -> r0[0]
+Presumably equivalent wires: out_gold (\out_gold), out_gate ({ \_360_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate \_357_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate \_358_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate \_359_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate \_368_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate \_371_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate \_372_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate \_373_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate }) -> out
+Presumably equivalent wires: pc_gold (\pc_gold), pc_gate ({ \_257_.gf180mcu_fd_sc_mcu7t5v0__xnor2_inst.A1_gate \_239_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A2_gate \_238_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate \_237_.gf180mcu_fd_sc_mcu7t5v0__and2_inst.A1_gate \_200_.gf180mcu_fd_sc_mcu7t5v0__clkinv_inst.I_gate \_235_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A3_gate \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A2_gate \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate }) -> pc
+Presumably equivalent wires: instr_gold (\instr_gold), instr_gate (\instr_gate) -> instr
+Presumably equivalent wires: rst_n_gold (\rst_n_gold), rst_n_gate (\rst_n_gate) -> rst_n
+Presumably equivalent wires: clk_gold (\clk_gold), clk_gate (\clk_gate) -> clk
+Changing input A of cell $flatten\_373_.\gf180mcu_fd_sc_mcu7t5v0__nand2_inst.$not$models.v:1193$285_gate ($not): \_373_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \out [0]
+Changing input A of cell $flatten\_372_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1139$267_gate ($and): \_372_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [1]
+Changing input A of cell $flatten\_371_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1139$267_gate ($and): \_371_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [2]
+Changing input A of cell $flatten\_368_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1139$267_gate ($and): \_368_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [3]
+Changing input A of cell $flatten\_360_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1139$267_gate ($and): \_360_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [7]
+Changing input A of cell $flatten\_359_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1139$267_gate ($and): \_359_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [4]
+Changing input A of cell $flatten\_358_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1139$267_gate ($and): \_358_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [5]
+Changing input A of cell $flatten\_357_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1139$267_gate ($and): \_357_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [6]
+Changing input A of cell $flatten\_257_.\gf180mcu_fd_sc_mcu7t5v0__xnor2_inst.$not$models.v:1841$429_gate ($not): \_257_.gf180mcu_fd_sc_mcu7t5v0__xnor2_inst.A1_gate -> \pc [7]
+Changing input A of cell $flatten\_256_.\gf180mcu_fd_sc_mcu7t5v0__oai21_inst.$not$models.v:1379$323_gate ($not): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [0]
+Changing input A of cell $flatten\_253_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$not$models.v:1905$449_gate ($not): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [0]
+Changing input A of cell $flatten\_253_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$not$models.v:1901$448_gate ($not): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A2_gate -> \pc [1]
+Changing input B of cell $flatten\_253_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$and$models.v:1907$446_gate ($and): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A2_gate -> \pc [1]
+Changing input A of cell $flatten\_251_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$not$models.v:1905$449_gate ($not): \_235_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A3_gate -> \pc [2]
+Changing input A of cell $flatten\_248_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$not$models.v:1905$449_gate ($not): \_200_.gf180mcu_fd_sc_mcu7t5v0__clkinv_inst.I_gate -> \pc [3]
+Changing input A of cell $flatten\_245_.\gf180mcu_fd_sc_mcu7t5v0__nor2_inst.$not$models.v:1271$300_gate ($not): \_237_.gf180mcu_fd_sc_mcu7t5v0__and2_inst.A1_gate -> \pc [4]
+Changing input A of cell $flatten\_242_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$not$models.v:1905$449_gate ($not): \_238_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [5]
+Changing input A of cell $flatten\_240_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$not$models.v:1905$449_gate ($not): \_239_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A2_gate -> \pc [6]
+Changing input A of cell $flatten\_239_.\gf180mcu_fd_sc_mcu7t5v0__nand3_inst.$not$models.v:1219$290_gate ($not): \_239_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A2_gate -> \pc [6]
+Changing input A of cell $flatten\_239_.\gf180mcu_fd_sc_mcu7t5v0__nand3_inst.$not$models.v:1217$289_gate ($not): \_238_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [5]
+Changing input A of cell $flatten\_238_.\gf180mcu_fd_sc_mcu7t5v0__nand2_inst.$not$models.v:1193$285_gate ($not): \_238_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [5]
+Changing input A of cell $flatten\_235_.\gf180mcu_fd_sc_mcu7t5v0__nand3_inst.$not$models.v:1221$291_gate ($not): \_235_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A3_gate -> \pc [2]
+Changing input A of cell $flatten\_235_.\gf180mcu_fd_sc_mcu7t5v0__nand3_inst.$not$models.v:1219$290_gate ($not): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A2_gate -> \pc [1]
+Changing input A of cell $flatten\_235_.\gf180mcu_fd_sc_mcu7t5v0__nand3_inst.$not$models.v:1217$289_gate ($not): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [0]
+Changing input A of cell $flatten\_234_.\gf180mcu_fd_sc_mcu7t5v0__nand2_inst.$not$models.v:1195$286_gate ($not): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A2_gate -> \pc [1]
+Changing input A of cell $flatten\_234_.\gf180mcu_fd_sc_mcu7t5v0__nand2_inst.$not$models.v:1193$285_gate ($not): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [0]
+Changing input B of cell $flatten\_372_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1133$265_gate ($and): \_372_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [1]
+Changing input B of cell $flatten\_371_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1133$265_gate ($and): \_371_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [2]
+Changing input B of cell $flatten\_368_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1133$265_gate ($and): \_368_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [3]
+Changing input B of cell $flatten\_360_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1133$265_gate ($and): \_360_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [7]
+Changing input B of cell $flatten\_359_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1133$265_gate ($and): \_359_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [4]
+Changing input B of cell $flatten\_358_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1133$265_gate ($and): \_358_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [5]
+Changing input B of cell $flatten\_357_.\gf180mcu_fd_sc_mcu7t5v0__mux2_inst.$and$models.v:1133$265_gate ($and): \_357_.gf180mcu_fd_sc_mcu7t5v0__mux2_inst.I1_gate -> \out [6]
+Changing input A of cell $flatten\_257_.\gf180mcu_fd_sc_mcu7t5v0__xnor2_inst.$and$models.v:1839$426_gate ($and): \_257_.gf180mcu_fd_sc_mcu7t5v0__xnor2_inst.A1_gate -> \pc [7]
+Changing input B of cell $flatten\_253_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$and$models.v:1903$445_gate ($and): \_234_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [0]
+Changing input B of cell $flatten\_251_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$and$models.v:1903$445_gate ($and): \_235_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A3_gate -> \pc [2]
+Changing input B of cell $flatten\_248_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$and$models.v:1903$445_gate ($and): \_200_.gf180mcu_fd_sc_mcu7t5v0__clkinv_inst.I_gate -> \pc [3]
+Changing input B of cell $flatten\_242_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$and$models.v:1903$445_gate ($and): \_238_.gf180mcu_fd_sc_mcu7t5v0__nand2_inst.A1_gate -> \pc [5]
+Changing input B of cell $flatten\_240_.\gf180mcu_fd_sc_mcu7t5v0__xor2_inst.$and$models.v:1903$445_gate ($and): \_239_.gf180mcu_fd_sc_mcu7t5v0__nand3_inst.A2_gate -> \pc [6]
+Changing input A of cell $flatten\_237_.\gf180mcu_fd_sc_mcu7t5v0__and2_inst.$and$models.v:106$139_gate ($and): \_237_.gf180mcu_fd_sc_mcu7t5v0__and2_inst.A1_gate -> \pc [4]
+Changing input A of cell $flatten\_200_.\gf180mcu_fd_sc_mcu7t5v0__clkinv_inst.$not$models.v:516$219_gate ($not): \_200_.gf180mcu_fd_sc_mcu7t5v0__clkinv_inst.I_gate -> \pc [3]
+Changing input A of cell $procmux$56_gold ($mux): \out_gold -> \out
+Changing input A of cell $procmux$54_gold ($mux): { \r0[7]_gold \r0[6]_gold \r0[5]_gold \r0[4]_gold \r0[3]_gold \r0[2]_gold \r0[1]_gold \r0[0]_gold } -> { \r0[7] \r0[6] \r0[5] \r0[4] \r0[3] \r0[2] \r0[1] \r0[0] }
+Changing input A of cell $procmux$52_gold ($mux): { \r0[7]_gold \r0[6]_gold \r0[5]_gold \r0[4]_gold \r0[3]_gold \r0[2]_gold \r0[1]_gold \r0[0]_gold } -> { \r0[7] \r0[6] \r0[5] \r0[4] \r0[3] \r0[2] \r0[1] \r0[0] }
+Changing input A of cell $procmux$47_gold ($mux): { \r1[7]_gold \r1[6]_gold \r1[5]_gold \r1[4]_gold \r1[3]_gold \r1[2]_gold \r1[1]_gold \r1[0]_gold } -> { \r1[7] \r1[6] \r1[5] \r1[4] \r1[3] \r1[2] \r1[1] \r1[0] }
+Changing input A of cell $procmux$45_gold ($mux): { \r1[7]_gold \r1[6]_gold \r1[5]_gold \r1[4]_gold \r1[3]_gold \r1[2]_gold \r1[1]_gold \r1[0]_gold } -> { \r1[7] \r1[6] \r1[5] \r1[4] \r1[3] \r1[2] \r1[1] \r1[0] }
+Changing input A of cell $procmux$41_gold ($mux): { \r2[7]_gold \r2[6]_gold \r2[5]_gold \r2[4]_gold \r2[3]_gold \r2[2]_gold \r2[1]_gold \r2[0]_gold } -> { \r2[7] \r2[6] \r2[5] \r2[4] \r2[3] \r2[2] \r2[1] \r2[0] }
+Changing input A of cell $procmux$39_gold ($mux): { \r2[7]_gold \r2[6]_gold \r2[5]_gold \r2[4]_gold \r2[3]_gold \r2[2]_gold \r2[1]_gold \r2[0]_gold } -> { \r2[7] \r2[6] \r2[5] \r2[4] \r2[3] \r2[2] \r2[1] \r2[0] }
+Changing input A of cell $procmux$36_gold ($mux): { \r3[7]_gold \r3[6]_gold \r3[5]_gold \r3[4]_gold \r3[3]_gold \r3[2]_gold \r3[1]_gold \r3[0]_gold } -> { \r3[7] \r3[6] \r3[5] \r3[4] \r3[3] \r3[2] \r3[1] \r3[0] }
+Changing input A of cell $procmux$34_gold ($mux): { \r3[7]_gold \r3[6]_gold \r3[5]_gold \r3[4]_gold \r3[3]_gold \r3[2]_gold \r3[1]_gold \r3[0]_gold } -> { \r3[7] \r3[6] \r3[5] \r3[4] \r3[3] \r3[2] \r3[1] \r3[0] }
+Changing input B of cell $procmux$29_gold ($pmux): { \r0[7]_gold \r0[6]_gold \r0[5]_gold \r0[4]_gold \r0[3]_gold \r0[2]_gold \r0[1]_gold \r0[0]_gold \r1[7]_gold \r1[6]_gold \r1[5]_gold \r1[4]_gold \r1[3]_gold \r1[2]_gold \r1[1]_gold \r1[0]_gold \r2[7]_gold \r2[6]_gold \r2[5]_gold \r2[4]_gold \r2[3]_gold \r2[2]_gold \r2[1]_gold \r2[0]_gold \r3[7]_gold \r3[6]_gold \r3[5]_gold \r3[4]_gold \r3[3]_gold \r3[2]_gold \r3[1]_gold \r3[0]_gold } -> { \r0[7] \r0[6] \r0[5] \r0[4] \r0[3] \r0[2] \r0[1] \r0[0] \r1[7] \r1[6] \r1[5] \r1[4] \r1[3] \r1[2] \r1[1] \r1[0] \r2[7] \r2[6] \r2[5] \r2[4] \r2[3] \r2[2] \r2[1] \r2[0] \r3[7] \r3[6] \r3[5] \r3[4] \r3[3] \r3[2] \r3[1] \r3[0] }
+Changing input B of cell $procmux$24_gold ($pmux): { \r0[7]_gold \r0[6]_gold \r0[5]_gold \r0[4]_gold \r0[3]_gold \r0[2]_gold \r0[1]_gold \r0[0]_gold \r1[7]_gold \r1[6]_gold \r1[5]_gold \r1[4]_gold \r1[3]_gold \r1[2]_gold \r1[1]_gold \r1[0]_gold \r2[7]_gold \r2[6]_gold \r2[5]_gold \r2[4]_gold \r2[3]_gold \r2[2]_gold \r2[1]_gold \r2[0]_gold \r3[7]_gold \r3[6]_gold \r3[5]_gold \r3[4]_gold \r3[3]_gold \r3[2]_gold \r3[1]_gold \r3[0]_gold } -> { \r0[7] \r0[6] \r0[5] \r0[4] \r0[3] \r0[2] \r0[1] \r0[0] \r1[7] \r1[6] \r1[5] \r1[4] \r1[3] \r1[2] \r1[1] \r1[0] \r2[7] \r2[6] \r2[5] \r2[4] \r2[3] \r2[2] \r2[1] \r2[0] \r3[7] \r3[6] \r3[5] \r3[4] \r3[3] \r3[2] \r3[1] \r3[0] }
+Changing input A of cell $add$tiny8.v:51$11_gold ($add): \pc_gold -> \pc
+
+19. Executing HIERARCHY pass (managing design hierarchy).
+
+19.1. Analyzing design hierarchy..
+Top module:  \equiv
+
+19.2. Analyzing design hierarchy..
+Top module:  \equiv
+Removing unused module `\gate'.
+Removing unused module `\gold'.
+Removed 2 unused modules.
+
+20. Executing EQUIV_SIMPLE pass.
+Found 48 unproven $equiv cells (34 groups) in equiv:
+ Grouping SAT models for \pc:
+  Trying to prove $equiv for \pc [0]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \pc [1]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \pc [2]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \pc [3]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \pc [4]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \pc [5]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \pc [6]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \pc [7]:ezsat
+ezsat
+ failed.
+ Grouping SAT models for \out:
+  Trying to prove $equiv for \out [0]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \out [1]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \out [2]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \out [3]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \out [4]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \out [5]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \out [6]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \out [7]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r0[0]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r0[1]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r0[2]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r0[3]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r0[4]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r0[5]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r0[6]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r0[7]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r1[0]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r1[1]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r1[2]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r1[3]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r1[4]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r1[5]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r1[6]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r1[7]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r2[0]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r2[1]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r2[2]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r2[3]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r2[4]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r2[5]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r2[6]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r2[7]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r3[0]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r3[1]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r3[2]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r3[3]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r3[4]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r3[5]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r3[6]:ezsat
+ezsat
+ failed.
+  Trying to prove $equiv for \r3[7]:ezsat
+ezsat
+ failed.
+Proved 0 previously unproven $equiv cells.
+
+21. Executing EQUIV_INDUCT pass.
+Found 48 unproven $equiv cells in module equiv:
+  Proving existence of base case for step 1. (23634 clauses over 9175 variables)
+  Proving induction step 1. (48515 clauses over 18733 variables)
+  Proof for induction step holds. Entire workset of 48 cells proven!
+Proved 48 previously unproven $equiv cells.
+
+22. Executing EQUIV_STATUS pass.
+Found 48 $equiv cells in equiv:
+  Of those cells 48 are proven and 0 are unproven.
+  Equivalence successfully proven!
+
+Warnings: 10 unique messages, 56 total
+End of script. Logfile hash: d27f1db2af, time: 3.18s, user: 3.12s, system: 0.09s, MEM: 61.79 MB peak
+Yosys 0.64 (git sha1 6d2c445ae, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+Time spent: 71% 1x equiv_simple (2 sec), 13% 1x equiv_induct (0 sec), ...

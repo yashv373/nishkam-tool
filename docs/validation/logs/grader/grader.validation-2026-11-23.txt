@@ -1,0 +1,141 @@
+ok   grader-val-out\c01 and-gate | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c02 xor-gate | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c03 wire | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c04 mux2 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c05 counter-3b | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c06 seq-101 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c07 traffic-light | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c08 counter-en | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c09 rise-edge | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c10 seq-1011 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c11 gray-counter | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c12 rr-arbiter | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c13 half-adder | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c14 decoder-2to4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c15 parity-8 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c16 comparator-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c17 dff-sync-reset | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c18 shift-reg-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c19 seq-110 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c20 seq-1101-mealy | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c21 bcd-counter | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c22 updown-load | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c23 johnson-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c24 sipo-8 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c25 piso-8 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c26 adder-manchester | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c27 adder-brent-kung | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c28 adder-kogge-stone | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c29 adder-han-carlson | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c30 majority-3 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c31 half-subtractor | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c32 full-subtractor | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c33 full-adder-2ha | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c34 ripple-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c35 negate-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c36 add-sub-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c37 bin-to-gray | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c38 gray-to-bin | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c39 mux-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c40 demux-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c41 bcd-7seg | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c42 toggle-divider | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c43 ring-counter-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c44 popcount-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c45 sat-predictor | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c46 plru-4way | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c47 pipe-stall-flush | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c48 forward-unit | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c49 load-use-stall | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c50 scoreboard-4 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c51 prio-enc-8 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c52 lzc-8 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c53 credit-counter | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c54 alu-nzcv | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c55 bcd-valid | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c56 sign-extend | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c57 hamming-74 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c58 volume-bar | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c59 dice | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c60 pulse-stretch | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c61 turnstile | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c62 vending-15 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c63 div-by-3 | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c64 dft-scan-chain | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c65 dft-mbist | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c66 dft-bisr-wrap | reference vs itself | expect proven | ours proven
+ok   grader-val-out\c67 counter-en | off-by-one (counts by 2) | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c68 counter-en | wrong reset value (1) | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c69 counter-en | missing enable | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c70 counter-en | swapped condition (en low counts) | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c71 rise-edge | wrong reset value (p=1) | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c72 rise-edge | falling edge instead of rising | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c73 rise-edge | level instead of edge | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c74 seq-1011 | wrong pattern 1101 | expect fail | ours fail (first mismatch at cycle 6)
+ok   grader-val-out\c75 seq-1011 | wrong reset value (1111) | expect fail | ours fail (first mismatch at cycle 5)
+ok   grader-val-out\c76 seq-1011 | window one bit short (3 bits) | expect fail | ours fail (first mismatch at cycle 4)
+ok   grader-val-out\c77 gray-counter | plain binary output | expect fail | ours fail (first mismatch at cycle 6)
+ok   grader-val-out\c78 gray-counter | missing enable | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c79 gray-counter | wrong shift (<<) | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c80 rr-arbiter | wrong reset pointer (0) | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c81 rr-arbiter | search starts at last (not last+1) | expect fail | ours fail (first mismatch at cycle 6)
+ok   grader-val-out\c82 rr-arbiter | pointer never updates | expect fail | ours fail (first mismatch at cycle 4)
+ok   grader-val-out\c83 counter-en | equal only after reset: no reset input used, q starts undefined | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c84 counter-en | equal only after reset: reset ignored after first use (age flag) | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c85 counter-en | differs only from cycle ~30 (inside 40) | expect fail | ours fail (first mismatch at cycle 40)
+ok   grader-val-out\c86 counter-en | differs only from cycle ~45 (outside 40) | expect late45 | ours bounded
+ok   grader-val-out\c87 and-gate | OR instead of AND | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c88 xor-gate | OR instead of XOR | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c89 wire | inverted | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c90 mux2 | select swapped | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c91 counter-3b | counts by 2 | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c92 counter-3b | wrong reset value (1) | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c93 seq-101 | wrong pattern 110 | expect fail | ours fail (first mismatch at cycle 5)
+ok   grader-val-out\c94 seq-101 | output one cycle early | expect fail | ours fail (first mismatch at cycle 4)
+ok   grader-val-out\c95 traffic-light | red goes to yellow (no wrap to green) | expect fail | ours fail (first mismatch at cycle 7)
+ok   grader-val-out\c96 traffic-light | reset to red | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c97 half-adder | carry is OR | expect fail | ours fail (first mismatch at cycle 12)
+ok   grader-val-out\c98 decoder-2to4 | bit order reversed | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c99 decoder-2to4 | shift by a+1 | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c100 parity-8 | inverted (even parity) | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c101 parity-8 | ignores bit 7 | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c102 comparator-4 | signed compare | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c103 comparator-4 | gt and lt swapped | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c104 dff-sync-reset | reset sets 1 | expect fail | ours fail (first mismatch at cycle 2)
+ok   grader-val-out\c105 dff-sync-reset | asynchronous reset | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c106 shift-reg-4 | shifts left | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c107 seq-110 | Mealy (one cycle early) | expect fail | ours fail (first mismatch at cycle 11)
+ok   grader-val-out\c108 seq-110 | 11 then 1 falls back to idle | expect fail | ours fail (first mismatch at cycle 20)
+ok   grader-val-out\c109 seq-1101-mealy | Moore (registered, late) | expect fail | ours fail (first mismatch at cycle 1)
+ok   grader-val-out\c110 seq-1101-mealy | non-overlapping (history cleared on match) | expect fail | ours fail (first mismatch at cycle 39)
+ok   grader-val-out\c111 bcd-counter | wraps at 15 | expect fail | ours fail (first mismatch at cycle 36)
+ok   grader-val-out\c112 bcd-counter | shows 10 before wrapping | expect fail | ours fail (first mismatch at cycle 32)
+ok   grader-val-out\c113 updown-load | enable beats load | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c114 updown-load | up/down swapped | expect fail | ours fail (first mismatch at cycle 4)
+ok   grader-val-out\c115 johnson-4 | no inversion (ring) | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c116 johnson-4 | shifts right | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c117 sipo-8 | valid one bit early | expect fail | ours fail (first mismatch at cycle 16)
+ok   grader-val-out\c118 sipo-8 | shifts LSB-first | expect fail | ours fail (first mismatch at cycle 3)
+ok   grader-val-out\c119 piso-8 | busy lasts 9 cycles | expect fail | ours fail (first mismatch at cycle 32)
+ok   grader-val-out\c120 piso-8 | LSB first | expect fail | ours fail (first mismatch at cycle 4)
+ok   grader-val-out\c121 adder-manchester | reference equals a+b+cin (structural rule off) | expect proven | ours proven
+ok   adder-manchester | uses '+': rejected by the structural check | rejected
+ok   adder-manchester | '-' only (a - ~b - ~cin): rejected | rejected
+ok   adder-manchester | '/' only (a / b): rejected | rejected
+ok   grader-val-out\c122 adder-manchester | chain stage 2 passes a instead of the carry | expect fail | ours fail (first mismatch at cycle 4)
+ok   grader-val-out\c123 adder-brent-kung | reference equals a+b+cin (structural rule off) | expect proven | ours proven
+ok   adder-brent-kung | uses '+': rejected by the structural check | rejected
+ok   adder-brent-kung | '-' only (a - ~b - ~cin): rejected | rejected
+ok   adder-brent-kung | '/' only (a / b): rejected | rejected
+ok   grader-val-out\c124 adder-brent-kung | one prefix cell missing (level 5, bit 4) | expect fail | ours fail (first mismatch at cycle 7)
+ok   grader-val-out\c125 adder-kogge-stone | reference equals a+b+cin (structural rule off) | expect proven | ours proven
+ok   adder-kogge-stone | uses '+': rejected by the structural check | rejected
+ok   adder-kogge-stone | '-' only (a - ~b - ~cin): rejected | rejected
+ok   adder-kogge-stone | '/' only (a / b): rejected | rejected
+ok   grader-val-out\c126 adder-kogge-stone | one prefix cell missing (level 3, bit 7) | expect fail | ours fail (first mismatch at cycle 4)
+ok   grader-val-out\c127 adder-han-carlson | reference equals a+b+cin (structural rule off) | expect proven | ours proven
+ok   adder-han-carlson | uses '+': rejected by the structural check | rejected
+ok   adder-han-carlson | '-' only (a - ~b - ~cin): rejected | rejected
+ok   adder-han-carlson | '/' only (a / b): rejected | rejected
+ok   grader-val-out\c128 adder-han-carlson | one prefix cell missing (level 3, bit 5) | expect fail | ours fail (first mismatch at cycle 6)
+grader validation: all cases as expected

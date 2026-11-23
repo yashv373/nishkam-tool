@@ -1,0 +1,74 @@
+{
+  "analysis_status": "complete",
+  "input_type": "netlist",
+  "finding_count": 2,
+  "coverage": {
+    "total": 2,
+    "errors": 1,
+    "warnings": 0,
+    "verified_safe": 0,
+    "verified_unsafe": 1,
+    "waived": 0,
+    "suppressed": 0
+  },
+  "signoff": {
+    "status": "FAIL",
+    "reason": "1 unsuppressed error(s) found"
+  },
+  "findings": [
+    {
+      "rule_id": "CDC001",
+      "rule_name": "unsynchronized_crossing",
+      "severity": "error",
+      "waived": false,
+      "source": "dr_reg",
+      "source_domain": "clk_a",
+      "dest": "u.s1_reg",
+      "dest_domain": "clk_b",
+      "bus_width": 1,
+      "reason": "Register 'dr_reg' in domain 'clk_a' drives register 'u.s1_reg' in domain 'clk_b' without synchronization. No 2FF/3FF synchronizer chain detected on destination side.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "safety_status": "verified_unsafe",
+      "safety_provenance": "No synchronizer chain detected on destination side",
+      "evidence_chain": [
+        {
+          "step_type": "clock_domains",
+          "description": "Clock domains: 'clk_a' -> 'clk_b'",
+          "result": "identified"
+        },
+        {
+          "step_type": "bus_width",
+          "description": "Bus width: 1",
+          "result": "measured"
+        }
+      ],
+      "file": "nl/cdc-sync2.reference_2_flops.v",
+      "line": 43
+    },
+    {
+      "rule_id": "CDC007",
+      "rule_name": "missing_reset",
+      "severity": "info",
+      "waived": false,
+      "source": "dr_reg",
+      "source_domain": "clk_a",
+      "dest": "u.s1_reg",
+      "dest_domain": "clk_b",
+      "bus_width": 1,
+      "reason": "CDC crossing between registers 'dr_reg' and 'u.s1_reg': neither register has a reset signal.",
+      "is_gray_coded": false,
+      "has_handshake": false,
+      "source_module_path": "",
+      "dest_module_path": "",
+      "crosses_module_boundary": false,
+      "clock_relationship": "unknown",
+      "file": "nl/cdc-sync2.reference_2_flops.v",
+      "line": 43
+    }
+  ]
+}

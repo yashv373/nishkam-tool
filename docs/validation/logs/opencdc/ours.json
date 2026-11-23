@@ -1,0 +1,54 @@
+{
+ "cdc-sync2/reference_2_flops": {
+  "want": "pass",
+  "got": "pass"
+ },
+ "cdc-sync2/3_flops": {
+  "want": "pass",
+  "got": "pass"
+ },
+ "cdc-sync2/1_flop": {
+  "want": "struct",
+  "got": "struct"
+ },
+ "cdc-sync2/logic_between_the_flops": {
+  "want": "struct",
+  "got": "struct"
+ },
+ "cdc-sync2/d_also_used_elsewhere": {
+  "want": "struct",
+  "got": "struct"
+ },
+ "cdc-sync2/q_d_bypass_with_kept_dummy_chain_83_P26": {
+  "want": "struct",
+  "got": "struct"
+ },
+ "cdc-sync2/inverted_output_wrong_value": {
+  "want": "cex",
+  "got": "cex"
+ },
+ "cdc-async-fifo/reference_Gray_pointers": {
+  "want": "pass",
+  "got": "pass"
+ },
+ "cdc-async-fifo/Gray_flags_one_cycle_later": {
+  "want": "pass",
+  "got": "pass"
+ },
+ "cdc-async-fifo/binary_pointers_2_flop_sync_per_bit": {
+  "want": "cex",
+  "got": "cex"
+ },
+ "cdc-async-fifo/pointers_cross_with_one_flop": {
+  "want": "struct",
+  "got": "struct"
+ },
+ "cdc-pulse-sync/reference_toggle_2_flops_edge": {
+  "want": "pass",
+  "got": "pass"
+ },
+ "cdc-pulse-sync/1_flop": {
+  "want": "struct",
+  "got": "struct"
+ }
+}

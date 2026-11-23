@@ -21,6 +21,7 @@ Two place-and-route flows exist in Studio:
 | OpenROAD flow vs LibreLane (section 8B) | Studio recipe | LibreLane 3.0.2 | similar quality, not the same steps; numbers given as percentages | why LibreLane's wire is 29% longer |
 | graywolf + qrouter (section 6) | graywolf 33fbcaa, qrouter c8f1111 | same sources built natively | placement files identical; routed DEF differs in wire choices | clocked designs |
 | Formal equivalence (section 7, 8) | Yosys | RTL | netlists proven equal to the RTL (tiny8, adder2) | not a general proof |
+| Analog Lab features (section 18C) | ngspice-46 WASM: `.step`, diode/BJT/E parts, junction parasitics (ad/as/pd/ps) | native ngspice-46, same decks | `.step` R and temperature, diode clipper, BJT stage, E source, ring5 and OTA with parasitics: same numbers on both sides (from issue comments; only the parasitics script is in the repo); five starter circuits are examples, not compared | parasitic formula vs layout extraction, pnp/F/G/H, op table under `.step`, starter circuits, other browsers |
 | Analog simulation (sections 18 and 18B; Node and Lab page in Edge) | ngspice-46 (KLU compiled in; these runs used SPARSE, as native did) | native ngspice-46 (KLU build, SPARSE used), same models | 13 decks total (5 in section 18, Node only; 8 in section 18B, Node and Edge Lab page, incl. OTA at tt/ss/ff and a -40 to 125 C sweep): all printed numbers and 378 device probes identical; raw files agree to 2.7e-7 (section 18) and 2.0e-13 (section 18B) relative, per vector | KLU on big circuits, fs/sf corners, BJT/resistor/cap models, Monte Carlo, noise, big circuits (>80 devices), Chrome/Firefox/Safari |
 | RTL grader | Yosys miter + k-induction | native Yosys 0.64 | 5 references proven, 19 wrong designs fail, same in both; a design differing only after cycle 45 passes as "first 40 cycles" (section 10) | CDC problems, x-handling, unreachable-state fallback |
 | OpenCDC CDC check, early (section 20) | OpenCDC 4101730 (WebAssembly, 5.2 MB) | native OpenCDC 4101730 | same output on all 13 cases; agrees with our CDC grader on 8 of 13 | grader integration; the 5 differences; in-browser click-through |
@@ -1024,10 +1025,10 @@ Both transients take the same number of time steps on each side, and the StrongA
 **Page issues met while doing this.** (1) The Reports footer always says "gf180mcuD typical corner", also for the ss and ff decks (known; the PVT selector is #184). (2) `ph_ugf` is printed in radians with no unit, so a hand-made phase margin 180 + ph_ugf is wrong; native ngspice prints the same radians, but the page deck never sets `units=degrees`: new issue #195. (3) `.step` / `.step temp` is not supported (known, #185), so the temperature sweep used `.dc temp`. (4) On the localhost run the console shows CORS errors for the `/flags` call and Cloudflare insights, because the page is served from 127.0.0.1; they are not Lab simulation errors. No wrong number was found in the page.
 
 **NOT validated.**
-- Source/drain diffusion parasitics: none of the 8 decks set `ad`, `as`, `pd`, `ps`, `nrd` or `nrs` (the model defaults leave them at 0), so BSIM4 junction capacitance, diode leakage and diffusion resistance are zero; in `ring5`, only stage 1 (`n1`) has an explicit 5 fF load.
+- Source/drain diffusion parasitics (the Lab's ad/as/pd/ps are in section 18C): none of the 8 decks set `ad`, `as`, `pd`, `ps`, `nrd` or `nrs` (the model defaults leave them at 0), so BSIM4 junction capacitance, diode leakage and diffusion resistance are zero; in `ring5`, only stage 1 (`n1`) has an explicit 5 fF load.
 - A bandgap with bipolar devices (no `pnp` deck; the beta-multiplier is MOS only) and an LDO with an error amplifier and pass device (the source follower is the only supply-rejection deck). BJT and resistor model blocks are still not exercised.
 - Corners fs and sf, 5 V / 6 V devices, and temperatures other than the three read from the bmr sweep (the OTA corners ran at 27 C only).
-- Mismatch / Monte Carlo, `.noise`, `.pz`, `.tf`, `.step`.
+- Mismatch / Monte Carlo, `.noise`, `.pz`, `.tf`. (`.step` is in section 18C.)
 - Circuits larger than about 80 devices; KLU (only SPARSE was run); native multi-thread paths (native had 4 threads set but these decks are too small to use them; the browser is single-thread).
 - The numbers agree, which does not mean the decks are good circuits: the Miller op-amp has no zero-nulling resistor (PM 37 deg) and the beta-multiplier current moves 86 % over -40 to 125 C. They only test the simulator.
 - Browsers: the page runs were Microsoft Edge only, on one machine. Chrome, Firefox and Safari were not run. The Node runs use the same WASM file but are not a browser.
@@ -1035,6 +1036,35 @@ Both transients take the same number of time steps on each side, and the StrongA
 - The Devices table's later figures (Vov, ro, Id/(W/L), fT; issue #187) are arithmetic on ngspice's own `vgs`, `vth`, `id`, `gds`, `gm`, `cgg`, `w` and `l` probes. The probe values are compared above, but the derived numbers were not read back from the page and compared with a hand calculation; `fT = gm / (2*pi*Cgg)` is the small-signal definition using ngspice's `cgg`, not a measured transition frequency.
 - Run times are small single-machine samples; no large-circuit memory or time limit was tested.
 - Native compiler flags were not recorded (see section 18).
+
+## 18C. Analog Lab: .step sweeps, schematic parts, junction parasitics, starter circuits (issues #185, #186, #187, #191)
+
+**Design and setup.** Four Lab features added after section 18B, each checked by running the same deck text in the browser ngspice-46 (WebAssembly, same build and models as section 18B) and in native ngspice-46 (same image, models and `.spiceinit` as section 18B; the container was `gf180v`, same image). Decks: (1) `.step` (#185): an RC low-pass stepped over R = 1k/2k/4k, and a diode stepped over `.step temp -40 27 125`; the Lab turns `.step` into an ngspice `foreach` loop with `alterparam` / `option temp`, `reset`, then the analysis, and appends the plots per step. (2) Schematic parts (#186): a diode clipper, an NPN common-emitter stage (the gf180 `bjt_typical` model line is added to the deck) and a voltage-controlled voltage source (E) amplifier, each built in the schematic editor in Edge; the generated deck was also run native. (3) Junction parasitics (#191): the Lab now writes `ad`/`as` = W x 0.44 um and `pd`/`ps` = 2 x (W + 0.44 um) on schematic-built FETs. `docs/validation/analog-decks/diffusion-check.mjs` writes `diffusion/{ring5,ota5t_tt}_{plain,diff}.cir` (the page deck from section 18B, plain and with those four parameters on every FET) and runs them in the browser build. (4) Starter circuits (#187): five schematics in the Examples menu (`web/analog/examples.js`).
+
+**Numbers (native ngspice-46 vs browser build; same deck text).**
+
+| Feature | Measurement | Native | Browser | Result |
+|---|---|---|---|---|
+| `.step` R (#185) | RC bandwidth at R = 1k / 2k / 4k | 159156 / 79578 / 39789 Hz (1/R, as expected) | identical | match |
+| `.step temp` (#185) | diode i(v1) at 0.6 V, -40 / 27 / 125 C | -1.92565e-7 / -1.18720e-4 / -3.55153e-2 A | identical | match |
+| Diode clipper (#186) | v(out) / i at the `.dc` point | 0.237018 V / -2.76298 mA | identical | match |
+| BJT common emitter (#186) | Ic / collector voltage at base 0.78 V and 0.82 V | -156.517 uA / 3.22214 V and 3.00232 V | identical | match |
+| E source amplifier (#186) | vout / i(e1) | 1.00000 V / -1.000 mA | identical | match |
+| Junction parasitics, `ring5` (#191) | period without / with ad,as,pd,ps | 412.2 ps / 493.9 ps (frequency -16.5 %) | same to 6 digits on both decks | match |
+| Junction parasitics, `ota5t_tt` (#191) | UGF without / with | 20.741 / 20.424 MHz (-1.5 %) | same to 6 digits on both decks | match |
+
+The first five rows come from the issue comments (#185, #186); only the parasitics script is kept in the repository, so those rows cannot be re-run from this folder. The `.step` and parts circuits also ran in the Lab page in Edge with the same numbers (screenshots in `docs/img/lab-step/` and `docs/img/lab-parts/`; not side by side with native, native has no page).
+
+**Starter circuits are examples, not validation claims.** Their `.meas` values (for example the Miller example: DC gain 63.6 dB, unity-gain frequency 12.8 MHz) come from the Lab's own ngspice. `web/analog/examples.test.mjs` checks that each parses, builds, runs with exit 0 and gives values in the expected range. They were not compared with a traditional flow, and the Lab does not claim they are good designs.
+
+**Found while checking.** The gf180 diode clipper gives v(out) = 0.0769 V with a `.dc` step of 0.1 V and 0.237 V with a step of 0.5 V, in native and in the browser alike (solver path, not a port difference).
+
+**NOT validated.**
+- `.step`: only one `.step` line is supported; the op point and Devices table show base values, not stepped ones. Only the two decks above were compared.
+- Parts: no pnp, no F/G/H sources, no BJT in a feedback bias circuit. Printed values only were compared, not raw files.
+- Parasitics: the formula (0.44 um from the gf180mcuD KLayout DRC rules CO.7 + CO.1 + CO.4) was not checked against a layout extraction; the check shows only that native and browser agree for the same parameters. Hand decks (section 18B) still have no diffusion.
+- Starter circuits: not compared with native, not graded.
+- Chrome, Firefox, Safari; large circuits.
 
 ## 19. Parasitic extraction: Magic vs KLayout-PEX (tiny8, gf180mcuD)
 

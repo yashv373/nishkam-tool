@@ -1,0 +1,91 @@
+
+Circuit 1 cell pfet_05v0 and Circuit 2 cell pfet_05v0 are black boxes.
+Warning: Equate pins:  cell pfet_05v0 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell pfet_05v0 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: pfet_05v0                       |Circuit 2: pfet_05v0                       
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes pfet_05v0 and pfet_05v0 are equivalent.
+
+Circuit 1 cell nfet_05v0 and Circuit 2 cell nfet_05v0 are black boxes.
+Warning: Equate pins:  cell nfet_05v0 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell nfet_05v0 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: nfet_05v0                       |Circuit 2: nfet_05v0                       
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes nfet_05v0 and nfet_05v0 are equivalent.
+
+Class tiny8 (1):  Merged 214 parallel devices.
+Class tiny8 (2):  Merged 214 parallel devices.
+Subcircuit summary:
+Circuit 1: tiny8                           |Circuit 2: tiny8                           
+-------------------------------------------|-------------------------------------------
+pfet_05v0 (1703->1608)                     |pfet_05v0 (1703->1608)                     
+nfet_05v0 (1698->1579)                     |nfet_05v0 (1698->1579)                     
+Number of devices: 3187                    |Number of devices: 3187                    
+Number of nets: 1579                       |Number of nets: 1579                       
+---------------------------------------------------------------------------------------
+Resolving symmetries by property value.
+Resolving symmetries by pin name.
+Resolving symmetries by net name.
+Netlists match with 29 symmetries.
+
+Subcircuit pins:
+Circuit 1: tiny8                           |Circuit 2: tiny8                           
+-------------------------------------------|-------------------------------------------
+rst_n                                      |rst_n                                      
+instr[9]                                   |instr[9]                                   
+instr[8]                                   |instr[8]                                   
+instr[14]                                  |instr[14]                                  
+instr[13]                                  |instr[13]                                  
+instr[12]                                  |instr[12]                                  
+instr[15]                                  |instr[15]                                  
+instr[11]                                  |instr[11]                                  
+instr[10]                                  |instr[10]                                  
+instr[6]                                   |instr[6]                                   
+instr[7]                                   |instr[7]                                   
+instr[4]                                   |instr[4]                                   
+instr[3]                                   |instr[3]                                   
+instr[2]                                   |instr[2]                                   
+instr[0]                                   |instr[0]                                   
+instr[5]                                   |instr[5]                                   
+instr[1]                                   |instr[1]                                   
+clk                                        |clk                                        
+pc[0]                                      |pc[0]                                      
+pc[2]                                      |pc[2]                                      
+pc[3]                                      |pc[3]                                      
+pc[6]                                      |pc[6]                                      
+pc[1]                                      |pc[1]                                      
+pc[5]                                      |pc[5]                                      
+out[0]                                     |out[0]                                     
+out[7]                                     |out[7]                                     
+out[6]                                     |out[6]                                     
+out[5]                                     |out[5]                                     
+out[3]                                     |out[3]                                     
+out[2]                                     |out[2]                                     
+out[4]                                     |out[4]                                     
+out[1]                                     |out[1]                                     
+pc[4]                                      |pc[4]                                      
+pc[7]                                      |pc[7]                                      
+VSS                                        |VSS                                        
+VDD                                        |VDD                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes tiny8 and tiny8 are equivalent.
+
+Final result: Circuits match uniquely.
+.

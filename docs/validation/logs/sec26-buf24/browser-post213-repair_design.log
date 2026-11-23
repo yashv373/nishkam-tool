@@ -1,0 +1,162 @@
+@@STEP repair_design
+Reading timing models for corner max_ff_n40C_5v50…
+Reading timing library for the 'max_ff_n40C_5v50' corner at '/w/lib_ff.lib'…
+Reading timing models for corner max_tt_025C_5v00…
+Reading timing library for the 'max_tt_025C_5v00' corner at '/w/lib_tt.lib'…
+Reading timing models for corner nom_ff_n40C_5v50…
+Reading timing library for the 'nom_ff_n40C_5v50' corner at '/w/lib_ff.lib'…
+[WARNING STA-1140] /w/lib_ff.lib line 17, library gf180mcu_fd_sc_mcu7t5v0__ff_n40C_5v50 already exists.
+Reading timing models for corner nom_tt_025C_5v00…
+Reading timing library for the 'nom_tt_025C_5v00' corner at '/w/lib_tt.lib'…
+[WARNING STA-1140] /w/lib_tt.lib line 17, library gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00 already exists.
+Reading timing models for corner min_ss_125C_4v50…
+Reading timing library for the 'min_ss_125C_4v50' corner at '/w/lib_ss.lib'…
+Reading timing models for corner min_ff_n40C_5v50…
+Reading timing library for the 'min_ff_n40C_5v50' corner at '/w/lib_ff.lib'…
+[WARNING STA-1140] /w/lib_ff.lib line 17, library gf180mcu_fd_sc_mcu7t5v0__ff_n40C_5v50 already exists.
+Reading timing models for corner min_tt_025C_5v00…
+Reading timing library for the 'min_tt_025C_5v00' corner at '/w/lib_tt.lib'…
+[WARNING STA-1140] /w/lib_tt.lib line 17, library gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00 already exists.
+Reading timing models for corner max_ss_125C_4v50…
+Reading timing library for the 'max_ss_125C_4v50' corner at '/w/lib_ss.lib'…
+[WARNING STA-1140] /w/lib_ss.lib line 17, library gf180mcu_fd_sc_mcu7t5v0__ss_125C_4v50 already exists.
+Reading timing models for corner nom_ss_125C_4v50…
+Reading timing library for the 'nom_ss_125C_4v50' corner at '/w/lib_ss.lib'…
+[WARNING STA-1140] /w/lib_ss.lib line 17, library gf180mcu_fd_sc_mcu7t5v0__ss_125C_4v50 already exists.
+Reading OpenROAD database at '/w/in.odb'…
+Reading design constraints file at '/w/in.sdc'…
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
++ repair_design -verbose -max_wire_length 0 -slew_margin 20 -cap_margin 20
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |       338
+       10 |     +0.0% |       0 |       0 |             0 |       328
+       20 |     +0.0% |       0 |       0 |             0 |       318
+       30 |     +0.0% |       0 |       0 |             0 |       308
+       40 |     +0.0% |       0 |       0 |             0 |       298
+       50 |     +0.0% |       0 |       0 |             0 |       288
+       60 |     +0.0% |       0 |       0 |             0 |       278
+       70 |     +0.0% |       0 |       0 |             0 |       268
+       80 |     +0.0% |       0 |       0 |             0 |       258
+       90 |     +0.7% |       0 |       2 |             1 |       248
+      100 |     +0.7% |       0 |       2 |             1 |       238
+      110 |     +0.7% |       0 |       2 |             1 |       228
+      120 |     +0.7% |       0 |       2 |             1 |       218
+      130 |     +1.8% |       0 |       5 |             3 |       208
+      140 |     +3.2% |       0 |       9 |             5 |       198
+      150 |     +3.9% |       0 |      11 |             6 |       188
+      160 |     +3.9% |       0 |      11 |             6 |       178
+      170 |     +4.1% |       0 |      12 |             7 |       168
+      180 |     +4.1% |       0 |      12 |             7 |       158
+      190 |     +4.1% |       0 |      12 |             7 |       148
+      200 |     +4.4% |       0 |      13 |             8 |       138
+      210 |     +4.4% |       0 |      13 |             8 |       128
+      220 |     +4.4% |       0 |      13 |             8 |       118
+      230 |     +4.4% |       0 |      13 |             8 |       108
+      240 |     +4.4% |       0 |      13 |             8 |        98
+      250 |     +4.4% |       0 |      13 |             8 |        88
+      260 |     +4.4% |       0 |      13 |             8 |        78
+      270 |     +4.4% |       0 |      13 |             8 |        68
+      280 |     +4.4% |       0 |      13 |             8 |        58
+      290 |     +4.4% |       0 |      13 |             8 |        48
+      300 |     +4.7% |       0 |      14 |             9 |        38
+      310 |     +4.7% |       0 |      14 |             9 |        28
+      320 |     +8.0% |       1 |      24 |            13 |        18
+      330 |     +8.0% |       1 |      24 |            13 |         8
+    final |     +8.0% |       1 |      24 |            13 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 1 instances.
+[INFO RSZ-0038] Inserted 24 buffers in 13 nets.
+[INFO RSZ-0504] Runtime: 1.50s
++ detailed_placement -max_displacement  500 100 
+[INFO DPL-0006] Core area: 12442.39 um^2
+[INFO DPL-0007] Movable instances area: 10108.90 um^2
+[INFO DPL-0008] Fixed instances area within core: 597.09 um^2
+[INFO DPL-0009] Utilization: 86.0%
+[INFO DPL-0005] Diamond search max displacement: +/- 892 sites horizontally, +/- 25 rows vertically.
+[INFO DPL-1101] Legalizing using diamond search.
+Movements Summary
+---------------------------------------
+Total cells:                     344
+Diamond Move Success:            344 (100.00%)
+Diamond Move Failure:              0
+Rip-up and replace Success:        0 (  0.00% of diamond failures)
+Rip-up and replace Failure:        0
+Total Placement Failures:          0
+---------------------------------------
+[INFO DPL-0500] Runtime: 0.13s
+Detailed Placement Analysis
+---------------------------------
+legalizer            diamond search
+total moves                 344
+total displacement       3046.8 u
+average displacement        6.3 u
+max displacement           66.9 u
+original HPWL            8808.9 u
+legalized HPWL          12156.7 u
+delta HPWL                   38 %
+
+[INFO DPL-0020] Mirrored 149 instances
+[INFO DPL-0021] HPWL before           12156.7 u
+[INFO DPL-0022] HPWL after            11780.5 u
+[INFO DPL-0023] HPWL delta               -3.1 %
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+[INFO ODB-0403] 228 connections made, 0 conflicts skipped.
+Updating metrics…
+Cell type report:                       Count       Area
+  Endcap cell                              52     228.30
+  Tap cell                                 84     368.79
+  Timing Repair Buffer                     57    1953.73
+  Inverter                                 17     149.27
+  Sequential cell                          48    3582.57
+  Multi-Input combinational cell          222    4423.33
+  Total                                   480   10705.99
+Writing OpenROAD database to '/w/out/o.odb'…
+Writing netlist to '/w/out/o.v'…
+Writing layout to '/w/out/o.def'…
+Writing timing constraints to '/w/out/o.sdc'…
+@@M instances 344
+@@M physical_cells 136
+@@M cell_area_um2 10108.896
+@@M hpwl_um 11780.5
+@@H and2_1 3
+@@H and3_1 5
+@@H aoi211_1 1
+@@H aoi21_1 11
+@@H aoi221_1 8
+@@H aoi22_1 13
+@@H buf_2 1
+@@H buf_4 1
+@@H clkbuf_1 1
+@@H clkbuf_4 1
+@@H clkinv_1 17
+@@H dffrnq_1 48
+@@H dlyb_1 53
+@@H mux2_2 12
+@@H mux4_1 6
+@@H nand2_1 54
+@@H nand3_1 15
+@@H nand4_1 1
+@@H nor2_1 11
+@@H nor3_1 1
+@@H nor4_1 2
+@@H oai211_1 3
+@@H oai21_1 42
+@@H oai221_1 1
+@@H oai22_1 2
+@@H oai31_1 4
+@@H oai32_1 2
+@@H or2_1 5
+@@H xnor2_1 7
+@@H xnor3_1 2
+@@H xor2_1 10
+@@H xor3_1 1
+@@M setup_ws 1.9140209958723018
+@@M hold_ws 0.29903402822564484
+@@M setup_tns 0.0
+@@M hold_tns 0.0
+@@DONE

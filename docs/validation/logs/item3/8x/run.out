@@ -1,0 +1,115 @@
+=== 1. Native 6f3f28c 24ns OpenROAD log summary ===
+--- place.log ---
+[INFO RSZ-0027] Inserted 18 gf180mcu_fd_sc_mcu7t5v0__buf_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__buf_1 output buffers.
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+[INFO RSZ-0034] Found 1 slew violations.
+[INFO RSZ-0039] Resized 1 instances.
+[INFO RSZ-0038] Inserted 1 buffers in 1 nets.
+[INFO DPL-0007] Movable instances area: 8460.30 um^2
+[INFO DPL-0008] Fixed instances area within core: 597.09 um^2
+original HPWL            6508.8 u
+legalized HPWL           8285.8 u
+delta HPWL                   27 %
+[INFO DPL-0020] Mirrored 78 instances
+[INFO DPL-0021] HPWL before            8285.8 u
+[INFO DPL-0022] HPWL after             8106.7 u
+[INFO DPL-0023] HPWL delta               -2.2 %
+--- cts.log ---
+REPAIR_BEFORE setup 11.941895810229129 hold 0.8770898700028722 tns 0.0
+REPAIR_AFTER setup 11.948256944250927 hold 0.8755512118695279 tns 0.0
+Total number of Buffers Inserted: 5.
+   1.07 source latency _402_/CLK ^
+  -1.08 target latency _383_/CLK ^
+  -0.00 setup skew
+   0.00    0.00 source latency
+   1.07         network latency _379_/CLK
+           1.08 network latency _378_/CLK
+   1.07    1.08 latency
+           0.00 skew
+   0.00    0.00 source latency
+   1.07         network latency _379_/CLK
+           1.07 network latency _378_/CLK
+   1.07    1.07 latency
+           0.00 skew
+CLKBUF_COUNT 6
+--- route.log ---
+Total wire length on LAYER Metal4 = 107 um.
+Total wire length on LAYER Metal5 = 0 um.
+Total number of vias = 1885.
+Total wire length = 10133 um.
+Total wire length on LAYER Metal1 = 0 um.
+Total wire length on LAYER Metal2 = 5245 um.
+Total wire length on LAYER Metal3 = 4780 um.
+Total wire length on LAYER Metal4 = 107 um.
+Total wire length on LAYER Metal5 = 0 um.
+Total number of vias = 1885.
+[INFO RCX-0435] Reading extraction model file /w/rcx.rules ...
+[INFO RCX-0434] Defined process_corner MinMax0 with ext_model_index 0 (using extRulesFile defaults)
+[INFO RCX-0436] RC segment generation tiny8 (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 1164 rc segments
+[INFO RCX-0439] Coupling Cap extraction tiny8 ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 49% of 1791 wires extracted
+[INFO RCX-0442] 100% of 1791 wires extracted
+[INFO RCX-0045] Extract 294 nets, 1458 rsegs, 1458 caps, 2574 ccs
+[INFO RCX-0443] 294 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+Total power      : 4.93e-03 W
+Worstcase voltage: 5.00e+00 V
+Average IR drop  : 4.88e-04 V
+Worstcase IR drop: 2.53e-03 V
+[INFO PSM-0040] All shapes on net VSS are connected.
+Total power      : 4.93e-03 W
+Worstcase voltage: 1.05e-03 V
+Average IR drop  : 4.57e-04 V
+Worstcase IR drop: 1.05e-03 V
+=== 2. Cell position match (place & CTS) and SPEF stats ===
+DEF place: nat=407 brw=407 exact_same_pos=407
+DEF cts: nat=415 brw=415 exact_same_pos=415
+SPEF nat: (294, 1.6138655680000007)
+SPEF brw: (294, 1.6127203740000005)
+=== 3. Native sta 3.1.0 on native route (tiny8_cts.v + native tiny8.spef) AND browser route (tiny8.final.v + browser tiny8.spef) ===
+3.1.0
+create_clock -name clk -period 24 [get_ports clk]
+set_input_delay 4.800000000000001 -clock clk [lsearch -all -inline -not -exact [all_inputs] [get_ports clk]]
+set_output_delay 4.800000000000001 -clock clk [all_outputs]
+set_load 0 [all_outputs]
+set_propagated_clock [all_clocks]
+set_clock_uncertainty 0.1 [all_clocks]
+--- Native sta 3.1.0 on NATIVE route ---
+wns max 0.0000
+tns max 0.0000
+wns min 0.0000
+tns min 0.0000
+worst slack max 11.6175
+worst slack min 0.7818
+Total                  2.98e-03   1.24e-03   5.75e-08   4.22e-03 100.0%
+--- Native sta 3.1.0 on BROWSER route ---
+wns max 0.0000
+tns max 0.0000
+wns min 0.0000
+tns min 0.0000
+worst slack max 11.6006
+worst slack min 0.7821
+Total                  2.98e-03   1.24e-03   5.75e-08   4.22e-03 100.0%
+--- Browser OpenSTA summary (from tiny8.pnr.json) ---
+ "setupWs": 11.6006,
+ "holdWs": 0.7821,
+=== 4. Native Magic 8.3.636 DRC + SPICE extraction on native 24ns route ===
+8.3.636
+Magic 8.3 revision 636 - Compiled on Thu Apr 16 09:13:57 PM CEST 2026.
+10 Magic internal units = 1 Lambda
+Total DRC errors found: 0
+end-of-drc
+No errors found.
+exttospice finished.
+=== 5. Native Netgen 1.5.318 LVS on native 24ns route ===
+/foss/designs/nishkam_jobs/item3_8x_verify/netgen_stdout.log:Netgen 1.5.318 compiled on Thu Apr 16 09:02:45 PM CEST 2026
+/foss/designs/nishkam_jobs/item3_8x_verify/netgen_stdout.log:Warning:  A case-insensitive file has been read and so the	verilog file must be treated case-insensitive to match.
+/foss/designs/nishkam_jobs/item3_8x_verify/netgen_stdout.log:Circuit 1 contains 3148 devices, Circuit 2 contains 3148 devices.
+/foss/designs/nishkam_jobs/item3_8x_verify/netgen_stdout.log:Circuit 1 contains 1558 nets,    Circuit 2 contains 1558 nets.
+/foss/designs/nishkam_jobs/item3_8x_verify/netgen_stdout.log:Final result: 
+/foss/designs/nishkam_jobs/item3_8x_verify/netgen_stdout.log:Circuits match uniquely.
+/foss/designs/nishkam_jobs/item3_8x_verify/lvs.out.txt:Netlists match uniquely.
+/foss/designs/nishkam_jobs/item3_8x_verify/lvs.out.txt:Final result: Circuits match uniquely.

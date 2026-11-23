@@ -1,0 +1,358 @@
+﻿=== 1. 3-Version Matrix (ref_def) ===
+[INFO] Final PATH variable: /foss/tools/bin:/foss/tools/sak:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/foss/tools/kactus2:/foss/tools/klayout:/foss/tools/osic-multitool
+[INFO] Final PYTHONPATH variable: /usr/lib/python312.zip:/usr/lib/python3.12:/usr/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/dist-packages:/usr/lib/python3/dist-packages:/foss/tools/ngspyce/local/lib/python3.12/dist-packages:/foss/tools/openems/local/lib/python3.12/dist-packages:/foss/tools/pyopus/local/lib/python3.12/dist-packages:/foss/tools/yosys/share/yosys/python3:/foss/tools/klayout/pymod:/foss/tools/vacask/lib/vacask/python
+=== 0. Versions of all OpenROAD binaries ===
+openroad-librelane: 26Q1-1024-gdcf36133a 
+openroad (61932e8): 26Q2-254-g61932e897 
+/tmp/nb/openroad:   26Q4-1108-g6f3f28cc85 
+-rwxr-xr-x 1 root root 105920688 Apr 16  2026 /foss/tools/openroad/bin/openroad
+-rwxr-xr-x 1 root root  99361664 Apr 16  2026 /foss/tools/openroad-librelane/bin/openroad
+/foss/tools/bin/librelane
+#!/bin/bash
+export PATH=${TOOLS}/openroad-librelane/bin:${PATH} 
+exec -a "$0" /usr/local/bin/librelane --manual-pdk "$@"
+=== 0b. Restore parity_tiny8ref step 32 outputs from clean /tmp/ll_s32_check ===
+diff check/32/tiny8.nl.v vs ref/34/tiny8.nl.v:
+Restored parity_tiny8ref step 32 files.
+--- CASE: ll_or__ref_def__nopin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0038] Inserted 23 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_2 1 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 54
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net51,Z=net49
+@@RST fanout50 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net51,Z=net50
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net51
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net53,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net56
+--- CASE: ll_or__ref_def__pin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0038] Inserted 23 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_2 1 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 54
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net51,Z=net49
+@@RST fanout50 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net51,Z=net50
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net51
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net53,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net56
+--- CASE: ll_or__brw_def__nopin ---
+[ERROR STA-0340] cannot open '/foss/designs/nishkam_jobs/sec26_post213_tiny8/ll/gpl.sdc'.
+Error: run_case.tcl, 21 STA-0340
+--- CASE: ll_or__brw_def__pin ---
+[ERROR STA-0340] cannot open '/foss/designs/nishkam_jobs/sec26_post213_tiny8/ll/gpl.sdc'.
+Error: run_case.tcl, 21 STA-0340
+--- CASE: or619__ref_def__nopin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 2 instances.
+[INFO RSZ-0038] Inserted 25 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_1 2 gf180mcu_fd_sc_mcu7t5v0__buf_2 2 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_3 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 52
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__buf_1): I=net53,Z=net49
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__buf_1): I=net53,Z=net51
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net55,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net56
+@@RST fanout57 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net57
+@@RST fanout58 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net58
+@@RST max_cap50 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_3): I=net49,Z=net50
+@@RST max_cap52 (gf180mcu_fd_sc_mcu7t5v0__buf_2): I=net51,Z=net52
+--- CASE: or619__ref_def__pin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 2 instances.
+[INFO RSZ-0038] Inserted 24 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_2 2 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_1 2 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 52
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_1): I=net52,Z=net49
+@@RST fanout50 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_1): I=net52,Z=net50
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net54,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net56
+@@RST fanout57 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net57
+@@RST max_cap51 (gf180mcu_fd_sc_mcu7t5v0__buf_2): I=net50,Z=net51
+--- CASE: or619__brw_def__nopin ---
+[ERROR STA-0340] cannot open '/foss/designs/nishkam_jobs/sec26_post213_tiny8/ll/gpl.sdc'.
+Error: run_case.tcl, 21 STA-0340
+--- CASE: or619__brw_def__pin ---
+[ERROR STA-0340] cannot open '/foss/designs/nishkam_jobs/sec26_post213_tiny8/ll/gpl.sdc'.
+Error: run_case.tcl, 21 STA-0340
+--- CASE: or6f3__ref_def__nopin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__buf_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__buf_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 2 instances.
+[INFO RSZ-0038] Inserted 25 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_1 35 gf180mcu_fd_sc_mcu7t5v0__buf_2 2 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_3 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 19
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__buf_1): I=net53,Z=net49
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__buf_1): I=net53,Z=net51
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net55,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net56
+@@RST fanout57 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net57
+@@RST fanout58 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net58
+@@RST max_cap50 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_3): I=net49,Z=net50
+@@RST max_cap52 (gf180mcu_fd_sc_mcu7t5v0__buf_2): I=net51,Z=net52
+--- CASE: or6f3__ref_def__pin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 2 instances.
+[INFO RSZ-0038] Inserted 24 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_2 2 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_1 2 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 52
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_1): I=net52,Z=net49
+@@RST fanout50 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_1): I=net52,Z=net50
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net54,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net56
+@@RST fanout57 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net57
+@@RST max_cap51 (gf180mcu_fd_sc_mcu7t5v0__buf_2): I=net50,Z=net51
+--- CASE: or6f3__brw_def__nopin ---
+[ERROR STA-0340] cannot open '/foss/designs/nishkam_jobs/sec26_post213_tiny8/ll/gpl.sdc'.
+--- CASE: or6f3__brw_def__pin ---
+[ERROR STA-0340] cannot open '/foss/designs/nishkam_jobs/sec26_post213_tiny8/ll/gpl.sdc'.
+=== DONE MATRIX ===
+
+=== 2. 3-Version Matrix (brw_def) + RSZ Debug Excerpt ===
+Command exited with code 0.
+
+Command output:
+[INFO] Final PATH variable: /foss/tools/bin:/foss/tools/sak:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/foss/tools/kactus2:/foss/tools/klayout:/foss/tools/osic-multitool
+[INFO] Final PYTHONPATH variable: /usr/lib/python312.zip:/usr/lib/python3.12:/usr/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/dist-packages:/usr/lib/python3/dist-packages:/foss/tools/ngspyce/local/lib/python3.12/dist-packages:/foss/tools/openems/local/lib/python3.12/dist-packages:/foss/tools/pyopus/local/lib/python3.12/dist-packages:/foss/tools/yosys/share/yosys/python3:/foss/tools/klayout/pymod:/foss/tools/vacask/lib/vacask/python
+=== PART 1: Complete brw_def matrix across all 3 OpenROAD versions ===
+--- CASE: ll_or__brw_def__nopin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0038] Inserted 23 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_2 2 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 54
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net51,Z=net49
+@@RST fanout50 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net51,Z=net50
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net51
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net53,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net56
+--- CASE: ll_or__brw_def__pin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0038] Inserted 23 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_2 1 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 54
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net51,Z=net49
+@@RST fanout50 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net51,Z=net50
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net51
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net53,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net56
+--- CASE: or619__brw_def__nopin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 1 instances.
+[INFO RSZ-0038] Inserted 24 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_1 1 gf180mcu_fd_sc_mcu7t5v0__buf_2 2 gf180mcu_fd_sc_mcu7t5v0__clkbuf_4 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 53
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__buf_1): I=net52,Z=net49
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net52,Z=net51
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net54,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net56
+@@RST fanout57 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net57
+@@RST max_cap50 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4): I=net49,Z=net50
+--- CASE: or619__brw_def__pin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 1 instances.
+[INFO RSZ-0038] Inserted 24 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_2 1 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_1 1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_4 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 53
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_1): I=net52,Z=net49
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net52,Z=net51
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net54,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net56
+@@RST fanout57 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net57
+@@RST wire50 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4): I=net49,Z=net50
+--- CASE: or6f3__brw_def__nopin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__buf_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__buf_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 1 instances.
+[INFO RSZ-0038] Inserted 24 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_1 34 gf180mcu_fd_sc_mcu7t5v0__buf_2 2 gf180mcu_fd_sc_mcu7t5v0__clkbuf_4 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 20
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__buf_1): I=net52,Z=net49
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net52,Z=net51
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net54,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net56
+@@RST fanout57 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net57
+@@RST max_cap50 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4): I=net49,Z=net50
+--- CASE: or6f3__brw_def__pin ---
+[INFO RSZ-0027] Inserted 17 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 input buffers.
+[INFO RSZ-0028] Inserted 16 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 output buffers.
+[INFO RSZ-0034] Found 8 slew violations.
+[INFO RSZ-0035] Found 10 fanout violations.
+[INFO RSZ-0039] Resized 1 instances.
+[INFO RSZ-0038] Inserted 24 buffers in 13 nets.
+@@HIST gf180mcu_fd_sc_mcu7t5v0__buf_2 1 gf180mcu_fd_sc_mcu7t5v0__buf_4 1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_1 1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_4 1 gf180mcu_fd_sc_mcu7t5v0__dlyb_1 53
+@@RST fanout49 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_1): I=net52,Z=net49
+@@RST fanout51 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net52,Z=net51
+@@RST fanout52 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net52
+@@RST fanout53 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net54,Z=net53
+@@RST fanout54 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net54
+@@RST fanout55 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net17,Z=net55
+@@RST fanout56 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net16,Z=net56
+@@RST fanout57 (gf180mcu_fd_sc_mcu7t5v0__dlyb_1): I=net15,Z=net57
+@@RST wire50 (gf180mcu_fd_sc_mcu7t5v0__clkbuf_4): I=net49,Z=net50
+=== PART 1b: Compare or6f3__brw_def__pin vs browser WASM sec26_post213_tiny8/ll/repair_design.v ===
+Browser WASM buffer histogram:
+      1 gf180mcu_fd_sc_mcu7t5v0__buf_2
+      1 gf180mcu_fd_sc_mcu7t5v0__buf_4
+      1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_1
+      1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_4
+     53 gf180mcu_fd_sc_mcu7t5v0__dlyb_1
+Native 6f3f28c (brw_def + pin) buffer histogram:
+      1 gf180mcu_fd_sc_mcu7t5v0__buf_2
+      1 gf180mcu_fd_sc_mcu7t5v0__buf_4
+      1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_1
+      1 gf180mcu_fd_sc_mcu7t5v0__clkbuf_4
+     53 gf180mcu_fd_sc_mcu7t5v0__dlyb_1
+=== PART 2: RSZ debug trace on net17 (rst_n) in dcf36133a vs 61932e897 vs 6f3f28cc85 ===
+--- dbg_dcf_ref (net17 / fanout49 / wire50 / max_cap5 lines) ---
+[DEBUG RSZ-repair_net]        left  l=5.5 cap=0.008 fanout=1
+
+=== 3. RSZ-repair_net fanout49/Z Trace (dcf36133a vs 61932e897 vs 6f3f28cc85) ===
+--- dcf36133a (lines 3125-3135, 3210-3220) ---
+[DEBUG RSZ-repair_net] repair net fanout48/Z
+[DEBUG RSZ-repair_net] repair net input17/Z
+[DEBUG RSZ-repair_net] fanout violation
+[DEBUG RSZ-repair_net]  fanout fanout gf180mcu_fd_sc_mcu7t5v0__dlyb_1 (55.8 29.9)
+[DEBUG RSZ-repair_net] repair net fanout49/Z
+[DEBUG RSZ-repair_net] load slew violation pin=fanout49/Z load_slew=2.600 max_slew=2.080
+[DEBUG RSZ-repair_net] wire (64.04, 32.25) cap 0.082 slack 0.000 buffers 0 load sl 2.600
+[DEBUG RSZ-repair_net]  junction (55.85, 29.92) cap 0.081 slack 0.000 buffers 0 load sl 2.600
+[DEBUG RSZ-repair_net]   load _491_/RN (55.85, 29.92) cap 0.007 slack 0.000 load sl 2.600
+[DEBUG RSZ-repair_net]   load _491_/RN
+[DEBUG RSZ-repair_net]   wire (55.85, 29.92) cap 0.074 slack 0.000 buffers 0 load sl 2.600
+[DEBUG RSZ-repair_net]    right l=20.5 cap=0.016 fanout=2
+[DEBUG RSZ-repair_net]   wl=66.4 l=16.0
+[DEBUG RSZ-repair_net]   load_slew=1.529 r_drvr=11118.702 max_load_slew=2.599 r_wire=3.66279554221875 ref_cap=7.295945396229228e-14 layer=-1 wire_res=228896.109375
+[DEBUG RSZ-repair_net]  left  l=0.0 cap=0.007 fanout=1
+[DEBUG RSZ-repair_net]  right l=66.4 cap=0.074 fanout=9
+[DEBUG RSZ-repair_net] wl=76.9 l=10.5
+[DEBUG RSZ-repair_net] load_slew=1.692 r_drvr=11118.702 max_load_slew=2.599 r_wire=2.624040608578125 ref_cap=8.104643665169872e-14 layer=-1 wire_res=249338.71233163486
+[DEBUG RSZ-repair_net]  fanout fanout gf180mcu_fd_sc_mcu7t5v0__dlyb_1 (48.5 71.8)
+[DEBUG RSZ-repair_net] repair net fanout50/Z
+[DEBUG RSZ-repair_net] load slew violation pin=fanout50/Z load_slew=2.600 max_slew=2.080
+[DEBUG RSZ-repair_net] junction (56.69, 74.17) cap 0.083 slack 0.000 buffers 0 load sl 2.600
+--- 61932e897 (lines 3125-3135, 3214-3227) ---
+[DEBUG RSZ-repair_net] repair net fanout48/Z
+[DEBUG RSZ-repair_net] repair net input17/Z
+[DEBUG RSZ-repair_net] fanout violation
+[DEBUG RSZ-repair_net]  fanout fanout gf180mcu_fd_sc_mcu7t5v0__dlyb_1 (55.8 29.9)
+[DEBUG RSZ-repair_net] repair net fanout49/Z
+[DEBUG RSZ-repair_net] drvr slew violation pin=fanout49/Z slew=2.415 max_slew=2.400
+[DEBUG RSZ-repair_net] load slew violation pin=fanout49/Z load_slew=2.600 max_slew=2.080
+[DEBUG RSZ-repair_net] wire (58.53, 31.71) cap 0.082 slack 0.000 buffers 0 load sl 3.000
+[DEBUG RSZ-repair_net]  junction (55.85, 31.71) cap 0.082 slack 0.000 buffers 0 load sl 3.000
+[DEBUG RSZ-repair_net]   wire (55.85, 31.71) cap 0.008 slack 0.000 buffers 0 load sl 3.000
+[DEBUG RSZ-repair_net]    load _491_/RN (55.85, 29.92) cap 0.007 slack 0.000 load sl 3.000
+[DEBUG RSZ-repair_net]    right l=26.2 cap=0.010 fanout=1
+[DEBUG RSZ-repair_net]   wl=67.7 l=16.4
+[DEBUG RSZ-repair_net]   load_slew=1.545 r_drvr=11121.049 max_load_slew=2.999 r_wire=3.79291566946875 ref_cap=7.371416709455944e-14 layer=-1 wire_res=230839.0036801625
+[DEBUG RSZ-repair_net]  left  l=1.8 cap=0.008 fanout=1
+[DEBUG RSZ-repair_net]  right l=67.7 cap=0.075 fanout=9
+[DEBUG RSZ-repair_net]  cap violation
+[DEBUG RSZ-repair_net]  max_cap max_cap gf180mcu_fd_sc_mcu7t5v0__buf_3 (55.8 31.7)
+[DEBUG RSZ-repair_net] wl=4.5 l=2.7
+[DEBUG RSZ-repair_net] load_slew=0.275 r_drvr=11121.049 max_load_slew=3.000 r_wire=0.613670469234375 ref_cap=1.3116474594822292e-14 layer=-1 wire_res=228896.109375
+[DEBUG RSZ-repair_net]  fanout fanout gf180mcu_fd_sc_mcu7t5v0__dlyb_1 (48.5 71.8)
+[DEBUG RSZ-repair_net] repair net fanout51/Z
+[DEBUG RSZ-repair_net] drvr slew violation pin=fanout51/Z slew=2.452 max_slew=2.400
+[DEBUG RSZ-repair_net] load slew violation pin=fanout51/Z load_slew=2.600 max_slew=2.080
+[DEBUG RSZ-repair_net] junction (51.17, 73.64) cap 0.084 slack 0.000 buffers 0 load sl 3.000
+--- 6f3f28cc85 brw_def + pinBuffer (lines 3125-3135, 3218-3232) ---
+[DEBUG RSZ-repair_net] repair net fanout48/Z
+[DEBUG RSZ-repair_net] repair net input17/Z
+[DEBUG RSZ-repair_net] fanout violation
+[DEBUG RSZ-repair_net]  fanout fanout gf180mcu_fd_sc_mcu7t5v0__dlyb_1 (55.2 28.9)
+[DEBUG RSZ-repair_net] repair net fanout49/Z
+[DEBUG RSZ-repair_net] drvr slew violation pin=fanout49/Z slew=2.419 max_slew=2.400
+[DEBUG RSZ-repair_net] load slew violation pin=fanout49/Z load_slew=2.600 max_slew=2.080
+[DEBUG RSZ-repair_net] wire (57.90, 30.66) cap 0.082 slack 0.000 buffers 0 load sl 3.000
+[DEBUG RSZ-repair_net]  junction (55.21, 30.66) cap 0.082 slack 0.000 buffers 0 load sl 3.000
+[DEBUG RSZ-repair_net]   wire (55.21, 30.66) cap 0.008 slack 0.000 buffers 0 load sl 3.000
+[DEBUG RSZ-repair_net]    load _491_/RN (55.21, 28.89) cap 0.007 slack 0.000 load sl 3.000
+[DEBUG RSZ-repair_net]   wl=67.6 l=16.9
+[DEBUG RSZ-repair_net]   load_slew=1.547 r_drvr=11109.688 max_load_slew=2.999 r_wire=3.8701754173125003 ref_cap=7.387965022739862e-14 layer=-1 wire_res=228896.109375
+[DEBUG RSZ-repair_net]  left  l=1.8 cap=0.008 fanout=1
+[DEBUG RSZ-repair_net]  right l=67.6 cap=0.075 fanout=9
+[DEBUG RSZ-repair_net] wl=70.3 l=2.7
+[DEBUG RSZ-repair_net] load_slew=1.706 r_drvr=11109.688 max_load_slew=2.999 r_wire=0.6159594303281251 ref_cap=8.224226421410519e-14 layer=-1 wire_res=228896.109375
+[DEBUG RSZ-repair_net] max cap violation 0.082 > 0.082
+[DEBUG RSZ-repair_net] split length=0.7
+[DEBUG RSZ-repair_net] wire wire gf180mcu_fd_sc_mcu7t5v0__clkbuf_4 (55.9 30.7)
+[DEBUG RSZ-repair_net] l=2.0 post buffer slew=0.117
+[DEBUG RSZ-repair_net]  fanout fanout gf180mcu_fd_sc_mcu7t5v0__dlyb_1 (51.2 71.8)
+[DEBUG RSZ-repair_net] repair net fanout51/Z
+[DEBUG RSZ-repair_net] load slew violation pin=fanout51/Z load_slew=2.600 max_slew=2.080
+[DEBUG RSZ-repair_net] junction (59.38, 74.17) cap 0.082 slack 0.000 buffers 0 load sl 2.600
+[DEBUG RSZ-repair_net]  wire (59.38, 74.17) cap 0.064 slack 0.000 buffers 0 load sl 2.600
+
+=== 4. Liberty dffrnq_1/RN Cap Check + Exact nom_tt OpenRCX + sta 3.1.0 Slacks ===
+=== 1. Exact dffrnq_1/RN pin cap across tt/ss/ff ===
+tt_025C_5v00 dffrnq_1/RN: pin(RN) { capacitance : 0.007246 ; direction : input ; driver_waveform_rise : driver_waveform_default_rise ; driver_waveform_fall : driver_waveform_default_fall ; input_voltage : default ; max_transition : 4 ; min_pulse_width_low : 0.349 ; related_ground_pin : VSS ; related_power_pin : VDD ; interna
+ss_125C_4v50 dffrnq_1/RN: pin(RN) { capacitance : 0.00741 ; direction : input ; driver_waveform_rise : driver_waveform_default_rise ; driver_waveform_fall : driver_waveform_default_fall ; input_voltage : default ; max_transition : 7 ; min_pulse_width_low : 0.627 ; related_ground_pin : VSS ; related_power_pin : VDD ; internal
+ff_n40C_5v50 dffrnq_1/RN: pin(RN) { capacitance : 0.007321 ; direction : input ; driver_waveform_rise : driver_waveform_default_rise ; driver_waveform_fall : driver_waveform_default_fall ; input_voltage : default ; max_transition : 2.6 ; min_pulse_width_low : 0.2237 ; related_ground_pin : VSS ; related_power_pin : VDD ; inte
+[INFO] Final PATH variable: /foss/tools/bin:/foss/tools/sak:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/foss/tools/kactus2:/foss/tools/klayout:/foss/tools/osic-multitool
+[INFO] Final PYTHONPATH variable: /usr/lib/python312.zip:/usr/lib/python3.12:/usr/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/dist-packages:/usr/lib/python3/dist-packages:/foss/tools/ngspyce/local/lib/python3.12/dist-packages:/foss/tools/openems/local/lib/python3.12/dist-packages:/foss/tools/pyopus/local/lib/python3.12/dist-packages:/foss/tools/yosys/share/yosys/python3:/foss/tools/klayout/pymod:/foss/tools/vacask/lib/vacask/python
+=== Exact LibreLane base.sdc (with SYNTH_CLK_DRIVING_CELL) post-route nom_tt STA ===
+@@STA310 browser_post213 setup=9.5685 hold=0.6781
+@@STA310 native_ref_52 setup=9.6151 hold=0.6655
+=== Exact LibreLane base.sdc per-step nom_tt slacks on sec26_post213_tiny8 (6f3f28c) ===
+@@STEP_NOMTT gpl_skipio setup=12.781 hold=0.608
+@@STEP_NOMTT gpl setup=12.612 hold=0.610
+@@STEP_NOMTT repair_design setup=10.344 hold=0.635
+@@STEP_NOMTT dpl setup=10.344 hold=0.635
+@@STEP_NOMTT cts setup=10.888 hold=0.642
+@@STEP_NOMTT rsz_postcts setup=10.888 hold=0.642
+@@STEP_NOMTT grt setup=10.683 hold=0.657
+=== Exact LibreLane base.sdc per-step nom_tt slacks on native ref (dcf36133a) ===
+@@STEP_NOMTT nat_24-openroad-globalplacementskipio setup=12.764 hold=0.607
+@@STEP_NOMTT nat_28-openroad-globalplacement setup=12.615 hold=0.611
+@@STEP_NOMTT nat_32-openroad-repairdesignpostgpl setup=10.329 hold=0.636
+@@STEP_NOMTT nat_35-openroad-cts setup=10.898 hold=0.636
+@@STEP_NOMTT nat_39-openroad-globalrouting setup=10.473 hold=0.666

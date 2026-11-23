@@ -1,0 +1,130 @@
+=== 0. Verify identical synthesized netlist sha256 ===
+95834ba717d89a2291ac0a784a990f4e90d723dbdd00e7a106c24e61af227071  /foss/designs/nishkam_jobs/item3_8z_nat/tiny8.v
+95834ba717d89a2291ac0a784a990f4e90d723dbdd00e7a106c24e61af227071  /foss/designs/nishkam_jobs/item3_8z_brw_on/tiny8.synth.v
+=== 1. Native 6f3f28c 7ns REPAIR=1 OpenROAD log summary ===
+--- cts.log (repair summary) ---
+[INFO RSZ-0058] Using max wire length 7645um.
+REPAIR_BEFORE setup -1.6581048114957824 hold 0.7107497014332647 tns -16.249078986708298
+[INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
+[INFO RSZ-0094] Found 20 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 20 out of 20 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |    TNS     |  Viol  |  Worst
+[INFO RSZ-0051] Resized 21 instances: 21 up, 0 up match, 0 down, 0 VT
+[INFO RSZ-0043] Swapped pins on 1 instances.
+[INFO RSZ-0505] Runtime: 0.66s
+[INFO RSZ-0033] No hold violations found.
+[INFO RSZ-0506] Runtime: 0.00s
+REPAIR_AFTER setup 0.09098766442264682 hold 0.7120518820556757 tns 0.0
+Total number of Buffers Inserted: 5.
+   1.08 source latency _402_/CLK ^
+  -1.08 target latency _383_/CLK ^
+  -0.00 setup skew
+   0.00    0.00 source latency
+   1.08         network latency _379_/CLK
+           1.08 network latency _378_/CLK
+   1.08    1.08 latency
+           0.00 skew
+   0.00    0.00 source latency
+   1.07         network latency _379_/CLK
+           1.07 network latency _378_/CLK
+   1.07    1.07 latency
+           0.00 skew
+CLKBUF_COUNT 7
+--- route.log ---
+Total wire length on LAYER Metal4 = 70 um.
+Total wire length on LAYER Metal5 = 0 um.
+Total number of vias = 1885.
+Total wire length = 10234 um.
+Total wire length on LAYER Metal1 = 0 um.
+Total wire length on LAYER Metal2 = 5281 um.
+Total wire length on LAYER Metal3 = 4882 um.
+Total wire length on LAYER Metal4 = 70 um.
+Total wire length on LAYER Metal5 = 0 um.
+Total number of vias = 1885.
+[INFO RCX-0435] Reading extraction model file /w/rcx.rules ...
+[INFO RCX-0434] Defined process_corner MinMax0 with ext_model_index 0 (using extRulesFile defaults)
+[INFO RCX-0436] RC segment generation tiny8 (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 1162 rc segments
+[INFO RCX-0439] Coupling Cap extraction tiny8 ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 49% of 1785 wires extracted
+[INFO RCX-0442] 100% of 1785 wires extracted
+[INFO RCX-0045] Extract 294 nets, 1456 rsegs, 1456 caps, 2619 ccs
+[INFO RCX-0443] 294 nets finished
+[INFO PSM-0040] All shapes on net VDD are connected.
+Total power      : 5.17e-03 W
+Worstcase voltage: 5.00e+00 V
+Average IR drop  : 5.15e-04 V
+Worstcase IR drop: 3.04e-03 V
+[INFO PSM-0040] All shapes on net VSS are connected.
+Total power      : 5.17e-03 W
+Worstcase voltage: 1.07e-03 V
+Average IR drop  : 4.68e-04 V
+Worstcase IR drop: 1.07e-03 V
+=== 2. Netlist diff, cell position match (place & CTS), cell area, and SPEF stats ===
+Netlist line diff (native tiny8_cts.v vs browser tiny8.final.v):
+0
+DEF place: nat=407 (logic=271) brw=407 (logic=271) exact_same_pos=407
+DEF cts: nat=415 (logic=279) brw=415 (logic=279) exact_same_pos=415
+SPEF nat: (294, 1.6188398900000007)
+SPEF brw: (294, 1.6138532340000011)
+=== 3. Native sta 3.1.0 on native 7ns route AND browser 7ns route ===
+create_clock -name clk -period 7 [get_ports clk]
+set_input_delay 1.4000000000000001 -clock clk [lsearch -all -inline -not -exact [all_inputs] [get_ports clk]]
+set_output_delay 1.4000000000000001 -clock clk [all_outputs]
+set_load 0 [all_outputs]
+set_propagated_clock [all_clocks]
+set_clock_uncertainty 0.1 [all_clocks]
+--- Native sta 3.1.0 on NATIVE 7ns route ---
+wns max -0.1499
+tns max -0.8998
+wns min 0.0000
+tns min 0.0000
+worst slack max -0.1499
+worst slack min 0.6500
+Total                  1.04e-02   4.54e-03   5.85e-08   1.49e-02 100.0%
+--- Native sta 3.1.0 on BROWSER 7ns route ---
+wns max -0.1603
+tns max -0.9257
+wns min 0.0000
+tns min 0.0000
+worst slack max -0.1603
+worst slack min 0.6510
+Total                  1.04e-02   4.54e-03   5.85e-08   1.49e-02 100.0%
+--- Browser OpenSTA summary (repair ON) ---
+  "wirelengthUm": null,
+  "vias": null,
+    "worstV": 0.00304,
+    "avgV": 0.000515,
+    "powerW": 0.00517
+    "worstV": 0.00107,
+    "avgV": 0.000468,
+    "powerW": 0.00517
+  "wirelengthUm": 10231,
+  "vias": 1897,
+ "magicDrc": 0,
+ "lvsDevices": [
+ "lvsNets": [
+ "setupWs": -0.1603,
+ "holdWs": 0.651,
+=== 4. Native Magic 8.3.636 DRC + SPICE extraction on native 7ns route ===
+Magic 8.3 revision 636 - Compiled on Thu Apr 16 09:13:57 PM CEST 2026.
+10 Magic internal units = 1 Lambda
+Total DRC errors found: 0
+end-of-drc
+No errors found.
+exttospice finished.
+=== 5. Native Netgen 1.5.318 LVS on native 7ns route ===
+/foss/designs/nishkam_jobs/item3_8z_verify/netgen_stdout.log:Netgen 1.5.318 compiled on Thu Apr 16 09:02:45 PM CEST 2026
+/foss/designs/nishkam_jobs/item3_8z_verify/netgen_stdout.log:Warning:  A case-insensitive file has been read and so the	verilog file must be treated case-insensitive to match.
+/foss/designs/nishkam_jobs/item3_8z_verify/netgen_stdout.log:Circuit 1 contains 3187 devices, Circuit 2 contains 3187 devices.
+/foss/designs/nishkam_jobs/item3_8z_verify/netgen_stdout.log:Circuit 1 contains 1579 nets,    Circuit 2 contains 1579 nets.
+/foss/designs/nishkam_jobs/item3_8z_verify/netgen_stdout.log:Final result: 
+/foss/designs/nishkam_jobs/item3_8z_verify/netgen_stdout.log:Circuits match uniquely.
+/foss/designs/nishkam_jobs/item3_8z_verify/lvs.out.txt:Netlists match with 29 symmetries.
+/foss/designs/nishkam_jobs/item3_8z_verify/lvs.out.txt:Final result: Circuits match uniquely.
+=== 6. Native Yosys 0.64 equivalence (post-PnR native tiny8_cts.v vs synth netlist, vs RTL, + negative control) ===
+Yosys 0.64 (git sha1 6d2c445ae, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+YOSYS_EQ synth_vs_cts: PASS
+YOSYS_EQ rtl_vs_cts: PASS
+YOSYS_EQ neg_control: FAIL (exit 1)

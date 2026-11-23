@@ -1,0 +1,10 @@
+Native KLayout 0.30.8 DRC on the browser (Studio recipe) GDS, container gf180v, 2026-11-23, after the wire-RC change (#207 #208).
+IHP:   klayout -b -r /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/drc/ihp-sg13g2.drc -rd input=<gds> -rd report=<out>.lyrdb -rd topcell=<top> -rd no_recommended=true -rd run_mode=deep
+sky130: klayout -b -r /foss/pdks/sky130A/libs.tech/klayout/drc/sky130A_mr.drc -rd input=<gds> -rd report=<out>.lyrdb -rd top_cell=<top>
+(klayout is on PATH only through `bash -lc` in the container)
+ihp-sg13g2 counter10 : 0 violation items (581 rule categories)   report: klayout-drc-ihp-counter10.lyrdb
+ihp-sg13g2 tiny8     : 0 violation items
+ihp-sg13g2 shreg4    : 0 violation items
+sky130A    counter10 : 0 violation items                         report: klayout-drc-sky130A-counter10.lyrdb
+sky130A    tiny8     : 0 violation items (the earlier run, before the RC change, had 3: 1x nsdm.1, 2x psdm.1; layout dependent)
+Not run: sky130A shreg4/adder2, ihp adder2, density/antenna decks.

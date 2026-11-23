@@ -7,7 +7,7 @@ import { gunzipSync } from "node:zlib";
 import { floorplanDef, placeScript, routeScript } from "../../web/studio/engines/pnr.worker.js";
 const [from, name = "tiny8"] = process.argv.slice(2);
 const DIE = { tiny8: [135.52, 133.28], adder2: [77.28, 74.48] }[name], top = name;
-const HOST = "C:/Users/Asus/eda/designs/nishkam_jobs", BOX = "/foss/designs/nishkam_jobs", dir = `${HOST}/pnr_native_${name}`, w = `${BOX}/pnr_native_${name}/w`;
+const HOST = process.env.HOST_JOBS || "./nishkam_jobs", BOX = "/foss/designs/nishkam_jobs", dir = `${HOST}/pnr_native_${name}`, w = `${BOX}/pnr_native_${name}/w`;
 mkdirSync(`${dir}/w`, { recursive: true });
 const V = new URL("../../web/vendor/gf180mcu/", import.meta.url);
 copyFileSync(new URL("pd-7b70722/gf180mcu_fd_sc_mcu7t5v0__nom.tlef", V), `${dir}/w/tech.lef`);

@@ -1653,3 +1653,31 @@ klayout -b -r /foss/pdks/ihp-sg13g2/libs.tech/klayout/tech/drc/ihp-sg13g2.drc \
 - **Density & antenna KLayout decks (`density.drc`, `antenna.drc`):** only `ihp-sg13g2.drc` (`main`, `no_recommended=true`) was run on the browser GDS; metal fill generation (`filler.py`) and seal-ring rules were not run.
 - Designs larger than `tiny8`, macros, SRAMs, multi-clock designs, native OpenSTA on identical SPEF/netlist, and browsers other than Microsoft Edge.
 - Evidence scope: GLS is shown for `counter10` and `shreg4` only; the Classic recipe ran with `MC=0` (no 3-corner numbers); PDNSim IR drop and power have no native number to compare with; the 4-bit `counter` Edge run has no native reference.
+## 30. Threaded OpenROAD in the browser (issue #196)
+
+Status: early. Claim made here, and no other: the threaded OpenROAD build `web/vendor/openroad-pnr/6f3f28c-mt/` gives the same results as the single-thread build `6f3f28c-viz/` (which is the build validated against native OpenROAD in section 8), and routes faster on bigger designs. Not a claim that the result is good, or that it matches LibreLane.
+
+**Setup.** Designs: tiny8 (135.52 x 133.28 um, 24 ns, density 50, 407 cells after placement) and rmult16 (16 x 16 registered multiplier, synthesized netlist from the spike, 320 x 320 um, 24 ns). Machine: Windows 11, 16 hardware threads, Node 26 (OpenROAD runs inside Studio's own worker modules, `tools/openroad-pnr/threads/bench.mjs`). Flow per run: place (live frames every 10 iterations), CTS (frames every iteration), global + detailed route (frames every iteration), as Studio runs it.
+
+**How our flow was built.** Engine: OpenROAD master 6f3f28c, OpenSTA 84c4d7e, emscripten/emsdk 3.1.74. The threaded build adds Emscripten pthreads, an OpenMP runtime for WebAssembly (the compiler turns the `#pragma omp` loops into `__kmpc_*` calls; emsdk has no library for them), `-sMALLOC=mimalloc`, and OpenSTA held to one thread. Thread count is set with `set_thread_count N` (Studio uses min(4, cores - 1)). Exact steps and both patches: `web/vendor/openroad-pnr/6f3f28c-mt/SOURCE.md`. Studio loads it only when the page is cross-origin isolated (`web/_headers`, Studio pages only); otherwise the single-thread build.
+
+**How the reference was run.** The reference is the single-thread browser build `6f3f28c-viz` (identical to the shipped `6f3f28c` with live frame hooks; its own check is in `web/vendor/openroad-pnr/6f3f28c-viz/SOURCE.md`), run by the same script with `set_thread_count 1`. Native OpenROAD is not used in this section; section 8 compares the single-thread build with native.
+
+**Results (DEF = sha256 of the DEF file, first 16 hex).**
+
+| Design | Build, threads | Route stage (s) | place DEF | CTS DEF | routed DEF | Frames (place / CTS / route) | DRC | Wire (um) | Vias | Mark |
+|---|---|---:|---|---|---|---|---:|---:|---:|---|
+| tiny8 | viz, 1 (reference) | 40.9 | 7b33e30a602c439a | 823af5058c77ea7a | 52e40101c1e137ef | 77 / 10 / 6 | 0 | 10,125 | 1,883 | reference |
+| tiny8 | mt, 1 | 38.3 | same | same | same | same | 0 | 10,125 | 1,883 | match |
+| tiny8 | mt, 4 | 27.3 | same | same | same | same | 0 | 10,125 | 1,883 | match |
+| tiny8 | mt, 8 | 24.3 | same | same | same | same | 0 | 10,125 | 1,883 | match |
+| rmult16 | viz, 1 (reference) | 79.8 | 1d7f681959e45d10 | f0f8a8e7b85a4d9a | 81a60fffe12f81d1 | 92 / 13 / 6 | 0 | 43,662 | 8,692 | reference |
+| rmult16 | mt, 1 | 82.2 | same | same | same | same | 0 | 43,662 | 8,692 | match |
+| rmult16 | mt, 4 | 37.6 | same | same | same | same | 0 | 43,662 | 8,692 | match |
+| rmult16 | mt, 8 | 32.4 | same | same | same | same | 0 | 43,662 | 8,692 | match |
+
+Route stage = global route + detailed route + fillers + parasitics extraction + IR drop, wall clock. Speed-up at 4 threads: tiny8 1.5 times, rmult16 2.1 times. Place and CTS stages do not get faster on these two designs (about 11 to 15 s each, 1 to 3 s slower with threads on the small ones): their loops are short and thread start-up costs as much as it saves. Frames are counted per kind and are equal in every run (for example place: 3 snapshots, 70 global-placement frames, 1 repair, 3 legalisation on tiny8). The full Studio flow selftest (`pnr-flow.selftest.mjs tiny8`, 4 threads) passes: TritonRoute 0 violations, Magic DRC 0, Netgen LVS match, post-PnR netlist equivalent to the RTL.
+
+**In the browser.** Edge (Playwright, msedge) through `tools/serve-coi.mjs` (same headers as `web/_headers`): `crossOriginIsolated` true, run log `OpenROAD threads: 4`, live frames appear in the Layout tab, Run All on counter10 passes 18 of 18 stage chips (72.8 s). The same server with `--no-coi`: `crossOriginIsolated` false, log `threads: 1`, 18 of 18 pass (66.9 s). On a design this small the threads do not help. Screenshots: `docs/validation/img/27-threads-isolated-counter10.png`, `docs/validation/img/27-threads-fallback-counter10.png`. Console in both runs: only the localhost-only errors (the API and the analytics beacon refuse `127.0.0.1`).
+
+**Not validated.** Firefox and Safari (Safari needs the same headers; untested); designs above about 1,500 cells (the 7.2k-cell case of #193 is not run); more than 8 threads; the LibreLane recipe (it still uses the single-thread build); a native threaded OpenROAD as a second reference; whether results stay identical on a heavily loaded machine (they were identical on every run here, and TritonRoute commits its workers in a fixed order). Memory: the threaded build reserves more (tiny8 route about 0.5 GB, rmult16 global placement about 1.1 GB; the limit is 4 GB), so a phone or a 4 GB laptop may fail to start it; Studio then falls back to the single-thread build. Firebase sign-in inside Studio (the access-key usage report) loads an iframe from `firebaseapp.com`, which a cross-origin isolated page may block; it is best-effort and not tested here.

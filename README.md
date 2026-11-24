@@ -43,7 +43,7 @@ Yosys (`@yowasp/yosys` 0.68.1207) and Verilator (`verilator-wasm` 1.0.0) are not
 The site also serves these. Here you find only the licence and `SOURCE.md` (kwasm, Surfer, Tiny Tapeout Explorer) or nothing (newer OpenROAD builds):
 
 - kwasm 0.3.1 (KLayout, GPL-3.0), Surfer (EUPL-1.2), Tiny Tapeout Explorer `59a43fb` (Apache-2.0).
-- The OpenROAD place-and-route builds at `6f3f28c`, which Studio uses by default. TODO: add them to `web/vendor/`. The release below holds `nishkam-openroad-6f3f28c-wasm-build.tar.gz`.
+- The OpenROAD place-and-route builds at `6f3f28c`, which Studio uses by default, are not copied here yet. The release below holds `nishkam-openroad-6f3f28c-wasm-build.tar.gz`.
 
 ## Source for the GPL, LGPL and EUPL tools
 
@@ -103,7 +103,7 @@ We have not shown that a rebuild gives a byte-identical binary. The validation c
 
 ## What is validated
 
-The full report is [docs/validation/README.md](docs/validation/README.md). For each part it gives the test design, how our browser build and the native tool were each run, the numbers, and what was not checked. The native side is the `hpretl/iic-osic-tools:chipathon26` image (OpenROAD 26Q2, OpenSTA 3.1.0, Netgen 1.5.318, Magic 8.3.636, Yosys 0.64, LibreLane 3.0.2). The runs were done on the author's machine. The logs are stored.
+The full report is [docs/validation/README.md](docs/validation/README.md). For each part it gives the test design, how our browser build and the native tool were each run, the numbers, and what was not checked. The native side is the `hpretl/iic-osic-tools:chipathon26` image (OpenROAD 26Q1-1024-gdcf36133a in LibreLane, OpenSTA 3.1.0, Netgen 1.5.318, Magic 8.3.636, Yosys 0.64, LibreLane 3.0.2). The runs were done on the author's machine. The logs are stored.
 
 | Part | Compared with | Result | Report section |
 |---|---|---|---|

@@ -50,7 +50,7 @@ if (phase === "run") {
   const ex = `set_clock_uncertainty 0.1 [all_clocks]\n`;
   // OpenSTA worker takes one clock port; the other clocks come in through extraSdc (same text as the native side reads).
   const staO = (more) => ({ top, clockPort: D.clocks[0][0], periodNs: D.clocks[0][1], inputDelayNs: D.period * 0.2, outputDelayNs: D.period * 0.2, loadPf: 0.05, ...more });
-  const extra = D.clocks.slice(1).map(([p, per]) => `create_clock -name ${p} -period ${per} [get_ports ${p}]\n`).join("") + (D.clocks.length > 1 ? `set_clock_groups -asynchronous -group {clk} -group {${D.clocks[1][0]}}\n` : "");
+  const extra = D.clocks.slice(1).map(([p, per]) => `create_clock -name ${p} -period ${per} [get_ports ${p}]\n`).join("") + (D.clocks.length > 1 ? `set_clock_groups -asynchronous -group {${D.clocks[0][0]}} -group {${D.clocks[1][0]}}\n` : "");
   let buf = ""; const ioS = { log() {}, progress() {}, raw: (_t, x) => (buf += x) };   // the full text OpenSTA prints, for the diff against native sta
   const pre = await S.handle({ files: { [top + ".v"]: nl }, options: staO({ extraSdc: extra }) }, ioS); w("sta-pre.browser.out", buf); buf = "";
   const post = await S.handle({ files: { [top + ".v"]: ct.files[top + "_cts.v"], [top + ".spef"]: rt.files[top + ".spef"] }, options: staO({ propagated: true, uncertaintyNs: 0.1, extraSdc: extra }) }, ioS); w("sta-post.browser.out", buf); lap("sta");
@@ -66,6 +66,7 @@ if (phase === "run") {
   w("tech.lef", fs.readFileSync(new URL("pd-7b70722/gf180mcu_fd_sc_mcu7t5v0__nom.tlef", V))); w("cells.lef", fs.readFileSync(new URL("pd-7b70722/gf180mcu_fd_sc_mcu7t5v0.lef", V))); w("drc_exclude.cells", fs.readFileSync(new URL("pd-7b70722/drc_exclude.cells", V)));
   w("lib.lib", gunzipSync(fs.readFileSync(new URL("lib-tt5v0-full/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib.gz", V))));
   w(top + ".v", nl); w("fp.def", N.floorplanDef(top, dieW, dieH));
+  w("rcx.rules", fs.readFileSync(new URL("rcx-pdk-7b70722/rules.openrcx.gf180mcuD.nom", V)));   // route.tcl runs OpenRCX after write_def; without this native OpenRCX crashed (2026-11-24)
   w("place.tcl", nat(N.placeScript({ top, density: 0.5 }))); w("cts.tcl", nat(C.script(top, true, false))); w("route.tcl", nat(N.routeScript({ top })));
   const sum = { design: name, top, synthCells: sy.summary.cells, synthArea: sy.summary.area, die: [dieW, dieH], clocks: D.clocks, T, place: pl.summary.instances, cts: ct.summary, route: { wire: rt.summary.wirelengthUm, vias: rt.summary.vias, drc: rt.summary.drcTrajectory, violations: rt.summary.violations },
     preSetup: pre.summary.setup_ws_ns, preHold: pre.summary.hold_ws_ns, postSetup: post.summary.setup_ws_ns, postHold: post.summary.hold_ws_ns };

@@ -1,0 +1,17 @@
+step                    cells     area     hpwl   setup    hold    sec
+start                       -        -        -       -       -    0.6
+gpl_skipio                287   8155.2     6445  13.244   0.617   10.4
+ioplace                   287   8155.2     7272       -       -    7.3
+gpl                       287   8155.2     7174  13.175   0.622   11.0
+repair_design             344  10130.8    11498  10.642   0.635   11.6
+dpl                       344  10130.8    11498  11.207   0.647   11.1
+cts                       353  10644.5    13760  11.269   0.642   14.9
+rsz_postcts               353  10644.5    13760  11.269   0.642   11.3
+grt                       353  10644.5    13760  11.044   0.658    8.1
+antenna                   353  10644.5    13760  11.044   0.658   11.5
+drt                       353  10644.5    13760       -       -   76.1
+fill                      353  10644.5    13760       -       -    7.3
+{"design":"tiny8","total_s":191.4,"grtWireUm":23713,"drtWireUm":15333,"vias":2539,"violations":0}
+ok   TritonRoute 0 violations after LibreLane's drt.tcl
+ok   final routed DEF written
+librelane-flow selftest ok

@@ -1,0 +1,144 @@
+OpenROAD 26Q4-1108-g6f3f28cc85 
+Features included (+) or not (-): -GPU -GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 1 thread(s).
+[INFO ORD-0030] Using 1 thread(s).
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via1 :"
+  	EOLENCLOSURE 0.34 0.06 ;"
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via2 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via3 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0388] unsupported LEF58_EOLENCLOSURE property for layer Via4 :" EOLENCLOSURE 0.34 0.06 ; "
+[INFO ODB-0227] LEF file: /w/tech.lef, created 15 layers, 56 vias
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /w/cells.lef at line 2.
+
+[INFO ODB-0227] LEF file: /w/cells.lef, created 229 library cells
+[INFO ODB-0127] Reading DEF file: /w/placed.def
+[INFO ODB-0128] Design: tiny8
+[INFO ODB-0130]     Created 36 pins.
+[INFO ODB-0131]     Created 407 components and 2340 component-terminals.
+[INFO ODB-0132]     Created 2 special nets and 980 connections.
+[INFO ODB-0133]     Created 289 nets and 984 connections.
+[INFO ODB-0134] Finished DEF file: /w/placed.def
+[INFO CTS-0050] Root buffer is gf180mcu_fd_sc_mcu7t5v0__clkbuf_8.
+[INFO CTS-0051] Sink buffer is gf180mcu_fd_sc_mcu7t5v0__clkbuf_4.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    gf180mcu_fd_sc_mcu7t5v0__clkbuf_2
+                    gf180mcu_fd_sc_mcu7t5v0__clkbuf_4
+                    gf180mcu_fd_sc_mcu7t5v0__clkbuf_8
+[INFO CTS-0049] Characterization buffer is gf180mcu_fd_sc_mcu7t5v0__clkbuf_8.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[WARNING CTS-0041] Net "clk" has 1 sinks. Skipping...
+[INFO CTS-0010]  Clock net "net1" has 48 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 3 buffer(s) types.
+[INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.
+[INFO CTS-0027] Generating H-Tree topology for net net1.
+[INFO CTS-0028]  Total number of sinks: 48.
+[INFO CTS-0090]  Sinks will be clustered based on buffer max cap.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 39200  dbu (19 um).
+[INFO CTS-0023]  Original sink region: [(17530, 43120), (219130, 223440)].
+[INFO CTS-0024]  Normalized sink region: [(0.447194, 1.1), (5.59005, 5.7)].
+[INFO CTS-0025]     Width:  5.1429.
+[INFO CTS-0026]     Height: 4.6000.
+ Level 1
+    Direction: Horizontal
+    Sinks per sub-region: 24
+    Sub-region size: 2.5714 X 4.6000
+[INFO CTS-0034]     Segment length (rounded): 1.
+ Level 2
+    Direction: Vertical
+    Sinks per sub-region: 12
+    Sub-region size: 2.5714 X 2.3000
+[INFO CTS-0034]     Segment length (rounded): 1.
+[INFO CTS-0038]  Stop criterion found. Sink region hpwl is smaller than max wirelength (7644.595 um) and max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 48.
+[INFO CTS-0018]     Created 5 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 2.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 2.
+[INFO CTS-0015]     Created 5 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 10:2, 13:1, 15:1..
+[INFO CTS-0017]     Max level of the clock tree: 2.
+[INFO CTS-0098] Clock net "net1"
+[INFO CTS-0099]  Sinks 51
+[INFO CTS-0100]  Leaf buffers 0
+[INFO CTS-0101]  Average sink wire length 165.76 um
+[INFO CTS-0102]  Path depth 2 - 2
+[INFO CTS-0207]  Dummy loads inserted 3
+[INFO CTS-0500] Runtime: 1.02s
+[INFO RSZ-0058] Using max wire length 7645um.
+[INFO DPL-0006] Core area: 12442.39 um^2
+[INFO DPL-0007] Movable instances area: 8802.75 um^2
+[INFO DPL-0008] Fixed instances area within core: 597.09 um^2
+[INFO DPL-0009] Utilization: 75.5%
+[INFO DPL-0005] Diamond search max displacement: +/- 892 sites horizontally, +/- 25 rows vertically.
+[INFO DPL-1102] Legalizing using negotiation legalizer.
+[INFO DPL-1103] Negotiation base search window: +/-20 sites horizontally, +/-5 rows vertically 
+	Automatic search window extension enabled.
+	Search window extendable up to the max displacement cap of +/-892 sites, +/-25 rows near walls.
+[INFO DPL-1104] NegotiationLegalizer DRC penalty: 5.
+[INFO DPL-0392] Negotiation cell height distribution (1 unique row-count(s)):
+[INFO DPL-0393]   height 1 row(s): 415 cells
+          |      Total |  Illegal |  Illegal
+Iteration | Violations |    Cells |    Sites
+---------------------------------------------
+        0 |         62 |        10 |        52
+        1 |          0 |         0 |         0
+Negotiation phase 1 converged at iteration 1.
+[INFO DPL-0500] Runtime: 0.02s
+Detailed Placement Analysis
+---------------------------------
+legalizer            negotiation
+total moves                 178
+total displacement        486.8 u
+average displacement        1.2 u
+max displacement           21.3 u
+original HPWL            8426.2 u
+legalized HPWL           8715.7 u
+delta HPWL                    3 %
+
+[INFO DPL-0020] Mirrored 83 instances
+[INFO DPL-0021] HPWL before            8715.7 u
+[INFO DPL-0022] HPWL after             8510.0 u
+[INFO DPL-0023] HPWL delta               -2.4 %
+@@REPORT
+Total number of Clock Roots: 1.
+Total number of Buffers Inserted: 5.
+Total number of Clock Subnets: 5.
+Total number of Sinks: 48.
+Cells used:
+  gf180mcu_fd_sc_mcu7t5v0__clkbuf_8: 5
+Dummys used:
+  gf180mcu_fd_sc_mcu7t5v0__clkinv_2: 1
+  gf180mcu_fd_sc_mcu7t5v0__inv_4: 2
+Clock clk
+   0.94 source latency _412_/CLK ^
+  -0.95 target latency _407_/CLK ^
+   0.00 CRPR
+--------------
+  -0.00 setup skew
+
+Clock clk
+rise -> rise
+    min     max
+   0.00    0.00 source latency
+   0.94         network latency _412_/CLK
+           0.95 network latency _407_/CLK
+---------------
+   0.94    0.95 latency
+           0.00 skew
+
+fall -> fall
+    min     max
+   0.00    0.00 source latency
+   0.95         network latency _412_/CLK
+           0.96 network latency _407_/CLK
+---------------
+   0.95    0.96 latency
+           0.01 skew
+
+
+CLKBUF_COUNT 6
+@@DONE

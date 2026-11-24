@@ -1,0 +1,12 @@
+design afifo: 2893 cells after synthesis, die 559.44 x 559.44 um, clocks wclk=10ns, rclk=14ns
+instances after place (with tap cells): browser 5221, native 5215
+HPWL after detailed placement (um): browser 143908.1, native 143478.0
+placement: 2648 of 5221 cells at the same spot and orientation (native has 5215)
+after CTS: 2624 of 5623 cells at the same spot and orientation (native has 5619)
+CTS browser: {"clkbufs":376,"sinks":50,"latency_ns":0.88,"skew_ns":0.01,"setup_skew_ns":0.01,"hold_skew_ns":null,"repair":null,"ms":18917}
+route browser: {"wire":208803,"vias":24144,"drc":[703,124,77,0],"violations":0} {"wireUm":208804,"vias":24144,"filler":7852,"tap/endcap":2106,"logic":2985,"clkbuf":376,"buf":156}
+route native: {"wireUm":210400,"vias":24180,"filler":7802,"tap/endcap":2106,"logic":2979,"clkbuf":382,"buf":152}  (violations per iteration: 628 / 97 / 56 / 0)
+CTS clock rclk: browser latency 0.88..0.89 ns, skew 0.01 ns | native latency 0.88..0.89 ns, skew 0.01 ns
+CTS clock wclk: browser latency 12.30..12.67 ns, skew 0.37 ns | native latency 12.21..12.63 ns, skew 0.42 ns
+STA pre-route: 6438 lines browser, 6438 native, 0 differ
+STA post-route: 14848 lines browser, 14848 native, 0 differ

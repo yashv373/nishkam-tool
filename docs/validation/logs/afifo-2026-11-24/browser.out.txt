@@ -1,0 +1,6 @@
+afifo synth 64.5 s
+afifo place 18.4 s
+afifo cts 19.8 s
+afifo route 295.1 s
+afifo sta 14.5 s
+{"design":"afifo","top":"afifo32","synthCells":2893,"synthArea":125365.6768,"die":[559.44,559.44],"clocks":[["wclk",10],["rclk",14]],"T":{"synth":64.5,"place":18.4,"cts":19.8,"route":295.1,"sta":14.5},"place":5221,"cts":{"clkbufs":376,"sinks":50,"latency_ns":0.88,"skew_ns":0.01,"setup_skew_ns":0.01,"hold_skew_ns":null,"repair":null,"ms":18917},"route":{"wire":208803,"vias":24144,"drc":[703,124,77,0],"violations":0},"preSetup":-26.4385,"preHold":0.5372,"postSetup":-8.9611,"postHold":-9.9458}

@@ -1,0 +1,26 @@
+{
+ "meta": {
+  "version": 3,
+  "flow": "Classic"
+ },
+ "FP_SIZING": "absolute",
+ "DIE_AREA": [
+  0,
+  0,
+  110,
+  110
+ ],
+ "CLOCK_PERIOD": 20,
+ "PL_TARGET_DENSITY_PCT": 50,
+ "DESIGN_NAME": "tiny8",
+ "CLOCK_PORT": "clk",
+ "VERILOG_FILES": [
+  "dir::tiny8.v"
+ ],
+ "CTS_ROOT_BUFFER": "sky130_fd_sc_hd__clkbuf_16",
+ "CTS_CLK_BUFFERS": [
+  "sky130_fd_sc_hd__clkbuf_8",
+  "sky130_fd_sc_hd__clkbuf_4",
+  "sky130_fd_sc_hd__clkbuf_2"
+ ]
+}

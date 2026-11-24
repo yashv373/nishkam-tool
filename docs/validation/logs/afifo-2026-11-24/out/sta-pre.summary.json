@@ -1,0 +1,1 @@
+{"setup_ws_ns":-26.4385,"setup_tns_ns":-163.3592,"hold_ws_ns":0.5372,"hold_tns_ns":0,"wns_ns":-26.4385,"fmax_mhz":27.44,"internal_uW":236000,"switching_uW":26600,"leakage_uW":0.837,"total_uW":263000,"byClock":{"wclk":{"setup":1.995,"hold":0.5372},"rclk":{"setup":-26.4385,"hold":0.5372}},"corner":null,"ms":6166,"checkIssues":false,"limitViolations":true}

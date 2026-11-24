@@ -1,0 +1,53 @@
+{
+ "design": "tiny8",
+ "cfg": {
+  "meta": {
+   "version": 3,
+   "flow": "Classic"
+  },
+  "PDK": "gf180mcuD",
+  "FP_SIZING": "absolute",
+  "DIE_AREA": [
+   0,
+   0,
+   135.52,
+   133.28
+  ],
+  "CLOCK_PERIOD": 24,
+  "CTS_CLK_BUFFERS": [
+   "gf180mcu_fd_sc_mcu7t5v0__clkbuf_8",
+   "gf180mcu_fd_sc_mcu7t5v0__clkbuf_4",
+   "gf180mcu_fd_sc_mcu7t5v0__clkbuf_2"
+  ],
+  "CTS_ROOT_BUFFER": "gf180mcu_fd_sc_mcu7t5v0__clkbuf_8",
+  "PL_TARGET_DENSITY_PCT": 50,
+  "DESIGN_NAME": "tiny8",
+  "CLOCK_PORT": "clk",
+  "VERILOG_FILES": [
+   "dir::tiny8.v"
+  ]
+ },
+ "rc": 0,
+ "seconds": 152.104,
+ "cells": 488,
+ "cellArea": 11210.9,
+ "dieArea": 18062.1,
+ "coreArea": 12442.4,
+ "util": 0.901023,
+ "setupWs": 9.615121415658741,
+ "setupTns": 0,
+ "holdWs": 0.6654565975504705,
+ "holdTns": 0,
+ "skew": 0.2674038566262386,
+ "clockBufs": 9,
+ "timingRepairBufs": 56,
+ "seqCells": 48,
+ "tapCells": 84,
+ "fillCells": 210,
+ "wirelength": 15669,
+ "vias": 2546,
+ "drtDrc": 0,
+ "magicDrc": 0,
+ "lvsErrors": 0,
+ "power_uW": 6971.989758312702
+}

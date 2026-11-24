@@ -1,0 +1,12 @@
+{"design":"tiny8","die":[135.52,133.28],"place":{"violations":null,"drcTrajectory":[],"irDrop":null,"wirelengthUm":null,"vias":null,"instances":407,"ms":9480,"memMB":173,"top":"tiny8","components":407,"die":"( 0 0 ) ( 271040 266560 )"},"cts":{"clkbufs":6,"sinks":48,"latency_ns":1.07,"skew_ns":0,"setup_skew_ns":0,"hold_skew_ns":null,"repair":{"before":{"setupWns":11.941895810229129,"holdWns":0.8770898700028722,"setupTns":0},"after":{"setupWns":11.948256944250927,"holdWns":0.8755512118695279,"setupTns":0}},"ms":13583},"route":{"violations":0,"drcTrajectory":[36,7,14,0],"irDrop":{"VDD":{"supplyV":5,"worstV":0.00253,"avgV":0.000488,"powerW":0.00493},"VSS":{"supplyV":0,"worstV":0.00105,"avgV":0.000457,"powerW":0.00493}},"wirelengthUm":10125,"vias":1883,"instances":null,"ms":41546,"memMB":299,"top":"tiny8"},"magicDrc":0,"drcInCells":0,"drcFromLayout":0,"lvs":true,"lvsDevices":[3148,3148],"lvsNets":[1558,1558],"preSetupWs":12.6876,"preHoldWs":0.6956,"setupWs":11.6006,"holdWs":0.7821,"equiv":true,"equivRtl":true,"equivNegativeControlFails":true,"buffersBefore":0,"buffersAfter":40,"T":{"synth":6.5,"place":10.4,"cts":14.5,"route":42.7,"magic":16.3,"lvs":0.8,"sta":10.4}}
+ok   Pre-PnR STA: setup + hold + check_setup + limits report, uncertainty in the SDC
+ok   Post-route STA: propagated clock + SPEF
+ok   TritonRoute final violations 0
+ok   OpenRCX wrote a SPEF with nets
+ok   PDNSim VDD worst IR drop 0.00253 V (supply 5 V, under 1%)
+ok   Magic DRC 0 (got 0, 0 inside library cells)
+ok   Netgen LVS match
+ok   post-PnR netlist (port/repair/CTS buffers) equivalent to the pre-PnR synthesized netlist (Yosys equiv_induct)
+ok   post-PnR netlist equivalent to the RTL (same proof)
+ok   negative control: the same proof fails when one gate is changed
+pnr-flow selftest ok

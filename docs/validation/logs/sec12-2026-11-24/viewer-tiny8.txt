@@ -1,0 +1,24 @@
+top tiny8
+LAYER 0/0 polys=1238
+LAYER 21/0 polys=1237
+LAYER 22/0 polys=3521
+LAYER 30/0 polys=3664
+LAYER 31/0 polys=1438
+LAYER 32/0 polys=1237
+LAYER 33/0 polys=18246
+LAYER 34/0 polys=7904
+LAYER 35/0 polys=1355
+LAYER 36/0 polys=1024
+LAYER 36/10 polys=21
+LAYER 38/0 polys=1104
+LAYER 40/0 polys=127
+LAYER 41/0 polys=18
+LAYER 42/0 polys=451
+LAYER 42/10 polys=13
+LAYER 46/0 polys=11
+LAYER 46/10 polys=2
+LAYER 55/0 polys=1237
+LAYER 81/0 polys=2
+LAYER 81/10 polys=2
+LAYER 112/1 polys=1237
+LAYER 204/0 polys=1237

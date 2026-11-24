@@ -1,0 +1,18 @@
+* Nishkam Lab schematic netlist
+.include /pdk/gf180mcuD/design.ngspice
+.lib /pdk/gf180mcuD/sm141064.ngspice typical
+VIN in 0 0.1
+E1 out 0 in 0 10
+RL out 0 1k
+.control
+set filetype=binary
+set appendwrite
+op
+write /op.raw all
+dc VIN 0 0.2 0.1
+write /out.raw all
+meas dc vout find v(out) at=0.1
+meas dc iin find i(vin) at=0.1
+meas dc ie find i(e1) at=0.1
+.endc
+.end

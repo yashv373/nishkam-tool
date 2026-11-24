@@ -1,0 +1,22 @@
+* Nishkam Lab schematic netlist
+.include /pdk/gf180mcuD/design.ngspice
+.lib /pdk/gf180mcuD/sm141064.ngspice typical
+.lib /pdk/gf180mcuD/sm141064.ngspice diode_typical
+V1 a 0 0.6
+D1 a 0 diode_nd2ps_03v3
+.save all @d1[id]
+.control
+set filetype=binary
+set appendwrite
+op
+write /op.raw all
+foreach nkv -40 27 125
+echo NK_STEP temp=$nkv
+reset
+option temp=$nkv
+dc V1 0.5 0.7 0.05
+write /out.raw all
+meas dc id find i(v1) at=0.6
+end
+.endc
+.end

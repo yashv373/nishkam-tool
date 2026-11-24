@@ -12,11 +12,11 @@
     "faultsTotal": 22,
     "coverage": 81.82,
     "patterns": 4,
-    "yosysMs": 2845.7,
-    "nl2benchMs": 3820.1,
-    "atpgMs": 8.26,
-    "simMs": 13.21,
-    "totalMs": 6687.3
+    "yosysMs": 1327.7,
+    "nl2benchMs": 1590.8,
+    "atpgMs": 4.15,
+    "simMs": 2.74,
+    "totalMs": 2925.4
   },
   {
     "key": "counter",
@@ -31,11 +31,11 @@
     "faultsTotal": 54,
     "coverage": 92.59,
     "patterns": 8,
-    "yosysMs": 2077.6,
-    "nl2benchMs": 2045.7,
-    "atpgMs": 5.0,
-    "simMs": 4.19,
-    "totalMs": 4132.5
+    "yosysMs": 1247.8,
+    "nl2benchMs": 1700.7,
+    "atpgMs": 4.53,
+    "simMs": 3.07,
+    "totalMs": 2956.1
   },
   {
     "key": "acc",
@@ -50,11 +50,11 @@
     "faultsTotal": 64,
     "coverage": 93.75,
     "patterns": 8,
-    "yosysMs": 2119.5,
-    "nl2benchMs": 2991.7,
-    "atpgMs": 7.06,
-    "simMs": 5.29,
-    "totalMs": 5123.5
+    "yosysMs": 1259.3,
+    "nl2benchMs": 1628.6,
+    "atpgMs": 4.56,
+    "simMs": 3.32,
+    "totalMs": 2895.8
   },
   {
     "key": "s27",
@@ -69,11 +69,11 @@
     "faultsTotal": 48,
     "coverage": 91.67,
     "patterns": 8,
-    "yosysMs": 2448.0,
-    "nl2benchMs": 2206.9,
-    "atpgMs": 5.59,
-    "simMs": 3.96,
-    "totalMs": 4664.4
+    "yosysMs": 1318.7,
+    "nl2benchMs": 1638.0,
+    "atpgMs": 4.84,
+    "simMs": 3.63,
+    "totalMs": 2965.2
   },
   {
     "key": "s298",
@@ -88,11 +88,11 @@
     "faultsTotal": 340,
     "coverage": 94.12,
     "patterns": 22,
-    "yosysMs": 1667.3,
-    "nl2benchMs": 2100.5,
-    "atpgMs": 26.62,
-    "simMs": 6.72,
-    "totalMs": 3801.2
+    "yosysMs": 1543.4,
+    "nl2benchMs": 1703.7,
+    "atpgMs": 29.96,
+    "simMs": 6.95,
+    "totalMs": 3284.0
   },
   {
     "key": "s344",
@@ -107,10 +107,10 @@
     "faultsTotal": 300,
     "coverage": 96.67,
     "patterns": 19,
-    "yosysMs": 1454.3,
-    "nl2benchMs": 2726.7,
-    "atpgMs": 41.39,
-    "simMs": 8.42,
-    "totalMs": 4230.8
+    "yosysMs": 1417.5,
+    "nl2benchMs": 1645.1,
+    "atpgMs": 16.78,
+    "simMs": 5.49,
+    "totalMs": 3084.9
   }
 ]

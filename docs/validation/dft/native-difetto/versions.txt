@@ -5,4 +5,4 @@ Try 'nl2bench --help' for help.
 Error: No such option: --version
 quaigh: quaigh 0.0.6
 difetto_plugin: /nix/store/0m2v9sim809hmqbx89y2cv92qzh7191p-yosys-difetto-0.1.0/share/yosys/plugins/difetto.so
-Linux 7641bd738793 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+Linux 4b616bd20500 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux

@@ -11,15 +11,29 @@
     "patterns": 5,
     "crossCheckMismatches": null,
     "handleMs": null,
-    "quaighAtpgMs": 4.4,
-    "quaighSimMs": 2.3
+    "quaighAtpgMs": 2.58,
+    "quaighSimMs": 1.58
   },
   {
     "name": "c17 (RTL)",
     "key": "c17",
-    "ok": false,
-    "crash": "unreachable",
-    "handleMs": 1848.3
+    "ok": true,
+    "flops": 0,
+    "chainLength": 0,
+    "chain": [],
+    "equivalenceProven": null,
+    "faultsDetected": 18,
+    "faultsTotal": 18,
+    "coverage": 100,
+    "patterns": 4,
+    "crossCheckRows": 4,
+    "crossCheckMismatches": 0,
+    "handleMs": 1716.8,
+    "quaighAtpgMs": 1.26,
+    "quaighSimMs": 0.82,
+    "benchInputs": 5,
+    "benchOutputs": 2,
+    "benchGates": 6
   },
   {
     "name": "counter",
@@ -40,9 +54,9 @@
     "patterns": 6,
     "crossCheckRows": 6,
     "crossCheckMismatches": 0,
-    "handleMs": 1412.5,
-    "quaighAtpgMs": 2.48,
-    "quaighSimMs": 1.7,
+    "handleMs": 572.6,
+    "quaighAtpgMs": 2.52,
+    "quaighSimMs": 1.33,
     "benchInputs": 6,
     "benchOutputs": 8,
     "benchGates": 13
@@ -65,9 +79,9 @@
     "patterns": 6,
     "crossCheckRows": 6,
     "crossCheckMismatches": 0,
-    "handleMs": 74087.7,
-    "quaighAtpgMs": 2.63,
-    "quaighSimMs": 1.52,
+    "handleMs": 407.6,
+    "quaighAtpgMs": 1.83,
+    "quaighSimMs": 1.04,
     "benchInputs": 8,
     "benchOutputs": 7,
     "benchGates": 20
@@ -90,8 +104,8 @@
     "patterns": 6,
     "crossCheckRows": 6,
     "crossCheckMismatches": 0,
-    "handleMs": 1398.7,
-    "quaighAtpgMs": 2.58,
+    "handleMs": 451.5,
+    "quaighAtpgMs": 2.92,
     "quaighSimMs": 1.63,
     "benchInputs": 8,
     "benchOutputs": 4,
@@ -100,23 +114,38 @@
   {
     "name": "s298",
     "key": "s298",
-    "ok": false,
-    "error": {
-      "errors": 1,
-      "messages": [
-        {
-          "severity": "error",
-          "file": "",
-          "line": 0,
-          "text": "Scan insertion changed the logic: equivalence with scan_en=0 was not proven. Report this design."
-        }
-      ],
-      "equivalence": {
-        "checked": true,
-        "proven": false,
-        "method": "miter + k-induction (sat -tempinduct)"
-      }
-    }
+    "ok": true,
+    "flops": 14,
+    "chainLength": 14,
+    "chain": [
+      "DFF_0.Q",
+      "DFF_1.Q",
+      "DFF_2.Q",
+      "DFF_3.Q",
+      "DFF_4.Q",
+      "DFF_5.Q",
+      "DFF_12.Q",
+      "DFF_13.Q",
+      "G66",
+      "G67",
+      "G117",
+      "G118",
+      "G132",
+      "G133"
+    ],
+    "equivalenceProven": true,
+    "faultsDetected": 198,
+    "faultsTotal": 198,
+    "coverage": 100,
+    "patterns": 20,
+    "crossCheckRows": 20,
+    "crossCheckMismatches": 0,
+    "handleMs": 1083.6,
+    "quaighAtpgMs": 8.06,
+    "quaighSimMs": 4.66,
+    "benchInputs": 18,
+    "benchOutputs": 20,
+    "benchGates": 89
   },
   {
     "name": "s344",
@@ -148,9 +177,9 @@
     "patterns": 17,
     "crossCheckRows": 17,
     "crossCheckMismatches": 0,
-    "handleMs": 34561.4,
-    "quaighAtpgMs": 19.25,
-    "quaighSimMs": 6.74,
+    "handleMs": 1266.6,
+    "quaighAtpgMs": 13.7,
+    "quaighSimMs": 4.42,
     "benchInputs": 25,
     "benchOutputs": 26,
     "benchGates": 117

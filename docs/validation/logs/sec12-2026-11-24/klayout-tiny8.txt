@@ -1,0 +1,37 @@
+$ klayout -v
+[INFO] Final PATH variable: /foss/tools/bin:/foss/tools/sak:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/foss/tools/kactus2:/foss/tools/klayout:/foss/tools/osic-multitool
+[INFO] Final PYTHONPATH variable: /usr/lib/python312.zip:/usr/lib/python3.12:/usr/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/dist-packages:/usr/lib/python3/dist-packages:/foss/tools/ngspyce/local/lib/python3.12/dist-packages:/foss/tools/openems/local/lib/python3.12/dist-packages:/foss/tools/pyopus/local/lib/python3.12/dist-packages:/foss/tools/yosys/share/yosys/python3:/foss/tools/klayout/pymod:/foss/tools/vacask/lib/vacask/python
+KLayout 0.30.8
+$ klayout -b -r count-shapes.py -rd gds=tiny8.gds
+[INFO] Final PATH variable: /foss/tools/bin:/foss/tools/sak:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/foss/tools/kactus2:/foss/tools/klayout:/foss/tools/osic-multitool
+[INFO] Final PYTHONPATH variable: /usr/lib/python312.zip:/usr/lib/python3.12:/usr/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/dist-packages:/usr/lib/python3/dist-packages:/foss/tools/ngspyce/local/lib/python3.12/dist-packages:/foss/tools/openems/local/lib/python3.12/dist-packages:/foss/tools/pyopus/local/lib/python3.12/dist-packages:/foss/tools/yosys/share/yosys/python3:/foss/tools/klayout/pymod:/foss/tools/vacask/lib/vacask/python
+klayout KLayout 0.30.8
+top cells: ['tiny8'] dbu: 0.001
+different cell types called from top: 40
+LAYER 112/1 shapes=1237 texts=0
+LAYER 21/0 shapes=1237 texts=0
+LAYER 204/0 shapes=1237 texts=0
+LAYER 55/0 shapes=1237 texts=0
+LAYER 32/0 shapes=1237 texts=0
+LAYER 31/0 shapes=1438 texts=0
+LAYER 22/0 shapes=3521 texts=0
+LAYER 30/0 shapes=3664 texts=0
+LAYER 33/0 shapes=18246 texts=0
+LAYER 34/0 shapes=7904 texts=0
+LAYER 34/10 shapes=0 texts=3694
+LAYER 0/0 shapes=1238 texts=0
+LAYER 63/63 shapes=0 texts=4948
+LAYER 21/10 shapes=0 texts=1036
+LAYER 204/10 shapes=0 texts=1036
+LAYER 35/0 shapes=1355 texts=0
+LAYER 36/0 shapes=1024 texts=0
+LAYER 38/0 shapes=1104 texts=0
+LAYER 42/0 shapes=451 texts=0
+LAYER 40/0 shapes=127 texts=0
+LAYER 46/0 shapes=11 texts=0
+LAYER 41/0 shapes=18 texts=0
+LAYER 81/0 shapes=2 texts=0
+LAYER 81/10 shapes=2 texts=2
+LAYER 46/10 shapes=2 texts=2
+LAYER 42/10 shapes=13 texts=13
+LAYER 36/10 shapes=21 texts=21

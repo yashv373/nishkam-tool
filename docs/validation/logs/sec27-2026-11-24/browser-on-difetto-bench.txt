@@ -1,0 +1,6 @@
+{"key":"c17","atpgMs":123,"faultsDetected":18,"faultsTotal":22,"coverage":81.82,"patterns":5,"wasmSimOfNativeTvMatchesNativeAu":true}
+{"key":"counter","atpgMs":3.9,"faultsDetected":50,"faultsTotal":54,"coverage":92.59,"patterns":8,"wasmSimOfNativeTvMatchesNativeAu":true}
+{"key":"acc","atpgMs":4.7,"faultsDetected":60,"faultsTotal":64,"coverage":93.75,"patterns":8,"wasmSimOfNativeTvMatchesNativeAu":true}
+{"key":"s27","atpgMs":4.6,"faultsDetected":44,"faultsTotal":48,"coverage":91.67,"patterns":8,"wasmSimOfNativeTvMatchesNativeAu":true}
+{"key":"s298","atpgMs":67,"faultsDetected":320,"faultsTotal":340,"coverage":94.12,"patterns":25,"wasmSimOfNativeTvMatchesNativeAu":true}
+{"key":"s344","atpgMs":29.7,"faultsDetected":290,"faultsTotal":300,"coverage":96.67,"patterns":20,"wasmSimOfNativeTvMatchesNativeAu":true}

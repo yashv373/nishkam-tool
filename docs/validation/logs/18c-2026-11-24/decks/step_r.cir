@@ -1,0 +1,20 @@
+RC low-pass, .step over R
+V1 in 0 ac 1
+.param rval=1k
+R1 in out {rval}
+C1 out 0 1n
+.control
+set filetype=binary
+set appendwrite
+op
+write /op.raw all
+foreach nkv 1k 2k 4k
+echo NK_STEP rval=$nkv
+alterparam rval = $nkv
+reset
+ac dec 10 1 1meg
+write /out.raw all
+meas ac bw when vdb(out)=-3.0103
+end
+.endc
+.end

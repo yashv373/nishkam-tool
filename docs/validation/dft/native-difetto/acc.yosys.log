@@ -6,13 +6,13 @@
  \----------------------------------------------------------------------------/
  Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)
 
--- Executing script file `/tmp/difetto_val.fRorkH/acc.ys' --
+-- Executing script file `/tmp/difetto_val.GoOq9p/acc.ys' --
 
-1. Executing Liberty frontend: /tmp/difetto_val.fRorkH/gf180.lib
+1. Executing Liberty frontend: /tmp/difetto_val.GoOq9p/gf180.lib
 Imported 229 cell types from liberty file.
 
-2. Executing Verilog-2005 frontend: /tmp/difetto_val.fRorkH/acc.v
-Parsing SystemVerilog input from `/tmp/difetto_val.fRorkH/acc.v' to AST representation.
+2. Executing Verilog-2005 frontend: /tmp/difetto_val.GoOq9p/acc.v
+Parsing SystemVerilog input from `/tmp/difetto_val.GoOq9p/acc.v' to AST representation.
 Generating RTLIL representation for module `\acc'.
 Successfully finished Verilog frontend.
 
@@ -33,7 +33,7 @@ Removed 0 unused modules.
 Cleaned up 0 empty switches.
 
 3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$/tmp/difetto_val.fRorkH/acc.v:3$1 in module acc.
+Marked 1 switch rules as full_case in process $proc$/tmp/difetto_val.GoOq9p/acc.v:3$1 in module acc.
 Removed a total of 0 dead cases.
 
 3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -49,20 +49,20 @@ Converted 0 switches.
 <suppressed ~2 debug messages>
 
 3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\acc.$proc$/tmp/difetto_val.fRorkH/acc.v:3$1'.
+Creating decoders for process `\acc.$proc$/tmp/difetto_val.GoOq9p/acc.v:3$1'.
      1/1: $0\r[2:0]
 
 3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\acc.\r' using process `\acc.$proc$/tmp/difetto_val.fRorkH/acc.v:3$1'.
+Creating register for signal `\acc.\r' using process `\acc.$proc$/tmp/difetto_val.GoOq9p/acc.v:3$1'.
   created $dff cell `$procdff$11' with positive edge clock.
 
 3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 2 empty switches in `\acc.$proc$/tmp/difetto_val.fRorkH/acc.v:3$1'.
-Removing empty process `acc.$proc$/tmp/difetto_val.fRorkH/acc.v:3$1'.
+Found and cleaned up 2 empty switches in `\acc.$proc$/tmp/difetto_val.GoOq9p/acc.v:3$1'.
+Removing empty process `acc.$proc$/tmp/difetto_val.GoOq9p/acc.v:3$1'.
 Cleaned up 2 empty switches.
 
 3.2.12. Executing OPT_EXPR pass (perform const folding).
@@ -171,7 +171,7 @@ Removed a total of 0 cells.
 
 3.9.6. Executing OPT_DFF pass (perform DFF optimizations).
 Adding SRST signal on $procdff$11 ($dff) from module acc (D = $procmux$6_Y, Q = \r, rval = 3'000).
-Adding EN signal on $auto$ff.cc:337:slice$12 ($sdff) from module acc (D = { $xor$/tmp/difetto_val.fRorkH/acc.v:3$3_Y $and$/tmp/difetto_val.fRorkH/acc.v:3$2_Y }, Q = \r).
+Adding EN signal on $auto$ff.cc:337:slice$12 ($sdff) from module acc (D = { $xor$/tmp/difetto_val.GoOq9p/acc.v:3$3_Y $and$/tmp/difetto_val.GoOq9p/acc.v:3$2_Y }, Q = \r).
 
 3.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \acc..
@@ -418,7 +418,7 @@ Extracted 6 gates and 12 wires to a netlist network with 6 inputs and 4 outputs.
 Running ABC script: <abc-temp-dir>/abc.script
 ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
 ABC: + read_blif <abc-temp-dir>/input.blif 
-ABC: + read_library /tmp/yosys-abc-ssjE98/stdcells.genlib 
+ABC: + read_library /tmp/yosys-abc-YKiaIr/stdcells.genlib 
 ABC: + strash 
 ABC: + dretime 
 ABC: + map 
@@ -533,8 +533,8 @@ Extracted 12 gates and 20 wires to a netlist network with 7 inputs and 4 outputs
 Running ABC script: <abc-temp-dir>/abc.script
 ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
 ABC: + read_blif <abc-temp-dir>/input.blif 
-ABC: + read_lib -w /tmp/difetto_val.fRorkH/gf180.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.41 sec
+ABC: + read_lib -w /tmp/difetto_val.GoOq9p/gf180.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.24 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "gf180mcu_fd_sc_mcu7t5v0__antenna" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "gf180mcu_fd_sc_mcu7t5v0__bufz_1".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "gf180mcu_fd_sc_mcu7t5v0__bufz_2".
@@ -619,8 +619,8 @@ ABC: Scl_LibertyReadGenlib() skipped sequential cell "gf180mcu_fd_sc_mcu7t5v0__s
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4".
-ABC: Library "gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00" from "/tmp/difetto_val.fRorkH/gf180.lib" has 145 cells (84 skipped: 48 seq; 15 tri-state; 21 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.64 sec
-ABC: Memory =   29.97 MB. Time =     0.64 sec
+ABC: Library "gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00" from "/tmp/difetto_val.GoOq9p/gf180.lib" has 145 cells (84 skipped: 48 seq; 15 tri-state; 21 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.36 sec
+ABC: Memory =   29.97 MB. Time =     0.36 sec
 ABC: Warning: Detected 6 multi-output cells (for example, "gf180mcu_fd_sc_mcu7t5v0__addf_1").
 ABC: + strash 
 ABC: + &get -n 
@@ -744,7 +744,7 @@ Removed 0 unused cells and 4 unused wires.
 14.2. Executing DEMUXMAP pass.
 Dumping module `\acc'.
 
-End of script. Logfile hash: 8cda430e3c, CPU: user 1.01s system 0.15s, MEM: 78.54 MB peak
+End of script. Logfile hash: 60c1e76a8d, CPU: user 0.65s system 0.07s, MEM: 76.32 MB peak
 Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)
-Time spent: 50% 2x abc (1 sec), 13% 1x dfflibmap (0 sec), ...
+Time spent: 48% 2x abc (0 sec), 15% 2x stat (0 sec), ...
 

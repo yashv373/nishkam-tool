@@ -1,0 +1,95 @@
+{
+ "url": "http://127.0.0.1:8745/studio.html?mock",
+ "runs": [
+  {
+   "key": "counter",
+   "dftMs": 3416,
+   "headText": "Fault coverage 100%\n\n32 of 32 stuck-at faults are caught by 6 test patterns. Faults are counted on a simple-gate version of your design (AND, OR, XOR, NOT, MUX), not on the gf180mcuD cells, so this is not a silicon number.\n\nScan chain of 4 flops: scan_in \u2192 q[0] \u2192 q[1] \u2192 q[2] \u2192 q[3] \u2192 scan_out. Equivalence with scan_en = 0 is proven (Yosys equiv).\n\nRun chain test (early)\nTest patterns (6)\nConsole\nR",
+   "chainTestMs": 4949,
+   "chainTestText": "Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (6)\nConso",
+   "consoleErrors": [
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+    "Failed to load resource: net::ERR_FAILED"
+   ]
+  },
+  {
+   "key": "acc",
+   "dftMs": 4022,
+   "headText": "Fault coverage 100%\n\n38 of 38 stuck-at faults are caught by 6 test patterns. Faults are counted on a simple-gate version of your design (AND, OR, XOR, NOT, MUX), not on the gf180mcuD cells, so this is not a silicon number.\n\nScan chain of 3 flops: scan_in \u2192 q[0] \u2192 q[1] \u2192 q[2] \u2192 scan_out. Equivalence with scan_en = 0 is proven (Yosys equiv).\n\nRun chain test (early)\nTest patterns (6)\nConsole\nRaw logs",
+   "chainTestMs": 4841,
+   "chainTestText": "Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (6)\nConso",
+   "consoleErrors": [
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+    "Failed to load resource: net::ERR_FAILED"
+   ]
+  },
+  {
+   "key": "s27",
+   "dftMs": 3372,
+   "headText": "Fault coverage 100%\n\n24 of 24 stuck-at faults are caught by 6 test patterns. Faults are counted on a simple-gate version of your design (AND, OR, XOR, NOT, MUX), not on the gf180mcuD cells, so this is not a silicon number.\n\nScan chain of 3 flops: scan_in \u2192 DFF_0.Q \u2192 DFF_1.Q \u2192 DFF_2.Q \u2192 scan_out. Equivalence with scan_en = 0 is proven (Yosys equiv).\n\nRun chain test (early)\nTest patterns (6)\nConsole",
+   "chainTestMs": 4867,
+   "chainTestText": "Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (6)\nConso",
+   "consoleErrors": [
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+    "Failed to load resource: net::ERR_FAILED"
+   ]
+  },
+  {
+   "key": "s298",
+   "dftMs": 4845,
+   "headText": "Fault coverage 100%\n\n198 of 198 stuck-at faults are caught by 20 test patterns. Faults are counted on a simple-gate version of your design (AND, OR, XOR, NOT, MUX), not on the gf180mcuD cells, so this is not a silicon number.\n\nScan chain of 14 flops: scan_in \u2192 DFF_0.Q \u2192 DFF_1.Q \u2192 DFF_2.Q \u2192 DFF_3.Q \u2192 DFF_4.Q \u2192 DFF_5.Q \u2192 DFF_12.Q \u2192 DFF_13.Q \u2192 G66 \u2192 G67 \u2192 G117 \u2192 G118 \u2192 G132 \u2192 G133 \u2192 scan_out. Equival",
+   "chainTestMs": 5333,
+   "chainTestText": "Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (20)\nCons",
+   "consoleErrors": [
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+    "Failed to load resource: net::ERR_FAILED"
+   ]
+  },
+  {
+   "key": "s344",
+   "dftMs": 4658,
+   "headText": "Fault coverage 100%\n\n264 of 264 stuck-at faults are caught by 17 test patterns. Faults are counted on a simple-gate version of your design (AND, OR, XOR, NOT, MUX), not on the gf180mcuD cells, so this is not a silicon number.\n\nScan chain of 15 flops: scan_in \u2192 ACVQN0 \u2192 ACVQN1 \u2192 ACVQN2 \u2192 ACVQN3 \u2192 AX0 \u2192 AX1 \u2192 AX2 \u2192 AX3 \u2192 CNTVCO0 \u2192 CT1 \u2192 CT2 \u2192 DFF_7.Q \u2192 DFF_8.Q \u2192 DFF_9.Q \u2192 DFF_10.Q \u2192 scan_out. Equiva",
+   "chainTestMs": 5587,
+   "chainTestText": "Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (17)\nCons",
+   "consoleErrors": [
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+    "Failed to load resource: net::ERR_FAILED"
+   ]
+  },
+  {
+   "key": "c17",
+   "dftMs": 3606,
+   "headText": "Fault coverage 100%\n\n18 of 18 stuck-at faults are caught by 4 test patterns. Faults are counted on a simple-gate version of your design (AND, OR, XOR, NOT, MUX), not on the gf180mcuD cells, so this is not a silicon number.\n\nNo flip-flops: combinational test only, no scan chain.\n\nTest patterns (4)\nConsole\nRaw logs\nMessages 0\nno errors or warnings\nFiles / Artifacts\nstage: dft (click to clear)\n3 s\nCl",
+   "chainTestText": "no button (no flops or no clock)",
+   "consoleErrors": [
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to fetch at 'https://nishkam-api.nishkam-backend.workers.dev/flags' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to XMLHttpRequest at 'https://cloudflareinsights.com/cdn-cgi/rum' from origin 'http://127.0.0.1:8745' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://127.0.0.1' that is not equal to the supplied origin.",
+    "Failed to load resource: net::ERR_FAILED"
+   ]
+  }
+ ],
+ "browser": "158.0.4370.33"
+}

@@ -1,0 +1,12 @@
+c17 (bench): 100% { detected: 20, total: 20 } patterns: 5 atpgMs: 2.58 simMs: 1.58
+c17 (RTL): flops=0 cov=100% faults=18/18 patterns=4 eq=null xchk=0 handleMs=1716.8 atpgMs=1.26 simMs=0.82
+counter: flops=4 cov=100% faults=32/32 patterns=6 eq=true xchk=0 handleMs=572.6 atpgMs=2.52 simMs=1.33
+acc: flops=3 cov=100% faults=38/38 patterns=6 eq=true xchk=0 handleMs=407.6 atpgMs=1.83 simMs=1.04
+s27: flops=3 cov=100% faults=24/24 patterns=6 eq=true xchk=0 handleMs=451.5 atpgMs=2.92 simMs=1.63
+s298: flops=14 cov=100% faults=198/198 patterns=20 eq=true xchk=0 handleMs=1083.6 atpgMs=8.06 simMs=4.66
+s344: flops=15 cov=100% faults=264/264 patterns=17 eq=true xchk=0 handleMs=1266.6 atpgMs=13.7 simMs=4.42
+Wrote <repo>\docs\validation\dft\browser\summary.json
+
+real	0m6.206s
+user	0m0.016s
+sys	0m0.015s

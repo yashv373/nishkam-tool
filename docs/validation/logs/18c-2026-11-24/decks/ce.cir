@@ -1,0 +1,21 @@
+* Nishkam Lab schematic netlist
+.include /pdk/gf180mcuD/design.ngspice
+.lib /pdk/gf180mcuD/sm141064.ngspice typical
+.lib /pdk/gf180mcuD/sm141064.ngspice bjt_typical
+VCC vcc 0 3.3
+VB b 0 dc 0.75 ac 1
+RC vcc c 1k
+XQ1 c b 0 0 npn_05p00x05p00
+.save all @q.xq1.q0[ic]
+.control
+set filetype=binary
+set appendwrite
+op
+write /op.raw all
+dc VB 0.76 0.84 0.02
+write /out.raw all
+meas dc vc1 find v(c) at=0.78
+meas dc vc2 find v(c) at=0.82
+meas dc ic find i(vcc) at=0.8
+.endc
+.end

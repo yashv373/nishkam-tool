@@ -840,7 +840,26 @@ Old flow and formal checks: `node web/studio/engines/parity/browser.mjs <design>
 
 **Live-site check without `?mock` (2026-11-10, issue #40).** https://nishkam.world/studio.html in Microsoft Edge 157.0.4341.42 (headless, Playwright), access key entered at the gate, Examples > shreg4, Run All. All steps passed in 61 s (post-route setup WS 29.2761 ns, hold WS 0.4803 ns, DRC 0 error tiles, LVS match: 152 devices / 77 nets, "Circuits match uniquely"). GDS tab > "3D (Tiny Tapeout)": the explorer frame loaded (`/vendor/tt-explorer/59a43fb/viewer?...pdk=gf180mcuD`) and drew the layout in 3D (`img/review/studio-shreg4-explorer.png`, console log `logs/review/studio-shreg4-console.txt`; that log is cut off during Synthesis, so the slack, DRC and LVS numbers above are read from the screenshot `img/review/studio-shreg4-run.png`). The explorer's per-layer counts were not read, so the earlier KLayout comparison (vias and Metal5 counts) was not repeated for this GDS. KLayout version used for that comparison: 0.30.8 (`klayout -v` in the container). One new finding: in this headless run the Surfer (waveform) frame showed "Sorry, Surfer crashed" when it was opened as part of the page; whether this also happens in a normal window was not checked (headless Edge may lack WebGL), so it is listed here as unverified, not as a bug.
 
-**In-browser flow checked (2026-10-25).** Studio `?mock`, Examples > shreg4, Run All (LVS match), GDS tab, then the Tiny Tapeout Explorer button: the 3D view opened from the in-browser Magic GDS (patched power labels), no error text, new colours visible. No explorer counts were recorded in this page check; not compared against KLayout 3D. The KLayout version and the `-r` script were not recorded.
+**KLayout shape count, script and log kept (2026-11-24, issue #217 item 9).** The 2026-10-25 KLayout script was never saved. It is rewritten and run again on the one GDS still in the repository, tiny8 (`web/studio/demo/final/gds/tiny8.gds`, 650,664 bytes). Image `hpretl/iic-osic-tools:chipathon26`, KLayout 0.30.8. Command, inside the container (the GDS copied to `/tmp/s12`): `klayout -b -r count-shapes.py -rd gds=/tmp/s12/tiny8.gds`. The script (`docs/validation/logs/sec12-2026-11-24/count-shapes.py`) walks the top cell through every instance (arrays expanded) and counts shapes per layer/datatype, texts apart. Studio's own 2D parser was run on the same file (`count-viewer.mjs`, same folder: `parseGds` + `flatten` from `web/studio/viewers/gds-parser.js`). Logs: `klayout-tiny8.txt`, `viewer-tiny8.txt` in the same folder.
+
+| tiny8 layer | KLayout (shapes) | Studio 2D parser (polygons) | Result |
+|---|---|---|---|
+| Via1 35/0 | 1355 | 1355 | match |
+| Via2 38/0 | 1104 | 1104 | match |
+| Via3 40/0 | 127 | 127 | match |
+| Via4 41/0 | 18 | 18 | match |
+| Metal5 81/0 | 2 | 2 | match |
+| Metal2 36/0 (+ 36/10) | 1024 (+ 21) | 1024 (+ 21) | match |
+| Metal3 42/0 (+ 42/10) | 451 (+ 13) | 451 (+ 13) | match |
+| Metal4 46/0 (+ 46/10) | 11 (+ 2) | 11 (+ 2) | match |
+| Metal5 label datatype 81/10 | 2 (+ 2 texts) | 2 | match |
+| Layers 0/0, 21/0, 22/0, 30/0, 31/0, 32/0, 33/0, 34/0, 55/0, 112/1, 204/0 | 1238, 1237, 3521, 3664, 1438, 1237, 18246, 7904, 1237, 1237, 1237 | the same numbers | match |
+| Text-only layers 34/10 (3694), 63/63 (4948), 21/10 (1036), 204/10 (1036) | texts only | not drawn (no polygons) | as expected |
+| Different cell types called from the top cell | 40 (41 with the top cell) | 41 (README of 2026-10-25) | match |
+
+All 23 drawn layer/datatype pairs agree on tiny8, and the via and Metal5 numbers equal the tiny8 row of the first table, now backed by a kept script and log. The `/10` datatype is partly text labels in KLayout (shape count and text count both appear); the polygon counts above exclude them. shreg4, add and m8 were NOT re-counted: their GDS files from 2026-10 were not kept in the repository, and the runner jobs on disk cannot be tied to the old rows, so their numbers in the first table rest on the 2026-10-25 run only (script and log lost).
+
+**In-browser flow checked (2026-10-25).** Studio `?mock`, Examples > shreg4, Run All (LVS match), GDS tab, then the Tiny Tapeout Explorer button: the 3D view opened from the in-browser Magic GDS (patched power labels), no error text, new colours visible. No explorer counts were recorded in this page check; not compared against KLayout 3D.
 
 **NOT validated.** Metal and poly/diffusion geometry against KLayout (only via counts and 2D counts); the 3D picture against a KLayout 3D render; labels and net highlighting; large designs (largest tested: m8, 650 KB); Safari/Firefox; GDS from the in-browser Magic flow on every example.
 
@@ -1140,15 +1159,20 @@ Both transients take the same number of time steps on each side, and the StrongA
 
 | Feature | Measurement | Native | Browser | Result |
 |---|---|---|---|---|
-| `.step` R (#185) | RC bandwidth at R = 1k / 2k / 4k | 159156 / 79578 / 39789 Hz (1/R, as expected) | identical | match |
-| `.step temp` (#185) | diode i(v1) at 0.6 V, -40 / 27 / 125 C | -1.92565e-7 / -1.18720e-4 / -3.55153e-2 A | identical | match |
-| Diode clipper (#186) | v(out) / i at the `.dc` point | 0.237018 V / -2.76298 mA | identical | match |
-| BJT common emitter (#186) | Ic / collector voltage at base 0.78 V and 0.82 V | -156.517 uA / 3.22214 V and 3.00232 V | identical | match |
-| E source amplifier (#186) | vout / i(e1) | 1.00000 V / -1.000 mA | identical | match |
+| `.step` R (#185), rebuilt | RC bandwidth (`.meas ... when vdb(out)=-3.0103`) at R = 1k / 2k / 4k | 159161 / 79578.8 / 39788.6 Hz | identical (same digits) | match |
+| `.step temp` (#185), rebuilt | gf180 diode `diode_nd2ps_03v3` across a 0.6 V source, i(V1) at 0.6 V, -40 / 27 / 125 C | -2.65810 / -2713.51 / -459681 A | identical | match (see the note below: this is NOT the old deck) |
+| Diode clipper (#186), rebuilt | v(out) / i(VIN) at the `.dc` point 3 V | 0.237018 V / -2.76298 mA | identical | match |
+| BJT common emitter (#186), rebuilt | Ic / collector voltage at base 0.78 V and 0.82 V | -156.517 uA / 3.22214 V and 3.00232 V | identical | match |
+| E source amplifier (#186), rebuilt | vout / i(E1) | 1.00000 V / -1.000 mA | identical | match |
 | Junction parasitics, `ring5` (#191) | period without / with ad,as,pd,ps | 412.2 ps / 493.9 ps (frequency -16.5 %) | same to 6 digits on both decks | match |
 | Junction parasitics, `ota5t_tt` (#191) | UGF without / with | 20.741 / 20.424 MHz (-1.5 %) | same to 6 digits on both decks | match |
 
-The first five rows come from the issue comments (#185, #186); only the parasitics script is kept in the repository, so those rows cannot be re-run from this folder. The `.step` and parts circuits also ran in the Lab page in Edge with the same numbers (screenshots in `docs/img/lab-step/` and `docs/img/lab-parts/`; not side by side with native, native has no page).
+**Rebuilt on 2026-11-24 (issue #217 item 5).** The decks and logs for the first five rows were lost; only the screenshots stayed. They were rebuilt from what this section describes and run again, so the five rows above are new measurements, not the old numbers. Everything is in `docs/validation/logs/18c-2026-11-24/`: `run18c.mjs` (builds the decks with the Lab's own `buildDeck` and `buildNetlist`, the same code as the page, then runs them in the browser ngspice-46), `decks/*.cir` (the five decks), `browser/*.log`, `run-native.sh` and `native/*.log`.
+- **Browser side:** ngspice-46 WebAssembly build `web/vendor/ngspice/46/` (official 46 tarball, sha256 `a0d1699a...`, no patches, see its `SOURCE.md`), models `web/vendor/gf180mcu/models-7b70722/`, run in Node v26.7.0 with the same `.spiceinit` as section 18B (`ngbehavior=hsa`, `ng_nomodcheck`, `num_threads=1`, `enable_noisy_r`). Command: `node docs/validation/logs/18c-2026-11-24/run18c.mjs`.
+- **Native side:** container `gf180`, image `hpretl/iic-osic-tools:chipathon26`, ngspice-46 (`native/version.txt`), PDK files from `/foss/pdks/gf180mcuD/libs.tech/ngspice/`, `.spiceinit` as in `run-native.sh` (`num_threads=4`). Command: `bash docs/validation/logs/18c-2026-11-24/run-native.sh`. Each deck is the same text as the browser deck (only the model path and `write /` changed).
+- **Decks:** (1) RC low-pass `V1 in 0 ac 1`, `R1 in out {rval}`, `C1 out 0 1n`, `.step param rval list 1k 2k 4k`, `.ac dec 10 1 1meg`. (2) diode from the schematic editor part `d` (model `diode_nd2ps_03v3`) across `V1 = 0.6 V`, `.step temp list -40 27 125`, `.dc V1 0.5 0.7 0.05`. (3) to (5): the clipper, common-emitter and E-source schematics of `web/analog/parts.run.test.mjs`, the same circuits as before.
+- **Which old rows match:** the clipper, common-emitter and E-source numbers equal the old ones to every printed digit, so those three decks match the old rows. The RC bandwidths are 159161 / 79578.8 / 39788.6 Hz now; the old row said 159156 / 79578 / 39789 Hz. The old deck's `.ac` points were not recorded, so the 5 Hz difference at 1k (0.003 %) cannot be explained from stored evidence; it is probably a different points-per-decade value (the bandwidth is read by interpolation). The old RC row is not matched. The old diode row (-1.92565e-7 / -1.18720e-4 / -3.55153e-2 A) is NOT matched: the old diode deck (model, size, series resistor) was not recorded, and the rebuilt deck (the gf180 diode with its default size, straight across 0.6 V) gives very large currents (2.7 kA at 27 C), which is a size-default effect of that model and not a realistic circuit. Browser and native still agree to every digit on it, which is what this row checks; it says nothing about the old numbers.
+- **What is NOT validated for these five rows:** the Lab page itself was not driven (the screenshots in `docs/img/lab-step/` and `docs/img/lab-parts/` are from the old runs, Edge, not side by side with native); raw files were not compared, only printed `.meas` values; `.step` with two lines, nested sweeps, other models (pnp, other diodes) and other browsers were not run; the clipper's solver-path finding below is from the old run and was not repeated here.
 
 **Starter circuits are examples, not validation claims.** Their `.meas` values (for example the Miller example: DC gain 63.6 dB, unity-gain frequency 12.8 MHz) come from the Lab's own ngspice. `web/analog/examples.test.mjs` checks that each parses, builds, runs with exit 0 and gives values in the expected range. They were not compared with a traditional flow, and the Lab does not claim they are good designs.
 
@@ -1530,9 +1554,18 @@ Status: early. Measured on two small designs; the recipe is an opt-in switch (Pr
 
 ## 27. Scan + ATPG in Studio (early, issue #10)
 
-Run on 2026-11-22. Scripts, benchmark designs, and raw outputs are in `docs/validation/dft/`.
+Run on 2026-11-22; re-run on 2026-11-24 after the #201 to #203 fixes (see "Re-run" below). Scripts, benchmark designs, and raw outputs are in `docs/validation/dft/`.
 
-**Claimed:** narrow and partial. Two comparisons, each on the SAME `.bench` file on both sides (re-run 2026-11-22 after #194 was fixed on main). (1) Studio's own scan-inserted `.bench` (simple gates) run through our WebAssembly Quaigh 0.0.6 and through native Quaigh 0.0.6: faults detected, total faults and coverage are identical on all 6 designs (`c17` bench, `counter`, `acc`, `s27`, `s298`, `s344`; 100% each), outputs match byte for byte when each side simulates the other's patterns, and pattern counts are equal on 4 designs and close on `s344` (17 against 15, random fill differs). (2) Difetto's own `.bench` files (gf180 cells, made by native Difetto) run through our WebAssembly Quaigh: faults, total and coverage identical on all 6 designs, patterns close (`c17` 5 vs 4, `s298` 25 vs 22, `s344` 20 vs 19, the others equal), and our simulator reproduces Difetto's native outputs byte for byte on all 6. Studio's end-to-end coverage and Difetto's end-to-end coverage are NOT the same number, because the two flows build different netlists (simple gates against gf180 cells); that is expected and explained below. Scan-flop and chain-length counts match native Difetto on all 6 designs (0, 4, 3, 3, 14, 15). End-to-end Studio runs pass in Node on `counter`, `acc`, `s27` and `s344`, and in Microsoft Edge on `counter` and `s27` (including the in-browser chain test). At the time of the runs `c17.v` (#201) and `s298` (#202) failed in the full Studio run; both were fixed in the code afterwards (`c4525e8`, `3f91a61`; #203 in `be9aa93`) and this section was not re-run. This stage is **not** a silicon or standard-cell fault-coverage check; Studio counts stuck-at faults on a simple-gate netlist, and the UI says so.
+**Claimed:** narrow and partial. Two comparisons, each on the SAME `.bench` file on both sides (re-run 2026-11-22 after #194 was fixed on main). (1) Studio's own scan-inserted `.bench` (simple gates) run through our WebAssembly Quaigh 0.0.6 and through native Quaigh 0.0.6: faults detected, total faults and coverage are identical on all 6 designs (`c17` bench, `counter`, `acc`, `s27`, `s298`, `s344`; 100% each), outputs match byte for byte when each side simulates the other's patterns, and pattern counts are equal on 5 designs and close on the RTL `c17.v` (4 against 6) and `s344` (17 against 15), random fill differs. (2) Difetto's own `.bench` files (gf180 cells, made by native Difetto) run through our WebAssembly Quaigh: faults, total and coverage identical on all 6 designs, patterns close (`c17` 5 vs 4, `s298` 25 vs 22, `s344` 20 vs 19, the others equal), and our simulator reproduces Difetto's native outputs byte for byte on all 6. Studio's end-to-end coverage and Difetto's end-to-end coverage are NOT the same number, because the two flows build different netlists (simple gates against gf180 cells); that is expected and explained below. Scan-flop and chain-length counts match native Difetto on all 6 designs (0, 4, 3, 3, 14, 15). After the #201, #202 and #203 fixes (`c4525e8`, `3f91a61`, `be9aa93`) the section was re-run on 2026-11-24 (issue #217): end-to-end Studio runs now pass in Node on all six designs including `c17.v` (18/18 faults, 100%) and `s298` (198/198, 100%), with the scan_en = 0 equivalence proven on every design with flops and 0 cross-check errors; logs in `docs/validation/logs/sec27-2026-11-24/`. This stage is **not** a silicon or standard-cell fault-coverage check; Studio counts stuck-at faults on a simple-gate netlist, and the UI says so.
+
+### Re-run 2026-11-24 (issue #217, after #201, #202, #203)
+
+Same scripts, same designs, same tools as below; every number in the tables of this section is from this re-run (the 2026-11-22 numbers are in the git history). Logs and the Edge driver are in `docs/validation/logs/sec27-2026-11-24/`; the raw outputs overwrite the files in `docs/validation/dft/browser/`, `native-quaigh/`, `native-difetto/` and `browser-on-difetto-bench/`.
+- Browser (Node v26.7.0, `@yowasp/yosys@0.68.1207`, Quaigh 0.0.6 WebAssembly `ae9be04a...`): `node docs/validation/dft/run-browser.mjs` (log `run-browser.txt`) and `node docs/validation/dft/run-browser-on-difetto-bench.mjs` (log `browser-on-difetto-bench.txt`).
+- Native Quaigh 0.0.6, Part A: Docker `nixos/nix:latest` with the `difetto-nix-store` volume at `/nix` and `docs/validation/dft` at `/work`: `bash /work/run-native-quaigh.sh /work/browser /work/native-quaigh /nix/store/qg7ixjaii9p61qzasc8pn670gxkrv9pm-quaigh-0.0.6/bin/quaigh` (log `native-quaigh.txt`; Python 3.13.9 from the same store put on `PATH`).
+- Native Difetto, Part B: the same container, `bash /work/run-native-difetto.sh /work/designs /work/native-difetto <difetto-source>/tech/gf180mcu_fd_sc_mcu7t5v0_mapping.json /lib/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib.gz` (log `native-difetto.txt`; the library folder `web/vendor/gf180mcu/lib-tt5v0-full/` mounted at `/lib`). `nl2bench --version` prints an error in `versions.txt`; the version 0.13.0 is from the store path as before.
+- Edge: `edge-run.py` (see the Edge section).
+- What changed against 2026-11-22: `c17.v` and `s298` and `acc` now run end to end (a new `c17` row in Table 27A, `s298` row now a full Studio run), `acc` and `s344` run in under 1.5 s instead of 74 s and 35 s, all six designs ran in Edge, and every native fault total, coverage and pattern count is the same as before (native Difetto numbers are identical to the earlier run; only times moved, with machine load). Nothing differs from the 2026-11-22 numbers other than the rows named in this paragraph.
 
 ### Designs and setup
 
@@ -1578,12 +1611,13 @@ Why raw `.tv` pattern files differ: Quaigh's seeded `SmallRng` uses 32-bit state
 
 | Design (Studio `.bench`) | Faults det/tot (WASM / Native) | Coverage (WASM / Native) | Patterns (WASM / Native) | Cross-sim `.au` byte match (both directions) | Time ATPG / Sim (ms, median of 3, WASM warm / Native) | Verdict |
 |---|---|---|---|---|---|---|
-| `c17` (raw `.bench`) | 20/20 / 20/20 | 100% / 100% | 5 / 5 | yes / yes | 4.4 / 2.3 vs 4.8 / 3.9 | **match** (`.tv` differs: 32 vs 64-bit RNG) |
-| `counter` | 32/32 / 32/32 | 100% / 100% | 6 / 6 | yes / yes | 2.5 / 1.7 vs 4.4 / 3.9 | **match** (`.tv` differs: RNG) |
-| `acc` | 38/38 / 38/38 | 100% / 100% | 6 / 6 | yes / yes | 2.6 / 1.5 vs 3.6 / 3.6 | **match** (`.tv` differs: RNG) |
-| `s27` | 24/24 / 24/24 | 100% / 100% | 6 / 6 | yes / yes | 2.6 / 1.6 vs 4.0 / 3.3 | **match** (`.tv` differs: RNG) |
-| `s298` (via `cutToBench` directly; full `handle()` blocked by #202) | 198/198 / 198/198 | 100% / 100% | 20 / 20 | yes / yes | not in the stored `summary.json` vs 6.4 / 4.9 | **match** on Quaigh (`.tv` differs: RNG); full Studio `handle()` fails (#202) |
-| `s344` (full Studio run; its `.bench`) | 264/264 / 264/264 | 100% / 100% | 17 / 15 | yes / yes | 19.3 / 6.7 vs 6.7 / 4.2 | **match** on faults and coverage; patterns **close** (17 vs 15, RNG); the #194 crash is gone (random patterns catch 262/264, the last 2 need the Kissat pass) |
+| `c17` (raw `.bench`) | 20/20 / 20/20 | 100% / 100% | 5 / 5 | yes / yes | 2.6 / 1.6 vs 4.2 / 3.2 | **match** (`.tv` differs: 32 vs 64-bit RNG) |
+| `c17` (RTL `c17.v`, new row after #201) | 18/18 / 18/18 | 100% / 100% | 4 / 6 | yes / yes | 1.3 / 0.8 vs 3.4 / 2.9 | **match** on faults and coverage; patterns **close** (4 vs 6, RNG) |
+| `counter` | 32/32 / 32/32 | 100% / 100% | 6 / 6 | yes / yes | 2.5 / 1.3 vs 3.3 / 2.7 | **match** (`.tv` differs: RNG) |
+| `acc` | 38/38 / 38/38 | 100% / 100% | 6 / 6 | yes / yes | 1.8 / 1.0 vs 3.8 / 2.9 | **match** (`.tv` differs: RNG) |
+| `s27` | 24/24 / 24/24 | 100% / 100% | 6 / 6 | yes / yes | 2.9 / 1.6 vs 3.5 / 2.9 | **match** (`.tv` differs: RNG) |
+| `s298` (full Studio run) | 198/198 / 198/198 | 100% / 100% | 20 / 20 | yes / yes | 8.1 / 4.7 vs 5.2 / 4.6 | **match** (`.tv` differs: RNG); the full Studio run now passes (#202 fixed) |
+| `s344` (full Studio run; its `.bench`) | 264/264 / 264/264 | 100% / 100% | 17 / 15 | yes / yes | 13.7 / 4.4 vs 5.9 / 4.0 | **match** on faults and coverage; patterns **close** (17 vs 15, RNG, same as on 2026-11-22); the #194 crash is gone (random patterns catch 262/264, the last 2 need the Kissat pass) |
 
 Note on runtimes: Node WASM times reuse the compiled WebAssembly module in memory with no OS process start; native times include spawning the Linux binary per call. Both are under 20 ms here.
 
@@ -1591,12 +1625,14 @@ Note on runtimes: Node WASM times reuse the compiled WebAssembly module in memor
 
 | Design | Scan flops / chain len (Studio / Difetto) | Studio faults & coverage (Node) | Difetto faults & coverage (`gf180` cells) | Patterns (Studio / Difetto) | Runtime: Studio Node / Studio Edge / Native Difetto | Verdict |
 |---|---|---|---|---|---|---|
-| `c17` (RTL `c17.v`) | 0 / 0 | crash (#201) | 18/22 (81.82%) | crash / 4 | 1.8 s (crash) / not run / 6.7 s | **differs (bug #201)**: `cutToBench` net `n7` collides with input `n7` |
-| `counter` | 4 / 4 | 32/32 (100%), eq proven, 0 xchk err, chain test pass | 50/54 (92.59%) | 6 / 8 | 1.4 s / 4.6 s (+ 4.7 s chain test) / 4.1 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants, see below) |
-| `acc` | 3 / 3 | 38/38 (100%), eq proven, 0 xchk err, chain test pass | 60/64 (93.75%) | 6 / 8 | 74.1 s (#202) / not run / 5.1 s | **scan flops: match**; **faults/coverage: differs** (cell library + `nl2bench` constants); **runtime: differs** (74 s due to `sat -tempinduct`, #202) |
-| `s27` | 3 / 3 | 24/24 (100%), eq proven, 0 xchk err, chain test pass | 44/48 (91.67%) | 6 / 8 | 1.4 s / 4.4 s (+ 4.9 s chain test) / 4.7 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants) |
-| `s298` | 14 / 14 | `handle()` fails eq proof (#202); direct Quaigh 198/198 (100%) | 320/340 (94.12%) | 20 (direct) / 22 | fails, time not stored (#202) / not run / 3.8 s | **scan flops: match**; **full Studio fails (#202)** (`equiv_induct` proves it in 0.14 s; that timing is not stored) |
-| `s344` | 15 / 15 | 264/264 (100%), eq proven, 0 xchk err | 290/300 (96.67%) | 17 / 19 | 34.6 s / not run / 4.2 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants); runtime differs (eq proof) |
+| `c17` (RTL `c17.v`) | 0 / 0 | 18/18 (100%), 0 xchk err (was: crash, #201) | 18/22 (81.82%) | 4 / 4 | 1.7 s / 3.6 s / 2.9 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants); the #201 crash is gone |
+| `counter` | 4 / 4 | 32/32 (100%), eq proven, 0 xchk err; chain test pass (Edge) | 50/54 (92.59%) | 6 / 8 | 0.57 s / 3.4 s (+ 4.9 s chain test) / 3.0 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants, see below) |
+| `acc` | 3 / 3 | 38/38 (100%), eq proven, 0 xchk err; chain test pass (Edge) | 60/64 (93.75%) | 6 / 8 | 0.41 s (was 74.1 s) / 4.0 s (+ 4.8 s chain test) / 2.9 s | **scan flops: match**; **faults/coverage: differs** (cell library + `nl2bench` constants); **runtime: fixed** by #202 |
+| `s27` | 3 / 3 | 24/24 (100%), eq proven, 0 xchk err; chain test pass (Edge) | 44/48 (91.67%) | 6 / 8 | 0.45 s / 3.4 s (+ 4.9 s chain test) / 3.0 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants) |
+| `s298` | 14 / 14 | 198/198 (100%), eq proven, 0 xchk err, chain test pass (Edge) (was: eq proof failed, #202) | 320/340 (94.12%) | 20 / 22 | 1.1 s / 4.8 s (+ 5.3 s chain test) / 3.3 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells); the full Studio run now passes |
+| `s344` | 15 / 15 | 264/264 (100%), eq proven, 0 xchk err; chain test pass (Edge) | 290/300 (96.67%) | 17 / 19 | 1.3 s (was 34.6 s) / 4.7 s (+ 5.6 s chain test) / 3.1 s | **scan flops: match**; **faults/coverage: differs** (simple gates vs gf180 cells + `nl2bench` constants); runtime fixed by #202 |
+
+Runtimes (2026-11-24): Studio Node = `handle()` wall time in `run-browser.mjs` (Node v26.7.0, Yosys 0.68 WebAssembly, cold start included); native Difetto = `totalMs` in `native-difetto/summary.json` (Yosys, `nl2bench`, Quaigh, in the container). The 2026-11-22 native times were 3.8 to 6.7 s; the difference is machine load, not the flow. Edge times (Microsoft Edge 158.0.4370.33, headless, Playwright) run from starting the Scan + ATPG step to "Scan + ATPG (early) passed" in the Console, with Yosys loaded fresh into each new page; the chain test time is from the button click to the pass message.
 
 **Why Difetto's coverage is 81.8% to 96.7% instead of 100%:** `nl2bench 0.13.0` appends two constant gates (`__NL2BENCH_HI__ = VDD()` and `__NL2BENCH_LO__ = VSS()`) to every `.bench` file even when nothing connects to them, adding 4 untestable stuck-at faults to every circuit (`c17` 18/22, `counter` 50/54, `acc` 60/64, `s27` 44/48 — all 4 have exactly 4 undetected faults, so 100% of real circuit faults are caught). On `s298` (320/340) and `s344` (290/300), expanding complex gf180 cells (such as AOI/OAI/MUX) into 2-input gates adds additional internal redundant faults. Studio maps to simple 2-input gates with no unused constant nodes, so total fault counts and coverage numbers are not comparable across the two netlists.
 
@@ -1616,7 +1652,18 @@ So the earlier gap between the two tables (for example `s298` 198 faults against
 
 ### Browser runs in Microsoft Edge
 
-Driven via Playwright in Microsoft Edge (`1440x900`, dark theme forced off to light/default by Studio's OS preference, `http://127.0.0.1:8743/studio.html?mock`). Zero Studio console errors (only the expected localhost CORS rejections for `/flags` and `cloudflareinsights.com` and the harness's own `/favicon.ico` probe). Both `counter` and `s27` reached 100% coverage with matching fault counts, pattern counts, and scan chains, and both passed the in-browser **Run chain test (early)** button (`PASS test_chain.py::scan_chain_patterns`).
+Re-run 2026-11-24 (issue #217). The page driver `docs/validation/logs/sec27-2026-11-24/edge-run.py` (Playwright, Microsoft Edge 158.0.4370.33, headless, `1440x900`) serves `web/` with `python -m http.server` on `127.0.0.1`, opens `studio.html?mock`, stores the design as the project with Scan + ATPG ticked, starts the stage, waits for "Scan + ATPG (early) passed" in the Console, opens the Scan + ATPG item, reads the page, and clicks **Run chain test (early)**. Command: `python docs/validation/logs/sec27-2026-11-24/edge-run.py <repo> 8745 edge-page.json` (output `edge-page.json`, screenshots `edge-page-<design>.png`, the printed summary `edge-run.txt`, all in that folder). This time all six designs ran in the page, not only `counter` and `s27`.
+
+| Design | Page result | Chain test | Console errors |
+|---|---|---|---|
+| `counter` | Fault coverage 100%, 32 of 32 faults | pass | only the expected localhost CORS and analytics rejections |
+| `acc` | 100%, 38 of 38 | pass | same |
+| `s27` | 100%, 24 of 24 | pass | same |
+| `s298` | 100%, 198 of 198 | pass | same |
+| `s344` | 100%, 264 of 264 | pass | same |
+| `c17` | 100%, 18 of 18 | no flops, so no chain test button | same |
+
+Fault totals equal the Node run and native Quaigh on the same `.bench`. The two screenshots below are from the 2026-11-22 run; the new ones are in the logs folder.
 
 | Studio Scan + ATPG: `counter` (Edge, 4 flops, 32/32 faults, chain test passed) | Studio Scan + ATPG: ISCAS'89 `s27` (Edge, 3 flops, 24/24 faults, chain test passed) |
 |---|---|
@@ -1629,16 +1676,20 @@ Driven via Playwright in Microsoft Edge (`1440x900`, dark theme forced off to li
 3. **#202 (new bug):** `atpg.worker.js` checks `scan_en = 0` equivalence with `miter -equiv` + `sat -tempinduct` instead of `equiv_make` + `equiv_simple` + `equiv_induct`. This takes 74.1 s on `acc` (3 flops) and fails on ISCAS'89 `s298` (14 flops, no reset pin; an earlier reading said after 124.5 s, which is not in the stored JSON), even though `equiv_induct` proves `s298` in 144 ms and `s344` in 127 ms (these two timings are not stored either).
 4. **#203 (new bug):** `web/studio/app.js` `dftToggle()` omits `drawNav()`, so ticking **Scan + ATPG (early)** in Properties adds the tab but does not add the stage to the left navigator until something else redraws it.
 
-**Status:** #201, #202 and #203 were fixed in the code afterwards (`c4525e8`, `3f91a61`, `be9aa93`); the numbers in this section are from before those fixes and were not re-run.
+**Status (re-run 2026-11-24):** #201, #202 and #203 are fixed in the code (`c4525e8`, `3f91a61`, `be9aa93`) and the numbers above are from after them.
+- #201 fixed: `c17.v` now runs end to end (18/18 faults, 100%, 4 patterns, in Node and in Edge).
+- #202 fixed: the equivalence check passes on all five designs with flops. `acc` takes 0.41 s in total (was 74.1 s), `s298` passes (was a failure), `s344` 1.3 s (was 34.6 s).
+- #203: not re-checked in the page. The new Edge driver stores the Scan + ATPG tick in the project options instead of clicking the checkbox, so the left navigator update after ticking the box was not exercised here.
+- No new bug was found in this re-run.
 
 ### What is NOT validated
 
 - **Standard-cell / silicon fault coverage in Studio:** Studio runs ATPG on a simple generic-gate netlist, not on gf180mcuD standard cells or post-PnR netlists.
 - **Full LibreLane Difetto flows (`DifettoPNR`, `DifettoATPG`, `DifettoTest`):** we ran Difetto's native Yosys plugin (`scan_replace`, `sdff_cut`), `nl2bench 0.13.0`, and native `quaigh 0.0.6` directly, without LibreLane orchestration, without `BoundaryScan`, without OpenROAD placement-ordered chain stitching (`Difetto.Chain`), and without running Difetto's real `cocotb` test (`DifettoTest`).
 - **SAT-based ATPG in WebAssembly:** the Kissat pass now runs after the #194 fix (needed on `s344`: random patterns catch 262/264); it matched native on the designs here, but only these six were run.
-- **Studio's cocotb-subset chain test against real cocotb:** the chain test passed in Node (`counter`, `acc`, `s27`) and Edge (`counter`, `s27`), but was not compared against real cocotb (section 22).
+- **Studio's cocotb-subset chain test against real cocotb:** the chain test passed in Edge on all five designs with flops (`counter`, `acc`, `s27`, `s298`, `s344`; not run in Node this time), but was not compared against real cocotb (section 22).
 - **Larger and more complex designs:** nothing above 15 flip-flops (`s344`), no multi-clock designs, no negative-edge flops, no latches, no memories, no macros, no designs with kept async reset pins (`async2sync` converts async resets to sync logic).
-- **Browsers and hosts:** Edge only on one Windows 11 machine (`counter` and `s27` in the page; `c17`, `acc`, `s298`, `s344` in Node only). Chrome, Firefox, and Safari were not tested.
+- **Browsers and hosts:** Edge only (one version, headless) on one Windows 11 machine; all six designs ran in the page. Chrome, Firefox, and Safari were not tested.
 
 ## 28. SkyWater sky130A digital flow in Studio (issue #208)
 

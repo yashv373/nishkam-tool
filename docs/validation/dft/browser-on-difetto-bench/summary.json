@@ -1,7 +1,7 @@
 [
   {
     "key": "c17",
-    "atpgMs": 102.1,
+    "atpgMs": 123,
     "faultsDetected": 18,
     "faultsTotal": 22,
     "coverage": 81.82,
@@ -10,7 +10,7 @@
   },
   {
     "key": "counter",
-    "atpgMs": 5.1,
+    "atpgMs": 3.9,
     "faultsDetected": 50,
     "faultsTotal": 54,
     "coverage": 92.59,
@@ -19,7 +19,7 @@
   },
   {
     "key": "acc",
-    "atpgMs": 5.6,
+    "atpgMs": 4.7,
     "faultsDetected": 60,
     "faultsTotal": 64,
     "coverage": 93.75,
@@ -28,7 +28,7 @@
   },
   {
     "key": "s27",
-    "atpgMs": 4.9,
+    "atpgMs": 4.6,
     "faultsDetected": 44,
     "faultsTotal": 48,
     "coverage": 91.67,
@@ -37,7 +37,7 @@
   },
   {
     "key": "s298",
-    "atpgMs": 65.6,
+    "atpgMs": 67,
     "faultsDetected": 320,
     "faultsTotal": 340,
     "coverage": 94.12,
@@ -46,7 +46,7 @@
   },
   {
     "key": "s344",
-    "atpgMs": 21.8,
+    "atpgMs": 29.7,
     "faultsDetected": 290,
     "faultsTotal": 300,
     "coverage": 96.67,

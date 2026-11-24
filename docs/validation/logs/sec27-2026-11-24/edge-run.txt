@@ -1,0 +1,6 @@
+counter {'dftMs': 3416, 'chainTestText': 'Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (6)\nConso'}
+acc {'dftMs': 4022, 'chainTestText': 'Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (6)\nConso'}
+s27 {'dftMs': 3372, 'chainTestText': 'Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (6)\nConso'}
+s298 {'dftMs': 4845, 'chainTestText': 'Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (20)\nCons'}
+s344 {'dftMs': 4658, 'chainTestText': 'Chain test passed: every pattern was shifted in, checked before the clock edge, and shifted out.\nTest patterns (17)\nCons'}
+c17 {'dftMs': 3606, 'chainTestText': 'no button (no flops or no clock)'}

@@ -6,13 +6,13 @@
  \----------------------------------------------------------------------------/
  Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)
 
--- Executing script file `/tmp/difetto_val.fRorkH/c17.ys' --
+-- Executing script file `/tmp/difetto_val.GoOq9p/c17.ys' --
 
-1. Executing Liberty frontend: /tmp/difetto_val.fRorkH/gf180.lib
+1. Executing Liberty frontend: /tmp/difetto_val.GoOq9p/gf180.lib
 Imported 229 cell types from liberty file.
 
-2. Executing Verilog-2005 frontend: /tmp/difetto_val.fRorkH/c17.v
-Parsing SystemVerilog input from `/tmp/difetto_val.fRorkH/c17.v' to AST representation.
+2. Executing Verilog-2005 frontend: /tmp/difetto_val.GoOq9p/c17.v
+Parsing SystemVerilog input from `/tmp/difetto_val.GoOq9p/c17.v' to AST representation.
 Generating RTLIL representation for module `\c17'.
 Successfully finished Verilog frontend.
 
@@ -371,7 +371,7 @@ Extracted 12 gates and 17 wires to a netlist network with 5 inputs and 2 outputs
 Running ABC script: <abc-temp-dir>/abc.script
 ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
 ABC: + read_blif <abc-temp-dir>/input.blif 
-ABC: + read_library /tmp/yosys-abc-x6p2dc/stdcells.genlib 
+ABC: + read_library /tmp/yosys-abc-t3Tkcm/stdcells.genlib 
 ABC: + strash 
 ABC: + dretime 
 ABC: + map 
@@ -484,8 +484,8 @@ Extracted 6 gates and 11 wires to a netlist network with 5 inputs and 2 outputs.
 Running ABC script: <abc-temp-dir>/abc.script
 ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
 ABC: + read_blif <abc-temp-dir>/input.blif 
-ABC: + read_lib -w /tmp/difetto_val.fRorkH/gf180.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.52 sec
+ABC: + read_lib -w /tmp/difetto_val.GoOq9p/gf180.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.25 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "gf180mcu_fd_sc_mcu7t5v0__antenna" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "gf180mcu_fd_sc_mcu7t5v0__bufz_1".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "gf180mcu_fd_sc_mcu7t5v0__bufz_2".
@@ -570,8 +570,8 @@ ABC: Scl_LibertyReadGenlib() skipped sequential cell "gf180mcu_fd_sc_mcu7t5v0__s
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "gf180mcu_fd_sc_mcu7t5v0__sdffsnq_1".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "gf180mcu_fd_sc_mcu7t5v0__sdffsnq_2".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "gf180mcu_fd_sc_mcu7t5v0__sdffsnq_4".
-ABC: Library "gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00" from "/tmp/difetto_val.fRorkH/gf180.lib" has 145 cells (84 skipped: 48 seq; 15 tri-state; 21 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.81 sec
-ABC: Memory =   29.97 MB. Time =     0.81 sec
+ABC: Library "gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00" from "/tmp/difetto_val.GoOq9p/gf180.lib" has 145 cells (84 skipped: 48 seq; 15 tri-state; 21 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.37 sec
+ABC: Memory =   29.97 MB. Time =     0.37 sec
 ABC: Warning: Detected 6 multi-output cells (for example, "gf180mcu_fd_sc_mcu7t5v0__addf_1").
 ABC: + strash 
 ABC: + &get -n 
@@ -644,7 +644,7 @@ Dumping module `\c17'.
 10.2. Executing DEMUXMAP pass.
 Dumping module `\c17'.
 
-End of script. Logfile hash: f959cfda36, CPU: user 1.45s system 0.26s, MEM: 78.19 MB peak
+End of script. Logfile hash: 556bd29b70, CPU: user 0.58s system 0.14s, MEM: 76.18 MB peak
 Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)
-Time spent: 43% 2x abc (1 sec), 27% 2x stat (0 sec), ...
+Time spent: 48% 2x abc (0 sec), 15% 2x read_liberty (0 sec), ...
 

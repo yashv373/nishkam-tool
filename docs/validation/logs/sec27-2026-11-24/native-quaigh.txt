@@ -1,0 +1,8 @@
+quaigh_version=quaigh 0.0.6
+c17_bench: cov=100.0% faults=20/20 patterns=5 atpgMs=4.17 simMs=3.2 crossAuMatch=True tvSame=False
+c17: cov=100.0% faults=18/18 patterns=6 atpgMs=3.44 simMs=2.85 crossAuMatch=True tvSame=False
+counter: cov=100.0% faults=32/32 patterns=6 atpgMs=3.25 simMs=2.7 crossAuMatch=True tvSame=False
+acc: cov=100.0% faults=38/38 patterns=6 atpgMs=3.8 simMs=2.93 crossAuMatch=True tvSame=False
+s27: cov=100.0% faults=24/24 patterns=6 atpgMs=3.52 simMs=2.87 crossAuMatch=True tvSame=False
+s298: cov=100.0% faults=198/198 patterns=20 atpgMs=5.24 simMs=4.55 crossAuMatch=True tvSame=False
+s344: cov=100.0% faults=264/264 patterns=15 atpgMs=5.85 simMs=3.99 crossAuMatch=True tvSame=False

@@ -1,0 +1,14 @@
+yosys: Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)
+nl2bench: Usage: nl2bench [OPTIONS] NETLIST_IN
+Try 'nl2bench --help' for help.
+
+Error: No such option: --version
+quaigh: quaigh 0.0.6
+difetto_plugin: /nix/store/0m2v9sim809hmqbx89y2cv92qzh7191p-yosys-difetto-0.1.0/share/yosys/plugins/difetto.so
+Linux 4b616bd20500 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+c17: scanFlops=0 (nonScan=0) cov=81.82% faults=18/22 patterns=4 gates=18 yosysMs=1327.7 nl2bMs=1590.8 atpgMs=4.15
+counter: scanFlops=4 (nonScan=0) cov=92.59% faults=50/54 patterns=8 gates=38 yosysMs=1247.8 nl2bMs=1700.7 atpgMs=4.53
+acc: scanFlops=3 (nonScan=0) cov=93.75% faults=60/64 patterns=8 gates=57 yosysMs=1259.3 nl2bMs=1628.6 atpgMs=4.56
+s27: scanFlops=3 (nonScan=0) cov=91.67% faults=44/48 patterns=8 gates=37 yosysMs=1318.7 nl2bMs=1638.0 atpgMs=4.84
+s298: scanFlops=14 (nonScan=0) cov=94.12% faults=320/340 patterns=22 gates=297 yosysMs=1543.4 nl2bMs=1703.7 atpgMs=29.96
+s344: scanFlops=15 (nonScan=0) cov=96.67% faults=290/300 patterns=19 gates=258 yosysMs=1417.5 nl2bMs=1645.1 atpgMs=16.78

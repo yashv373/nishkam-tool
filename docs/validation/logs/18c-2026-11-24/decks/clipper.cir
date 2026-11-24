@@ -1,0 +1,19 @@
+* Nishkam Lab schematic netlist
+.include /pdk/gf180mcuD/design.ngspice
+.lib /pdk/gf180mcuD/sm141064.ngspice typical
+.lib /pdk/gf180mcuD/sm141064.ngspice diode_typical
+VIN in 0 0
+R1 in out 1k
+D1 out 0 diode_nd2ps_03v3
+.save all @d1[id]
+.control
+set filetype=binary
+set appendwrite
+op
+write /op.raw all
+dc VIN 0 3 0.5
+write /out.raw all
+meas dc vclamp find v(out) at=3
+meas dc id find i(vin) at=3
+.endc
+.end

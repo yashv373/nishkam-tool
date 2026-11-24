@@ -1,0 +1,69 @@
+Warning: can't find the initialization file spinit.
+
+Note: Compatibility modes selected: hs a
+
+
+Circuit: rc low-pass, .step over r
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: v1: has no value, DC 0 assumed
+
+No. of Data Rows : 1
+binary raw file "/op.raw"
+NK_STEP rval=1k
+Reset re-loads circuit rc low-pass, .step over r
+
+Circuit: rc low-pass, .step over r
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: v1: has no value, DC 0 assumed
+
+No. of Data Rows : 61
+binary raw file "/out.raw"
+bw                  =  1.59161e+05
+NK_STEP rval=2k
+Reset re-loads circuit rc low-pass, .step over r
+
+Circuit: rc low-pass, .step over r
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: v1: has no value, DC 0 assumed
+
+No. of Data Rows : 61
+binary raw file "/out.raw"
+bw                  =  7.95788e+04
+NK_STEP rval=4k
+Reset re-loads circuit rc low-pass, .step over r
+
+Circuit: rc low-pass, .step over r
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: v1: has no value, DC 0 assumed
+
+No. of Data Rows : 61
+binary raw file "/out.raw"
+bw                  =  3.97886e+04
+Note: Simulation executed from .control section 
+******
+** ngspice-46 : Circuit level simulation program
+** Compiled with KLU Direct Linear Solver
+** The U. C. Berkeley CAD Group
+** Copyright 1985-1994, Regents of the University of California.
+** Copyright 2001-2025, The ngspice team.
+** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html
+** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
+** Creation Date: Tue Nov 10 03:13:55 UTC 2026
+******
+
+Batch mode
+
+Comments and warnings go to log-file: /run.log
+
